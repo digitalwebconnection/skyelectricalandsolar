@@ -27,6 +27,8 @@ const SOLAR_SERVICES = [
   { label: 'Switchboard & Safety Compliance', href: '/services' },
 ]
 
+const CURRENT_YEAR = new Date().getFullYear()
+
 export function Footer() {
   const scrollToTop = () => {
     const lenis = (window as unknown as { lenis?: { scrollTo: (target: number, options?: object) => void } }).lenis
@@ -343,7 +345,7 @@ export function Footer() {
 
         {/* ================= BOTTOM COPYRIGHT & LEGAL ================= */}
         <div className="pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© {new Date().getFullYear()} {COMPANY_LEGAL_NAME}. All rights reserved.</p>
+          <p>© {CURRENT_YEAR} {COMPANY_LEGAL_NAME}. All rights reserved.</p>
           <p className="text-center md:text-right">
             Designed for high performance, compliance, and clean energy independence across Victoria.
           </p>

@@ -1,6 +1,7 @@
 {
   "name": "Sky Electrical & Solar",
-  "short_name": "SkySolar",
+  "short_name": "Sky Electrical & Solar",
+  "description": "Sky Electrical & Solar - CEC accredited residential & commercial solar installations, battery storage systems, and electrical services.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -10,7 +11,11 @@
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }
-
