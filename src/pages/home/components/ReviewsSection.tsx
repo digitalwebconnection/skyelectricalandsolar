@@ -1,0 +1,317 @@
+import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { motion, type MotionValue, useScroll, useTransform } from 'motion/react'
+import {
+  Sparkles,
+  Star,
+  CheckCircle2,
+  ThumbsUp,
+  ShieldCheck,
+  Cpu,
+  Coins,
+  BatteryCharging,
+  ArrowRight,
+} from 'lucide-react'
+import { useReveal } from '@/hooks/useReveal'
+import { CONTACT_INFO } from '../../../constants'
+
+export interface ReviewItem {
+  icon: ReactNode
+  title: string
+  description: string
+  author: string
+  rating?: number
+}
+
+interface ColumnProps {
+  items: Array<{ item: ReviewItem; itemNumber: number }>
+  y: MotionValue<number>
+  className?: string
+}
+
+const cardThemes = [
+  // 1: Soft Sky Blue
+  {
+    bg: 'bg-[#EBF3FE]',
+    iconColor: 'text-blue-600',
+    cornerGlow: 'bg-blue-400/20',
+  },
+  // 2: Soft Solar Orange / Apricot
+  {
+    bg: 'bg-[#FFF1E6]',
+    iconColor: 'text-orange-500',
+    cornerGlow: 'bg-orange-400/20',
+  },
+  // 3: Soft Mint Green
+  {
+    bg: 'bg-[#EAF7EE]',
+    iconColor: 'text-emerald-600',
+    cornerGlow: 'bg-emerald-400/20',
+  },
+  // 4: Soft Lavender Purple
+  {
+    bg: 'bg-[#F2EEFD]',
+    iconColor: 'text-purple-600',
+    cornerGlow: 'bg-purple-400/20',
+  },
+  // 5: Soft Aqua / Teal
+  {
+    bg: 'bg-[#E5F7F8]',
+    iconColor: 'text-teal-600',
+    cornerGlow: 'bg-teal-400/20',
+  },
+  // 6: Soft Rose / Blush
+  {
+    bg: 'bg-[#FFEBEF]',
+    iconColor: 'text-rose-600',
+    cornerGlow: 'bg-rose-400/20',
+  },
+  // 7: Soft Solar Butter Yellow
+  {
+    bg: 'bg-[#FFF9DE]',
+    iconColor: 'text-amber-600',
+    cornerGlow: 'bg-amber-400/20',
+  },
+  // 8: Soft Periwinkle Blue
+  {
+    bg: 'bg-[#EEF1FA]',
+    iconColor: 'text-indigo-600',
+    cornerGlow: 'bg-indigo-400/20',
+  },
+]
+
+const CUSTOMER_REVIEWS: ReviewItem[] = [
+  {
+    icon: <Star className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />,
+    title: '“Power Bill Dropped from $890 to Under $40!”',
+    description:
+      'We were skeptical about the 80% bill reduction claims, but Sky Electrical & Solar delivered beyond our expectations. In our very first quarter with the 10.4kW system, our bill plummeted to almost zero. The crew was punctual, friendly, and left our property spotless.',
+    author: 'Mark & Sarah T. • Point Cook, VIC',
+    rating: 5,
+  },
+  {
+    icon: <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: '“Best Investment We’ve Ever Made for Our Home”',
+    description:
+      'From the initial satellite roof modeling to the switchboard upgrade and grid connection, everything was handled seamlessly. No hidden fees or pushy sales tactics—just transparent, honest advice. Powering our whole house and EV on solar is incredible.',
+    author: 'Elena & Chris R. • Werribee, VIC',
+    rating: 5,
+  },
+  {
+    icon: <ThumbsUp className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: '“Flawless CEC Certified Master Workmanship”',
+    description:
+      'The installation team was top-notch. Clean conduit runs, perfectly aligned Tier-1 black panels, and certified master electricians who clearly take pride in their craft. They even helped me set up the mobile monitoring app before leaving.',
+    author: 'David M. • Geelong, VIC',
+    rating: 5,
+  },
+  {
+    icon: <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: '“Blackout-Proof! Battery Kicked in Within Seconds”',
+    description:
+      'During a severe thunderstorm last month, our entire street lost power for 6 hours. Our solar battery kicked in instantly without a single flicker on the fridge or Wi-Fi. Having that level of energy security and zero blackouts is priceless.',
+    author: 'Robert P. • Ballarat, VIC',
+    rating: 5,
+  },
+  {
+    icon: <Cpu className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: '“Saved Over $3,450 in Our Very First Year”',
+    description:
+      'We run ducted air conditioning all day in summer without worrying about expensive power bills anymore. The real-time mobile app shows our solar generation and consumption down to the watt. Outstanding customer service and genuine savings.',
+    author: 'James & Chloe W. • Mornington, VIC',
+    rating: 5,
+  },
+  {
+    icon: <Coins className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: '“Government Rebates Deducted Directly Upfront”',
+    description:
+      'Sky Solar took care of all the STC government rebate paperwork directly off the initial quote. No waiting for rebates or navigating complicated government portals. Highly professional, responsive, and genuinely reliable company.',
+    author: 'Anthony L. • Berwick, VIC',
+    rating: 5,
+  },
+  {
+    icon: <BatteryCharging className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: '“25-Year Warranty Gave Us Complete Peace of Mind”',
+    description:
+      'Knowing our solar panels and inverters are backed by a 25-year manufacturer warranty and a 10-year workmanship guarantee gave us confidence. The team arrived right on schedule at 7:30 AM and had everything commissioned by 3:00 PM.',
+    author: 'George & Priya N. • Frankston, VIC',
+    rating: 5,
+  },
+  {
+    icon: <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />,
+    title: '“Highly Recommend to Anyone Going Solar”',
+    description:
+      'We compared quotes from four different solar installers in Melbourne. Sky Electrical & Solar offered the best Tier-1 hardware, honest guidance on battery sizing, and competitive pricing without any gimmicks. Could not be happier with our system.',
+    author: 'Anita C. • Altona, VIC',
+    rating: 5,
+  },
+]
+
+const Column = ({ items, y, className = '' }: ColumnProps) => {
+  return (
+    <motion.div
+      className={`relative flex h-full flex-col gap-5 sm:gap-6 ${className}`}
+      style={{ y }}
+    >
+      {items.map(({ item, itemNumber }, i) => {
+        const theme = cardThemes[(itemNumber - 1) % cardThemes.length]
+        return (
+          <div
+            key={i}
+            className={`group relative flex flex-col justify-between p-5 sm:p-7 rounded-2xl ${theme.bg} border border-black/5 shadow-[0_8px_24px_-4px_rgba(20,72,140,0.06)] transition-all duration-300 hover:shadow-[0_16px_36px_-6px_rgba(20,72,140,0.14)] hover:-translate-y-1.5 select-none shrink-0 overflow-hidden`}
+          >
+            {/* Ambient corner glow that expands on hover */}
+            <div
+              className={`absolute -top-12 -right-12 w-36 h-36 rounded-full ${theme.cornerGlow} blur-2xl pointer-events-none transition-transform duration-500 group-hover:scale-150`}
+            />
+
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <div
+                  className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white ${theme.iconColor} shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 border border-slate-100`}
+                >
+                  {item.icon}
+                </div>
+                <span className="px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold bg-white/90 text-slate-700 shadow-2xs border border-slate-200/50">
+                  0{itemNumber}
+                </span>
+              </div>
+
+              <h3 className="text-base sm:text-xl font-heading font-extrabold text-slate-900 group-hover:text-amber-600 transition-colors mb-2 sm:mb-2.5 leading-snug">
+                {item.title}
+              </h3>
+              <p className="text-xs sm:text-[14px] text-slate-600 leading-relaxed font-normal">
+                {item.description}
+              </p>
+            </div>
+
+            <div className="relative z-10 mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-black/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-0 text-[10px] sm:text-xs font-semibold text-slate-500">
+              <span className="font-bold text-slate-700">{item.author}</span>
+              <span className="text-emerald-700 flex items-center gap-1.5 font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Verified 5★
+              </span>
+            </div>
+          </div>
+        )
+      })}
+    </motion.div>
+  )
+}
+
+export function ReviewsSection({
+  reviews = CUSTOMER_REVIEWS,
+}: {
+  reviews?: ReviewItem[]
+}) {
+  const { ref: sectionRef, visible: isVisible } = useReveal()
+  const gallery = useRef<HTMLDivElement>(null)
+  const [dimension, setDimension] = useState({ width: 0, height: 0 })
+
+  const { scrollYProgress } = useScroll({
+    target: gallery,
+    offset: ['start end', 'end start'],
+  })
+
+  const h = dimension.height || (typeof window !== 'undefined' ? window.innerHeight : 800)
+  const y = useTransform(scrollYProgress, [0, 1], [0, h * 1.4])
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, h * 2.1])
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, h * 0.9])
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, h * 1.8])
+
+  useEffect(() => {
+    const resize = () => {
+      setDimension({ width: window.innerWidth, height: window.innerHeight })
+    }
+
+    window.addEventListener('resize', resize)
+    resize()
+
+    return () => {
+      window.removeEventListener('resize', resize)
+    }
+  }, [])
+
+  const getColItems = (offset: number, count = 4) => {
+    if (!reviews || reviews.length === 0) return []
+    return Array.from({ length: count }, (_, i) => ({
+      item: reviews[(i + offset) % reviews.length],
+      itemNumber: ((i + offset) % cardThemes.length) + 1,
+    }))
+  }
+
+  const col1 = getColItems(0, 4)
+  const col2 = getColItems(4, 4)
+  const col3 = getColItems(2, 4)
+  const col4 = getColItems(6, 4)
+
+  return (
+    <section
+      className="py-16 sm:py-24 bg-slate-50/70 relative overflow-hidden flex flex-col items-center"
+      ref={sectionRef}
+    >
+      {/* Decorative ambient blurred backdrops */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-orange-100/30 rounded-full blur-3xl pointer-events-none -z-10" />
+
+      {/* Header Container */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 text-center mb-10 sm:mb-12">
+        <div
+          className={`transition-all duration-800 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mt-1 tracking-tight">
+            What Homeowners Say About{' '} <br />
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-500 via-orange-500 to-amber-600">
+              Sky Electrical & Solar
+            </span>
+          </h2>
+          <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-medium">
+            Real experiences, honest feedback, and verified power bill savings from homeowners across Victoria.
+          </p>
+
+        
+        </div>
+      </div>
+
+      {/* Parallax Multi-Column Gallery Container */}
+      <div
+        ref={gallery}
+        className="relative box-border flex h-[145vh] sm:h-[165vh] w-full max-w-350 gap-4 sm:gap-6 overflow-hidden px-4 sm:px-6 lg:px-8 py-4"
+      >
+        {/* Column 1 */}
+        <Column items={col1} y={y} className="top-[-30%] w-1/2 lg:w-1/4" />
+
+        {/* Column 2 */}
+        <Column items={col2} y={y2} className="top-[-55%] w-1/2 lg:w-1/4" />
+
+        {/* Column 3 (desktop) */}
+        <Column items={col3} y={y3} className="top-[-25%] hidden lg:flex lg:w-1/4" />
+
+        {/* Column 4 (desktop) */}
+        <Column items={col4} y={y4} className="top-[-45%] hidden lg:flex lg:w-1/4" />
+
+        {/* Top Gradient Fade Mask */}
+        <div className="absolute top-0 left-0 right-0 h-28 sm:h-36 bg-linear-to-b from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />
+
+        {/* Bottom Gradient Fade Mask */}
+        <div className="absolute bottom-0 left-0 right-0 h-28 sm:h-36 bg-linear-to-t from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />
+      </div>
+
+      {/* Bottom CTA Button */}
+      <div className="relative z-20 mt-8 sm:mt-10">
+        <a
+          href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, '')}`}
+          className="inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 px-7 text-sm font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 active:scale-95"
+        >
+          <span>Claim Your Guaranteed System Quote</span>
+          <ArrowRight className="w-4 h-4" />
+        </a>
+      </div>
+    </section>
+  )
+}
+
+export default ReviewsSection

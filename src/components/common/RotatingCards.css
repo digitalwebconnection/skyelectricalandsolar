@@ -1,0 +1,187 @@
+.rotating-cards-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: visible;
+  padding: 12px 0 24px 0;
+}
+
+.rotating-cards-wrapper .wrap_card {
+  position: relative;
+  overflow: visible;
+  width: var(--w-wrap-card);
+  height: calc(var(--h-card) + 28px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  --w-card: 200px;
+  --h-card: 300px;
+  --rotate-card: 11deg;
+  --insetX-card: 18px;
+  --t-card: 14px;
+  --w-wrap-card: calc(var(--w-card) + calc(calc(var(--w-card) / 2) * 2));
+}
+
+@media (min-width: 640px) {
+  .rotating-cards-wrapper .wrap_card {
+    --w-card: 235px;
+    --h-card: 350px;
+    --insetX-card: 24px;
+    --t-card: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rotating-cards-wrapper .wrap_card {
+    --w-card: 250px;
+    --h-card: 375px;
+    --insetX-card: 26px;
+    --t-card: 18px;
+  }
+}
+
+.rotating-cards-wrapper:hover .card {
+  animation-play-state: paused;
+}
+
+.rotating-cards-wrapper .card {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  overflow: hidden;
+  animation: card-rotating 9s cubic-bezier(0.75, 0, 0, 1.01) infinite 0s;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  width: var(--w-card);
+  height: var(--h-card);
+  z-index: var(--z1);
+  top: var(--t1);
+  left: var(--l1);
+  right: var(--r1);
+  transform: var(--trans1);
+  filter: var(--filter1);
+  opacity: var(--op1);
+  box-shadow: 0 20px 40px -8px rgba(15, 23, 42, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  user-select: none;
+  transition: box-shadow 0.3s ease;
+  --x1: var(--insetX-card);
+  --x2: calc(var(--w-wrap-card) - calc(var(--w-card) + var(--insetX-card)));
+  --to-left: rotate(calc(var(--rotate-card) * -1)) scale(0.92);
+  --to-center: calc(var(--w-card) / 2);
+  --to-right: rotate(calc(var(--rotate-card) * 1)) scale(0.92);
+}
+
+.rotating-cards-wrapper .card:hover {
+  box-shadow: 0 25px 50px -6px rgba(245, 158, 11, 0.4), 0 0 0 1px rgba(245, 158, 11, 0.3);
+}
+
+.rotating-cards-wrapper .card:nth-child(1) {
+  --z1: 3;
+  --t1: 0;
+  --l1: var(--to-center);
+  --r1: var(--to-center);
+  --trans1: rotate(0deg) scale(1.02);
+  --filter1: brightness(1);
+  --op1: 1;
+
+  --z2: 1;
+  --t2: var(--t-card);
+  --l2: var(--x1);
+  --r2: var(--x2);
+  --trans2: var(--to-left);
+  --filter2: brightness(0.85);
+  --op2: 0.88;
+
+  --z3: 1;
+  --t3: var(--t-card);
+  --l3: var(--x2);
+  --r3: var(--x1);
+  --trans3: var(--to-right);
+  --filter3: brightness(0.85);
+  --op3: 0.88;
+}
+
+.rotating-cards-wrapper .card:nth-child(2) {
+  --z1: 1;
+  --t1: var(--t-card);
+  --l1: var(--x2);
+  --r1: var(--x1);
+  --trans1: var(--to-right);
+  --filter1: brightness(0.85);
+  --op1: 0.88;
+
+  --z2: 3;
+  --t2: 0;
+  --l2: var(--to-center);
+  --r2: var(--to-center);
+  --trans2: rotate(0deg) scale(1.02);
+  --filter2: brightness(1);
+  --op2: 1;
+
+  --z3: 1;
+  --t3: var(--t-card);
+  --l3: var(--x1);
+  --r3: var(--x2);
+  --trans3: var(--to-left);
+  --filter3: brightness(0.85);
+  --op3: 0.88;
+}
+
+.rotating-cards-wrapper .card:nth-child(3) {
+  --z1: 1;
+  --t1: var(--t-card);
+  --l1: var(--x1);
+  --r1: var(--x2);
+  --trans1: var(--to-left);
+  --filter1: brightness(0.85);
+  --op1: 0.88;
+
+  --z2: 1;
+  --t2: var(--t-card);
+  --l2: var(--x2);
+  --r2: var(--x1);
+  --trans2: var(--to-right);
+  --filter2: brightness(0.85);
+  --op2: 0.88;
+
+  --z3: 3;
+  --t3: 0;
+  --l3: var(--to-center);
+  --r3: var(--to-center);
+  --trans3: rotate(0deg) scale(1.02);
+  --filter3: brightness(1);
+  --op3: 1;
+}
+
+@keyframes card-rotating {
+  0%,
+  99.99% {
+    z-index: var(--z1);
+    top: var(--t1);
+    left: var(--l1);
+    right: var(--r1);
+    transform: var(--trans1);
+    filter: var(--filter1);
+    opacity: var(--op1);
+  }
+  33.33% {
+    z-index: var(--z2);
+    top: var(--t2);
+    left: var(--l2);
+    right: var(--r2);
+    transform: var(--trans2);
+    filter: var(--filter2);
+    opacity: var(--op2);
+  }
+  66.66% {
+    z-index: var(--z3);
+    top: var(--t3);
+    left: var(--l3);
+    right: var(--r3);
+    transform: var(--trans3);
+    filter: var(--filter3);
+    opacity: var(--op3);
+  }
+}

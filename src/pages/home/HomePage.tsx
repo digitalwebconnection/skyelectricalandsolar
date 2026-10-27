@@ -1,0 +1,48 @@
+import {
+  HeroSection,
+  TrustStrip,
+  SolutionsSection,
+  SolarSectorsSection,
+  SolarCalculatorSection,
+  WhyChooseUsSection,
+  PartnersSection,
+  ReviewsSection,
+  FaqSection
+} from './components'
+
+export function HomePage() {
+  return (
+    <div className="flex flex-col w-full">
+      {/* 1. Hero Section with Left Content & Right 3D FlyingPosters Animation */}
+      <HeroSection />
+
+      {/* 2. Key Industry Accreditation & Metrics Strip */}
+      <TrustStrip />
+
+      {/* 3. Solar & Battery Core Solutions */}
+      <SolutionsSection />
+
+      {/* 4. Residential & Commercial Solar Sectors (with React Bits FadeContent) */}
+      <SolarSectorsSection />
+
+      {/* 5. Interactive Solar Savings & ROI Calculator */}
+      <SolarCalculatorSection />
+
+      {/* 6. 4-Step Process & Workmanship Guarantee */}
+      <WhyChooseUsSection />
+
+      {/* 6. Dual Logo Marquee: Inverter & Solar Panel Brand Partners */}
+      <PartnersSection />
+
+      {/* 7. Customer Reviews & Multi-Column Parallax Gallery */}
+      <ReviewsSection />
+
+      {/* 8. Frequently Asked Questions (FAQ) */}
+      <FaqSection />
+
+    
+    </div>
+  )
+}
+
+export default HomePage
