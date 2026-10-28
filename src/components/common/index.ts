@@ -14,4 +14,5 @@ export * from './WebsiteLoader'
 export * from './SmoothScroll'
 export * from './InquiryEnvelopeModal'
 export * from './PixelSwap'
+export * from './InfiniteSpiral'
 

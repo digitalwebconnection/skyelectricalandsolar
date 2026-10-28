@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const COMPANY_NAME = 'Skye Electrical & Solar'
+const COMPANY_NAME = 'Sky Electrical & Solar'
 
 export interface WebsiteLoaderProps {
   minDuration?: number // Minimum time to show loader in ms

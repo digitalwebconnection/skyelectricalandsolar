@@ -4,22 +4,20 @@ import {
   Sparkles,
   Star,
   CheckCircle2,
-  ThumbsUp,
-  ShieldCheck,
-  Cpu,
-  Coins,
-  BatteryCharging,
   ArrowRight,
 } from 'lucide-react'
 import { useReveal } from '@/hooks/useReveal'
 import { useInquiryModal } from '../../../context'
 
 export interface ReviewItem {
-  icon: ReactNode
+  icon?: ReactNode
   title: string
   description: string
   author: string
   rating?: number
+  image: string
+  systemTag?: string
+  savings?: string
 }
 
 interface ColumnProps {
@@ -81,68 +79,84 @@ const cardThemes = [
 
 const CUSTOMER_REVIEWS: ReviewItem[] = [
   {
-    icon: <Star className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />,
     title: '“Power Bill Dropped from $890 to Under $40!”',
     description:
       'We were skeptical about the 80% bill reduction claims, but Skye Electrical & Solar delivered beyond our expectations. In our very first quarter with the 10.4kW system, our bill plummeted to almost zero. The crew was punctual, friendly, and left our property spotless.',
     author: 'Mark & Sarah T. • Point Cook, VIC',
     rating: 5,
+    image: '/assets/residential-solar.jpg',
+    systemTag: '10.4kW Tier-1 System',
+    savings: 'Bill: $890 ➔ $38/qtr',
   },
   {
-    icon: <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />,
     title: '“Best Investment We’ve Ever Made for Our Home”',
     description:
       'From the initial satellite roof modeling to the switchboard upgrade and grid connection, everything was handled seamlessly. No hidden fees or pushy sales tactics—just transparent, honest advice. Powering our whole house and EV on solar is incredible.',
     author: 'Elena & Chris R. • Werribee, VIC',
     rating: 5,
+    image: '/assets/posters/poster-ev.jpg',
+    systemTag: '8.8kW Solar + EV Charger',
+    savings: 'Free Daily EV Commute',
   },
   {
-    icon: <ThumbsUp className="w-5 h-5 sm:w-6 sm:h-6" />,
     title: '“Flawless CEC Certified Master Workmanship”',
     description:
       'The installation team was top-notch. Clean conduit runs, perfectly aligned Tier-1 black panels, and certified master electricians who clearly take pride in their craft. They even helped me set up the mobile monitoring app before leaving.',
     author: 'David M. • Geelong, VIC',
     rating: 5,
+    image: '/assets/posters/poster-technician.jpg',
+    systemTag: 'CEC Master Workmanship',
+    savings: '1-Day Clean Install',
   },
   {
-    icon: <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />,
     title: '“Blackout-Proof! Battery Kicked in Within Seconds”',
     description:
       'During a severe thunderstorm last month, our entire street lost power for 6 hours. Our solar battery kicked in instantly without a single flicker on the fridge or Wi-Fi. Having that level of energy security and zero blackouts is priceless.',
     author: 'Robert P. • Ballarat, VIC',
     rating: 5,
+    image: '/assets/posters/poster-battery.jpg',
+    systemTag: '10kWh Lithium Battery',
+    savings: 'Zero Outage Downtime',
   },
   {
-    icon: <Cpu className="w-5 h-5 sm:w-6 sm:h-6" />,
     title: '“Saved Over $3,450 in Our Very First Year”',
     description:
       'We run ducted air conditioning all day in summer without worrying about expensive power bills anymore. The real-time mobile app shows our solar generation and consumption down to the watt. Outstanding customer service and genuine savings.',
     author: 'James & Chloe W. • Mornington, VIC',
     rating: 5,
+    image: '/assets/banner/banner-solar-mansion.jpg',
+    systemTag: '13.2kW High-Yield System',
+    savings: '$3,450 Annual Savings',
   },
   {
-    icon: <Coins className="w-5 h-5 sm:w-6 sm:h-6" />,
     title: '“Government Rebates Deducted Directly Upfront”',
     description:
       'Skye Electrical & Solar took care of all the STC government rebate paperwork directly off the initial quote. No waiting for rebates or navigating complicated government portals. Highly professional, responsive, and genuinely reliable company.',
     author: 'Anthony L. • Berwick, VIC',
     rating: 5,
+    image: '/assets/posters/poster-inverter.jpg',
+    systemTag: 'Instant STC Rebates',
+    savings: '$2,400+ Govt Subsidy',
   },
   {
-    icon: <BatteryCharging className="w-5 h-5 sm:w-6 sm:h-6" />,
     title: '“25-Year Warranty Gave Us Complete Peace of Mind”',
     description:
       'Knowing our solar panels and inverters are backed by a 25-year manufacturer warranty and a 10-year workmanship guarantee gave us confidence. The team arrived right on schedule at 7:30 AM and had everything commissioned by 3:00 PM.',
     author: 'George & Priya N. • Frankston, VIC',
     rating: 5,
+    image: '/assets/posters/poster-rooftop.jpg',
+    systemTag: 'Tier-1 All-Black Panels',
+    savings: '25-Yr Full Warranty',
   },
   {
-    icon: <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />,
     title: '“Highly Recommend to Anyone Going Solar”',
     description:
       'We compared quotes from four different solar installers in Melbourne. Skye Electrical & Solar offered the best Tier-1 hardware, honest guidance on battery sizing, and competitive pricing without any gimmicks. Could not be happier with our system.',
     author: 'Anita C. • Altona, VIC',
     rating: 5,
+    image: '/assets/posters/poster-sunset.jpg',
+    systemTag: '6.6kW Coastal Solar Array',
+    savings: '78% Bill Cut',
   },
 ]
 
@@ -157,7 +171,7 @@ const Column = ({ items, y, className = '' }: ColumnProps) => {
         return (
           <div
             key={i}
-            className={`group relative flex flex-col justify-between p-5 sm:p-7 rounded-2xl ${theme.bg} border border-black/5 shadow-[0_8px_24px_-4px_rgba(20,72,140,0.06)] transition-all duration-300 hover:shadow-[0_16px_36px_-6px_rgba(20,72,140,0.14)] hover:-translate-y-1.5 select-none shrink-0 overflow-hidden`}
+            className={`group relative flex flex-col justify-between p-4 sm:p-5  ${theme.bg} border border-black/5 shadow-[0_8px_24px_-4px_rgba(20,72,140,0.06)] transition-all duration-300 hover:shadow-[0_16px_36px_-6px_rgba(245,158,11,0.2)] hover:-translate-y-1.5 select-none shrink-0 overflow-hidden`}
           >
             {/* Ambient corner glow that expands on hover */}
             <div
@@ -165,30 +179,64 @@ const Column = ({ items, y, className = '' }: ColumnProps) => {
             />
 
             <div className="relative z-10">
-              <div className="flex items-center justify-between mb-3 sm:mb-4">
-                <div
-                  className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white ${theme.iconColor} shadow-xs flex items-center justify-center transition-transform duration-300 group-hover:scale-110 border border-slate-100`}
-                >
-                  {item.icon}
-                </div>
-                <span className="px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold bg-white/90 text-slate-700 shadow-2xs border border-slate-200/50">
-                  0{itemNumber}
-                </span>
+              {/* Project Installation Showcase Image */}
+              <div className="relative w-full h-36 sm:h-44  overflow-hidden mb-3.5  shadow-lg bg-slate-900 group/img">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  loading="lazy"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-106"
+                  onError={(e) => {
+                    e.currentTarget.src = '/assets/residential-solar.jpg'
+                  }}
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-950/75 via-slate-950/20 to-transparent pointer-events-none" />
+
+                {/* Top Badge: System Type */}
+                {item.systemTag && (
+                  <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold text-white bg-slate-950/80 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20 shadow-xs">
+                    <Sparkles className="w-2.5 h-2.5 text-amber-400" />
+                    <span>{item.systemTag}</span>
+                  </span>
+                )}
+
+                {/* Bottom Highlight: Verified Savings */}
+                {item.savings && (
+                  <span className="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-amber-300 bg-amber-500/25 backdrop-blur-md px-2 py-0.5 rounded border border-amber-400/30">
+                    {item.savings}
+                  </span>
+                )}
               </div>
 
-              <h3 className="text-base sm:text-xl font-heading font-extrabold text-slate-900 group-hover:text-amber-600 transition-colors mb-2 sm:mb-2.5 leading-snug">
+              {/* Top Star Rating & Milestone Number */}
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-0.5 text-amber-400">
+                  {[...Array(5)].map((_, starIdx) => (
+                    <Star
+                      key={starIdx}
+                      className="w-3.5 h-3.5 fill-amber-400 text-amber-400"
+                    />
+                  ))}
+                  <span className="ml-1 text-[11px] font-bold text-slate-700">5.0</span>
+                </div>
+                
+              </div>
+
+              <h3 className="text-sm sm:text-base font-heading font-extrabold text-slate-900 group-hover:text-amber-600 transition-colors mb-1.5 leading-snug">
                 {item.title}
               </h3>
-              <p className="text-xs sm:text-[14px] text-slate-600 leading-relaxed font-normal">
+              <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal line-clamp-4">
                 {item.description}
               </p>
             </div>
 
-            <div className="relative z-10 mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-black/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 sm:gap-0 text-[10px] sm:text-xs font-semibold text-slate-500">
-              <span className="font-bold text-slate-700">{item.author}</span>
-              <span className="text-emerald-700 flex items-center gap-1.5 font-bold">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Verified 5★
+            <div className="relative z-10 mt-3 pt-3 border-t border-black/5 flex items-center justify-between gap-1 text-[10px] sm:text-xs">
+              <span className="font-bold text-slate-800 truncate max-w-[65%]">
+                {item.author}
+              </span>
+              <span className="text-emerald-700 flex items-center gap-1 font-bold shrink-0">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                <span>Verified 5★</span>
               </span>
             </div>
           </div>
@@ -247,7 +295,7 @@ export function ReviewsSection({
 
   return (
     <section
-      className="py-8 sm:py-14 bg-slate-50/70 relative overflow-hidden flex flex-col items-center"
+      className="py-10 sm:py-16 bg-slate-50/70 relative overflow-hidden flex flex-col items-center"
       ref={sectionRef}
     >
       {/* Decorative ambient blurred backdrops */}
@@ -261,7 +309,10 @@ export function ReviewsSection({
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-800 text-xs font-bold tracking-wider uppercase mb-3 shadow-2xs">
+            <Sparkles className="h-3.5 w-3.5 text-amber-600" />
+            <span>500+ Verified Australian Homeowner Reviews</span>
+          </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold tracking-tight text-slate-900 leading-[1.15]">
             What Homeowners Say About <br />
@@ -269,18 +320,16 @@ export function ReviewsSection({
               Skye Electrical & Solar
             </span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-5xl mx-auto font-medium">
+          <p className="mt-3.5 text-base sm:text-lg text-slate-600 max-w-4xl mx-auto font-medium">
             Real experiences, honest feedback, and verified power bill savings from homeowners across Victoria.
           </p>
-
-        
         </div>
       </div>
 
       {/* Parallax Multi-Column Gallery Container */}
       <div
         ref={gallery}
-        className="relative box-border flex h-[145vh] sm:h-[185vh] w-full max-w-350 gap-4 sm:gap-6 overflow-hidden px-4 sm:px-6 lg:px-8 py-4"
+        className="relative box-border flex h-[155vh] sm:h-[195vh] w-full max-w-350 gap-4 sm:gap-6 overflow-hidden px-4 sm:px-6 lg:px-8 py-4"
       >
         {/* Column 1 */}
         <Column items={col1} y={y} className="top-[-30%] w-1/2 lg:w-1/4" />

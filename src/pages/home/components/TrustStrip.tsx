@@ -7,79 +7,88 @@ import {
   Zap,
   CheckCircle2,
   Smartphone,
+  Sparkles,
 } from 'lucide-react'
 import { Marquee } from '../../../components/common/Marquee'
 
 const TRUST_ITEMS = [
   {
     icon: Sun,
+    image: '/assets/posters/poster-rooftop.jpg',
     title: 'Tier-1 Solar Panels',
     desc: 'Bloomberg NEF Monocrystalline',
     badge: 'Tier-1 Rated',
     badgeColor: 'bg-amber-50 text-amber-800 border-amber-300/90',
-    iconBg: 'bg-gradient-to-br from-amber-500/20 to-orange-500/15 text-amber-600 border border-amber-500/30',
+    highlight: '22.8% Module Efficiency',
   },
   {
     icon: TrendingDown,
+    image: '/assets/banner/banner-solar-mansion.jpg',
     title: 'Up to 80% Bill Cut',
     desc: 'Guaranteed solar system yield',
     badge: 'Top Savings',
     badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-300/90',
-    iconBg: 'bg-gradient-to-br from-emerald-500/20 to-teal-500/15 text-emerald-600 border border-emerald-500/30',
+    highlight: '$1,800+ Annual Savings',
   },
   {
     icon: ShieldCheck,
-    title: '25-Year Warranty',
+    image: '/assets/banner/banner-electrical-technician.jpg',
+    title: '25-Year Full Warranty',
     desc: 'Hardware, inverter & labor cover',
     badge: 'Full Cover',
     badgeColor: 'bg-orange-50 text-orange-800 border-orange-300/90',
-    iconBg: 'bg-gradient-to-br from-orange-500/20 to-amber-500/15 text-orange-600 border border-orange-500/30',
+    highlight: 'Australian Backed',
   },
   {
     icon: Battery,
+    image: '/assets/posters/poster-battery.jpg',
     title: 'Blackout-Proof Battery',
     desc: 'Seamless 24/7 emergency storage',
     badge: '24/7 Backup',
     badgeColor: 'bg-blue-50 text-blue-800 border-blue-300/90',
-    iconBg: 'bg-gradient-to-br from-blue-500/20 to-cyan-500/15 text-blue-600 border border-blue-500/30',
+    highlight: 'Tesla & Alpha ESS Ready',
   },
   {
     icon: Award,
+    image: '/assets/posters/poster-technician.jpg',
     title: 'CEC Approved Retailer',
     desc: 'Clean Energy Council master installers',
     badge: 'Certified',
     badgeColor: 'bg-purple-50 text-purple-800 border-purple-300/90',
-    iconBg: 'bg-gradient-to-br from-purple-500/20 to-pink-500/15 text-purple-600 border border-purple-500/30',
+    highlight: 'A-Grade Electricians',
   },
   {
     icon: Zap,
+    image: '/assets/banner/banner-10kw-battery.png',
     title: '$0 Upfront Solar Plans',
     desc: 'Australian STC rebates pre-applied',
     badge: 'Govt Rebate',
     badgeColor: 'bg-amber-50 text-amber-800 border-amber-300/90',
-    iconBg: 'bg-gradient-to-br from-amber-500/20 to-yellow-500/15 text-amber-600 border border-amber-500/30',
+    highlight: 'Save up to $3,200',
   },
   {
     icon: CheckCircle2,
+    image: '/assets/posters/poster-sunset.jpg',
     title: '1-Day Master Install',
     desc: 'Licensed Australian electricians',
     badge: 'Turnkey',
     badgeColor: 'bg-teal-50 text-teal-800 border-teal-300/90',
-    iconBg: 'bg-gradient-to-br from-teal-500/20 to-emerald-500/15 text-teal-600 border border-teal-500/30',
+    highlight: 'Fast DNSP Connection',
   },
   {
     icon: Smartphone,
+    image: '/assets/posters/poster-inverter.jpg',
     title: 'Live Mobile Monitoring',
     desc: '24/7 real-time yield & grid telemetry',
     badge: 'Smart App',
     badgeColor: 'bg-indigo-50 text-indigo-800 border-indigo-300/90',
-    iconBg: 'bg-gradient-to-br from-indigo-500/20 to-violet-500/15 text-indigo-600 border border-indigo-500/30',
+    highlight: 'Wi-Fi & 4G Connected',
   },
 ]
 
 export function TrustStrip() {
   return (
-    <section className="relative overflow-hidden border-y border-amber-500/30 bg-slate-950 py-1 sm:py-2 text-slate-900 shadow-2xl">
+    <section className="relative overflow-hidden border-y-2 border-amber-500/40 bg-slate-950 py-1 sm:py-2 lg:py-2 text-slate-900 shadow-2xl">
       
       {/* ================= 1. CINEMATIC SOLAR PHOTO BACKGROUND ================= */}
       <div className="absolute inset-0 -z-20 pointer-events-none select-none">
@@ -158,38 +167,55 @@ export function TrustStrip() {
 
       {/* ================= 7. CONTINUOUS SLIDING MARQUEE TRACK ================= */}
       <Marquee
-        duration={32}
-        gap="1.25rem"
+        duration={38}
+        gap="1.75rem"
         repeat={4}
         pauseOnHover={true}
-        className="py-1"
+        className="py-3 sm:py-4"
       >
         {TRUST_ITEMS.map((item, index) => {
           const Icon = item.icon
           return (
             <div
               key={index}
-              className="flex items-center gap-3.5 px-5 py-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-white/90 shadow-xl shadow-black/25 hover:shadow-2xl hover:shadow-amber-500/20 hover:border-amber-400 hover:-translate-y-1 transition-all duration-300 shrink-0 cursor-default group/card ring-1 ring-black/5"
+              className="flex items-center gap-5 px-6 py-4.5 sm:px-2 sm:py-3 rounded-xl bg-white/95 backdrop-blur-xl border border-white/90 shadow-2xl shadow-black/35 hover:shadow-amber-500/25 hover:border-amber-400 hover:-translate-y-1.5 transition-all duration-300 shrink-0 cursor-default group/card ring-1 ring-black/5 min-w-85 sm:min-w-112.5"
             >
-              <div
-                className={`h-11 w-11 rounded-xl flex items-center justify-center shrink-0 ${item.iconBg} transition-transform duration-300 group-hover/card:scale-110 shadow-xs`}
-              >
-                <Icon className="h-5 w-5" />
+              {/* Big Left Thumbnail Image */}
+              <div className="relative w-20 h-20 sm:w-30 sm:h-30 rounded-xl overflow-hidden shrink-0 border-2 border-white shadow-md ring-1 ring-amber-500/20 bg-slate-900">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover/card:scale-115"
+                  loading="lazy"
+                />
+                {/* Subtle corner badge icon and gradient */}
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-1 right-1.5 p-1 rounded-md bg-black/60 backdrop-blur-xs text-amber-400">
+                  <Icon className="h-3 w-3" />
+                </div>
               </div>
-              <div className="flex flex-col text-left whitespace-nowrap">
-                <div className="flex items-center gap-2">
-                  <h4 className="text-sm font-bold text-slate-900 group-hover/card:text-amber-600 transition-colors">
+
+              {/* Right Content */}
+              <div className="flex flex-col text-left justify-center whitespace-nowrap">
+                <div className="flex items-center gap-2.5">
+                  <h4 className="text-base sm:text-lg font-black text-slate-900 group-hover/card:text-amber-600 transition-colors tracking-tight">
                     {item.title}
                   </h4>
                   <span
-                    className={`text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full border shadow-2xs ${item.badgeColor}`}
+                    className={`text-[11px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full border shadow-xs ${item.badgeColor}`}
                   >
                     {item.badge}
                   </span>
                 </div>
-                <p className="text-xs text-slate-500 font-medium mt-0.5">
+                <p className="text-xs sm:text-sm text-slate-600 font-semibold mt-1">
                   {item.desc}
                 </p>
+                <div className="flex items-center gap-1.5 mt-2">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-700 bg-amber-50 border border-amber-200/90 px-2 py-0.5 rounded-md">
+                    <Sparkles className="h-3 w-3 text-amber-500 shrink-0" />
+                    <span>{item.highlight}</span>
+                  </span>
+                </div>
               </div>
             </div>
           )
