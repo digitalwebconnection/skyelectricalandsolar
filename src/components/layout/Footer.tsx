@@ -88,8 +88,6 @@ export function Footer() {
 
             {/* Social Media Squircle Animated Dock */}
             <div className="">
-              
-
               <div className="relative inline-block">
                 <div className="absolute inset-0 " />
                 <div className="relative flex items-end gap-x-2.5 p-2">
@@ -307,7 +305,6 @@ export function Footer() {
           </div>
           {/* Legal Links below services */}
           <div className="">
-            
             <ul className="text-xs flex gap-10">
               {LEGAL_LINKS.map((item) => (
                 <li key={item.label}>

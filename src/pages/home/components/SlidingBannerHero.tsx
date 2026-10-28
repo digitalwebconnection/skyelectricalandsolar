@@ -163,7 +163,7 @@ export function SlidingBannerHero() {
       <div>
         <div className="relative group w-full overflow-hidden border-b border-slate-200/90 shadow-2xl shadow-slate-900/10 bg-slate-950">
           {/* React Bits PixelSwap Component */}
-          <div className="cursor-pointer">
+          <div className="">
             <PixelSwap
               firstContent={
                 <img
