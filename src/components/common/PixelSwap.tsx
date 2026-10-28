@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   useEffect,
@@ -8,23 +8,23 @@ import {
   type CSSProperties,
   type HTMLAttributes,
   type MouseEvent as ReactMouseEvent,
-  type ReactNode
-} from 'react';
+  type ReactNode,
+} from "react";
 
 export interface PixelSwapProps {
   firstContent?: ReactNode;
   secondContent?: ReactNode;
   pattern?:
-    | 'pointer'
-    | 'random'
-    | 'center'
-    | 'edges'
-    | 'left-to-right'
-    | 'right-to-left'
-    | 'top-to-bottom'
-    | 'bottom-to-top'
-    | 'diagonal'
-    | 'spiral';
+    | "pointer"
+    | "random"
+    | "center"
+    | "edges"
+    | "left-to-right"
+    | "right-to-left"
+    | "top-to-bottom"
+    | "bottom-to-top"
+    | "diagonal"
+    | "spiral";
   pixelSize?: number;
   gap?: number;
   pixelRadius?: number;
@@ -34,7 +34,7 @@ export interface PixelSwapProps {
   pixelDuration?: number;
   randomness?: number;
   bounce?: number;
-  trigger?: 'hover' | 'click' | 'none';
+  trigger?: "hover" | "click" | "none";
   intro?: boolean;
   initialActive?: boolean;
   active?: boolean;
@@ -64,7 +64,7 @@ interface Grid {
 }
 
 interface Engine {
-  mode: 'intro' | 'swap';
+  mode: "intro" | "swap";
   grid: Grid;
   value: Float32Array;
   velocity: Float32Array;
@@ -79,25 +79,27 @@ interface Engine {
 const MAX_PIXELS = 600;
 const STEP = 1 / 240;
 const PATTERNS = [
-  'pointer',
-  'random',
-  'center',
-  'edges',
-  'left-to-right',
-  'right-to-left',
-  'top-to-bottom',
-  'bottom-to-top',
-  'diagonal',
-  'spiral'
+  "pointer",
+  "random",
+  "center",
+  "edges",
+  "left-to-right",
+  "right-to-left",
+  "top-to-bottom",
+  "bottom-to-top",
+  "diagonal",
+  "spiral",
 ];
 
 const ROOT =
-  'relative isolate w-full overflow-hidden outline-none focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-current';
-const LAYER = 'absolute inset-0 h-full w-full data-[visible=false]:invisible';
+  "relative isolate w-full overflow-hidden outline-none focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-current";
+const LAYER = "absolute inset-0 h-full w-full data-[visible=false]:invisible";
 
-const useIsoLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
+const useIsoLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
 
-const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(max, Math.max(min, value));
 
 const smoothstep = (edge0: number, edge1: number, value: number) => {
   const t = clamp((value - edge0) / (edge1 - edge0), 0, 1);
@@ -113,7 +115,12 @@ const hash = (index: number) => {
 
 const round = (value: number) => Math.round(value * 10) / 10;
 
-const buildGrid = (width: number, height: number, pixelSize: number, gap: number): Grid => {
+const buildGrid = (
+  width: number,
+  height: number,
+  pixelSize: number,
+  gap: number,
+): Grid => {
   let size = pixelSize;
   let columns = Math.max(1, Math.ceil((width + gap) / (size + gap)));
   let rows = Math.max(1, Math.ceil((height + gap) / (size + gap)));
@@ -142,18 +149,23 @@ const buildGrid = (width: number, height: number, pixelSize: number, gap: number
   return { count, size, stride, gap, width, height, cx, cy, gx, gy };
 };
 
-const orderOf = (grid: Grid, index: number, pattern: string, point: Point | null) => {
+const orderOf = (
+  grid: Grid,
+  index: number,
+  pattern: string,
+  point: Point | null,
+) => {
   const x = grid.gx[index];
   const y = grid.gy[index];
-  if (pattern === 'random') return hash(index + 11);
-  if (pattern === 'center') return Math.hypot(x - 0.5, y - 0.5) / Math.SQRT1_2;
-  if (pattern === 'edges') return 1 - Math.min(x, 1 - x, y, 1 - y) * 2;
-  if (pattern === 'left-to-right') return x;
-  if (pattern === 'right-to-left') return 1 - x;
-  if (pattern === 'top-to-bottom') return y;
-  if (pattern === 'bottom-to-top') return 1 - y;
-  if (pattern === 'diagonal') return (x + y) / 2;
-  if (pattern === 'spiral') {
+  if (pattern === "random") return hash(index + 11);
+  if (pattern === "center") return Math.hypot(x - 0.5, y - 0.5) / Math.SQRT1_2;
+  if (pattern === "edges") return 1 - Math.min(x, 1 - x, y, 1 - y) * 2;
+  if (pattern === "left-to-right") return x;
+  if (pattern === "right-to-left") return 1 - x;
+  if (pattern === "top-to-bottom") return y;
+  if (pattern === "bottom-to-top") return 1 - y;
+  if (pattern === "diagonal") return (x + y) / 2;
+  if (pattern === "spiral") {
     const angle = (Math.atan2(y - 0.5, x - 0.5) + Math.PI) / (Math.PI * 2);
     return (angle + Math.hypot(x - 0.5, y - 0.5) / Math.SQRT1_2) / 2;
   }
@@ -164,12 +176,18 @@ const orderOf = (grid: Grid, index: number, pattern: string, point: Point | null
     Math.hypot(grid.width - px, py),
     Math.hypot(px, grid.height - py),
     Math.hypot(grid.width - px, grid.height - py),
-    1
+    1,
   );
   return Math.hypot(grid.cx[index] - px, grid.cy[index] - py) / reach;
 };
 
-const pixelPath = (x: number, y: number, half: number, radius: number, angle: number) => {
+const pixelPath = (
+  x: number,
+  y: number,
+  half: number,
+  radius: number,
+  angle: number,
+) => {
   if (!angle) {
     const x0 = round(x - half);
     const x1 = round(x + half);
@@ -181,9 +199,11 @@ const pixelPath = (x: number, y: number, half: number, radius: number, angle: nu
   }
   const cos = Math.cos(angle);
   const sin = Math.sin(angle);
-  const at = (u: number, v: number) => `${round(x + u * cos - v * sin)} ${round(y + u * sin + v * cos)}`;
+  const at = (u: number, v: number) =>
+    `${round(x + u * cos - v * sin)} ${round(y + u * sin + v * cos)}`;
   const h = half;
-  if (radius < 0.2) return `M${at(-h, -h)}L${at(h, -h)}L${at(h, h)}L${at(-h, h)}Z`;
+  if (radius < 0.2)
+    return `M${at(-h, -h)}L${at(h, -h)}L${at(h, h)}L${at(-h, h)}Z`;
   const r = round(radius);
   const k = h - radius;
   return `M${at(-k, -h)}L${at(k, -h)}A${r} ${r} 0 0 1 ${at(h, -k)}L${at(h, k)}A${r} ${r} 0 0 1 ${at(k, h)}L${at(-k, h)}A${r} ${r} 0 0 1 ${at(-h, k)}L${at(-h, -k)}A${r} ${r} 0 0 1 ${at(-h, -k)}Z`;
@@ -192,7 +212,7 @@ const pixelPath = (x: number, y: number, half: number, radius: number, angle: nu
 export function PixelSwap({
   firstContent,
   secondContent,
-  pattern = 'pointer',
+  pattern = "pointer",
   pixelSize = 48,
   gap = 0,
   pixelRadius = 0,
@@ -202,15 +222,15 @@ export function PixelSwap({
   pixelDuration = 350,
   randomness = 0.2,
   bounce = 0.3,
-  trigger = 'hover',
+  trigger = "hover",
   intro = true,
   initialActive = false,
   active,
   onActiveChange,
   onComplete,
-  aspectRatio = '16 / 10',
-  className = '',
-  style
+  aspectRatio = "16 / 10",
+  className = "",
+  style,
 }: PixelSwapProps) {
   const controlled = active !== undefined;
   const [shown, setShown] = useState(controlled ? active : initialActive);
@@ -223,7 +243,7 @@ export function PixelSwap({
   const waitingRef = useRef(false);
 
   const settings = {
-    pattern: PATTERNS.includes(pattern) ? pattern : 'pointer',
+    pattern: PATTERNS.includes(pattern) ? pattern : "pointer",
     pixelSize: Math.max(8, Math.round(pixelSize)),
     gap: Math.max(0, gap),
     pixelRadius: clamp(pixelRadius, 0, 50),
@@ -233,7 +253,7 @@ export function PixelSwap({
     pixelDuration: Math.max(60, pixelDuration),
     randomness: clamp(randomness, 0, 1),
     bounce: clamp(bounce, 0, 1),
-    onComplete
+    onComplete,
   };
   const settingsRef = useRef(settings);
   settingsRef.current = settings;
@@ -241,24 +261,25 @@ export function PixelSwap({
   const setLayer = (index: number, visible: boolean, clip: string) => {
     const layer = layerRefs.current[index];
     if (!layer) return;
-    layer.setAttribute('data-visible', String(visible));
-    layer.style.clipPath = clip || '';
+    layer.setAttribute("data-visible", String(visible));
+    layer.style.clipPath = clip || "";
   };
 
   const finish = () => {
     const engine = engineRef.current;
     if (!engine) return;
     engine.running = false;
-    rootRef.current?.removeAttribute('data-swapping');
-    if (engine.mode === 'intro') {
-      setLayer(0, !shownRef.current, '');
-      engine.mode = 'swap';
-      if (desiredRef.current !== shownRef.current) requestRef.current(desiredRef.current, pointRef.current);
+    rootRef.current?.removeAttribute("data-swapping");
+    if (engine.mode === "intro") {
+      setLayer(0, !shownRef.current, "");
+      engine.mode = "swap";
+      if (desiredRef.current !== shownRef.current)
+        requestRef.current(desiredRef.current, pointRef.current);
       return;
     }
     const target = engine.desired === 1;
-    setLayer(1, target, '');
-    setLayer(0, !target, '');
+    setLayer(1, target, "");
+    setLayer(0, !target, "");
     shownRef.current = target;
     setShown(target);
     settingsRef.current.onComplete?.(target);
@@ -280,7 +301,7 @@ export function PixelSwap({
     const half = grid.size / 2;
     const cover = grid.gap / 2 + 0.5;
     let moving = false;
-    let path = '';
+    let path = "";
 
     for (let i = 0; i < grid.count; i++) {
       if (now >= flipAt[i] && target[i] !== engine.desired) {
@@ -298,7 +319,8 @@ export function PixelSwap({
         x = 0;
         v = 0;
       }
-      if (Math.abs(x - goal) > 0.001 || Math.abs(v) > 0.01 || now < flipAt[i]) moving = true;
+      if (Math.abs(x - goal) > 0.001 || Math.abs(v) > 0.01 || now < flipAt[i])
+        moving = true;
       else {
         x = goal;
         v = 0;
@@ -306,23 +328,34 @@ export function PixelSwap({
       value[i] = x;
       velocity[i] = v;
       if (x <= 0.002) continue;
-      const size = Math.min(x * 1.08, 1.25) * (half + cover * smoothstep(0.6, 0.93, x));
-      const radius = Math.min(size, (s.pixelRadius / 50) * size * (1 - smoothstep(0.6, 0.93, x)));
-      path += pixelPath(grid.cx[i], grid.cy[i], size, radius, s.pixelSpin * (1 - x));
+      const size =
+        Math.min(x * 1.08, 1.25) * (half + cover * smoothstep(0.6, 0.93, x));
+      const radius = Math.min(
+        size,
+        (s.pixelRadius / 50) * size * (1 - smoothstep(0.6, 0.93, x)),
+      );
+      path += pixelPath(
+        grid.cx[i],
+        grid.cy[i],
+        size,
+        radius,
+        s.pixelSpin * (1 - x),
+      );
     }
 
-    const layer = engine.mode === 'intro' ? 0 : 1;
-    setLayer(layer, path !== '', path ? `path('${path}')` : '');
+    const layer = engine.mode === "intro" ? 0 : 1;
+    setLayer(layer, path !== "", path ? `path('${path}')` : "");
 
     if (moving) engine.raf = requestAnimationFrame(frame);
     else finish();
   };
 
-  const launch = (mode: Engine['mode'], to: boolean, point: Point | null) => {
+  const launch = (mode: Engine["mode"], to: boolean, point: Point | null) => {
     const root = rootRef.current;
     const s = settingsRef.current;
     let engine: Engine | null = engineRef.current;
-    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    const reduce =
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
     const width = root?.clientWidth ?? 0;
     const height = root?.clientHeight ?? 0;
     if (!root || reduce || !width || !height) return false;
@@ -330,7 +363,7 @@ export function PixelSwap({
     const now = performance.now();
     if (!engine?.running) {
       const grid = buildGrid(width, height, s.pixelSize, s.gap);
-      const start = mode === 'intro' ? 0 : shownRef.current ? 1 : 0;
+      const start = mode === "intro" ? 0 : shownRef.current ? 1 : 0;
       engine = {
         mode,
         grid,
@@ -341,7 +374,7 @@ export function PixelSwap({
         desired: start,
         last: now,
         running: true,
-        raf: engineRef.current?.raf ?? 0
+        raf: engineRef.current?.raf ?? 0,
       };
       engineRef.current = engine;
     }
@@ -350,14 +383,19 @@ export function PixelSwap({
     const orders = new Float32Array(grid.count);
     let first = Infinity;
     for (let i = 0; i < grid.count; i++) {
-      orders[i] = orderOf(grid, i, s.pattern, point) * (1 - s.randomness) + hash(i) * s.randomness;
-      const settled = engine.target[i] === engine.desired && Math.abs(engine.value[i] - engine.desired) < 0.001;
+      orders[i] =
+        orderOf(grid, i, s.pattern, point) * (1 - s.randomness) +
+        hash(i) * s.randomness;
+      const settled =
+        engine.target[i] === engine.desired &&
+        Math.abs(engine.value[i] - engine.desired) < 0.001;
       if (!settled) first = Math.min(first, orders[i]);
     }
     if (first === Infinity) first = 0;
-    for (let i = 0; i < grid.count; i++) engine.flipAt[i] = now + Math.max(0, orders[i] - first) * s.duration;
-    root.setAttribute('data-swapping', '');
-    if (mode === 'swap') setLayer(0, true, '');
+    for (let i = 0; i < grid.count; i++)
+      engine.flipAt[i] = now + Math.max(0, orders[i] - first) * s.duration;
+    root.setAttribute("data-swapping", "");
+    if (mode === "swap") setLayer(0, true, "");
     cancelAnimationFrame(engine.raf);
     engine.raf = requestAnimationFrame(frame);
     return true;
@@ -365,11 +403,12 @@ export function PixelSwap({
 
   const request = (to: boolean, point: Point | null) => {
     const engine = engineRef.current;
-    if (waitingRef.current || (engine?.running && engine.mode === 'intro')) return;
+    if (waitingRef.current || (engine?.running && engine.mode === "intro"))
+      return;
     if (!engine?.running && shownRef.current === to) return;
-    if (launch('swap', to, point)) return;
-    setLayer(1, to, '');
-    setLayer(0, !to, '');
+    if (launch("swap", to, point)) return;
+    setLayer(1, to, "");
+    setLayer(0, !to, "");
     shownRef.current = to;
     setShown(to);
     settingsRef.current.onComplete?.(to);
@@ -389,7 +428,10 @@ export function PixelSwap({
 
   useIsoLayoutEffect(() => {
     if (!intro || shownRef.current) return;
-    const images = [...(layerRefs.current[0]?.querySelectorAll('img') ?? [])].filter(image => !image.complete);
+    const imageNodes = layerRefs.current[0]?.querySelectorAll("img");
+    const images = (imageNodes ? Array.from(imageNodes) : []).filter(
+      (image) => !image.complete
+    );
     let started = false;
     let timer = 0;
     const begin = () => {
@@ -397,11 +439,12 @@ export function PixelSwap({
       started = true;
       clearTimeout(timer);
       waitingRef.current = false;
-      if (launchRef.current('intro', true, null)) return;
-      setLayer(0, true, '');
-      if (desiredRef.current !== shownRef.current) requestRef.current(desiredRef.current, pointRef.current);
+      if (launchRef.current("intro", true, null)) return;
+      setLayer(0, true, "");
+      if (desiredRef.current !== shownRef.current)
+        requestRef.current(desiredRef.current, pointRef.current);
     };
-    setLayer(0, false, '');
+    setLayer(0, false, "");
     if (!images.length) {
       begin();
       return undefined;
@@ -412,18 +455,18 @@ export function PixelSwap({
       left -= 1;
       if (left <= 0) begin();
     };
-    images.forEach(image => {
-      image.addEventListener('load', settle, { once: true });
-      image.addEventListener('error', settle, { once: true });
+    images.forEach((image) => {
+      image.addEventListener("load", settle, { once: true });
+      image.addEventListener("error", settle, { once: true });
     });
     timer = window.setTimeout(begin, 3000);
     return () => {
       started = true;
       clearTimeout(timer);
       waitingRef.current = false;
-      images.forEach(image => {
-        image.removeEventListener('load', settle);
-        image.removeEventListener('error', settle);
+      images.forEach((image) => {
+        image.removeEventListener("load", settle);
+        image.removeEventListener("error", settle);
       });
     };
   }, []);
@@ -441,57 +484,65 @@ export function PixelSwap({
       cancelAnimationFrame(engine.raf);
       engine.running = false;
     },
-    []
+    [],
   );
 
   const pointOf = (event: ReactMouseEvent<HTMLDivElement>): Point | null => {
     const rect = rootRef.current?.getBoundingClientRect();
-    if (!rect || (event.detail === 0 && event.clientX === 0 && event.clientY === 0)) return null;
+    if (
+      !rect ||
+      (event.detail === 0 && event.clientX === 0 && event.clientY === 0)
+    )
+      return null;
     return { x: event.clientX - rect.left, y: event.clientY - rect.top };
   };
 
   const handlers: HTMLAttributes<HTMLDivElement> = {};
-  if (trigger === 'hover') {
-    handlers.onPointerEnter = event => {
-      if (event.pointerType !== 'touch') ask(true, pointOf(event));
+  if (trigger === "hover") {
+    handlers.onPointerEnter = (event) => {
+      if (event.pointerType !== "touch") ask(true, pointOf(event));
     };
-    handlers.onPointerLeave = event => {
-      if (event.pointerType !== 'touch') ask(false, pointOf(event));
+    handlers.onPointerLeave = (event) => {
+      if (event.pointerType !== "touch") ask(false, pointOf(event));
     };
-    handlers.onClick = event => {
+    handlers.onClick = (event) => {
       const native = event.nativeEvent;
-      const touch = 'pointerType' in native && native.pointerType === 'touch';
+      const touch = "pointerType" in native && native.pointerType === "touch";
       if (event.detail === 0 || touch) ask(!desiredRef.current, pointOf(event));
     };
-    handlers.onFocus = event => {
-      if (event.target === event.currentTarget && event.currentTarget.matches(':focus-visible')) ask(true, null);
+    handlers.onFocus = (event) => {
+      if (
+        event.target === event.currentTarget &&
+        event.currentTarget.matches(":focus-visible")
+      )
+        ask(true, null);
     };
     handlers.onBlur = () => ask(false, null);
     handlers.tabIndex = 0;
-  } else if (trigger === 'click') {
-    handlers.onClick = event => ask(!desiredRef.current, pointOf(event));
-    handlers.onKeyDown = event => {
-      if (event.key !== 'Enter' && event.key !== ' ') return;
+  } else if (trigger === "click") {
+    handlers.onClick = (event) => ask(!desiredRef.current, pointOf(event));
+    handlers.onKeyDown = (event) => {
+      if (event.key !== "Enter" && event.key !== " ") return;
       event.preventDefault();
       ask(!desiredRef.current, null);
     };
-    handlers.role = 'button';
+    handlers.role = "button";
     handlers.tabIndex = 0;
-    handlers['aria-pressed'] = shown;
+    handlers["aria-pressed"] = shown;
   }
 
   return (
     <div
       ref={rootRef}
-      className={[ROOT, className].filter(Boolean).join(' ')}
+      className={[ROOT, className].filter(Boolean).join(" ")}
       style={{ aspectRatio, ...style }}
-      data-active={shown ? '' : undefined}
+      data-active={shown ? "" : undefined}
       {...handlers}
     >
       {[firstContent, secondContent].map((content, index) => (
         <div
           key={index}
-          ref={element => {
+          ref={(element) => {
             layerRefs.current[index] = element;
           }}
           className={LAYER}

@@ -13,6 +13,7 @@ import {
   Compass,
   MapPin,
   Send,
+  CheckCircle2,
 } from "lucide-react";
 import { FadeContent } from "../../../components/common/FadeContent";
 import { MagicCard } from "../../../components/common/MagicCard";
@@ -157,29 +158,78 @@ export function SolarCalculatorSection() {
     <section
       id="solar-calculator"
       aria-label="Solar Savings Calculator"
-      className="relative py-8 sm:py-14 bg-gradient-to-b from-white via-amber-50/20 to-white overflow-hidden border-y border-slate-100"
+      className="relative isolate overflow-hidden py-8 sm:py-12 bg-linear-to-b from-slate-50/80 via-amber-50/25 to-slate-50/80 border-y border-amber-200/70 text-slate-900"
     >
-      {/* Ambient Lighting Gradients */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[850px] h-[400px] bg-gradient-to-b from-amber-400/15 via-orange-400/5 to-transparent rounded-full blur-3xl -z-10" />
-      <div className="pointer-events-none absolute bottom-10 right-0 w-[500px] h-[500px] bg-sky-400/5 rounded-full blur-[140px] -z-10" />
+      {/* ================= BACKGROUND WRAPPER (z-0: above section bg, strictly behind z-10 content) ================= */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
+        {/* 1. CINEMATIC SOLAR ARCHITECTURE BACKDROP (Softly feathered) */}
+        <div className="absolute inset-0 opacity-15">
+          <img
+            src="/assets/residential-solar.jpg"
+            alt=""
+            className="w-full h-full object-cover object-[center_35%] filter brightness-[1.02] contrast-[1.05] saturate-[1.1]"
+          />
+          {/* Softening Glassmorphic Overlay: clean, light, and airy */}
+          <div className="absolute inset-0 bg-linear-to-b from-white/94 via-white/88 to-white/94" />
+          <div className="absolute inset-0 bg-linear-to-r from-amber-500/5 via-transparent to-orange-500/5" />
+        </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* 2. SIMPLE, CLEAN & MODERN TECHNICAL GRID (Uncluttered, with soft radial vignette) */}
+        <div
+          className="absolute inset-0 opacity-[0.055]"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, #0f172a 1px, transparent 1px),
+              linear-gradient(to bottom, #0f172a 1px, transparent 1px)
+            `,
+            backgroundSize: '36px 36px',
+            maskImage:
+              'radial-gradient(ellipse 85% 75% at 50% 50%, black 50%, transparent 100%)',
+            WebkitMaskImage:
+              'radial-gradient(ellipse 85% 75% at 50% 50%, black 50%, transparent 100%)',
+          }}
+        />
+
+        {/* 4. LUMINOUS SOLAR ENERGY AURA (Ambient warmth behind calculator & results) */}
+        {/* Left Side Glow behind input controls */}
+        <div
+          className="absolute top-1/3 left-10 w-137.5 h-137.5 bg-linear-to-tr from-amber-400/25 via-orange-400/20 to-transparent rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: "6s" }}
+        />
+
+        {/* Right Side Glow behind results card */}
+        <div
+          className="absolute top-1/4 right-10 w-137.5 h-137.5 bg-linear-to-bl from-amber-400/30 via-orange-400/25 to-yellow-300/15 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: "4.5s" }}
+        />
+
+        {/* Bottom Sunbeam dispersion */}
+        <div className="absolute -bottom-24 left-1/3 w-175 h-70 bg-linear-to-t from-orange-400/20 via-amber-300/15 to-transparent rounded-full blur-3xl" />
+
+        {/* 5. TOP & BOTTOM LUMINOUS ENERGY BEAM LINES */}
+        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-linear-to-r from-transparent via-orange-500 to-transparent shadow-[0_0_12px_rgba(245,158,11,0.8)] z-10" />
+        <div className="absolute bottom-0 inset-x-0 h-[2.5px] bg-linear-to-r from-transparent via-amber-500 to-transparent shadow-[0_0_12px_rgba(16,185,129,0.7)] z-10" />
+      </div>
+
+      {/* ================= FOREGROUND CONTENT WRAPPER (z-10: 100% untouched calculations & data) ================= */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ================= SECTION HEADER ================= */}
         <FadeContent
           effect="focus"
           blur={8}
           duration={1.2}
           threshold={0.15}
-          className="text-center max-w-6xl mx-auto mb-12 sm:mb-16"
+          className="text-center max-w-4xl mx-auto mb-12 sm:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
-            Calculate Your Solar{" "}
-            <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
+         
+          <h2 className="text-3xl sm:text-4xl font-serif lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+            Calculate Your Solar <br />
+            <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
               Savings & Payback
             </span>
           </h2>
 
-          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
+          <p className="mt-4 text-base sm:text-lg text-slate-900 leading-relaxed font-normal">
             Type your power bill or drag the slider to instantly discover your
             optimal system size, estimated quarterly savings, and government
             rebate entitlement.
@@ -188,15 +238,16 @@ export function SolarCalculatorSection() {
 
         {/* ================= INTERACTIVE CALCULATOR GRID ================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          {/* ---------------- LEFT COLUMN: INTERACTIVE CONTROLS ---------------- */}
-          <div className="lg:col-span-7 space-y-6">
+          {/* ---------------- LEFT COLUMN: ELEVATED INPUT CARD ---------------- */}
+          <div className="lg:col-span-7">
             <div className=" space-y-7">
               {/* 1. Property Type Selector */}
               <div>
-                <label className="text-xs font-extrabold uppercase tracking-wider text-slate-500 block mb-3">
-                  Step 1 • Select Property Type
+                <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-2 mb-3">
+                  
+                  Select Property Type
                 </label>
-                <div className="grid grid-cols-2 gap-3 p-1.5 rounded-2xl bg-slate-100 border border-slate-200/80">
+                <div className="grid grid-cols-2 gap-3 p-1.5 rounded-2xl bg-slate-100/90 border border-slate-200/80">
                   <button
                     type="button"
                     onClick={() => {
@@ -206,7 +257,7 @@ export function SolarCalculatorSection() {
                     }}
                     className={`flex items-center justify-center gap-2.5 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
                       propertyType === "residential"
-                        ? "bg-white text-slate-900 shadow-md shadow-slate-900/10"
+                        ? "bg-white text-slate-900 shadow-md shadow-slate-900/10 ring-1 ring-black/5"
                         : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
@@ -225,7 +276,7 @@ export function SolarCalculatorSection() {
                     }}
                     className={`flex items-center justify-center gap-2.5 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
                       propertyType === "commercial"
-                        ? "bg-white text-slate-900 shadow-md shadow-slate-900/10"
+                        ? "bg-white text-slate-900 shadow-md shadow-slate-900/10 ring-1 ring-black/5"
                         : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
@@ -243,11 +294,12 @@ export function SolarCalculatorSection() {
                   <div>
                     <label
                       htmlFor="bill-amount-input"
-                      className="text-xs font-extrabold uppercase tracking-wider text-slate-700 block"
+                      className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-2"
                     >
-                      Step 2 • Enter Your Electricity Bill
+                     
+                      Enter Your Electricity Bill
                     </label>
-                    <span className="text-xs text-slate-400">
+                    <span className="text-xs text-slate-500 ml-7 block mt-0.5 font-medium">
                       {billCycle === "monthly"
                         ? `(Approx $${(monthlyBill * 3).toLocaleString()} / quarter)`
                         : `(Approx $${monthlyBill.toLocaleString()} / month)`}
@@ -264,7 +316,7 @@ export function SolarCalculatorSection() {
                           setBillAmount(Math.round(billAmount / 3));
                         }
                       }}
-                      className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
+                      className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                         billCycle === "monthly"
                           ? "bg-white text-slate-900 shadow-xs"
                           : "hover:text-slate-900"
@@ -280,7 +332,7 @@ export function SolarCalculatorSection() {
                           setBillAmount(billAmount * 3);
                         }
                       }}
-                      className={`px-3 py-1 rounded-lg transition-all cursor-pointer ${
+                      className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                         billCycle === "quarterly"
                           ? "bg-white text-slate-900 shadow-xs"
                           : "hover:text-slate-900"
@@ -315,15 +367,18 @@ export function SolarCalculatorSection() {
                     {billCycle === "monthly" ? "AUD / Month" : "AUD / Quarter"}
                   </div>
                 </div>
+
+             
               </div>
 
               {/* 3. Suburb / Postcode Input Field */}
               <div>
                 <label
                   htmlFor="postcode-input"
-                  className="text-xs font-extrabold uppercase tracking-wider text-slate-700 block mb-2"
+                  className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-2 mb-2"
                 >
-                  Step 3 • Installation Postcode / Suburb
+                  
+                  Installation Postcode / Suburb
                 </label>
                 <div className="relative flex items-center">
                   <MapPin className="absolute left-3.5 h-4 w-4 text-amber-500 pointer-events-none" />
@@ -333,7 +388,7 @@ export function SolarCalculatorSection() {
                     value={postcode}
                     onChange={(e) => setPostcode(e.target.value)}
                     placeholder="e.g. 3000 Melbourne, 3121 Richmond, 3805..."
-                    className="w-full h-11 pl-10 pr-28 rounded-xl bg-white border border-slate-200 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all"
+                    className="w-full h-11 pl-10 pr-28 rounded-xl bg-slate-50/60 border border-slate-200 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all"
                   />
                   <span className="absolute right-3 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200/80">
                     STC Zone 3 Active
@@ -343,8 +398,9 @@ export function SolarCalculatorSection() {
 
               {/* 4. Roof Sun Orientation Selector */}
               <div>
-                <label className="text-xs font-extrabold uppercase tracking-wider text-slate-500 block mb-3">
-                  Step 4 • Roof Aspect & Sun Exposure
+                <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-2 mb-3">
+                 
+                  Roof Aspect & Sun Exposure
                 </label>
                 <div className="grid grid-cols-3 gap-2.5">
                   <button
@@ -352,8 +408,8 @@ export function SolarCalculatorSection() {
                     onClick={() => setRoofOrientation("optimal")}
                     className={`p-3 rounded-2xl border text-center transition-all cursor-pointer ${
                       roofOrientation === "optimal"
-                        ? "border-amber-500 bg-amber-50/50 text-slate-900 ring-2 ring-amber-500/20 shadow-xs"
-                        : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
+                        ? "border-amber-500 bg-amber-50/70 text-slate-900 ring-2 ring-amber-500/20 shadow-xs"
+                        : "border-slate-200 bg-slate-50/50 text-slate-600 hover:border-slate-300 hover:bg-white"
                     }`}
                   >
                     <Compass className="h-4 w-4 mx-auto mb-1 text-amber-500" />
@@ -368,8 +424,8 @@ export function SolarCalculatorSection() {
                     onClick={() => setRoofOrientation("balanced")}
                     className={`p-3 rounded-2xl border text-center transition-all cursor-pointer ${
                       roofOrientation === "balanced"
-                        ? "border-amber-500 bg-amber-50/50 text-slate-900 ring-2 ring-amber-500/20 shadow-xs"
-                        : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
+                        ? "border-amber-500 bg-amber-50/70 text-slate-900 ring-2 ring-amber-500/20 shadow-xs"
+                        : "border-slate-200 bg-slate-50/50 text-slate-600 hover:border-slate-300 hover:bg-white"
                     }`}
                   >
                     <Sun className="h-4 w-4 mx-auto mb-1 text-orange-500" />
@@ -384,8 +440,8 @@ export function SolarCalculatorSection() {
                     onClick={() => setRoofOrientation("shaded")}
                     className={`p-3 rounded-2xl border text-center transition-all cursor-pointer ${
                       roofOrientation === "shaded"
-                        ? "border-amber-500 bg-amber-50/50 text-slate-900 ring-2 ring-amber-500/20 shadow-xs"
-                        : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
+                        ? "border-amber-500 bg-amber-50/70 text-slate-900 ring-2 ring-amber-500/20 shadow-xs"
+                        : "border-slate-200 bg-slate-50/50 text-slate-600 hover:border-slate-300 hover:bg-white"
                     }`}
                   >
                     <TreePine className="h-4 w-4 mx-auto mb-1 text-slate-400" />
@@ -398,9 +454,9 @@ export function SolarCalculatorSection() {
               </div>
 
               {/* 5. Battery Storage Add-On Toggle */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-teal-500/5 to-transparent border border-emerald-500/25 flex items-center justify-between gap-4">
+              <div className="p-4 sm:p-5 rounded-xl bg-linear-to-r from-emerald-500/10 via-teal-500/5 to-transparent border border-emerald-500/25 flex items-center justify-between gap-4 shadow-xs">
                 <div className="flex items-center gap-3.5">
-                  <div className="h-10 w-10 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0">
+                  <div className="h-11 w-11 rounded-xl bg-emerald-500/20 flex items-center justify-center shrink-0 shadow-2xs">
                     <BatteryCharging className="h-5 w-5 text-emerald-600" />
                   </div>
                   <div>
@@ -408,7 +464,7 @@ export function SolarCalculatorSection() {
                       <span className="text-xs sm:text-sm font-bold text-slate-900">
                         Include Battery Storage (Tesla / Alpha ESS)
                       </span>
-                      <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-extrabold">
+                      <span className="px-2 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-extrabold shadow-2xs">
                         +Blackout Safe
                       </span>
                     </div>
@@ -443,28 +499,32 @@ export function SolarCalculatorSection() {
             <MagicCard
               gradientColor={
                 propertyType === "residential"
-                  ? "rgba(245, 158, 11, 0.15)"
-                  : "rgba(37, 99, 235, 0.15)"
+                  ? "rgba(245, 158, 11, 0.18)"
+                  : "rgba(37, 99, 235, 0.18)"
               }
-              gradientSize={400}
-              className="rounded-xl bg-slate-900 text-white border border-slate-800 p-6 sm:p-4 shadow-2xl relative overflow-hidden"
+              gradientSize={420}
+              className="rounded-xl bg-slate-900 text-white border border-slate-800 p-6 sm:p-7 shadow-2xl relative overflow-hidden ring-1 ring-white/10"
             >
               {/* Magic UI Animated Border Beam */}
               <BorderBeam
-                size={280}
+                size={300}
                 duration={10}
                 colorFrom="#f59e0b"
                 colorTo="#10b981"
                 borderWidth={2}
               />
 
+              {/* Ambient radial lighting in card */}
+              <div className="pointer-events-none absolute -top-16 -right-16 w-64 h-64 bg-amber-500/15 rounded-full blur-2xl" />
+
               {/* Card Header & Badge */}
               <div className="flex items-center justify-between border-b border-slate-800 pb-5">
                 <div>
-                  <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-400">
+                  <span className="text-[11px] font-extrabold uppercase tracking-widest text-amber-400 flex items-center gap-1.5">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-amber-400" />
                     Engineered System Match
                   </span>
-                  <div className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-0.5">
+                  <div className="text-2xl sm:text-3xl font-black text-white tracking-tight mt-1">
                     {calculation.systemKw} kW System
                   </div>
                 </div>
@@ -497,14 +557,14 @@ export function SolarCalculatorSection() {
                 <div className="mt-3 flex items-center justify-between text-xs text-slate-300">
                   <span>
                     New Bill:{" "}
-                    <strong className="text-emerald-400">
+                    <strong className="text-emerald-400 font-bold">
                       ${calculation.newMonthlyBill}/mo
                     </strong>
-                    <span className="text-slate-500 ml-1">
+                    <span className="text-slate-400 ml-1">
                       (${calculation.newQuarterlyBill}/qtr)
                     </span>
                   </span>
-                  <span className="text-emerald-400 font-bold">
+                  <span className="text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded-full">
                     ~
                     {Math.round(
                       ((calculation.annualBill -
@@ -518,8 +578,8 @@ export function SolarCalculatorSection() {
               </div>
 
               {/* Grid of Key Financial & Engineering Metrics */}
-              <div className="grid grid-cols-2 gap-4 py-5 border-b border-slate-800">
-                <div className="p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+              <div className="grid grid-cols-2 gap-3.5 py-5 border-b border-slate-800">
+                <div className="p-3.5 rounded-2xl bg-slate-800/70 border border-slate-700/70">
                   <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
                     <TrendingDown className="h-3.5 w-3.5 text-amber-400" />
                     <span>Estimated Payback</span>
@@ -529,7 +589,7 @@ export function SolarCalculatorSection() {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+                <div className="p-3.5 rounded-2xl bg-slate-800/70 border border-slate-700/70">
                   <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
                     <DollarSign className="h-3.5 w-3.5 text-emerald-400" />
                     <span>Govt STC Rebate</span>
@@ -539,7 +599,7 @@ export function SolarCalculatorSection() {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+                <div className="p-3.5 rounded-2xl bg-slate-800/70 border border-slate-700/70">
                   <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
                     <Zap className="h-3.5 w-3.5 text-blue-400" />
                     <span>Inverter Size</span>
@@ -549,7 +609,7 @@ export function SolarCalculatorSection() {
                   </div>
                 </div>
 
-                <div className="p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/60">
+                <div className="p-3.5 rounded-2xl bg-slate-800/70 border border-slate-700/70">
                   <div className="flex items-center gap-1.5 text-xs text-slate-400 font-medium">
                     <TreePine className="h-3.5 w-3.5 text-teal-400" />
                     <span>CO₂ Offset</span>
@@ -582,7 +642,7 @@ export function SolarCalculatorSection() {
                     <button
                       type="submit"
                       disabled={isQuoteSent}
-                      className="absolute right-1 px-4 h-9 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-all cursor-pointer active:scale-95 disabled:opacity-75"
+                      className="absolute right-1 px-4 h-9 rounded-full bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-all cursor-pointer active:scale-95 disabled:opacity-75"
                     >
                       <span>{isQuoteSent ? "Connecting..." : "Request"}</span>
                       <Send className="h-3 w-3" />
@@ -590,14 +650,14 @@ export function SolarCalculatorSection() {
                   </div>
                   {isQuoteSent && (
                     <p className="text-[11px] text-emerald-400 font-semibold animate-pulse">
-                      ✓ Connecting you to Sky Solar Engineers...
+                      ✓ Connecting you to Skye Electrical & Solar Engineers...
                     </p>
                   )}
                 </form>
 
                 <a
                   href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, "")}`}
-                  className="w-full flex items-center justify-center gap-2.5 h-12 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-sm shadow-lg shadow-orange-500/30 transition-all duration-200 active:scale-95"
+                  className="w-full flex items-center justify-center gap-2.5 h-12 rounded-full bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold text-sm shadow-lg shadow-orange-500/30 transition-all duration-200 active:scale-95"
                 >
                   <PhoneCall className="h-4 w-4" />
                   <span>Call {CONTACT_INFO.phone1} Directly</span>

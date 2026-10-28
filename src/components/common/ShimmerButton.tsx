@@ -17,7 +17,7 @@ export function ShimmerButton({
     <button
       className={cn(
         'group relative inline-flex items-center justify-center overflow-hidden rounded-full px-5 py-2.5 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] cursor-pointer',
-        'bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 shadow-lg',
+        'bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 shadow-lg',
         className
       )}
       style={{
@@ -26,7 +26,7 @@ export function ShimmerButton({
       {...props}
     >
       {/* Shimmer sweep effect */}
-      <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
+      <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/35 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
 
       {/* Button content */}
       <span className="relative z-10 flex items-center gap-2">{children}</span>

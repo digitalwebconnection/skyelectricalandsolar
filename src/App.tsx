@@ -7,7 +7,7 @@ import { siteConfig } from './config/site'
 
 export function App() {
   useEffect(() => {
-    // Ensure document title matches Sky Electrical & Solar in browser tab
+    // Ensure document title matches Skye Electrical & Solar in browser tab
     document.title = siteConfig.title
 
     // Ensure meta description tag

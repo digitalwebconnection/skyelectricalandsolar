@@ -96,7 +96,7 @@ export const ScrollStackItem = ({ children, itemClassName = '', style }: ScrollS
     {children}
     <span
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 rounded-[inherit] bg-black opacity-[var(--scroll-stack-dim,0)]"
+      className="pointer-events-none absolute inset-0 rounded-[inherit] bg-black opacity-(--scroll-stack-dim,0)"
     />
   </div>
 );

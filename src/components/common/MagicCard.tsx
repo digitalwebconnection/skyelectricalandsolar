@@ -1,41 +1,44 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from "react";
 
 export interface MagicCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode
-  className?: string
-  gradientSize?: number
-  gradientColor?: string
-  gradientOpacity?: number
+  children: React.ReactNode;
+  className?: string;
+  gradientSize?: number;
+  gradientColor?: string;
+  gradientOpacity?: number;
 }
 
 export function MagicCard({
   children,
-  className = '',
+  className = "",
   gradientSize = 350,
-  gradientColor = 'rgba(245, 158, 11, 0.12)',
+  gradientColor = "rgba(245, 158, 11, 0.12)",
   gradientOpacity = 0.8,
   ...props
 }: MagicCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const [position, setPosition] = useState<{ x: number; y: number }>({ x: -1000, y: -1000 })
-  const [opacity, setOpacity] = useState(0)
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState<{ x: number; y: number }>({
+    x: -1000,
+    y: -1000,
+  });
+  const [opacity, setOpacity] = useState(0);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return
-    const rect = cardRef.current.getBoundingClientRect()
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
     setPosition({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
-    })
-  }, [])
+    });
+  }, []);
 
   const handleMouseEnter = useCallback(() => {
-    setOpacity(gradientOpacity)
-  }, [gradientOpacity])
+    setOpacity(gradientOpacity);
+  }, [gradientOpacity]);
 
   const handleMouseLeave = useCallback(() => {
-    setOpacity(0)
-  }, [])
+    setOpacity(0);
+  }, []);
 
   return (
     <div
@@ -56,8 +59,7 @@ export function MagicCard({
       />
       {children}
     </div>
-  )
+  );
 }
 
-export default MagicCard
-
+export default MagicCard;

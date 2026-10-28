@@ -1,7 +1,7 @@
 import type { NavItem } from '../types'
 
-export const APP_NAME = 'Sky Electrical & Solar'
-export const COMPANY_LEGAL_NAME = 'Sky Electrical & Solar Pty Ltd'
+export const APP_NAME = 'Skye Electrical & Solar'
+export const COMPANY_LEGAL_NAME = 'Skye Electrical & Solar Pty Ltd'
 export const COMPANY_ABN = 'ABN 89 632 094 190'
 
 export const NAV_ITEMS: NavItem[] = [

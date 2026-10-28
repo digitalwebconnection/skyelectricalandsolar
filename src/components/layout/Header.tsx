@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 import {
   Phone,
   Mail,
@@ -7,50 +7,50 @@ import {
   ChevronRight,
   Sun,
   Sparkles,
-} from 'lucide-react'
-import logoImg from '../../assets/logo.png'
-import { CONTACT_INFO, NAV_ITEMS } from '../../constants'
-import { ShimmerButton } from '../common'
-import { useInquiryModal } from '../../context'
+} from "lucide-react";
+import logoImg from "../../assets/logo.png";
+import { CONTACT_INFO, NAV_ITEMS } from "../../constants";
+import { ShimmerButton } from "../common";
+import { useInquiryModal } from "../../context";
 
 export function Header() {
-  const { openInquiryModal } = useInquiryModal()
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeItem, setActiveItem] = useState('Home')
-  const [showTopBar, setShowTopBar] = useState(true)
+  const { openInquiryModal } = useInquiryModal();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState("Home");
+  const [showTopBar, setShowTopBar] = useState(true);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY
+    let lastScrollY = window.scrollY;
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY
+      const currentScrollY = window.scrollY;
 
       // At or near the top of the page, always show top bar
       if (currentScrollY <= 20) {
-        setShowTopBar(true)
+        setShowTopBar(true);
       } else {
         // Scrolling down -> hide top bar
         // Scrolling up -> show top bar
         if (currentScrollY > lastScrollY && currentScrollY > 40) {
-          setShowTopBar(false)
+          setShowTopBar(false);
         } else if (currentScrollY < lastScrollY - 8) {
-          setShowTopBar(true)
+          setShowTopBar(true);
         }
       }
 
-      lastScrollY = currentScrollY
-    }
+      lastScrollY = currentScrollY;
+    };
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
       {/* Fixed Header: hardware-accelerated transform without causing any page layout shifts */}
       <header
         className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ease-in-out ${
-          showTopBar ? 'translate-y-0' : '-translate-y-10'
+          showTopBar ? "translate-y-0" : "-translate-y-10"
         }`}
       >
         {/* Top Solar Utility & Quick Contact Strip (40px) */}
@@ -84,16 +84,18 @@ export function Header() {
 
               <div className="flex items-center gap-2 pl-3 border-l border-slate-200">
                 <Phone className="h-3.5 w-3.5 text-orange-500" />
-                <span className="text-slate-500 hidden xs:inline">Solar Helpline:</span>
+                <span className="text-slate-500 hidden xs:inline">
+                  Solar Helpline:
+                </span>
                 <a
-                  href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, '')}`}
+                  href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, "")}`}
                   className="font-bold text-slate-900 hover:text-orange-600 transition-colors tracking-wide"
                 >
                   {CONTACT_INFO.phone1}
                 </a>
                 <span className="text-slate-300 hidden sm:inline">|</span>
                 <a
-                  href={`tel:${CONTACT_INFO.phone2.replace(/\s/g, '')}`}
+                  href={`tel:${CONTACT_INFO.phone2.replace(/\s/g, "")}`}
                   className="hidden sm:inline font-bold text-slate-700 hover:text-orange-600 transition-colors tracking-wide"
                 >
                   {CONTACT_INFO.phone2}
@@ -114,7 +116,7 @@ export function Header() {
               <div className="flex items-center rounded-2xl bg-[#071d32] px-4 py-2 transition-shadow">
                 <img
                   src={logoImg}
-                  alt="Sky Electrical & Solar"
+                  alt="Skye Electrical & Solar"
                   className="h-10 sm:h-14  w-auto object-contain filter drop-shadow-[0_1px_4px_rgba(240,90,40,0.3)]"
                 />
               </div>
@@ -123,32 +125,30 @@ export function Header() {
             {/* Floating White Navigation Menu Pill */}
             <div className="hidden lg:flex items-center gap-1 bg-white p-1.5 rounded-full shadow-lg border border-slate-100">
               {NAV_ITEMS.map((item) => {
-                const isActive = activeItem === item.label
+                const isActive = activeItem === item.label;
                 return (
                   <a
                     key={item.label}
                     href={item.href}
                     onClick={(e) => {
-                      e.preventDefault()
-                      setActiveItem(item.label)
+                      e.preventDefault();
+                      setActiveItem(item.label);
                     }}
                     className={`relative px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-200 cursor-pointer ${
                       isActive
-                        ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold shadow-sm'
-                        : 'text-slate-700 hover:text-orange-600 hover:bg-slate-50'
+                        ? "bg-linear-to-r from-amber-500 to-orange-500 text-white font-semibold shadow-sm"
+                        : "text-slate-700 hover:text-orange-600 hover:bg-slate-50"
                     }`}
                   >
                     {item.label}
                   </a>
-                )
+                );
               })}
             </div>
 
             {/* Right Action Buttons */}
             <div className="hidden sm:flex items-center gap-3">
-              <ShimmerButton
-                onClick={() => openInquiryModal()}
-              >
+              <ShimmerButton onClick={() => openInquiryModal()}>
                 <Sparkles className="h-4 w-4 text-amber-200" />
                 <span>Get Free Solar Quote</span>
               </ShimmerButton>
@@ -176,31 +176,33 @@ export function Header() {
             <div className="lg:hidden border-t border-slate-800 bg-[#071d32] px-5 pt-4 pb-8 space-y-4 shadow-xl">
               <div className="space-y-1">
                 {NAV_ITEMS.map((item) => {
-                  const isActive = activeItem === item.label
+                  const isActive = activeItem === item.label;
                   return (
                     <a
                       key={item.label}
                       href={item.href}
                       onClick={() => {
-                        setActiveItem(item.label)
-                        setMobileMenuOpen(false)
+                        setActiveItem(item.label);
+                        setMobileMenuOpen(false);
                       }}
                       className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition-all ${
                         isActive
-                          ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30'
-                          : 'text-slate-200 hover:bg-slate-800 hover:text-white'
+                          ? "bg-orange-500/20 text-orange-400 border border-orange-500/30"
+                          : "text-slate-200 hover:bg-slate-800 hover:text-white"
                       }`}
                     >
                       <span>{item.label}</span>
-                      <ChevronRight className={`h-4 w-4 ${isActive ? 'text-orange-400' : 'text-slate-400'}`} />
+                      <ChevronRight
+                        className={`h-4 w-4 ${isActive ? "text-orange-400" : "text-slate-400"}`}
+                      />
                     </a>
-                  )
+                  );
                 })}
               </div>
 
               <div className="pt-4 border-t border-slate-800 space-y-3">
                 <a
-                  href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, '')}`}
+                  href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, "")}`}
                   className="flex items-center justify-center gap-2.5 rounded-xl bg-slate-800/80 border border-slate-700 py-3 text-sm font-semibold text-slate-200 hover:text-orange-400 hover:border-orange-400 transition-colors"
                 >
                   <Phone className="h-4 w-4 text-orange-400" />
@@ -217,8 +219,8 @@ export function Header() {
 
                 <ShimmerButton
                   onClick={() => {
-                    setMobileMenuOpen(false)
-                    openInquiryModal()
+                    setMobileMenuOpen(false);
+                    openInquiryModal();
                   }}
                   className="w-full py-3.5"
                 >
@@ -232,9 +234,9 @@ export function Header() {
       </header>
 
       {/* Permanent Static Spacer: Guarantees ZERO document layout shift or jitter during header transforms */}
-      <div className="h-[120px] w-full shrink-0" aria-hidden="true" />
+      <div className="h-30 w-full shrink-0" aria-hidden="true" />
     </>
-  )
+  );
 }
 
-export default Header
+export default Header;

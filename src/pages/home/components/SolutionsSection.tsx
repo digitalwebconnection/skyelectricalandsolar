@@ -1,18 +1,18 @@
-import { RotatingCards } from '../../../components/common/RotatingCards'
+import { RotatingCards } from "../../../components/common/RotatingCards";
 
 export function SolutionsSection() {
   return (
-    <section className="relative isolate overflow-hidden py-16 sm:py-24 bg-gradient-to-br from-amber-100/40 via-slate-50/90 to-orange-100/30 border-y border-amber-200/70">
-      
+    <section className="relative isolate overflow-hidden py-16 sm:py-24 bg-linear-to-br from-amber-100/40 via-slate-50/90 to-orange-100/30 border-y border-amber-200/70">
       {/* ================= BACKGROUND WRAPPER (z-0: above section bg, behind z-10 content) ================= */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
-        
         {/* ================= 1. TOP BATTERY STORAGE VISUAL (Fades seamlessly downward into section) ================= */}
         <div
           className="absolute top-0 inset-x-0 h-44 sm:h-56 lg:h-64 overflow-hidden"
           style={{
-            maskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 20%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 20%, transparent 100%)',
+            maskImage:
+              "linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
           }}
         >
           <img
@@ -21,15 +21,17 @@ export function SolutionsSection() {
             className="w-full h-full object-cover object-top opacity-65 filter brightness-[0.96] contrast-[1.05] saturate-[1.15]"
           />
           {/* Subtle warm golden overlay on top visual */}
-          <div className="absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-b from-amber-500/10 via-transparent to-transparent" />
         </div>
 
         {/* ================= 2. BOTTOM BATTERY STORAGE VISUAL (Fades seamlessly upward into section) ================= */}
         <div
           className="absolute bottom-0 inset-x-0 h-44 sm:h-56 lg:h-64 overflow-hidden"
           style={{
-            maskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, transparent 100%)',
+            maskImage:
+              "linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
           }}
         >
           <img
@@ -38,7 +40,7 @@ export function SolutionsSection() {
             className="w-full h-full object-cover object-bottom opacity-65 filter brightness-[0.96] contrast-[1.05] saturate-[1.15]"
           />
           {/* Subtle warm golden overlay on bottom visual */}
-          <div className="absolute inset-0 bg-gradient-to-t from-orange-500/10 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-orange-500/10 via-transparent to-transparent" />
         </div>
 
         {/* ================= 3. ARCHITECTURAL SOLAR GRID (Visible engineering texture) ================= */}
@@ -49,7 +51,7 @@ export function SolutionsSection() {
               linear-gradient(to right, rgba(245, 158, 11, 0.25) 1px, transparent 1px),
               linear-gradient(to bottom, rgba(245, 158, 11, 0.25) 1px, transparent 1px)
             `,
-            backgroundSize: '48px 48px',
+            backgroundSize: "48px 48px",
           }}
         />
 
@@ -79,24 +81,28 @@ export function SolutionsSection() {
               <circle cx="48" cy="48" r="3" fill="#f97316" opacity="0.6" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#solutions-hex-solar-grid)" />
+          <rect
+            width="100%"
+            height="100%"
+            fill="url(#solutions-hex-solar-grid)"
+          />
         </svg>
 
         {/* ================= 5. LUMINOUS SOLAR ENERGY AURA (Behind cards & text) ================= */}
         {/* Major Sunburst Core behind 3D Rotating Cards */}
         <div
-          className="absolute top-1/2 left-4 sm:left-12 lg:left-24 -translate-y-1/2 w-[520px] h-[520px] bg-gradient-to-tr from-amber-400/35 via-orange-400/30 to-yellow-300/20 rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: '4.5s' }}
+          className="absolute top-1/2 left-4 sm:left-12 lg:left-24 -translate-y-1/2 w-130 h-130 bg-linear-to-tr from-amber-400/35 via-orange-400/30 to-yellow-300/20 rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: "4.5s" }}
         />
 
         {/* Clean Energy Emerald / Cyan Flare top-right */}
         <div
-          className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-emerald-400/20 via-teal-300/12 to-transparent rounded-full blur-3xl animate-pulse"
-          style={{ animationDuration: '6s' }}
+          className="absolute top-1/4 right-0 w-125 h-125 bg-linear-to-bl from-emerald-400/20 via-teal-300/12 to-transparent rounded-full blur-3xl animate-pulse"
+          style={{ animationDuration: "6s" }}
         />
 
         {/* ================= 6. ANIMATED SOLAR ORBITAL MECHANISM (Behind 3D Cards) ================= */}
-        <div className="absolute top-1/2 left-0 sm:left-4 lg:left-14 -translate-y-1/2 w-[580px] h-[580px] flex items-center justify-center">
+        <div className="absolute top-1/2 left-0 sm:left-4 lg:left-14 -translate-y-1/2 w-145 h-145 flex items-center justify-center">
           {/* Clockwise Outer Orbit */}
           <svg
             viewBox="0 0 580 580"
@@ -158,18 +164,12 @@ export function SolutionsSection() {
         </div>
 
         {/* ================= 7. VOLUMETRIC DIAGONAL SUNBEAMS ================= */}
-        <div className="absolute -top-40 left-1/3 w-[360px] h-[800px] bg-gradient-to-b from-amber-300/25 via-orange-300/12 to-transparent -rotate-45 blur-2xl" />
-
-        {/* ================= 8. TOP & BOTTOM LUMINOUS ENERGY BEAM LINES ================= */}
-        <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-amber-500 via-orange-500 to-transparent shadow-[0_0_12px_rgba(245,158,11,0.8)] z-10" />
-        <div className="absolute bottom-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-emerald-500 via-amber-500 to-transparent shadow-[0_0_12px_rgba(16,185,129,0.7)] z-10" />
-
+        <div className="absolute -top-40 left-1/3 w-90 h-200 bg-linear-to-b from-amber-300/25 via-orange-300/12 to-transparent -rotate-45 blur-2xl" />
       </div>
 
       {/* ================= FOREGROUND CONTENT WRAPPER (z-10: 100% untouched layout & text) ================= */}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
-          
           {/* ================= LEFT SIDE: 3D Animated Cards (Fully Visible, No Box/Container) ================= */}
           <div className="lg:col-span-5 w-full flex items-center justify-center overflow-visible">
             <RotatingCards />
@@ -177,32 +177,42 @@ export function SolutionsSection() {
 
           {/* ================= RIGHT SIDE: Normal Content ================= */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-serif tracking-tight text-slate-900 leading-[1.15]">
-              Smart Power,{' '}
-              <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 font-serif leading-[1.15]">
+              Smart Power, <br />
+              <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
                 Brighter Future.
               </span>
             </h2>
 
             <div className="mt-6 space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
               <p>
-                Founded in 2019, Sky Electrical & Solar has grown into a trusted name for both electrical services and solar energy solutions. From the very beginning, our mission has been to deliver high-quality, reliable, and sustainable services that meet the needs of both residential and commercial clients.
+                Founded in 2019, Skye Electrical & Solar has grown into a
+                trusted name for both electrical services and solar energy
+                solutions. From the very beginning, our mission has been to
+                deliver high-quality, reliable, and sustainable services that
+                meet the needs of both residential and commercial clients.
               </p>
 
               <p>
-                We specialize in a wide range of services, including general electrical work, solar panel installation, battery storage solutions, and energy efficiency upgrades. Our team consists of skilled and certified professionals who are committed to ensuring every project is completed to the highest standards, using only quality materials and advanced technology.
+                We specialize in a wide range of services, including general
+                electrical work, solar panel installation, battery storage
+                solutions, and energy efficiency upgrades. Our team consists of
+                skilled and certified professionals who are committed to
+                ensuring every project is completed to the highest standards,
+                using only quality materials and advanced technology.
               </p>
 
               <p className="font-semibold text-slate-800">
-                With nearly a decade of experience, Sky Electrical & Solar is your trusted partner for safe, efficient, and sustainable energy solutions.
+                With nearly a decade of experience, Skye Electrical & Solar is
+                your trusted partner for safe, efficient, and sustainable energy
+                solutions.
               </p>
             </div>
           </div>
-
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default SolutionsSection
+export default SolutionsSection;

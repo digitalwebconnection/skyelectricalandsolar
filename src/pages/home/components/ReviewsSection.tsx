@@ -84,7 +84,7 @@ const CUSTOMER_REVIEWS: ReviewItem[] = [
     icon: <Star className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />,
     title: '“Power Bill Dropped from $890 to Under $40!”',
     description:
-      'We were skeptical about the 80% bill reduction claims, but Sky Electrical & Solar delivered beyond our expectations. In our very first quarter with the 10.4kW system, our bill plummeted to almost zero. The crew was punctual, friendly, and left our property spotless.',
+      'We were skeptical about the 80% bill reduction claims, but Skye Electrical & Solar delivered beyond our expectations. In our very first quarter with the 10.4kW system, our bill plummeted to almost zero. The crew was punctual, friendly, and left our property spotless.',
     author: 'Mark & Sarah T. • Point Cook, VIC',
     rating: 5,
   },
@@ -124,7 +124,7 @@ const CUSTOMER_REVIEWS: ReviewItem[] = [
     icon: <Coins className="w-5 h-5 sm:w-6 sm:h-6" />,
     title: '“Government Rebates Deducted Directly Upfront”',
     description:
-      'Sky Solar took care of all the STC government rebate paperwork directly off the initial quote. No waiting for rebates or navigating complicated government portals. Highly professional, responsive, and genuinely reliable company.',
+      'Skye Electrical & Solar took care of all the STC government rebate paperwork directly off the initial quote. No waiting for rebates or navigating complicated government portals. Highly professional, responsive, and genuinely reliable company.',
     author: 'Anthony L. • Berwick, VIC',
     rating: 5,
   },
@@ -140,7 +140,7 @@ const CUSTOMER_REVIEWS: ReviewItem[] = [
     icon: <Sparkles className="w-5 h-5 sm:w-6 sm:h-6" />,
     title: '“Highly Recommend to Anyone Going Solar”',
     description:
-      'We compared quotes from four different solar installers in Melbourne. Sky Electrical & Solar offered the best Tier-1 hardware, honest guidance on battery sizing, and competitive pricing without any gimmicks. Could not be happier with our system.',
+      'We compared quotes from four different solar installers in Melbourne. Skye Electrical & Solar offered the best Tier-1 hardware, honest guidance on battery sizing, and competitive pricing without any gimmicks. Could not be happier with our system.',
     author: 'Anita C. • Altona, VIC',
     rating: 5,
   },
@@ -247,7 +247,7 @@ export function ReviewsSection({
 
   return (
     <section
-      className="py-16 sm:py-24 bg-slate-50/70 relative overflow-hidden flex flex-col items-center"
+      className="py-8 sm:py-14 bg-slate-50/70 relative overflow-hidden flex flex-col items-center"
       ref={sectionRef}
     >
       {/* Decorative ambient blurred backdrops */}
@@ -263,13 +263,13 @@ export function ReviewsSection({
         >
           
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mt-1 tracking-tight">
-            What Homeowners Say About{' '} <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-500 via-orange-500 to-amber-600">
-              Sky Electrical & Solar
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold tracking-tight text-slate-900 leading-[1.15]">
+            What Homeowners Say About <br />
+            <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
+              Skye Electrical & Solar
             </span>
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-medium">
+          <p className="mt-4 text-base sm:text-lg text-slate-600 max-w-5xl mx-auto font-medium">
             Real experiences, honest feedback, and verified power bill savings from homeowners across Victoria.
           </p>
 
@@ -280,7 +280,7 @@ export function ReviewsSection({
       {/* Parallax Multi-Column Gallery Container */}
       <div
         ref={gallery}
-        className="relative box-border flex h-[145vh] sm:h-[165vh] w-full max-w-350 gap-4 sm:gap-6 overflow-hidden px-4 sm:px-6 lg:px-8 py-4"
+        className="relative box-border flex h-[145vh] sm:h-[185vh] w-full max-w-350 gap-4 sm:gap-6 overflow-hidden px-4 sm:px-6 lg:px-8 py-4"
       >
         {/* Column 1 */}
         <Column items={col1} y={y} className="top-[-30%] w-1/2 lg:w-1/4" />

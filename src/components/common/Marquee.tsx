@@ -1,15 +1,15 @@
-import { type ComponentPropsWithoutRef, type ReactNode } from 'react'
-import { cn } from '../../utils'
+import { type ComponentPropsWithoutRef, type ReactNode } from "react";
+import { cn } from "../../utils";
 
-export interface MarqueeProps extends ComponentPropsWithoutRef<'div'> {
-  className?: string
-  reverse?: boolean
-  direction?: 'ltr' | 'rtl'
-  pauseOnHover?: boolean
-  children: ReactNode
-  repeat?: number
-  duration?: number
-  gap?: string
+export interface MarqueeProps extends ComponentPropsWithoutRef<"div"> {
+  className?: string;
+  reverse?: boolean;
+  direction?: "ltr" | "rtl";
+  pauseOnHover?: boolean;
+  children: ReactNode;
+  repeat?: number;
+  duration?: number;
+  gap?: string;
 }
 
 export function Marquee({
@@ -20,35 +20,35 @@ export function Marquee({
   children,
   repeat = 4,
   duration = 35,
-  gap = '1.5rem',
+  gap = "1.5rem",
   style,
   ...props
 }: MarqueeProps) {
   // If direction is provided, 'ltr' triggers Left-to-Right and 'rtl' triggers Right-to-Left.
   // Otherwise, reverse=true triggers Left-to-Right.
-  const isLtr = direction ? direction === 'ltr' : reverse
-  const animClass = isLtr ? 'animate-marquee-ltr' : 'animate-marquee-rtl'
+  const isLtr = direction ? direction === "ltr" : reverse;
+  const animClass = isLtr ? "animate-marquee-ltr" : "animate-marquee-rtl";
 
   return (
     <div
       {...props}
       style={{
-        ['--gap' as string]: gap,
-        ['--duration' as string]: `${duration}s`,
+        ["--gap" as string]: gap,
+        ["--duration" as string]: `${duration}s`,
         ...style,
       }}
       className={cn(
-        'group flex overflow-hidden p-2 [gap:var(--gap)] select-none',
-        className
+        "group flex overflow-hidden p-2 gap-(--gap) select-none",
+        className,
       )}
     >
       {Array.from({ length: repeat }).map((_, i) => (
         <div
           key={i}
           className={cn(
-            'flex shrink-0 items-center justify-around [gap:var(--gap)]',
+            "flex shrink-0 items-center justify-around gap-(--gap)",
             animClass,
-            pauseOnHover && 'group-hover:[animation-play-state:paused]'
+            pauseOnHover && "group-hover:[animation-play-state:paused]",
           )}
           aria-hidden={i > 0 ? true : undefined}
         >
@@ -56,8 +56,7 @@ export function Marquee({
         </div>
       ))}
     </div>
-  )
+  );
 }
 
-export default Marquee
-
+export default Marquee;

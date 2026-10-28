@@ -65,7 +65,7 @@ export function RotatingCards({
             />
 
             {/* Contrast Gradient Overlay for Typography Readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none" />
 
             {/* Top Category Badge */}
             <div className="absolute top-4 left-4 z-10">

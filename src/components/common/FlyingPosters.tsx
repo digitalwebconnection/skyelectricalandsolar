@@ -1,8 +1,10 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
-export type FlyingPostersItem = string | { image: string; link?: string; alt?: string };
+export type FlyingPostersItem =
+  | string
+  | { image: string; link?: string; alt?: string };
 
 export interface FlyingPostersProps {
   items?: FlyingPostersItem[];
@@ -18,7 +20,7 @@ export interface FlyingPostersProps {
   alternate?: boolean;
   radius?: number;
   rotation?: number;
-  axis?: 'vertical' | 'horizontal' | 'diagonal';
+  axis?: "vertical" | "horizontal" | "diagonal";
   speed?: number;
   lean?: number;
   fade?: number;
@@ -26,15 +28,22 @@ export interface FlyingPostersProps {
   wheel?: boolean;
   drag?: boolean;
   pageScroll?: number;
-  onItemClick?: (item: { image: string; link?: string; alt?: string }, index: number) => void;
+  onItemClick?: (
+    item: { image: string; link?: string; alt?: string },
+    index: number,
+  ) => void;
   className?: string;
   style?: React.CSSProperties;
 }
 
-type Engine = { loadItems: (list: FlyingPostersItem[]) => void; wake: () => void };
+type Engine = {
+  loadItems: (list: FlyingPostersItem[]) => void;
+  wake: () => void;
+};
 
-const ROOT = 'relative h-full w-full overflow-hidden';
-const CANVAS = 'absolute inset-0 block h-full w-full cursor-grab active:cursor-grabbing';
+const ROOT = "relative h-full w-full overflow-hidden";
+const CANVAS =
+  "absolute inset-0 block h-full w-full cursor-grab active:cursor-grabbing";
 
 const VERTEX = `#version 300 es
 in vec2 aPosition;
@@ -141,13 +150,18 @@ void main() {
   outColor = vec4(color * alpha, alpha);
 }`;
 
-const AXES: Record<string, number[]> = { vertical: [0, 1, 0], horizontal: [1, 0, 0], diagonal: [1, 1, 0] };
+const AXES: Record<string, number[]> = {
+  vertical: [0, 1, 0],
+  horizontal: [1, 0, 0],
+  diagonal: [1, 1, 0],
+};
 const REFERENCE_FOV = (45 * Math.PI) / 180;
 const REFERENCE_Z = 20;
 const GRID_X = 100;
 const GRID_Y = 1;
 
-const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value));
+const clamp = (value: number, min: number, max: number) =>
+  Math.min(max, Math.max(min, value));
 
 const compile = (gl: WebGL2RenderingContext, type: number, source: string) => {
   const shader = gl.createShader(type);
@@ -159,8 +173,10 @@ const compile = (gl: WebGL2RenderingContext, type: number, source: string) => {
   return null;
 };
 
-const toItem = (item: FlyingPostersItem | undefined): { image: string; link?: string; alt?: string } =>
-  typeof item === 'string' ? { image: item } : item || { image: '' };
+const toItem = (
+  item: FlyingPostersItem | undefined,
+): { image: string; link?: string; alt?: string } =>
+  typeof item === "string" ? { image: item } : item || { image: "" };
 
 export const FlyingPosters = ({
   items = [],
@@ -176,7 +192,7 @@ export const FlyingPosters = ({
   alternate = true,
   radius = 0,
   rotation = 180,
-  axis = 'vertical',
+  axis = "vertical",
   speed = 0,
   lean = 0,
   fade = 0,
@@ -185,8 +201,8 @@ export const FlyingPosters = ({
   drag = true,
   pageScroll = 0,
   onItemClick,
-  className = '',
-  style
+  className = "",
+  style,
 }: FlyingPostersProps) => {
   const rootRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -204,14 +220,14 @@ export const FlyingPosters = ({
     alternate,
     radius: Math.max(0, radius),
     rotation,
-    axis: AXES[axis] ? axis : 'vertical',
+    axis: AXES[axis] ? axis : "vertical",
     speed,
     lean: clamp(lean, 0, 2),
     fade: clamp(fade, 0, 1),
     shading: clamp(shading, 0, 1),
     wheel,
     drag,
-    pageScroll
+    pageScroll,
   };
   const settingsRef = useRef(settings);
   settingsRef.current = settings;
@@ -223,7 +239,11 @@ export const FlyingPosters = ({
   useEffect(() => {
     const root = rootRef.current;
     const canvas = canvasRef.current;
-    const gl = canvas?.getContext('webgl2', { alpha: true, premultipliedAlpha: true, antialias: true });
+    const gl = canvas?.getContext("webgl2", {
+      alpha: true,
+      premultipliedAlpha: true,
+      antialias: true,
+    });
     if (!root || !canvas || !gl) return undefined;
 
     const vertex = compile(gl, gl.VERTEX_SHADER, VERTEX);
@@ -238,28 +258,28 @@ export const FlyingPosters = ({
 
     const uniforms: Record<string, WebGLUniformLocation | null> = {};
     for (const name of [
-      'uProjection',
-      'uCamera',
-      'uPoster',
-      'uDepth',
-      'uSpacing',
-      'uLoop',
-      'uColumnGap',
-      'uColumns',
-      'uScroll',
-      'uAlternate',
-      'uViewHeight',
-      'uRotation',
-      'uDistortion',
-      'uAxis',
-      'uLean',
-      'uAtlas',
-      'uCells',
-      'uInset',
-      'uRadius',
-      'uFade',
-      'uShading',
-      'uReveal'
+      "uProjection",
+      "uCamera",
+      "uPoster",
+      "uDepth",
+      "uSpacing",
+      "uLoop",
+      "uColumnGap",
+      "uColumns",
+      "uScroll",
+      "uAlternate",
+      "uViewHeight",
+      "uRotation",
+      "uDistortion",
+      "uAxis",
+      "uLean",
+      "uAtlas",
+      "uCells",
+      "uInset",
+      "uRadius",
+      "uFade",
+      "uShading",
+      "uReveal",
     ]) {
       uniforms[name] = gl.getUniformLocation(program, name);
     }
@@ -267,12 +287,20 @@ export const FlyingPosters = ({
     const positions: number[] = [];
     const indices: number[] = [];
     for (let y = 0; y <= GRID_Y; y++) {
-      for (let x = 0; x <= GRID_X; x++) positions.push(x / GRID_X - 0.5, y / GRID_Y - 0.5);
+      for (let x = 0; x <= GRID_X; x++)
+        positions.push(x / GRID_X - 0.5, y / GRID_Y - 0.5);
     }
     for (let y = 0; y < GRID_Y; y++) {
       for (let x = 0; x < GRID_X; x++) {
         const i = y * (GRID_X + 1) + x;
-        indices.push(i + GRID_X + 1, i, i + GRID_X + 2, i, i + 1, i + GRID_X + 2);
+        indices.push(
+          i + GRID_X + 1,
+          i,
+          i + GRID_X + 2,
+          i,
+          i + 1,
+          i + GRID_X + 2,
+        );
       }
     }
 
@@ -281,15 +309,19 @@ export const FlyingPosters = ({
     const positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
-    const positionLocation = gl.getAttribLocation(program, 'aPosition');
+    const positionLocation = gl.getAttribLocation(program, "aPosition");
     gl.enableVertexAttribArray(positionLocation);
     gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
     const indexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
+    gl.bufferData(
+      gl.ELEMENT_ARRAY_BUFFER,
+      new Uint16Array(indices),
+      gl.STATIC_DRAW,
+    );
     const posterBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, posterBuffer);
-    const posterLocation = gl.getAttribLocation(program, 'aPoster');
+    const posterLocation = gl.getAttribLocation(program, "aPoster");
     gl.enableVertexAttribArray(posterLocation);
     gl.vertexAttribPointer(posterLocation, 4, gl.FLOAT, false, 0, 0);
     gl.vertexAttribDivisor(posterLocation, 1);
@@ -300,21 +332,43 @@ export const FlyingPosters = ({
     gl.bindTexture(gl.TEXTURE_2D, atlasTexture);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+    gl.texParameteri(
+      gl.TEXTURE_2D,
+      gl.TEXTURE_MIN_FILTER,
+      gl.LINEAR_MIPMAP_LINEAR,
+    );
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0, 0, 0, 0]));
+    gl.texImage2D(
+      gl.TEXTURE_2D,
+      0,
+      gl.RGBA,
+      1,
+      1,
+      0,
+      gl.RGBA,
+      gl.UNSIGNED_BYTE,
+      new Uint8Array([0, 0, 0, 0]),
+    );
     gl.uniform1i(uniforms.uAtlas, 0);
 
-    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    const reduce =
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
     const atlas = {
-      canvas: document.createElement('canvas'),
+      canvas: document.createElement("canvas"),
       cells: 1,
       cell: 512,
       images: [] as (HTMLImageElement | null)[],
       aspect: 0,
-      dirty: false
+      dirty: false,
     };
-    const pointer = { active: false, id: -1, origin: 0, startY: 0, startX: 0, start: 0 };
+    const pointer = {
+      active: false,
+      id: -1,
+      origin: 0,
+      startY: 0,
+      startX: 0,
+      start: 0,
+    };
     const state = {
       width: 1,
       height: 1,
@@ -326,8 +380,8 @@ export const FlyingPosters = ({
       reveal: 0,
       slots: 0,
       count: 0,
-      layoutKey: '',
-      pageY: window.scrollY
+      layoutKey: "",
+      pageY: window.scrollY,
     };
     let raf = 0;
     let last = 0;
@@ -338,7 +392,8 @@ export const FlyingPosters = ({
     const metrics = () => {
       const s = settingsRef.current;
       const fov = (s.cameraFov * Math.PI) / 180;
-      const unit = state.height / (2 * Math.tan(REFERENCE_FOV / 2) * REFERENCE_Z);
+      const unit =
+        state.height / (2 * Math.tan(REFERENCE_FOV / 2) * REFERENCE_Z);
       const distance = s.cameraZ * unit;
       const spacing = s.planeHeight + (s.gap ?? 5 * unit);
       const scale = (2 * distance * Math.tan(fov / 2)) / state.height;
@@ -349,8 +404,11 @@ export const FlyingPosters = ({
       const s = settingsRef.current;
       const list = itemsRef.current;
       const { spacing, scale } = metrics();
-      const slots = Math.max(list.length, Math.ceil((state.height * scale + s.planeHeight) / spacing) + 1);
-      const key = [slots, s.columns, list.length].join('|');
+      const slots = Math.max(
+        list.length,
+        Math.ceil((state.height * scale + s.planeHeight) / spacing) + 1,
+      );
+      const key = [slots, s.columns, list.length].join("|");
       if (key === state.layoutKey) return;
       state.layoutKey = key;
       state.slots = slots;
@@ -359,7 +417,10 @@ export const FlyingPosters = ({
       const data = new Float32Array(state.count * 4);
       for (let column = 0; column < s.columns; column++) {
         for (let slot = 0; slot < slots; slot++) {
-          data.set([column, slot, (slot + column * 2) % total, 0], (column * slots + slot) * 4);
+          data.set(
+            [column, slot, (slot + column * 2) % total, 0],
+            (column * slots + slot) * 4,
+          );
         }
       }
       gl.bindBuffer(gl.ARRAY_BUFFER, posterBuffer);
@@ -369,7 +430,7 @@ export const FlyingPosters = ({
     const paintAtlas = () => {
       const s = settingsRef.current;
       const aspect = s.planeWidth / s.planeHeight;
-      const ctx = atlas.canvas.getContext('2d');
+      const ctx = atlas.canvas.getContext("2d");
       if (!ctx) return;
       atlas.aspect = aspect;
       ctx.clearRect(0, 0, atlas.canvas.width, atlas.canvas.height);
@@ -382,7 +443,17 @@ export const FlyingPosters = ({
         else sh = sw / aspect;
         const x = (index % atlas.cells) * size;
         const y = Math.floor(index / atlas.cells) * size;
-        ctx.drawImage(image, (image.naturalWidth - sw) / 2, (image.naturalHeight - sh) / 2, sw, sh, x, y, size, size);
+        ctx.drawImage(
+          image,
+          (image.naturalWidth - sw) / 2,
+          (image.naturalHeight - sh) / 2,
+          sw,
+          sh,
+          x,
+          y,
+          size,
+          size,
+        );
       });
       atlas.dirty = true;
     };
@@ -391,7 +462,14 @@ export const FlyingPosters = ({
       atlas.dirty = false;
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, atlasTexture);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, atlas.canvas);
+      gl.texImage2D(
+        gl.TEXTURE_2D,
+        0,
+        gl.RGBA,
+        gl.RGBA,
+        gl.UNSIGNED_BYTE,
+        atlas.canvas,
+      );
       gl.generateMipmap(gl.TEXTURE_2D);
     };
 
@@ -405,18 +483,18 @@ export const FlyingPosters = ({
       atlas.canvas.height = atlas.cells * atlas.cell;
       atlas.images = entries.map(() => null);
       paintAtlas();
-      state.layoutKey = '';
+      state.layoutKey = "";
       entries.forEach((entry, index) => {
         const image = new Image();
-        image.crossOrigin = 'anonymous';
-        image.decoding = 'async';
+        image.crossOrigin = "anonymous";
+        image.decoding = "async";
         image.onload = () => {
           if (!alive || current !== request) return;
           atlas.images[index] = image;
           paintAtlas();
           wake();
         };
-        image.src = entry.image || '';
+        image.src = entry.image || "";
       });
       wake();
     };
@@ -430,10 +508,12 @@ export const FlyingPosters = ({
       const loop = state.slots * spacing;
       for (let column = 0; column < s.columns; column++) {
         const direction = s.alternate && column % 2 === 1 ? -1 : 1;
-        const cx = (column - (s.columns - 1) / 2) * (s.planeWidth + s.columnGap);
+        const cx =
+          (column - (s.columns - 1) / 2) * (s.planeWidth + s.columnGap);
         if (Math.abs(x - cx) > s.planeWidth / 2) continue;
         for (let slot = 0; slot < state.slots; slot++) {
-          const base = -loop / 2 + (slot + 0.5) * spacing + column * 0.41 * spacing;
+          const base =
+            -loop / 2 + (slot + 0.5) * spacing + column * 0.41 * spacing;
           const raw = base - state.scroll * direction + loop / 2;
           const cy = (((raw % loop) + loop) % loop) - loop / 2;
           if (Math.abs(y - cy) <= s.planeHeight / 2) {
@@ -489,7 +569,13 @@ export const FlyingPosters = ({
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, atlasTexture);
       gl.bindVertexArray(vao);
-      gl.drawElementsInstanced(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0, state.count);
+      gl.drawElementsInstanced(
+        gl.TRIANGLES,
+        indices.length,
+        gl.UNSIGNED_SHORT,
+        0,
+        state.count,
+      );
       gl.bindVertexArray(null);
     };
 
@@ -505,9 +591,15 @@ export const FlyingPosters = ({
       state.reveal = Math.min(1, state.reveal + dt / (reduce ? 0.01 : 0.6));
       if (!pointer.active && !reduce) state.target -= s.speed * dt;
       const previous = state.scroll;
-      state.scroll += (state.target - state.scroll) * (1 - Math.pow(1 - s.scrollEase, dt * 60));
-      state.velocity += ((state.scroll - previous) / dt - state.velocity) * (1 - Math.exp(-dt * 8));
-      const leanTarget = reduce ? 0 : clamp(-state.velocity * s.lean * 0.0006, -0.5, 0.5);
+      state.scroll +=
+        (state.target - state.scroll) *
+        (1 - Math.pow(1 - s.scrollEase, dt * 60));
+      state.velocity +=
+        ((state.scroll - previous) / dt - state.velocity) *
+        (1 - Math.exp(-dt * 8));
+      const leanTarget = reduce
+        ? 0
+        : clamp(-state.velocity * s.lean * 0.0006, -0.5, 0.5);
       state.lean += (leanTarget - state.lean) * (1 - Math.exp(-dt * 6));
       render();
       const busy =
@@ -528,13 +620,14 @@ export const FlyingPosters = ({
     const onWheel = (event: WheelEvent) => {
       if (!settingsRef.current.wheel) return;
       event.preventDefault();
-      const lines = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? state.height : 1;
+      const lines =
+        event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? state.height : 1;
       state.target += event.deltaY * lines * 0.01 * metrics().unit;
       wake();
     };
 
     const onPointerDown = (event: PointerEvent) => {
-      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      if (event.pointerType === "mouse" && event.button !== 0) return;
       pointer.startX = event.clientX;
       pointer.startY = event.clientY;
       pointer.start = performance.now();
@@ -548,21 +641,26 @@ export const FlyingPosters = ({
 
     const onPointerMove = (event: PointerEvent) => {
       if (!pointer.active || event.pointerId !== pointer.id) return;
-      state.target = pointer.origin + (pointer.startY - event.clientY) * 0.1 * metrics().unit;
+      state.target =
+        pointer.origin +
+        (pointer.startY - event.clientY) * 0.1 * metrics().unit;
       wake();
     };
 
     const onPointerUp = (event: PointerEvent) => {
       const tap =
-        Math.hypot(event.clientX - pointer.startX, event.clientY - pointer.startY) < 6 &&
-        performance.now() - pointer.start < 450;
+        Math.hypot(
+          event.clientX - pointer.startX,
+          event.clientY - pointer.startY,
+        ) < 6 && performance.now() - pointer.start < 450;
       if (pointer.active && event.pointerId === pointer.id) {
         pointer.active = false;
         canvas.releasePointerCapture?.(event.pointerId);
       }
       if (tap && clickRef.current) {
         const index = posterAt(event.clientX, event.clientY);
-        if (index >= 0) clickRef.current(toItem(itemsRef.current[index]), index);
+        if (index >= 0)
+          clickRef.current(toItem(itemsRef.current[index]), index);
       }
       wake();
     };
@@ -583,7 +681,7 @@ export const FlyingPosters = ({
       state.height = Math.max(1, root.clientHeight);
       canvas.width = Math.round(state.width * state.dpr);
       canvas.height = Math.round(state.height * state.dpr);
-      state.layoutKey = '';
+      state.layoutKey = "";
       layout();
       render();
       wake();
@@ -591,16 +689,16 @@ export const FlyingPosters = ({
 
     engineRef.current = { loadItems, wake };
 
-    canvas.addEventListener('wheel', onWheel, { passive: false });
-    canvas.addEventListener('pointerdown', onPointerDown);
-    canvas.addEventListener('pointermove', onPointerMove);
-    canvas.addEventListener('pointerup', onPointerUp);
-    canvas.addEventListener('pointercancel', onPointerUp);
-    window.addEventListener('scroll', onScroll, { passive: true });
+    canvas.addEventListener("wheel", onWheel, { passive: false });
+    canvas.addEventListener("pointerdown", onPointerDown);
+    canvas.addEventListener("pointermove", onPointerMove);
+    canvas.addEventListener("pointerup", onPointerUp);
+    canvas.addEventListener("pointercancel", onPointerUp);
+    window.addEventListener("scroll", onScroll, { passive: true });
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(root);
-    const visibility = new IntersectionObserver(entries => {
-      visible = entries.some(entry => entry.isIntersecting);
+    const visibility = new IntersectionObserver((entries) => {
+      visible = entries.some((entry) => entry.isIntersecting);
       if (visible) {
         last = 0;
         wake();
@@ -613,12 +711,12 @@ export const FlyingPosters = ({
       alive = false;
       cancelAnimationFrame(raf);
       engineRef.current = null;
-      canvas.removeEventListener('wheel', onWheel);
-      canvas.removeEventListener('pointerdown', onPointerDown);
-      canvas.removeEventListener('pointermove', onPointerMove);
-      canvas.removeEventListener('pointerup', onPointerUp);
-      canvas.removeEventListener('pointercancel', onPointerUp);
-      window.removeEventListener('scroll', onScroll);
+      canvas.removeEventListener("wheel", onWheel);
+      canvas.removeEventListener("pointerdown", onPointerDown);
+      canvas.removeEventListener("pointermove", onPointerMove);
+      canvas.removeEventListener("pointerup", onPointerUp);
+      canvas.removeEventListener("pointercancel", onPointerUp);
+      window.removeEventListener("scroll", onScroll);
       resizeObserver.disconnect();
       visibility.disconnect();
       gl.deleteTexture(atlasTexture);
@@ -641,11 +739,18 @@ export const FlyingPosters = ({
   });
 
   return (
-    <div ref={rootRef} className={`${ROOT}${className ? ` ${className}` : ''}`} style={style}>
+    <div
+      ref={rootRef}
+      className={`${ROOT}${className ? ` ${className}` : ""}`}
+      style={style}
+    >
       <canvas
         ref={canvasRef}
         className={CANVAS}
-        style={{ touchAction: drag ? 'none' : 'auto', cursor: drag ? undefined : 'default' }}
+        style={{
+          touchAction: drag ? "none" : "auto",
+          cursor: drag ? undefined : "default",
+        }}
       />
     </div>
   );

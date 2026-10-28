@@ -145,7 +145,7 @@ export function SlidingBannerHero() {
       className="relative w-full overflow-hidden"
     >
       {/* Background ambient lighting */}
-      <div className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 w-full max-w-7xl h-72 bg-gradient-to-r from-amber-400/15 via-orange-400/10 to-amber-300/15 blur-3xl -z-10" />
+      <div className="pointer-events-none absolute -top-20 left-1/2 -translate-x-1/2 w-full max-w-7xl h-72 bg-linear-to-r from-amber-400/15 via-orange-400/10 to-amber-300/15 blur-3xl -z-10" />
 
       <div>
         <div className="relative group w-full overflow-hidden border border-slate-200/90 shadow-2xl shadow-slate-900/10 bg-slate-950">
@@ -184,7 +184,7 @@ export function SlidingBannerHero() {
           />
 
           {/* Bottom subtle dark gradient vignette for depth */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/40 via-black/10 to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-linear-to-t from-black/40 via-black/10 to-transparent z-10" />
 
         </div>
       </div>

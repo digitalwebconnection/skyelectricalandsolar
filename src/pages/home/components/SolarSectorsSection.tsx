@@ -1,8 +1,5 @@
 import { useRef } from "react";
-import {
-  ArrowRight,
-  ArrowUpRight,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { FadeContent } from "../../../components/common/FadeContent";
 import ScrollStack, {
   ScrollStackItem,
@@ -22,8 +19,8 @@ export function SolarSectorsSection() {
     >
       {/* Ambient Lighting Gradients (safely contained in clipped background container) */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden -z-10">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-amber-400/10 via-orange-400/5 to-transparent rounded-full blur-3xl" />
-        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-sky-400/5 rounded-full blur-[140px]" />
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-175 h-87.5 bg-linear-to-b from-amber-400/10 via-orange-400/5 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-1/2 right-0 w-125 h-125 bg-sky-400/5 rounded-full blur-[140px]" />
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -35,14 +32,11 @@ export function SolarSectorsSection() {
           threshold={0.15}
           className="text-center max-w-4xl mx-auto mb-8 sm:mb-12"
         >
-          
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-[1.15]">
-            Engineered for{" "}
-            <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold font-serif tracking-tight text-slate-900 leading-[1.15]">
+            Engineered for <br />
+            <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
               Homes & Businesses
-            </span>{" "}
-            Across Australia
+            </span>
           </h2>
 
           <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
@@ -82,7 +76,6 @@ export function SolarSectorsSection() {
                       <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
                       <span>01 • Residential Solar</span>
                     </div>
-                  
                   </div>
 
                   {/* Headline */}
@@ -131,8 +124,10 @@ export function SolarSectorsSection() {
                   <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-1">
                     <button
                       type="button"
-                      onClick={() => openInquiryModal('Residential Rooftop Solar')}
-                      className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 px-6 sm:px-7 text-sm font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 active:scale-95 cursor-pointer"
+                      onClick={() =>
+                        openInquiryModal("Residential Rooftop Solar")
+                      }
+                      className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 px-6 sm:px-7 text-sm font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 active:scale-95 cursor-pointer"
                     >
                       <span>Get Home Solar Quote</span>
                       <ArrowRight className="h-4 w-4" />
@@ -152,25 +147,23 @@ export function SolarSectorsSection() {
 
                 {/* Right Side: Fluid Photo Showcase */}
                 <div className="lg:col-span-5 relative h-full">
-                  <div className="relative overflow-hidden rounded-xl shadow-xl shadow-slate-900/10 group h-full min-h-[240px] sm:min-h-[280px] lg:min-h-[440px]">
+                  <div className="relative overflow-hidden rounded-xl shadow-xl shadow-slate-900/10 group h-full min-h-60 sm:min-h-70 lg:min-h-110">
                     <img
                       src="/assets/residential-solar.jpg"
                       alt="Residential Solar Rooftop Installation in Melbourne"
-                      className="w-full h-full min-h-[240px] sm:min-h-[280px] lg:min-h-[440px] object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full min-h-60 sm:min-h-70 lg:min-h-110 object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                       onError={(e) => {
                         e.currentTarget.src =
                           "/assets/posters/poster-rooftop.jpg";
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-
-                
+                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
 
                     <div className="absolute bottom-5 left-5 right-5 text-white flex items-end justify-between">
                       <div>
                         <div className="text-xs uppercase tracking-wider text-amber-300 font-bold">
-                          Sky Quality Guarantee
+                          Skye Electrical & Solar Guarantee
                         </div>
                         <div className="text-base sm:text-lg font-extrabold">
                           Clean Energy Council Accredited
@@ -196,7 +189,6 @@ export function SolarSectorsSection() {
                       <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
                       <span>02 • Commercial & Enterprise</span>
                     </div>
-                   
                   </div>
 
                   {/* Headline */}
@@ -245,8 +237,10 @@ export function SolarSectorsSection() {
                   <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-1">
                     <button
                       type="button"
-                      onClick={() => openInquiryModal('Commercial & Industrial Solar Arrays')}
-                      className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-blue-600 to-sky-600 hover:from-blue-700 hover:to-sky-700 px-6 sm:px-7 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition-all duration-200 active:scale-95 cursor-pointer"
+                      onClick={() =>
+                        openInquiryModal("Commercial & Industrial Solar Arrays")
+                      }
+                      className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-linear-to-r from-blue-600 to-sky-600 hover:from-blue-700 hover:to-sky-700 px-6 sm:px-7 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition-all duration-200 active:scale-95 cursor-pointer"
                     >
                       <span>Request Commercial Energy Audit</span>
                       <ArrowRight className="h-4 w-4" />
@@ -266,19 +260,18 @@ export function SolarSectorsSection() {
 
                 {/* Right Side: Fluid Photo Showcase */}
                 <div className="lg:col-span-5 relative h-full">
-                  <div className="relative overflow-hidden rounded-2xl shadow-xl shadow-slate-900/10 group h-full min-h-[240px] sm:min-h-[280px] lg:min-h-[440px]">
+                  <div className="relative overflow-hidden rounded-2xl shadow-xl shadow-slate-900/10 group h-full min-h-60 sm:min-h-70 lg:min-h-110">
                     <img
                       src="/assets/commercial-solar.jpg"
                       alt="Commercial Solar Array Installation"
-                      className="w-full h-full min-h-[240px] sm:min-h-[280px] lg:min-h-[440px] object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full min-h-60 sm:min-h-70 lg:min-h-110 object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                       onError={(e) => {
                         e.currentTarget.src = "/assets/solar-farm-bg.jpg";
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
 
-                   
                     <div className="absolute bottom-5 left-5 right-5 text-white flex items-end justify-between">
                       <div>
                         <div className="text-xs uppercase tracking-wider text-sky-300 font-bold">
@@ -298,7 +291,6 @@ export function SolarSectorsSection() {
             </ScrollStackItem>
           </ScrollStack>
         </div>
-
       </div>
     </section>
   );

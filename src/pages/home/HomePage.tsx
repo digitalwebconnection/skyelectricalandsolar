@@ -22,13 +22,11 @@ export function HomePage() {
       {/* 1. Hero Section with Left Content & Right 3D FlyingPosters Animation */}
       <HeroSection />
 
-  {/* 4. Residential & Commercial Solar Sectors (with React Bits FadeContent) */}
+      {/* 4. Residential & Commercial Solar Sectors (with React Bits FadeContent) */}
       <SolarSectorsSection />
-      
+
       {/* 3. Solar & Battery Core Solutions */}
       <SolutionsSection />
-
-    
 
       {/* 5. Interactive Solar Savings & ROI Calculator */}
       <SolarCalculatorSection />

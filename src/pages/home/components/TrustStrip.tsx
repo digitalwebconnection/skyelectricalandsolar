@@ -89,8 +89,8 @@ export function TrustStrip() {
           className="w-full h-full object-cover object-center filter brightness-[0.38] contrast-[1.15] saturate-[1.3] scale-105"
         />
         {/* Deep tech ambient gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-slate-950" />
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-transparent to-slate-950/80" />
+        <div className="absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/70 to-slate-950" />
+        <div className="absolute inset-0 bg-linear-to-b from-slate-950/80 via-transparent to-slate-950/80" />
       </div>
 
       {/* ================= 2. HIGH-TECH SOLAR SILICON WAFER GRID ================= */}
@@ -123,14 +123,14 @@ export function TrustStrip() {
 
       {/* ================= 3. LUMINOUS SOLAR ENERGY FLARES ================= */}
       <div
-        className="pointer-events-none absolute -top-16 left-1/4 w-[500px] h-36 bg-amber-400/25 blur-3xl rounded-full -z-10 animate-pulse"
+        className="pointer-events-none absolute -top-16 left-1/4 w-125 h-36 bg-amber-400/25 blur-3xl rounded-full -z-10 animate-pulse"
         style={{ animationDuration: '5s' }}
       />
       <div
-        className="pointer-events-none absolute -bottom-16 right-1/4 w-[500px] h-36 bg-orange-500/25 blur-3xl rounded-full -z-10 animate-pulse"
+        className="pointer-events-none absolute -bottom-16 right-1/4 w-125 h-36 bg-orange-500/25 blur-3xl rounded-full -z-10 animate-pulse"
         style={{ animationDuration: '7s' }}
       />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-28 bg-gradient-to-r from-amber-500/20 via-emerald-500/20 to-amber-500/20 blur-2xl -z-10" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-28 bg-linear-to-r from-amber-500/20 via-emerald-500/20 to-amber-500/20 blur-2xl -z-10" />
 
       {/* ================= 4. FLOATING CLEAN ENERGY WATERMARK ================= */}
       <div
@@ -149,12 +149,12 @@ export function TrustStrip() {
       </div>
 
       {/* ================= 5. TOP & BOTTOM NEON POWER FLOW BEAMS ================= */}
-      <div className="pointer-events-none absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-amber-400 via-orange-400 to-transparent shadow-[0_0_14px_rgba(245,158,11,0.9)]" />
-      <div className="pointer-events-none absolute bottom-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-400 via-amber-400 to-transparent shadow-[0_0_14px_rgba(16,185,129,0.8)]" />
+      <div className="pointer-events-none absolute top-0 inset-x-0 h-0.5 bg-linear-to-r from-transparent via-orange-400 to-transparent shadow-[0_0_14px_rgba(245,158,11,0.9)]" />
+      <div className="pointer-events-none absolute bottom-0 inset-x-0 h-0.5 bg-linear-to-r from-transparent via-amber-400 to-transparent shadow-[0_0_14px_rgba(16,185,129,0.8)]" />
 
       {/* ================= 6. SEAMLESS EDGE FADE MASKS ================= */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-36 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-36 bg-gradient-to-l from-slate-950 via-slate-950/90 to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 sm:w-36 bg-linear-to-r from-slate-950 via-slate-950/90 to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 sm:w-36 bg-linear-to-l from-slate-950 via-slate-950/90 to-transparent z-10" />
 
       {/* ================= 7. CONTINUOUS SLIDING MARQUEE TRACK ================= */}
       <Marquee
