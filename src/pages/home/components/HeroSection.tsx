@@ -9,6 +9,7 @@ import { CONTACT_INFO } from '../../../constants'
 import { StaggerButton } from '../../../components/common/StaggerButton'
 import { FlyingPosters, type FlyingPostersItem } from '../../../components/common/FlyingPosters'
 import { StrokeText } from '../../../components/common/StrokeText'
+import { useInquiryModal } from '../../../context'
 
 const POSTER_ITEMS: FlyingPostersItem[] = [
   {
@@ -38,13 +39,14 @@ const POSTER_ITEMS: FlyingPostersItem[] = [
 ]
 
 export function HeroSection() {
+  const { openInquiryModal } = useInquiryModal()
   const [, setSelectedPoster] = useState<{
     alt?: string
     image?: string
   } | null>(null)
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-amber-50/30 pt-32 sm:pt-36 lg:pt-6 pb-16 lg:pb-24">
+    <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-amber-50/30 pt-6 sm:pt-8 lg:pt-10 pb-16 lg:pb-24">
       {/* Decorative ambient background radial lighting */}
       <div className="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-r from-amber-400/10 via-orange-400/15 to-emerald-400/10 blur-3xl -z-10" />
       <div className="pointer-events-none absolute top-1/3 -right-48 w-96 h-96 rounded-full bg-orange-300/15 blur-3xl -z-10" />
@@ -107,9 +109,7 @@ export function HeroSection() {
             <div className="mt-8 flex flex-wrap items-center gap-4 w-full sm:w-auto">
               <StaggerButton
                 text="Get Free Solar Assessment"
-                onClick={() => {
-                  window.location.href = `tel:${CONTACT_INFO.phone1.replace(/\s/g, '')}`
-                }}
+                onClick={() => openInquiryModal('Residential Rooftop Solar')}
               />
 
               <a

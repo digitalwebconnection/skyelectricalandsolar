@@ -1,3 +1,4 @@
+export * from './SlidingBannerHero'
 export * from './HeroSection'
 export * from './TrustStrip'
 export * from './SolutionsSection'

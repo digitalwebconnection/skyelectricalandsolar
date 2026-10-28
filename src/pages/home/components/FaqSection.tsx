@@ -112,7 +112,7 @@ export function FaqSection() {
     <section
       id="faq"
       aria-label="Frequently Asked Questions"
-      className="relative py-20 sm:py-28 bg-slate-50/70 border-t border-slate-200/80 overflow-hidden"
+      className="relative py-8 sm:py-14 bg-slate-50/70 border-t border-slate-200/80 overflow-hidden"
     >
       {/* Ambient Lighting Gradients */}
       <div className="pointer-events-none absolute -top-40 right-1/4 w-[600px] h-[350px] bg-gradient-to-b from-amber-400/10 via-orange-400/5 to-transparent rounded-full blur-3xl -z-10" />

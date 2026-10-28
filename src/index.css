@@ -286,3 +286,9 @@ body {
   transform: translateY(0px);
   opacity: 1;
 }
+
+/* PixelSwap visibility rule */
+[data-visible="false"] {
+  visibility: hidden !important;
+}
+

@@ -12,3 +12,6 @@ export * from './BorderBeam'
 export * from './NumberTicker'
 export * from './WebsiteLoader'
 export * from './SmoothScroll'
+export * from './InquiryEnvelopeModal'
+export * from './PixelSwap'
+

@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { Layout } from './components/layout'
 import { HomePage } from './pages'
-import { WebsiteLoader, SmoothScrollProvider } from './components/common'
+import { WebsiteLoader, SmoothScrollProvider, InquiryEnvelopeModal } from './components/common'
+import { InquiryModalProvider } from './context'
 import { siteConfig } from './config/site'
 
 export function App() {
@@ -26,14 +27,19 @@ export function App() {
   }, [])
 
   return (
-    <SmoothScrollProvider>
-      {/* 3D Gyroscope Orbital Preloader with Typing Animation */}
-      <WebsiteLoader minDuration={1800} />
-      
-      <Layout>
-        <HomePage />
-      </Layout>
-    </SmoothScrollProvider>
+    <InquiryModalProvider>
+      <SmoothScrollProvider>
+        {/* 3D Gyroscope Orbital Preloader with Typing Animation */}
+        <WebsiteLoader minDuration={1800} />
+        
+        {/* Global Envelope Inquiry Modal */}
+        <InquiryEnvelopeModal />
+
+        <Layout>
+          <HomePage />
+        </Layout>
+      </SmoothScrollProvider>
+    </InquiryModalProvider>
   )
 }
 

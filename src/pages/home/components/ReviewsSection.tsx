@@ -12,7 +12,7 @@ import {
   ArrowRight,
 } from 'lucide-react'
 import { useReveal } from '@/hooks/useReveal'
-import { CONTACT_INFO } from '../../../constants'
+import { useInquiryModal } from '../../../context'
 
 export interface ReviewItem {
   icon: ReactNode
@@ -203,6 +203,7 @@ export function ReviewsSection({
 }: {
   reviews?: ReviewItem[]
 }) {
+  const { openInquiryModal } = useInquiryModal()
   const { ref: sectionRef, visible: isVisible } = useReveal()
   const gallery = useRef<HTMLDivElement>(null)
   const [dimension, setDimension] = useState({ width: 0, height: 0 })
@@ -302,13 +303,14 @@ export function ReviewsSection({
 
       {/* Bottom CTA Button */}
       <div className="relative z-20 mt-8 sm:mt-10">
-        <a
-          href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, '')}`}
-          className="inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 px-7 text-sm font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 active:scale-95"
+        <button
+          type="button"
+          onClick={() => openInquiryModal()}
+          className="inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 px-7 text-sm font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 active:scale-95 cursor-pointer"
         >
           <span>Claim Your Guaranteed System Quote</span>
           <ArrowRight className="w-4 h-4" />
-        </a>
+        </button>
       </div>
     </section>
   )

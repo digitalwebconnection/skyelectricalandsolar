@@ -1,4 +1,5 @@
 import {
+  SlidingBannerHero,
   HeroSection,
   TrustStrip,
   SolutionsSection,
@@ -7,23 +8,27 @@ import {
   WhyChooseUsSection,
   PartnersSection,
   ReviewsSection,
-  FaqSection
-} from './components'
+  FaqSection,
+} from "./components";
 
 export function HomePage() {
   return (
     <div className="flex flex-col w-full">
-      {/* 1. Hero Section with Left Content & Right 3D FlyingPosters Animation */}
-      <HeroSection />
+      {/* 0. Top Visual Sliding Banner Hero (Pure Image Carousel with React Bits PixelSwap auto-animation) */}
+      <SlidingBannerHero />
 
       {/* 2. Key Industry Accreditation & Metrics Strip */}
       <TrustStrip />
+      {/* 1. Hero Section with Left Content & Right 3D FlyingPosters Animation */}
+      <HeroSection />
 
+  {/* 4. Residential & Commercial Solar Sectors (with React Bits FadeContent) */}
+      <SolarSectorsSection />
+      
       {/* 3. Solar & Battery Core Solutions */}
       <SolutionsSection />
 
-      {/* 4. Residential & Commercial Solar Sectors (with React Bits FadeContent) */}
-      <SolarSectorsSection />
+    
 
       {/* 5. Interactive Solar Savings & ROI Calculator */}
       <SolarCalculatorSection />
@@ -39,10 +44,8 @@ export function HomePage() {
 
       {/* 8. Frequently Asked Questions (FAQ) */}
       <FaqSection />
-
-    
     </div>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;

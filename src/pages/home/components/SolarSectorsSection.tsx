@@ -2,17 +2,17 @@ import { useRef } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
-  PhoneCall,
 } from "lucide-react";
 import { FadeContent } from "../../../components/common/FadeContent";
 import ScrollStack, {
   ScrollStackItem,
   type ScrollStackHandle,
 } from "../../../components/common/ScrollStack";
-import { CONTACT_INFO } from "../../../constants";
+import { useInquiryModal } from "../../../context";
 
 export function SolarSectorsSection() {
   const stackRef = useRef<ScrollStackHandle>(null);
+  const { openInquiryModal } = useInquiryModal();
 
   return (
     <section
@@ -129,14 +129,14 @@ export function SolarSectorsSection() {
 
                   {/* Action Link & CTA */}
                   <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-1">
-                    <a
-                      href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, "")}`}
-                      className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 px-6 sm:px-7 text-sm font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 active:scale-95"
+                    <button
+                      type="button"
+                      onClick={() => openInquiryModal('Residential Rooftop Solar')}
+                      className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 px-6 sm:px-7 text-sm font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 active:scale-95 cursor-pointer"
                     >
-                      <PhoneCall className="h-4 w-4" />
                       <span>Get Home Solar Quote</span>
                       <ArrowRight className="h-4 w-4" />
-                    </a>
+                    </button>
 
                     <a
                       href="https://skyelectricalandsolar.com/blogs/"
@@ -243,14 +243,14 @@ export function SolarSectorsSection() {
 
                   {/* Action Link & CTA */}
                   <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-1">
-                    <a
-                      href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, "")}`}
-                      className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-blue-600 to-sky-600 hover:from-blue-700 hover:to-sky-700 px-6 sm:px-7 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition-all duration-200 active:scale-95"
+                    <button
+                      type="button"
+                      onClick={() => openInquiryModal('Commercial & Industrial Solar Arrays')}
+                      className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-blue-600 to-sky-600 hover:from-blue-700 hover:to-sky-700 px-6 sm:px-7 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition-all duration-200 active:scale-95 cursor-pointer"
                     >
-                      <PhoneCall className="h-4 w-4" />
                       <span>Request Commercial Energy Audit</span>
                       <ArrowRight className="h-4 w-4" />
-                    </a>
+                    </button>
 
                     <a
                       href="https://skyelectricalandsolar.com/blogs/"

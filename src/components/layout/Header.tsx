@@ -11,8 +11,10 @@ import {
 import logoImg from '../../assets/logo.png'
 import { CONTACT_INFO, NAV_ITEMS } from '../../constants'
 import { ShimmerButton } from '../common'
+import { useInquiryModal } from '../../context'
 
 export function Header() {
+  const { openInquiryModal } = useInquiryModal()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeItem, setActiveItem] = useState('Home')
   const [showTopBar, setShowTopBar] = useState(true)
@@ -145,10 +147,7 @@ export function Header() {
             {/* Right Action Buttons */}
             <div className="hidden sm:flex items-center gap-3">
               <ShimmerButton
-                onClick={() => {
-                  const contactEl = document.getElementById('footer-contact')
-                  if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' })
-                }}
+                onClick={() => openInquiryModal()}
               >
                 <Sparkles className="h-4 w-4 text-amber-200" />
                 <span>Get Free Solar Quote</span>
@@ -216,7 +215,13 @@ export function Header() {
                   <span>{CONTACT_INFO.email}</span>
                 </a>
 
-                <ShimmerButton className="w-full py-3.5">
+                <ShimmerButton
+                  onClick={() => {
+                    setMobileMenuOpen(false)
+                    openInquiryModal()
+                  }}
+                  className="w-full py-3.5"
+                >
                   <Sparkles className="h-4 w-4 text-amber-200" />
                   <span>Get Free Solar Quote</span>
                 </ShimmerButton>
