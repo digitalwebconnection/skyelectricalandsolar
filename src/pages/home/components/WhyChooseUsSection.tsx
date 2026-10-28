@@ -8,7 +8,10 @@ import {
   Clock,
   Layers,
 } from "lucide-react";
-import { InfiniteSpiral, type InfiniteSpiralItem } from "../../../components/common/InfiniteSpiral";
+import {
+  InfiniteSpiral,
+  type InfiniteSpiralItem,
+} from "../../../components/common/InfiniteSpiral";
 import { useInquiryModal } from "../../../context";
 
 interface TimelineStep {
@@ -188,7 +191,7 @@ export function WhyChooseUsSection() {
             }
           });
         },
-        { threshold: 0.45, rootMargin: "-10% 0px -20% 0px" }
+        { threshold: 0.45, rootMargin: "-10% 0px -20% 0px" },
       );
       observer.observe(el);
       observers.push(observer);
@@ -232,8 +235,6 @@ export function WhyChooseUsSection() {
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ================= SECTION HEADER ================= */}
         <div className="text-center max-w-6xl mx-auto mb-10 sm:mb-14">
-          
-
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 font-serif leading-[1.15]">
             How Switching to Solar <br />
             <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
@@ -243,8 +244,9 @@ export function WhyChooseUsSection() {
 
           <p className="mt-3.5 text-slate-600 text-base sm:text-lg leading-relaxed max-w-6xl mx-auto font-normal">
             Zero hassle, zero hidden fees. As you scroll through our 4-step
-            installation timeline on the right, watch our 3D interactive hardware
-            spiral on the left navigate through real Australian installations.
+            installation timeline on the right, watch our 3D interactive
+            hardware spiral on the left navigate through real Australian
+            installations.
           </p>
         </div>
 
@@ -253,10 +255,6 @@ export function WhyChooseUsSection() {
           {/* ================= LEFT COLUMN: FIXED (STICKY) 3D SPIRAL BOX (lg:col-span-5) ================= */}
           <div className="lg:col-span-5 lg:sticky lg:top-24 self-start z-20">
             <div className="w-full rounded-xl border-2 border-amber-200/90 bg-white/95 backdrop-blur-xl  shadow-xl shadow-amber-500/10 overflow-hidden relative">
-              
-
-              
-
               {/* The 3D Infinite Spiral Stage Container */}
               <div
                 className="relative w-full rounded-2xl overflow-hidden shadow-inner"
@@ -302,7 +300,6 @@ export function WhyChooseUsSection() {
                 <div className="text-[11px] font-medium text-slate-500 truncate mt-0.5">
                   {TIMELINE_STEPS[activeStep].subtitle}
                 </div>
-
               </div>
             </div>
           </div>
@@ -343,9 +340,7 @@ export function WhyChooseUsSection() {
                           <Clock className="h-3 w-3 text-amber-600" />
                           <span>{step.dayBadge}</span>
                         </span>
-                     
                       </div>
-                      
                     </div>
 
                     <div className="mt-1">
@@ -367,22 +362,18 @@ export function WhyChooseUsSection() {
                       {/* Gradient Vignette */}
                       <div className="absolute inset-0 bg-linear-to-t from-slate-950/75 via-slate-950/20 to-transparent" />
 
-                    
-
                       {/* Bottom Image Telemetry Bar */}
                       <div className="absolute bottom-3 inset-x-3 flex items-center justify-between text-white text-xs font-semibold px-1">
                         <span className="flex items-center gap-1.5">
                           <Layers className="h-3.5 w-3.5 text-amber-400" />
                           <span>Verified Installation Progress</span>
                         </span>
-                    
                       </div>
                     </div>
 
                     <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
                       {step.desc}
                     </p>
-
 
                     {/* CTA Button */}
                     <div className=" flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100">
@@ -395,8 +386,6 @@ export function WhyChooseUsSection() {
                         <span>{step.ctaText}</span>
                         <ArrowRight className="h-3.5 w-3.5" />
                       </button>
-
-                     
                     </div>
                   </div>
                 );
@@ -404,8 +393,6 @@ export function WhyChooseUsSection() {
             </div>
           </div>
         </div>
-
-       
       </div>
     </section>
   );

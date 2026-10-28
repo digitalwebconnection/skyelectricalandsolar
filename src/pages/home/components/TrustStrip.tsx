@@ -8,88 +8,87 @@ import {
   CheckCircle2,
   Smartphone,
   Sparkles,
-} from 'lucide-react'
-import { Marquee } from '../../../components/common/Marquee'
+} from "lucide-react";
+import { Marquee } from "../../../components/common/Marquee";
 
 const TRUST_ITEMS = [
   {
     icon: Sun,
-    image: '/assets/posters/poster-rooftop.jpg',
-    title: 'Tier-1 Solar Panels',
-    desc: 'Bloomberg NEF Monocrystalline',
-    badge: 'Tier-1 Rated',
-    badgeColor: 'bg-amber-50 text-amber-800 border-amber-300/90',
-    highlight: '22.8% Module Efficiency',
+    image: "/assets/posters/poster-rooftop.jpg",
+    title: "Tier-1 Solar Panels",
+    desc: "Bloomberg NEF Monocrystalline",
+    badge: "Tier-1 Rated",
+    badgeColor: "bg-amber-50 text-amber-800 border-amber-300/90",
+    highlight: "22.8% Module Efficiency",
   },
   {
     icon: TrendingDown,
-    image: '/assets/banner/banner-solar-mansion.jpg',
-    title: 'Up to 80% Bill Cut',
-    desc: 'Guaranteed solar system yield',
-    badge: 'Top Savings',
-    badgeColor: 'bg-emerald-50 text-emerald-800 border-emerald-300/90',
-    highlight: '$1,800+ Annual Savings',
+    image: "/assets/banner/banner-solar-mansion.jpg",
+    title: "Up to 80% Bill Cut",
+    desc: "Guaranteed solar system yield",
+    badge: "Top Savings",
+    badgeColor: "bg-emerald-50 text-emerald-800 border-emerald-300/90",
+    highlight: "$1,800+ Annual Savings",
   },
   {
     icon: ShieldCheck,
-    image: '/assets/banner/banner-electrical-technician.jpg',
-    title: '25-Year Full Warranty',
-    desc: 'Hardware, inverter & labor cover',
-    badge: 'Full Cover',
-    badgeColor: 'bg-orange-50 text-orange-800 border-orange-300/90',
-    highlight: 'Australian Backed',
+    image: "/assets/banner/banner-electrical-technician.jpg",
+    title: "25-Year Full Warranty",
+    desc: "Hardware, inverter & labor cover",
+    badge: "Full Cover",
+    badgeColor: "bg-orange-50 text-orange-800 border-orange-300/90",
+    highlight: "Australian Backed",
   },
   {
     icon: Battery,
-    image: '/assets/posters/poster-battery.jpg',
-    title: 'Blackout-Proof Battery',
-    desc: 'Seamless 24/7 emergency storage',
-    badge: '24/7 Backup',
-    badgeColor: 'bg-blue-50 text-blue-800 border-blue-300/90',
-    highlight: 'Tesla & Alpha ESS Ready',
+    image: "/assets/posters/poster-battery.jpg",
+    title: "Blackout-Proof Battery",
+    desc: "Seamless 24/7 emergency storage",
+    badge: "24/7 Backup",
+    badgeColor: "bg-blue-50 text-blue-800 border-blue-300/90",
+    highlight: "Tesla & Alpha ESS Ready",
   },
   {
     icon: Award,
-    image: '/assets/posters/poster-technician.jpg',
-    title: 'CEC Approved Retailer',
-    desc: 'Clean Energy Council master installers',
-    badge: 'Certified',
-    badgeColor: 'bg-purple-50 text-purple-800 border-purple-300/90',
-    highlight: 'A-Grade Electricians',
+    image: "/assets/posters/poster-technician.jpg",
+    title: "CEC Approved Retailer",
+    desc: "Clean Energy Council master installers",
+    badge: "Certified",
+    badgeColor: "bg-purple-50 text-purple-800 border-purple-300/90",
+    highlight: "A-Grade Electricians",
   },
   {
     icon: Zap,
-    image: '/assets/banner/banner-10kw-battery.png',
-    title: '$0 Upfront Solar Plans',
-    desc: 'Australian STC rebates pre-applied',
-    badge: 'Govt Rebate',
-    badgeColor: 'bg-amber-50 text-amber-800 border-amber-300/90',
-    highlight: 'Save up to $3,200',
+    image: "/assets/banner/banner-10kw-battery.png",
+    title: "$0 Upfront Solar Plans",
+    desc: "Australian STC rebates pre-applied",
+    badge: "Govt Rebate",
+    badgeColor: "bg-amber-50 text-amber-800 border-amber-300/90",
+    highlight: "Save up to $3,200",
   },
   {
     icon: CheckCircle2,
-    image: '/assets/posters/poster-sunset.jpg',
-    title: '1-Day Master Install',
-    desc: 'Licensed Australian electricians',
-    badge: 'Turnkey',
-    badgeColor: 'bg-teal-50 text-teal-800 border-teal-300/90',
-    highlight: 'Fast DNSP Connection',
+    image: "/assets/posters/poster-sunset.jpg",
+    title: "1-Day Master Install",
+    desc: "Licensed Australian electricians",
+    badge: "Turnkey",
+    badgeColor: "bg-teal-50 text-teal-800 border-teal-300/90",
+    highlight: "Fast DNSP Connection",
   },
   {
     icon: Smartphone,
-    image: '/assets/posters/poster-inverter.jpg',
-    title: 'Live Mobile Monitoring',
-    desc: '24/7 real-time yield & grid telemetry',
-    badge: 'Smart App',
-    badgeColor: 'bg-indigo-50 text-indigo-800 border-indigo-300/90',
-    highlight: 'Wi-Fi & 4G Connected',
+    image: "/assets/posters/poster-inverter.jpg",
+    title: "Live Mobile Monitoring",
+    desc: "24/7 real-time yield & grid telemetry",
+    badge: "Smart App",
+    badgeColor: "bg-indigo-50 text-indigo-800 border-indigo-300/90",
+    highlight: "Wi-Fi & 4G Connected",
   },
-]
+];
 
 export function TrustStrip() {
   return (
     <section className="relative overflow-hidden border-y-2 border-amber-500/40 bg-slate-950 py-1 sm:py-2 lg:py-2 text-slate-900 shadow-2xl">
-      
       {/* ================= 1. CINEMATIC SOLAR PHOTO BACKGROUND ================= */}
       <div className="absolute inset-0 -z-20 pointer-events-none select-none">
         <img
@@ -133,11 +132,11 @@ export function TrustStrip() {
       {/* ================= 3. LUMINOUS SOLAR ENERGY FLARES ================= */}
       <div
         className="pointer-events-none absolute -top-16 left-1/4 w-125 h-36 bg-amber-400/25 blur-3xl rounded-full -z-10 animate-pulse"
-        style={{ animationDuration: '5s' }}
+        style={{ animationDuration: "5s" }}
       />
       <div
         className="pointer-events-none absolute -bottom-16 right-1/4 w-125 h-36 bg-orange-500/25 blur-3xl rounded-full -z-10 animate-pulse"
-        style={{ animationDuration: '7s' }}
+        style={{ animationDuration: "7s" }}
       />
       <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-28 bg-linear-to-r from-amber-500/20 via-emerald-500/20 to-amber-500/20 blur-2xl -z-10" />
 
@@ -174,7 +173,7 @@ export function TrustStrip() {
         className="py-3 sm:py-4"
       >
         {TRUST_ITEMS.map((item, index) => {
-          const Icon = item.icon
+          const Icon = item.icon;
           return (
             <div
               key={index}
@@ -218,11 +217,11 @@ export function TrustStrip() {
                 </div>
               </div>
             </div>
-          )
+          );
         })}
       </Marquee>
     </section>
-  )
+  );
 }
 
-export default TrustStrip
+export default TrustStrip;

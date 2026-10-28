@@ -182,11 +182,11 @@ export function SolarCalculatorSection() {
               linear-gradient(to right, #0f172a 1px, transparent 1px),
               linear-gradient(to bottom, #0f172a 1px, transparent 1px)
             `,
-            backgroundSize: '36px 36px',
+            backgroundSize: "36px 36px",
             maskImage:
-              'radial-gradient(ellipse 85% 75% at 50% 50%, black 50%, transparent 100%)',
+              "radial-gradient(ellipse 85% 75% at 50% 50%, black 50%, transparent 100%)",
             WebkitMaskImage:
-              'radial-gradient(ellipse 85% 75% at 50% 50%, black 50%, transparent 100%)',
+              "radial-gradient(ellipse 85% 75% at 50% 50%, black 50%, transparent 100%)",
           }}
         />
 
@@ -221,7 +221,6 @@ export function SolarCalculatorSection() {
           threshold={0.15}
           className="text-center max-w-4xl mx-auto mb-12 sm:mb-16"
         >
-         
           <h2 className="text-3xl sm:text-4xl font-serif lg:text-5xl font-extrabold tracking-tight text-slate-900 leading-[1.15]">
             Calculate Your Solar <br />
             <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
@@ -244,7 +243,6 @@ export function SolarCalculatorSection() {
               {/* 1. Property Type Selector */}
               <div>
                 <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-2 mb-3">
-                  
                   Select Property Type
                 </label>
                 <div className="grid grid-cols-2 gap-3 p-1.5 rounded-2xl bg-slate-100/90 border border-slate-200/80">
@@ -296,7 +294,6 @@ export function SolarCalculatorSection() {
                       htmlFor="bill-amount-input"
                       className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-2"
                     >
-                     
                       Enter Your Electricity Bill
                     </label>
                     <span className="text-xs text-slate-500 ml-7 block mt-0.5 font-medium">
@@ -367,8 +364,6 @@ export function SolarCalculatorSection() {
                     {billCycle === "monthly" ? "AUD / Month" : "AUD / Quarter"}
                   </div>
                 </div>
-
-             
               </div>
 
               {/* 3. Suburb / Postcode Input Field */}
@@ -377,7 +372,6 @@ export function SolarCalculatorSection() {
                   htmlFor="postcode-input"
                   className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-2 mb-2"
                 >
-                  
                   Installation Postcode / Suburb
                 </label>
                 <div className="relative flex items-center">
@@ -399,7 +393,6 @@ export function SolarCalculatorSection() {
               {/* 4. Roof Sun Orientation Selector */}
               <div>
                 <label className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-2 mb-3">
-                 
                   Roof Aspect & Sun Exposure
                 </label>
                 <div className="grid grid-cols-3 gap-2.5">

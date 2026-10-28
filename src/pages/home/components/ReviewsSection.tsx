@@ -1,173 +1,173 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
-import { motion, type MotionValue, useScroll, useTransform } from 'motion/react'
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
-  Sparkles,
-  Star,
-  CheckCircle2,
-  ArrowRight,
-} from 'lucide-react'
-import { useReveal } from '@/hooks/useReveal'
-import { useInquiryModal } from '../../../context'
+  motion,
+  type MotionValue,
+  useScroll,
+  useTransform,
+} from "motion/react";
+import { Sparkles, Star, CheckCircle2, ArrowRight } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
+import { useInquiryModal } from "../../../context";
 
 export interface ReviewItem {
-  icon?: ReactNode
-  title: string
-  description: string
-  author: string
-  rating?: number
-  image: string
-  systemTag?: string
-  savings?: string
+  icon?: ReactNode;
+  title: string;
+  description: string;
+  author: string;
+  rating?: number;
+  image: string;
+  systemTag?: string;
+  savings?: string;
 }
 
 interface ColumnProps {
-  items: Array<{ item: ReviewItem; itemNumber: number }>
-  y: MotionValue<number>
-  className?: string
+  items: Array<{ item: ReviewItem; itemNumber: number }>;
+  y: MotionValue<number>;
+  className?: string;
 }
 
 const cardThemes = [
   // 1: Soft Sky Blue
   {
-    bg: 'bg-[#EBF3FE]',
-    iconColor: 'text-blue-600',
-    cornerGlow: 'bg-blue-400/20',
+    bg: "bg-[#EBF3FE]",
+    iconColor: "text-blue-600",
+    cornerGlow: "bg-blue-400/20",
   },
   // 2: Soft Solar Orange / Apricot
   {
-    bg: 'bg-[#FFF1E6]',
-    iconColor: 'text-orange-500',
-    cornerGlow: 'bg-orange-400/20',
+    bg: "bg-[#FFF1E6]",
+    iconColor: "text-orange-500",
+    cornerGlow: "bg-orange-400/20",
   },
   // 3: Soft Mint Green
   {
-    bg: 'bg-[#EAF7EE]',
-    iconColor: 'text-emerald-600',
-    cornerGlow: 'bg-emerald-400/20',
+    bg: "bg-[#EAF7EE]",
+    iconColor: "text-emerald-600",
+    cornerGlow: "bg-emerald-400/20",
   },
   // 4: Soft Lavender Purple
   {
-    bg: 'bg-[#F2EEFD]',
-    iconColor: 'text-purple-600',
-    cornerGlow: 'bg-purple-400/20',
+    bg: "bg-[#F2EEFD]",
+    iconColor: "text-purple-600",
+    cornerGlow: "bg-purple-400/20",
   },
   // 5: Soft Aqua / Teal
   {
-    bg: 'bg-[#E5F7F8]',
-    iconColor: 'text-teal-600',
-    cornerGlow: 'bg-teal-400/20',
+    bg: "bg-[#E5F7F8]",
+    iconColor: "text-teal-600",
+    cornerGlow: "bg-teal-400/20",
   },
   // 6: Soft Rose / Blush
   {
-    bg: 'bg-[#FFEBEF]',
-    iconColor: 'text-rose-600',
-    cornerGlow: 'bg-rose-400/20',
+    bg: "bg-[#FFEBEF]",
+    iconColor: "text-rose-600",
+    cornerGlow: "bg-rose-400/20",
   },
   // 7: Soft Solar Butter Yellow
   {
-    bg: 'bg-[#FFF9DE]',
-    iconColor: 'text-amber-600',
-    cornerGlow: 'bg-amber-400/20',
+    bg: "bg-[#FFF9DE]",
+    iconColor: "text-amber-600",
+    cornerGlow: "bg-amber-400/20",
   },
   // 8: Soft Periwinkle Blue
   {
-    bg: 'bg-[#EEF1FA]',
-    iconColor: 'text-indigo-600',
-    cornerGlow: 'bg-indigo-400/20',
+    bg: "bg-[#EEF1FA]",
+    iconColor: "text-indigo-600",
+    cornerGlow: "bg-indigo-400/20",
   },
-]
+];
 
 const CUSTOMER_REVIEWS: ReviewItem[] = [
   {
-    title: '“Power Bill Dropped from $890 to Under $40!”',
+    title: "“Power Bill Dropped from $890 to Under $40!”",
     description:
-      'We were skeptical about the 80% bill reduction claims, but Skye Electrical & Solar delivered beyond our expectations. In our very first quarter with the 10.4kW system, our bill plummeted to almost zero. The crew was punctual, friendly, and left our property spotless.',
-    author: 'Mark & Sarah T. • Point Cook, VIC',
+      "We were skeptical about the 80% bill reduction claims, but Skye Electrical & Solar delivered beyond our expectations. In our very first quarter with the 10.4kW system, our bill plummeted to almost zero. The crew was punctual, friendly, and left our property spotless.",
+    author: "Mark & Sarah T. • Point Cook, VIC",
     rating: 5,
-    image: '/assets/residential-solar.jpg',
-    systemTag: '10.4kW Tier-1 System',
-    savings: 'Bill: $890 ➔ $38/qtr',
+    image: "/assets/residential-solar.jpg",
+    systemTag: "10.4kW Tier-1 System",
+    savings: "Bill: $890 ➔ $38/qtr",
   },
   {
-    title: '“Best Investment We’ve Ever Made for Our Home”',
+    title: "“Best Investment We’ve Ever Made for Our Home”",
     description:
-      'From the initial satellite roof modeling to the switchboard upgrade and grid connection, everything was handled seamlessly. No hidden fees or pushy sales tactics—just transparent, honest advice. Powering our whole house and EV on solar is incredible.',
-    author: 'Elena & Chris R. • Werribee, VIC',
+      "From the initial satellite roof modeling to the switchboard upgrade and grid connection, everything was handled seamlessly. No hidden fees or pushy sales tactics—just transparent, honest advice. Powering our whole house and EV on solar is incredible.",
+    author: "Elena & Chris R. • Werribee, VIC",
     rating: 5,
-    image: '/assets/posters/poster-ev.jpg',
-    systemTag: '8.8kW Solar + EV Charger',
-    savings: 'Free Daily EV Commute',
+    image: "/assets/posters/poster-ev.jpg",
+    systemTag: "8.8kW Solar + EV Charger",
+    savings: "Free Daily EV Commute",
   },
   {
-    title: '“Flawless CEC Certified Master Workmanship”',
+    title: "“Flawless CEC Certified Master Workmanship”",
     description:
-      'The installation team was top-notch. Clean conduit runs, perfectly aligned Tier-1 black panels, and certified master electricians who clearly take pride in their craft. They even helped me set up the mobile monitoring app before leaving.',
-    author: 'David M. • Geelong, VIC',
+      "The installation team was top-notch. Clean conduit runs, perfectly aligned Tier-1 black panels, and certified master electricians who clearly take pride in their craft. They even helped me set up the mobile monitoring app before leaving.",
+    author: "David M. • Geelong, VIC",
     rating: 5,
-    image: '/assets/posters/poster-technician.jpg',
-    systemTag: 'CEC Master Workmanship',
-    savings: '1-Day Clean Install',
+    image: "/assets/posters/poster-technician.jpg",
+    systemTag: "CEC Master Workmanship",
+    savings: "1-Day Clean Install",
   },
   {
-    title: '“Blackout-Proof! Battery Kicked in Within Seconds”',
+    title: "“Blackout-Proof! Battery Kicked in Within Seconds”",
     description:
-      'During a severe thunderstorm last month, our entire street lost power for 6 hours. Our solar battery kicked in instantly without a single flicker on the fridge or Wi-Fi. Having that level of energy security and zero blackouts is priceless.',
-    author: 'Robert P. • Ballarat, VIC',
+      "During a severe thunderstorm last month, our entire street lost power for 6 hours. Our solar battery kicked in instantly without a single flicker on the fridge or Wi-Fi. Having that level of energy security and zero blackouts is priceless.",
+    author: "Robert P. • Ballarat, VIC",
     rating: 5,
-    image: '/assets/posters/poster-battery.jpg',
-    systemTag: '10kWh Lithium Battery',
-    savings: 'Zero Outage Downtime',
+    image: "/assets/posters/poster-battery.jpg",
+    systemTag: "10kWh Lithium Battery",
+    savings: "Zero Outage Downtime",
   },
   {
-    title: '“Saved Over $3,450 in Our Very First Year”',
+    title: "“Saved Over $3,450 in Our Very First Year”",
     description:
-      'We run ducted air conditioning all day in summer without worrying about expensive power bills anymore. The real-time mobile app shows our solar generation and consumption down to the watt. Outstanding customer service and genuine savings.',
-    author: 'James & Chloe W. • Mornington, VIC',
+      "We run ducted air conditioning all day in summer without worrying about expensive power bills anymore. The real-time mobile app shows our solar generation and consumption down to the watt. Outstanding customer service and genuine savings.",
+    author: "James & Chloe W. • Mornington, VIC",
     rating: 5,
-    image: '/assets/banner/banner-solar-mansion.jpg',
-    systemTag: '13.2kW High-Yield System',
-    savings: '$3,450 Annual Savings',
+    image: "/assets/banner/banner-solar-mansion.jpg",
+    systemTag: "13.2kW High-Yield System",
+    savings: "$3,450 Annual Savings",
   },
   {
-    title: '“Government Rebates Deducted Directly Upfront”',
+    title: "“Government Rebates Deducted Directly Upfront”",
     description:
-      'Skye Electrical & Solar took care of all the STC government rebate paperwork directly off the initial quote. No waiting for rebates or navigating complicated government portals. Highly professional, responsive, and genuinely reliable company.',
-    author: 'Anthony L. • Berwick, VIC',
+      "Skye Electrical & Solar took care of all the STC government rebate paperwork directly off the initial quote. No waiting for rebates or navigating complicated government portals. Highly professional, responsive, and genuinely reliable company.",
+    author: "Anthony L. • Berwick, VIC",
     rating: 5,
-    image: '/assets/posters/poster-inverter.jpg',
-    systemTag: 'Instant STC Rebates',
-    savings: '$2,400+ Govt Subsidy',
+    image: "/assets/posters/poster-inverter.jpg",
+    systemTag: "Instant STC Rebates",
+    savings: "$2,400+ Govt Subsidy",
   },
   {
-    title: '“25-Year Warranty Gave Us Complete Peace of Mind”',
+    title: "“25-Year Warranty Gave Us Complete Peace of Mind”",
     description:
-      'Knowing our solar panels and inverters are backed by a 25-year manufacturer warranty and a 10-year workmanship guarantee gave us confidence. The team arrived right on schedule at 7:30 AM and had everything commissioned by 3:00 PM.',
-    author: 'George & Priya N. • Frankston, VIC',
+      "Knowing our solar panels and inverters are backed by a 25-year manufacturer warranty and a 10-year workmanship guarantee gave us confidence. The team arrived right on schedule at 7:30 AM and had everything commissioned by 3:00 PM.",
+    author: "George & Priya N. • Frankston, VIC",
     rating: 5,
-    image: '/assets/posters/poster-rooftop.jpg',
-    systemTag: 'Tier-1 All-Black Panels',
-    savings: '25-Yr Full Warranty',
+    image: "/assets/posters/poster-rooftop.jpg",
+    systemTag: "Tier-1 All-Black Panels",
+    savings: "25-Yr Full Warranty",
   },
   {
-    title: '“Highly Recommend to Anyone Going Solar”',
+    title: "“Highly Recommend to Anyone Going Solar”",
     description:
-      'We compared quotes from four different solar installers in Melbourne. Skye Electrical & Solar offered the best Tier-1 hardware, honest guidance on battery sizing, and competitive pricing without any gimmicks. Could not be happier with our system.',
-    author: 'Anita C. • Altona, VIC',
+      "We compared quotes from four different solar installers in Melbourne. Skye Electrical & Solar offered the best Tier-1 hardware, honest guidance on battery sizing, and competitive pricing without any gimmicks. Could not be happier with our system.",
+    author: "Anita C. • Altona, VIC",
     rating: 5,
-    image: '/assets/posters/poster-sunset.jpg',
-    systemTag: '6.6kW Coastal Solar Array',
-    savings: '78% Bill Cut',
+    image: "/assets/posters/poster-sunset.jpg",
+    systemTag: "6.6kW Coastal Solar Array",
+    savings: "78% Bill Cut",
   },
-]
+];
 
-const Column = ({ items, y, className = '' }: ColumnProps) => {
+const Column = ({ items, y, className = "" }: ColumnProps) => {
   return (
     <motion.div
       className={`relative flex h-full flex-col gap-5 sm:gap-6 ${className}`}
       style={{ y }}
     >
       {items.map(({ item, itemNumber }, i) => {
-        const theme = cardThemes[(itemNumber - 1) % cardThemes.length]
+        const theme = cardThemes[(itemNumber - 1) % cardThemes.length];
         return (
           <div
             key={i}
@@ -187,7 +187,7 @@ const Column = ({ items, y, className = '' }: ColumnProps) => {
                   loading="lazy"
                   className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-106"
                   onError={(e) => {
-                    e.currentTarget.src = '/assets/residential-solar.jpg'
+                    e.currentTarget.src = "/assets/residential-solar.jpg";
                   }}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-slate-950/75 via-slate-950/20 to-transparent pointer-events-none" />
@@ -217,9 +217,10 @@ const Column = ({ items, y, className = '' }: ColumnProps) => {
                       className="w-3.5 h-3.5 fill-amber-400 text-amber-400"
                     />
                   ))}
-                  <span className="ml-1 text-[11px] font-bold text-slate-700">5.0</span>
+                  <span className="ml-1 text-[11px] font-bold text-slate-700">
+                    5.0
+                  </span>
                 </div>
-                
               </div>
 
               <h3 className="text-sm sm:text-base font-heading font-extrabold text-slate-900 group-hover:text-amber-600 transition-colors mb-1.5 leading-snug">
@@ -240,58 +241,60 @@ const Column = ({ items, y, className = '' }: ColumnProps) => {
               </span>
             </div>
           </div>
-        )
+        );
       })}
     </motion.div>
-  )
-}
+  );
+};
 
 export function ReviewsSection({
   reviews = CUSTOMER_REVIEWS,
 }: {
-  reviews?: ReviewItem[]
+  reviews?: ReviewItem[];
 }) {
-  const { openInquiryModal } = useInquiryModal()
-  const { ref: sectionRef, visible: isVisible } = useReveal()
-  const gallery = useRef<HTMLDivElement>(null)
-  const [dimension, setDimension] = useState({ width: 0, height: 0 })
+  const { openInquiryModal } = useInquiryModal();
+  const { ref: sectionRef, visible: isVisible } = useReveal();
+  const gallery = useRef<HTMLDivElement>(null);
+  const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
   const { scrollYProgress } = useScroll({
     target: gallery,
-    offset: ['start end', 'end start'],
-  })
+    offset: ["start end", "end start"],
+  });
 
-  const h = dimension.height || (typeof window !== 'undefined' ? window.innerHeight : 800)
-  const y = useTransform(scrollYProgress, [0, 1], [0, h * 1.4])
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, h * 2.1])
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, h * 0.9])
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, h * 1.8])
+  const h =
+    dimension.height ||
+    (typeof window !== "undefined" ? window.innerHeight : 800);
+  const y = useTransform(scrollYProgress, [0, 1], [0, h * 1.4]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, h * 2.1]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, h * 0.9]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, h * 1.8]);
 
   useEffect(() => {
     const resize = () => {
-      setDimension({ width: window.innerWidth, height: window.innerHeight })
-    }
+      setDimension({ width: window.innerWidth, height: window.innerHeight });
+    };
 
-    window.addEventListener('resize', resize)
-    resize()
+    window.addEventListener("resize", resize);
+    resize();
 
     return () => {
-      window.removeEventListener('resize', resize)
-    }
-  }, [])
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
 
   const getColItems = (offset: number, count = 4) => {
-    if (!reviews || reviews.length === 0) return []
+    if (!reviews || reviews.length === 0) return [];
     return Array.from({ length: count }, (_, i) => ({
       item: reviews[(i + offset) % reviews.length],
       itemNumber: ((i + offset) % cardThemes.length) + 1,
-    }))
-  }
+    }));
+  };
 
-  const col1 = getColItems(0, 4)
-  const col2 = getColItems(4, 4)
-  const col3 = getColItems(2, 4)
-  const col4 = getColItems(6, 4)
+  const col1 = getColItems(0, 4);
+  const col2 = getColItems(4, 4);
+  const col3 = getColItems(2, 4);
+  const col4 = getColItems(6, 4);
 
   return (
     <section
@@ -306,7 +309,7 @@ export function ReviewsSection({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 text-center mb-10 sm:mb-12">
         <div
           className={`transition-all duration-800 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-800 text-xs font-bold tracking-wider uppercase mb-3 shadow-2xs">
@@ -321,7 +324,8 @@ export function ReviewsSection({
             </span>
           </h2>
           <p className="mt-3.5 text-base sm:text-lg text-slate-600 max-w-4xl mx-auto font-medium">
-            Real experiences, honest feedback, and verified power bill savings from homeowners across Victoria.
+            Real experiences, honest feedback, and verified power bill savings
+            from homeowners across Victoria.
           </p>
         </div>
       </div>
@@ -338,10 +342,18 @@ export function ReviewsSection({
         <Column items={col2} y={y2} className="top-[-55%] w-1/2 lg:w-1/4" />
 
         {/* Column 3 (desktop) */}
-        <Column items={col3} y={y3} className="top-[-25%] hidden lg:flex lg:w-1/4" />
+        <Column
+          items={col3}
+          y={y3}
+          className="top-[-25%] hidden lg:flex lg:w-1/4"
+        />
 
         {/* Column 4 (desktop) */}
-        <Column items={col4} y={y4} className="top-[-45%] hidden lg:flex lg:w-1/4" />
+        <Column
+          items={col4}
+          y={y4}
+          className="top-[-45%] hidden lg:flex lg:w-1/4"
+        />
 
         {/* Top Gradient Fade Mask */}
         <div className="absolute top-0 left-0 right-0 h-28 sm:h-36 bg-linear-to-b from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />
@@ -362,7 +374,7 @@ export function ReviewsSection({
         </button>
       </div>
     </section>
-  )
+  );
 }
 
-export default ReviewsSection
+export default ReviewsSection;

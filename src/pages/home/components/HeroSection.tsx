@@ -132,10 +132,7 @@ export function HeroSection() {
   const { openInquiryModal } = useInquiryModal();
 
   return (
-    <section
-    
-      className="relative isolate overflow-hidden bg-linear-to-b from-amber-50/70 via-white to-orange-50/50 pt-6 sm:pt-8 lg:pt-10 pb-16 lg:pb-24 border-b border-amber-200/70"
-    >
+    <section className="relative isolate overflow-hidden bg-linear-to-b from-amber-50/70 via-white to-orange-50/50 pt-6 sm:pt-8 lg:pt-10 pb-16 lg:pb-24 border-b border-amber-200/70">
       {/* CSS Keyframes for Grid Beams, Solar Rays & Fountain Effects */}
       <style>{`
         @keyframes solarFountainCenter {
@@ -292,7 +289,6 @@ export function HeroSection() {
           <div className="absolute inset-0 bg-linear-to-b from-amber-500/10 via-transparent to-orange-500/10" />
         </div>
 
-
         {/* ================= 3. HIGH-TECH SOLAR WAFER GRID (Crisp SVG Blueprint) ================= */}
         <div
           className="absolute inset-0"
@@ -391,7 +387,6 @@ export function HeroSection() {
           />
         </div>
 
-
         {/* ================= 5. DYNAMIC ANIMATED SOLAR CIRCUIT TRACES ================= */}
         <svg
           className="absolute inset-0 w-full h-full opacity-45"
@@ -471,8 +466,6 @@ export function HeroSection() {
           <div className="absolute inset-[32%] rounded-full bg-radial from-amber-400/45 via-orange-400/25 to-transparent blur-2xl" />
         </div>
 
-       
-
         {/* Floating Ambient Solar Sparks */}
         <div className="absolute inset-0">
           <span
@@ -502,9 +495,6 @@ export function HeroSection() {
           />
         </div>
 
-       
-
-        
         <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-linear-to-r from-amber-400/15 via-orange-400/20 to-emerald-400/15 blur-3xl" />
 
         {/* Fountain of Particles (Shooting upward and arching out) */}
@@ -531,8 +521,6 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           {/* ================= LEFT SIDE: Content & Conversion ================= */}
           <div className="lg:col-span-7 flex flex-col items-start text-left z-10">
-           
-
             {/* Main Headline with Animated StrokeText */}
             <h1 className="mt-4 text-4xl sm:text-5xl lg:text-5xl font-bold font-serif text-slate-900 leading-[1.04]">
               <span>Powering Your Future With</span>

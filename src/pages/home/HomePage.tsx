@@ -19,6 +19,7 @@ export function HomePage() {
 
       {/* 2. Key Industry Accreditation & Metrics Strip */}
       <TrustStrip />
+      
       {/* 1. Hero Section with Left Content & Right 3D FlyingPosters Animation */}
       <HeroSection />
 
