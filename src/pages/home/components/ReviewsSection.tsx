@@ -5,7 +5,7 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
-import {  Star, CheckCircle2, ArrowRight } from "lucide-react";
+import { Star, CheckCircle2, ArrowRight } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 import { useInquiryModal } from "../../../context";
 
@@ -207,13 +207,11 @@ const Column = ({ items, y, className = "" }: ColumnProps) => {
                   loading="lazy"
                   className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-106"
                   onError={(e) => {
-                    e.currentTarget.src = "/assets/reviews/family-solar-home.jpg";
+                    e.currentTarget.src =
+                      "/assets/reviews/family-solar-home.jpg";
                   }}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/25 to-transparent pointer-events-none" />
-
-              
-
               </div>
 
               {/* Top Star Rating & Milestone Number */}
@@ -325,8 +323,6 @@ export function ReviewsSection({
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-        
-
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold tracking-tight text-slate-900 leading-[1.15]">
             What Homeowners Say About <br />
             <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
@@ -334,8 +330,8 @@ export function ReviewsSection({
             </span>
           </h2>
           <p className="mt-3.5 text-base sm:text-lg text-slate-600 max-w-4xl mx-auto font-medium">
-            Real client experiences, genuine job-site photos, and verified power bill
-            savings from homeowners across WA, NSW, and QLD.
+            Real client experiences, genuine job-site photos, and verified power
+            bill savings from homeowners across WA, NSW, and QLD.
           </p>
         </div>
       </div>
