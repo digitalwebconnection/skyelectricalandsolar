@@ -5,3 +5,8 @@ declare module "*.jfif" {
   export default src;
 }
 
+declare module "*.avif" {
+  const src: string;
+  export default src;
+}
+

@@ -5,20 +5,19 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
-import { Sparkles, Star, CheckCircle2, ArrowRight } from "lucide-react";
+import {  Star, CheckCircle2, ArrowRight } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 import { useInquiryModal } from "../../../context";
 
 // Real customer images from src/assets/CUSTOMER
-import customerImg1 from "@/assets/CUSTOMER/1788844984_solar-panels-australia-after-installation.jpg";
+import customerImg1 from "@/assets/CUSTOMER/360_F_673626923_VgJavEOXpVLdVce0oLCiuQmvgNkGal2S.jpg";
 import customerImg2 from "@/assets/CUSTOMER/images.jfif";
 import customerImg3 from "@/assets/CUSTOMER/images (1).jfif";
 import customerImg4 from "@/assets/CUSTOMER/images (2).jfif";
 import customerImg5 from "@/assets/CUSTOMER/images (3).jfif";
 import customerImg6 from "@/assets/CUSTOMER/images (4).jfif";
-import customerImg7 from "@/assets/CUSTOMER/images (5).jfif";
-import customerImg8 from "@/assets/CUSTOMER/images (6).jfif";
-import customerImg9 from "@/assets/CUSTOMER/solar-panel-system-prices-in-Sydney.webp";
+import customerImg7 from "@/assets/CUSTOMER/mature-man-and-portrait-with-arms-crossed-in-nature-for-morning-walk-relax-or-confidence-outdoor-person-face-and-happy-in-forest-with-wellness-holiday-or-explore-aust.jpg";
+import customerImg8 from "@/assets/CUSTOMER/reporter-stands-smiling-camera-beautiful-coastal-area-reporting-environmental-issues-affecting-region-with-ocean-cliffs-background_697211-29141.avif";
 
 export interface ReviewItem {
   icon?: ReactNode;
@@ -175,7 +174,7 @@ const CUSTOMER_REVIEWS: ReviewItem[] = [
       "They provided photos of our finished installation showing the symmetrical panel layout. Knowing the panels carry a 25-year performance warranty and a 10-year workmanship guarantee made Skye the obvious choice.",
     author: "Timothy & Karen S. • Moreton Bay, QLD",
     rating: 5,
-    image: customerImg9,
+    image: customerImg1,
     systemTag: "CEC Approved Array",
     savings: "25-Yr Full Warranty",
   },
@@ -213,26 +212,8 @@ const Column = ({ items, y, className = "" }: ColumnProps) => {
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/25 to-transparent pointer-events-none" />
 
-                {/* Top Badges: System Type + Genuine Installation Tag */}
-                <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between gap-1 pointer-events-none">
-                  {item.systemTag && (
-                    <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold text-white bg-slate-950/85 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20 shadow-xs">
-                      <Sparkles className="w-2.5 h-2.5 text-amber-400" />
-                      <span>{item.systemTag}</span>
-                    </span>
-                  )}
-                  <span className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-bold text-emerald-300 bg-slate-950/85 backdrop-blur-md px-2 py-0.5 rounded-full border border-emerald-500/30">
-                    <CheckCircle2 className="w-2.5 h-2.5 text-emerald-400" />
-                    <span>Real Site Photo</span>
-                  </span>
-                </div>
+              
 
-                {/* Bottom Highlight: Verified Savings */}
-                {item.savings && (
-                  <span className="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-amber-300 bg-amber-500/30 backdrop-blur-md px-2 py-0.5 rounded-md border border-amber-400/40">
-                    {item.savings}
-                  </span>
-                )}
               </div>
 
               {/* Top Star Rating & Milestone Number */}
@@ -344,10 +325,7 @@ export function ReviewsSection({
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-800 text-xs font-bold tracking-wider uppercase mb-3 shadow-2xs">
-            <Sparkles className="h-3.5 w-3.5 text-amber-600" />
-            <span>500+ Verified Australian Homeowner Reviews</span>
-          </div>
+        
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold tracking-tight text-slate-900 leading-[1.15]">
             What Homeowners Say About <br />
