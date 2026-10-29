@@ -72,7 +72,7 @@ export function SolarSectorsSection() {
                 <div className="lg:col-span-7 flex flex-col justify-between space-y-5">
                   {/* Eyebrow Label */}
                   <div className="flex items-center justify-between">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-xs font-extrabold uppercase tracking-widest text-amber-700">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200/80 text-xl font-extrabold uppercase tracking-widest text-amber-700">
                       <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
                       <span>01 • Residential Solar</span>
                     </div>
@@ -185,7 +185,7 @@ export function SolarSectorsSection() {
                 <div className="lg:col-span-7 flex flex-col justify-between space-y-5">
                   {/* Eyebrow Label */}
                   <div className="flex items-center justify-between">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-xs font-extrabold uppercase tracking-widest text-blue-700">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-xl font-extrabold uppercase tracking-widest text-blue-700">
                       <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
                       <span>02 • Commercial & Enterprise</span>
                     </div>

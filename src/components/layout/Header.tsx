@@ -11,13 +11,19 @@ import {
 import logoImg from "../../assets/logo.png";
 import { CONTACT_INFO, NAV_ITEMS } from "../../constants";
 import { ShimmerButton } from "../common";
-import { useInquiryModal } from "../../context";
+import { useInquiryModal, useNavigation } from "../../context";
 
 export function Header() {
   const { openInquiryModal } = useInquiryModal();
+  const { currentPath, navigate } = useNavigation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeItem, setActiveItem] = useState("Home");
   const [showTopBar, setShowTopBar] = useState(true);
+
+  const isItemActive = (href: string, label: string) => {
+    if (label === "Home" && (currentPath === "/" || currentPath === "")) return true;
+    if (label === "Contact Us" && currentPath.includes("contact")) return true;
+    return currentPath === href;
+  };
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -111,7 +117,11 @@ export function Header() {
             {/* Logo with clean high-contrast container */}
             <a
               href="/"
-              className="group flex items-center transition-transform duration-300 hover:scale-[1.02]"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/");
+              }}
+              className="group flex items-center transition-transform duration-300 hover:scale-[1.02] cursor-pointer"
             >
               <div className="flex items-center rounded-2xl bg-[#071d32] px-4 py-2 transition-shadow">
                 <img
@@ -125,14 +135,14 @@ export function Header() {
             {/* Floating White Navigation Menu Pill */}
             <div className="hidden lg:flex items-center gap-1 bg-white p-1.5 rounded-full shadow-lg border border-slate-100">
               {NAV_ITEMS.map((item) => {
-                const isActive = activeItem === item.label;
+                const isActive = isItemActive(item.href, item.label);
                 return (
                   <a
                     key={item.label}
                     href={item.href}
                     onClick={(e) => {
                       e.preventDefault();
-                      setActiveItem(item.label);
+                      navigate(item.href);
                     }}
                     className={`relative px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-200 cursor-pointer ${
                       isActive
@@ -176,16 +186,17 @@ export function Header() {
             <div className="lg:hidden border-t border-slate-800 bg-[#071d32] px-5 pt-4 pb-8 space-y-4 shadow-xl">
               <div className="space-y-1">
                 {NAV_ITEMS.map((item) => {
-                  const isActive = activeItem === item.label;
+                  const isActive = isItemActive(item.href, item.label);
                   return (
                     <a
                       key={item.label}
                       href={item.href}
-                      onClick={() => {
-                        setActiveItem(item.label);
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigate(item.href);
                         setMobileMenuOpen(false);
                       }}
-                      className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition-all ${
+                      className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition-all cursor-pointer ${
                         isActive
                           ? "bg-orange-500/20 text-orange-400 border border-orange-500/30"
                           : "text-slate-200 hover:bg-slate-800 hover:text-white"

@@ -15,6 +15,7 @@ import {
   LEGAL_LINKS,
   NAV_ITEMS,
 } from "../../constants";
+import { useNavigation } from "../../context";
 
 const SOLAR_SERVICES = [
   { label: "Residential Solar (6.6kW–13.2kW)", href: "/services" },
@@ -28,6 +29,7 @@ const SOLAR_SERVICES = [
 const CURRENT_YEAR = new Date().getFullYear();
 
 export function Footer() {
+  const { navigate } = useNavigation();
   const scrollToTop = () => {
     const lenis = (
       window as unknown as {
@@ -75,7 +77,11 @@ export function Footer() {
           <div className="space-y-4 lg:col-span-4">
             <a
               href="/"
-              className="inline-block transition-transform hover:scale-[1.01]"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate("/");
+              }}
+              className="inline-block transition-transform hover:scale-[1.01] cursor-pointer"
             >
               <div className="inline-flex items-center ">
                 <img
@@ -189,7 +195,11 @@ export function Footer() {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className={`group inline-flex items-center gap-1.5 transition-all duration-200 hover:translate-x-1 ${
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(item.href);
+                    }}
+                    className={`group inline-flex items-center gap-1.5 transition-all duration-200 hover:translate-x-1 cursor-pointer ${
                       index === 0
                         ? "text-amber-400 font-bold hover:text-amber-300"
                         : "text-slate-400 hover:text-amber-400"

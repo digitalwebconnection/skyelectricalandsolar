@@ -1,19 +1,39 @@
 import { useEffect } from "react";
 import { Layout } from "./components/layout";
-import { HomePage } from "./pages";
+import { HomePage, ContactPage } from "./pages";
 import {
   WebsiteLoader,
   SmoothScrollProvider,
   InquiryEnvelopeModal,
 } from "./components/common";
-import { InquiryModalProvider } from "./context";
+import {
+  InquiryModalProvider,
+  NavigationProvider,
+  useNavigation,
+} from "./context";
 import { siteConfig } from "./config/site";
+
+function MainContent() {
+  const { currentPath } = useNavigation();
+  const isContact = currentPath.includes("contact");
+
+  useEffect(() => {
+    if (isContact) {
+      document.title = `Contact Us | ${siteConfig.name} - WA, NSW & QLD Energy Hubs`;
+    } else {
+      document.title = siteConfig.title;
+    }
+  }, [isContact]);
+
+  return (
+    <Layout>
+      {isContact ? <ContactPage /> : <HomePage />}
+    </Layout>
+  );
+}
 
 export function App() {
   useEffect(() => {
-    // Ensure document title matches Skye Electrical & Solar in browser tab
-    document.title = siteConfig.title;
-
     // Ensure meta description tag
     let descMeta = document.querySelector('meta[name="description"]');
     if (!descMeta) {
@@ -33,19 +53,19 @@ export function App() {
   }, []);
 
   return (
-    <InquiryModalProvider>
-      <SmoothScrollProvider>
-        {/* 3D Gyroscope Orbital Preloader with Typing Animation */}
-        <WebsiteLoader minDuration={1800} />
+    <NavigationProvider>
+      <InquiryModalProvider>
+        <SmoothScrollProvider>
+          {/* 3D Gyroscope Orbital Preloader with Typing Animation */}
+          <WebsiteLoader minDuration={1800} />
 
-        {/* Global Envelope Inquiry Modal */}
-        <InquiryEnvelopeModal />
+          {/* Global Envelope Inquiry Modal */}
+          <InquiryEnvelopeModal />
 
-        <Layout>
-          <HomePage />
-        </Layout>
-      </SmoothScrollProvider>
-    </InquiryModalProvider>
+          <MainContent />
+        </SmoothScrollProvider>
+      </InquiryModalProvider>
+    </NavigationProvider>
   );
 }
 

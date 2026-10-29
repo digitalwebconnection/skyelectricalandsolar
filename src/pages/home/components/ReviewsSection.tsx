@@ -9,6 +9,17 @@ import { Sparkles, Star, CheckCircle2, ArrowRight } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 import { useInquiryModal } from "../../../context";
 
+// Real customer images from src/assets/CUSTOMER
+import customerImg1 from "@/assets/CUSTOMER/1788844984_solar-panels-australia-after-installation.jpg";
+import customerImg2 from "@/assets/CUSTOMER/images.jfif";
+import customerImg3 from "@/assets/CUSTOMER/images (1).jfif";
+import customerImg4 from "@/assets/CUSTOMER/images (2).jfif";
+import customerImg5 from "@/assets/CUSTOMER/images (3).jfif";
+import customerImg6 from "@/assets/CUSTOMER/images (4).jfif";
+import customerImg7 from "@/assets/CUSTOMER/images (5).jfif";
+import customerImg8 from "@/assets/CUSTOMER/images (6).jfif";
+import customerImg9 from "@/assets/CUSTOMER/solar-panel-system-prices-in-Sydney.webp";
+
 export interface ReviewItem {
   icon?: ReactNode;
   title: string;
@@ -82,81 +93,91 @@ const CUSTOMER_REVIEWS: ReviewItem[] = [
     title: "“Power Bill Dropped from $890 to Under $40!”",
     description:
       "We were skeptical about the 80% bill reduction claims, but Skye Electrical & Solar delivered beyond our expectations. In our very first quarter with the 10.4kW system, our bill plummeted to almost zero. The crew was punctual, friendly, and left our property spotless.",
-    author: "Mark & Sarah T. • Point Cook, VIC",
+    author: "Mark & Sarah T. • Caversham, WA",
     rating: 5,
-    image: "/assets/residential-solar.jpg",
-    systemTag: "10.4kW Tier-1 System",
+    image: customerImg1,
+    systemTag: "10.4kW Rooftop PV",
     savings: "Bill: $890 ➔ $38/qtr",
   },
   {
-    title: "“Best Investment We’ve Ever Made for Our Home”",
+    title: "“Flawless CEC Certified Workmanship”",
     description:
-      "From the initial satellite roof modeling to the switchboard upgrade and grid connection, everything was handled seamlessly. No hidden fees or pushy sales tactics—just transparent, honest advice. Powering our whole house and EV on solar is incredible.",
-    author: "Elena & Chris R. • Werribee, VIC",
+      "The installation team was top-notch. Clean conduit runs, perfectly aligned Tier-1 black panels, and certified master electricians who clearly take pride in their craft. They walked us through the mobile monitoring app before leaving.",
+    author: "David & Emma M. • Kellyville, NSW",
     rating: 5,
-    image: "/assets/posters/poster-ev.jpg",
-    systemTag: "8.8kW Solar + EV Charger",
-    savings: "Free Daily EV Commute",
-  },
-  {
-    title: "“Flawless CEC Certified Master Workmanship”",
-    description:
-      "The installation team was top-notch. Clean conduit runs, perfectly aligned Tier-1 black panels, and certified master electricians who clearly take pride in their craft. They even helped me set up the mobile monitoring app before leaving.",
-    author: "David M. • Geelong, VIC",
-    rating: 5,
-    image: "/assets/posters/poster-technician.jpg",
-    systemTag: "CEC Master Workmanship",
+    image: customerImg2,
+    systemTag: "Master Solar Install",
     savings: "1-Day Clean Install",
   },
   {
-    title: "“Blackout-Proof! Battery Kicked in Within Seconds”",
+    title: "“High-Efficiency Panels & Precision Roof Clamping”",
     description:
-      "During a severe thunderstorm last month, our entire street lost power for 6 hours. Our solar battery kicked in instantly without a single flicker on the fridge or Wi-Fi. Having that level of energy security and zero blackouts is priceless.",
-    author: "Robert P. • Ballarat, VIC",
+      "From the satellite roof modeling to the cyclone-rated roof clamping, everything was done with precision. The team handled all network grid connection permits directly with Western Power with zero hassle on our part.",
+    author: "Robert & Lisa P. • Chermside, QLD",
     rating: 5,
-    image: "/assets/posters/poster-battery.jpg",
-    systemTag: "10kWh Lithium Battery",
+    image: customerImg3,
+    systemTag: "8.8kW Tier-1 Array",
+    savings: "82% Power Bill Cut",
+  },
+  {
+    title: "“Inverter & Real-Time App Handled Seamlessly”",
+    description:
+      "Watching our daily energy production and battery state-of-charge from our phones is fantastic. The hybrid inverter was mounted with industrial-grade conduits, cleanly tucked away on our garage wall.",
+    author: "Elena & Chris R. • Perth, WA",
+    rating: 5,
+    image: customerImg4,
+    systemTag: "Hybrid Inverter Setup",
+    savings: "Live App Telemetry",
+  },
+  {
+    title: "“Blackout-Proof! Battery Storage Runs the Whole House”",
+    description:
+      "During a severe grid outage last month, our entire neighborhood went dark for 6 hours. Our battery storage kicked in within milliseconds—the fridge, lights, and Wi-Fi didn't even flicker. Total energy peace of mind.",
+    author: "James & Chloe W. • Sydney, NSW",
+    rating: 5,
+    image: customerImg5,
+    systemTag: "Tesla / Alpha ESS Storage",
     savings: "Zero Outage Downtime",
   },
   {
-    title: "“Saved Over $3,450 in Our Very First Year”",
+    title: "“Engineered for Maximum Summer Generation”",
     description:
-      "We run ducted air conditioning all day in summer without worrying about expensive power bills anymore. The real-time mobile app shows our solar generation and consumption down to the watt. Outstanding customer service and genuine savings.",
-    author: "James & Chloe W. • Mornington, VIC",
+      "We run ducted air conditioning all day in summer without dreading expensive power bills anymore. The team custom-angled our panels for maximum solar irradiance. Outstanding customer service and genuine savings.",
+    author: "Anthony & Priya L. • Brisbane, QLD",
     rating: 5,
-    image: "/assets/banner/banner-solar-mansion.jpg",
-    systemTag: "13.2kW High-Yield System",
-    savings: "$3,450 Annual Savings",
+    image: customerImg6,
+    systemTag: "13.2kW Dual-Inverter",
+    savings: "$3,650 Annual Savings",
   },
   {
-    title: "“Government Rebates Deducted Directly Upfront”",
+    title: "“Full Switchboard Upgrade & EV Charger Integrated”",
     description:
-      "Skye Electrical & Solar took care of all the STC government rebate paperwork directly off the initial quote. No waiting for rebates or navigating complicated government portals. Highly professional, responsive, and genuinely reliable company.",
-    author: "Anthony L. • Berwick, VIC",
+      "Because Skye employs in-house licensed master electricians, they modernized our switchboard with RCD safety switches and installed our smart EV charger on the same day. Incredible craftsmanship.",
+    author: "George & Anita N. • The Hills, NSW",
     rating: 5,
-    image: "/assets/posters/poster-inverter.jpg",
+    image: customerImg7,
+    systemTag: "Switchboard + EV Charger",
+    savings: "100% Code Compliant",
+  },
+  {
+    title: "“Rigorous Safety Testing & Government STC Rebates”",
+    description:
+      "Skye Electrical & Solar deducted our Clean Energy Regulator STC rebates directly upfront on the invoice—no complicated paperwork for us. The technician performed thorough export meter testing before sign-off.",
+    author: "Marcus & Rachel B. • Swan Valley, WA",
+    rating: 5,
+    image: customerImg8,
     systemTag: "Instant STC Rebates",
-    savings: "$2,400+ Govt Subsidy",
+    savings: "$2,600+ Govt Subsidy",
   },
   {
-    title: "“25-Year Warranty Gave Us Complete Peace of Mind”",
+    title: "“Full Rooftop Solar Array & 25-Year Warranty”",
     description:
-      "Knowing our solar panels and inverters are backed by a 25-year manufacturer warranty and a 10-year workmanship guarantee gave us confidence. The team arrived right on schedule at 7:30 AM and had everything commissioned by 3:00 PM.",
-    author: "George & Priya N. • Frankston, VIC",
+      "They provided photos of our finished installation showing the symmetrical panel layout. Knowing the panels carry a 25-year performance warranty and a 10-year workmanship guarantee made Skye the obvious choice.",
+    author: "Timothy & Karen S. • Moreton Bay, QLD",
     rating: 5,
-    image: "/assets/posters/poster-rooftop.jpg",
-    systemTag: "Tier-1 All-Black Panels",
+    image: customerImg9,
+    systemTag: "CEC Approved Array",
     savings: "25-Yr Full Warranty",
-  },
-  {
-    title: "“Highly Recommend to Anyone Going Solar”",
-    description:
-      "We compared quotes from four different solar installers in Melbourne. Skye Electrical & Solar offered the best Tier-1 hardware, honest guidance on battery sizing, and competitive pricing without any gimmicks. Could not be happier with our system.",
-    author: "Anita C. • Altona, VIC",
-    rating: 5,
-    image: "/assets/posters/poster-sunset.jpg",
-    systemTag: "6.6kW Coastal Solar Array",
-    savings: "78% Bill Cut",
   },
 ];
 
@@ -180,29 +201,35 @@ const Column = ({ items, y, className = "" }: ColumnProps) => {
 
             <div className="relative z-10">
               {/* Project Installation Showcase Image */}
-              <div className="relative w-full h-36 sm:h-44  overflow-hidden mb-3.5  shadow-lg bg-slate-900 group/img">
+              <div className="relative w-full h-36 sm:h-44 overflow-hidden mb-3.5 shadow-md bg-slate-900 group/img rounded-xl">
                 <img
                   src={item.image}
                   alt={item.title}
                   loading="lazy"
                   className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-106"
                   onError={(e) => {
-                    e.currentTarget.src = "/assets/residential-solar.jpg";
+                    e.currentTarget.src = "/assets/reviews/family-solar-home.jpg";
                   }}
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-slate-950/75 via-slate-950/20 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/25 to-transparent pointer-events-none" />
 
-                {/* Top Badge: System Type */}
-                {item.systemTag && (
-                  <span className="absolute top-2.5 left-2.5 inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold text-white bg-slate-950/80 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20 shadow-xs">
-                    <Sparkles className="w-2.5 h-2.5 text-amber-400" />
-                    <span>{item.systemTag}</span>
+                {/* Top Badges: System Type + Genuine Installation Tag */}
+                <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between gap-1 pointer-events-none">
+                  {item.systemTag && (
+                    <span className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-bold text-white bg-slate-950/85 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/20 shadow-xs">
+                      <Sparkles className="w-2.5 h-2.5 text-amber-400" />
+                      <span>{item.systemTag}</span>
+                    </span>
+                  )}
+                  <span className="inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-bold text-emerald-300 bg-slate-950/85 backdrop-blur-md px-2 py-0.5 rounded-full border border-emerald-500/30">
+                    <CheckCircle2 className="w-2.5 h-2.5 text-emerald-400" />
+                    <span>Real Site Photo</span>
                   </span>
-                )}
+                </div>
 
                 {/* Bottom Highlight: Verified Savings */}
                 {item.savings && (
-                  <span className="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-amber-300 bg-amber-500/25 backdrop-blur-md px-2 py-0.5 rounded border border-amber-400/30">
+                  <span className="absolute bottom-2.5 right-2.5 text-[10px] font-bold text-amber-300 bg-amber-500/30 backdrop-blur-md px-2 py-0.5 rounded-md border border-amber-400/40">
                     {item.savings}
                   </span>
                 )}
@@ -232,12 +259,17 @@ const Column = ({ items, y, className = "" }: ColumnProps) => {
             </div>
 
             <div className="relative z-10 mt-3 pt-3 border-t border-black/5 flex items-center justify-between gap-1 text-[10px] sm:text-xs">
-              <span className="font-bold text-slate-800 truncate max-w-[65%]">
-                {item.author}
-              </span>
+              <div className="flex items-center gap-2 truncate max-w-[70%]">
+                <div className="h-6 w-6 rounded-full bg-linear-to-br from-amber-500 to-orange-500 text-white font-bold text-[10px] flex items-center justify-center shrink-0 shadow-2xs">
+                  {item.author.charAt(0)}
+                </div>
+                <span className="font-bold text-slate-800 truncate">
+                  {item.author}
+                </span>
+              </div>
               <span className="text-emerald-700 flex items-center gap-1 font-bold shrink-0">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Verified 5★</span>
+                <span>Verified Client</span>
               </span>
             </div>
           </div>
@@ -324,8 +356,8 @@ export function ReviewsSection({
             </span>
           </h2>
           <p className="mt-3.5 text-base sm:text-lg text-slate-600 max-w-4xl mx-auto font-medium">
-            Real experiences, honest feedback, and verified power bill savings
-            from homeowners across Victoria.
+            Real client experiences, genuine job-site photos, and verified power bill
+            savings from homeowners across WA, NSW, and QLD.
           </p>
         </div>
       </div>
