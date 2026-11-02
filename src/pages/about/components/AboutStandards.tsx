@@ -908,7 +908,7 @@ export function AboutStandards() {
         </div>
 
         {/* ================= BOTTOM ACCREDITATION BADGES STRIP ================= */}
-        <div className="mt-10 sm:mt-14 rounded-3xl bg-white shadow-[0_10px_30px_rgba(15,35,71,0.07)] border border-slate-200/90 p-4 sm:p-6 max-w-5xl mx-auto">
+        <div className="mt-10 sm:mt-14 rounded-xl bg-white shadow-[0_10px_30px_rgba(15,35,71,0.07)] border border-slate-200/90 p-4 sm:p-6 max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
             {/* Stat 1: VIC Registered Contractor */}
             <div className="flex items-center gap-3 sm:gap-4 p-2 sm:px-4">

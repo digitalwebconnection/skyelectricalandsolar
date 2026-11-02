@@ -99,7 +99,7 @@ export function LocationsMapSection() {
   return (
     <section
       id="state-operations"
-      className="relative overflow-hidden py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#fdfbf9] via-[#fff8f2] to-[#fff6ee] text-slate-800"
+      className="relative overflow-hidden py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-[#fdfbf9] via-[#fff8f2] to-[#fff6ee] text-slate-800"
     >
       {/* ================= HIGH-END DECORATIVE BACKGROUND ACCENTS ================= */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
@@ -113,12 +113,12 @@ export function LocationsMapSection() {
         />
 
         {/* Ambient radial glow halos */}
-        <div className="absolute -top-16 left-1/4 w-[500px] h-[500px] bg-orange-300/15 rounded-full blur-3xl" />
-        <div className="absolute top-1/3 right-10 w-[600px] h-[600px] bg-amber-400/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 w-[700px] h-80 bg-orange-400/10 rounded-full blur-3xl" />
+        <div className="absolute -top-16 left-1/4 w-125 h-125 bg-orange-300/15 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 right-10 w-150 h-150 bg-amber-400/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 w-175 h-80 bg-orange-400/10 rounded-full blur-3xl" />
 
         {/* Australia Silhouette & Stylized Map Pin (Top-Right) */}
-        <div className="absolute top-0 right-0 w-[360px] sm:w-[480px] lg:w-[560px] opacity-70 lg:opacity-85 translate-x-8 -translate-y-4">
+        <div className="absolute top-0 right-0 w-90 sm:w-120 lg:w-140 opacity-70 lg:opacity-85 translate-x-8 -translate-y-4">
           <svg
             viewBox="0 0 500 450"
             fill="none"
@@ -249,7 +249,7 @@ export function LocationsMapSection() {
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
           <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-black text-[#111827] tracking-tight leading-[1.12]">
             Our 3 State Operational{" "}
-            <span className="block mt-1 bg-gradient-to-r from-[#ea580c] via-[#f97316] to-[#fb923c] bg-clip-text text-transparent">
+            <span className="block mt-1 bg-linear-to-r from-solar-orange via-solar-sun to-[#fb923c] bg-clip-text text-transparent">
               Hubs &amp; Interactive Map
             </span>
           </h2>
@@ -272,7 +272,7 @@ export function LocationsMapSection() {
                   aria-pressed={isActive}
                   className={`flex items-center gap-2.5 px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
                     isActive
-                      ? "bg-gradient-to-r from-[#f97316] to-[#ea580c] text-white shadow-[0_4px_16px_rgba(249,115,22,0.35)] scale-[1.01]"
+                      ? "bg-linear-to-r from-solar-sun to-solar-orange text-white shadow-[0_4px_16px_rgba(249,115,22,0.35)] scale-[1.01]"
                       : "text-slate-600 hover:text-slate-900 bg-transparent"
                   }`}
                 >
@@ -303,11 +303,11 @@ export function LocationsMapSection() {
               <div>
                 {/* Top Header Badges */}
                 <div className="flex items-center justify-between gap-3 mb-4">
-                  <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-semibold bg-[#fff2e5] text-[#ea580c] border border-orange-100/80">
+                  <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-semibold bg-[#fff2e5] text-solar-orange border border-orange-100/80">
                     {activeBranch.short}
                   </span>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#ecfdf5] text-[#059669] border border-emerald-100/80">
-                    <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
+                    <span className="w-2 h-2 rounded-full bg-eco-green animate-pulse" />
                     {activeBranch.status}
                   </span>
                 </div>
@@ -316,14 +316,14 @@ export function LocationsMapSection() {
                 <h3 className="text-2xl sm:text-[28px] font-black text-[#0f172a] tracking-tight">
                   {activeBranch.city}
                 </h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#f97316] mt-1 mb-6">
+                <p className="text-xs sm:text-sm font-semibold text-solar-sun mt-1 mb-6">
                   {activeBranch.subtitle}
                 </p>
 
                 {/* Info Card 1: Branch Address */}
                 <div className="p-4 sm:p-4.5 rounded-2xl bg-[#f8fafc] border border-slate-100 mb-3.5 shadow-xs">
                   <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#f97316] to-[#ea580c] text-white flex items-center justify-center shrink-0 shadow-sm shadow-orange-500/20">
+                    <div className="w-12 h-12 rounded-xl bg-linear-to-br from-solar-sun to-solar-orange text-white flex items-center justify-center shrink-0 shadow-sm shadow-orange-500/20">
                       <MapPin className="w-6 h-6 fill-white" />
                     </div>
 
@@ -362,7 +362,7 @@ export function LocationsMapSection() {
                       href={directionsUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1 text-[#ea580c] hover:text-[#c2410c] transition-colors"
+                      className="inline-flex items-center gap-1 text-solar-orange hover:text-[#c2410c] transition-colors"
                     >
                       <span>Get Directions</span>
                       <ExternalLink className="w-3.5 h-3.5" />
@@ -372,7 +372,7 @@ export function LocationsMapSection() {
 
                 {/* Info Card 2: Hours of Operation */}
                 <div className="p-4 rounded-2xl bg-[#f8fafc] border border-slate-100 mb-3.5 flex items-center gap-3.5 shadow-xs">
-                  <div className="w-10 h-10 rounded-full bg-orange-50 text-[#f97316] flex items-center justify-center shrink-0 border border-orange-100/70">
+                  <div className="w-10 h-10 rounded-full bg-orange-50 text-solar-sun flex items-center justify-center shrink-0 border border-orange-100/70">
                     <Clock className="w-5 h-5" />
                   </div>
 
@@ -409,7 +409,7 @@ export function LocationsMapSection() {
                   href={`tel:${activeBranch.phone.replace(/[^+\d]/g, "")}`}
                   className="flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-[#0a192f] hover:bg-[#112240] text-white font-bold text-xs sm:text-sm transition-all shadow-md group cursor-pointer"
                 >
-                  <Phone className="w-4 h-4 text-[#f97316] group-hover:scale-110 transition-transform" />
+                  <Phone className="w-4 h-4 text-solar-sun group-hover:scale-110 transition-transform" />
                   <span>Call {activeBranch.phone}</span>
                 </a>
 
@@ -417,7 +417,7 @@ export function LocationsMapSection() {
                   href={`mailto:${activeBranch.email}`}
                   className="flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold text-xs sm:text-sm transition-all shadow-xs group cursor-pointer"
                 >
-                  <Mail className="w-4 h-4 text-[#f97316] group-hover:scale-110 transition-transform" />
+                  <Mail className="w-4 h-4 text-solar-sun group-hover:scale-110 transition-transform" />
                   <span>Email Branch</span>
                 </a>
               </div>
@@ -425,9 +425,9 @@ export function LocationsMapSection() {
           </AnimatePresence>
 
           {/* RIGHT: Live Map Panel */}
-          <div className="lg:col-span-7 relative min-h-[460px] sm:min-h-[520px] lg:min-h-full rounded-[28px] overflow-hidden border border-slate-100 shadow-[0_12px_40px_rgba(0,0,0,0.07)] bg-slate-100 flex flex-col">
+          <div className="lg:col-span-7 relative min-h-115 sm:min-h-130 lg:min-h-full rounded-[28px] overflow-hidden border border-slate-100 shadow-[0_12px_40px_rgba(0,0,0,0.07)] bg-slate-100 flex flex-col">
             {/* Floating Top-Left Address Card over Map */}
-            <div className="absolute top-4 left-4 z-10 bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-4 shadow-lg border border-slate-100/90 max-w-[280px] sm:max-w-xs pointer-events-auto">
+            <div className="absolute top-4 left-4 z-10 bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-4 shadow-lg border border-slate-100/90 max-w-70 sm:max-w-xs pointer-events-auto">
               <h4 className="text-sm font-bold text-slate-900 leading-snug">
                 {activeBranch.mapCardTitle}
               </h4>
@@ -463,7 +463,7 @@ export function LocationsMapSection() {
               src={`https://maps.google.com/maps?q=${encodeURIComponent(
                 activeBranch.mapAddress,
               )}&output=embed`}
-              className="w-full h-full min-h-[400px] flex-1 border-0"
+              className="w-full h-full min-h-100 flex-1 border-0"
               loading="lazy"
               allowFullScreen
               referrerPolicy="no-referrer-when-downgrade"
@@ -482,7 +482,7 @@ export function LocationsMapSection() {
                 href={directionsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1 font-bold text-[#ea580c] hover:text-[#c2410c] transition-colors whitespace-nowrap"
+                className="inline-flex items-center gap-1 font-bold text-solar-orange hover:text-[#c2410c] transition-colors whitespace-nowrap"
               >
                 <span>Open in Google Maps App</span>
                 <ExternalLink className="w-3.5 h-3.5" />

@@ -16,7 +16,7 @@ export function AboutHero() {
       {/* ================= BACKGROUND: LANDSCAPE, DOT MATRICES & AMBIENCE ================= */}
       <div className="pointer-events-none absolute inset-0  -z-10 overflow-hidden">
         {/* Landscape Panorama (Solar Homes & Wind Turbine) with subtle fade mask */}
-        <div className="absolute right-0 top-0 h-full w-full lg:w-[65%] opacity-35 lg:opacity-45 mix-blend-multiply">
+        <div className="absolute right-0 top-0 h-full w-full lg:w-[65%] opacity-75 lg:opacity-85 mix-blend-multiply">
           <img
             src="/assets/banner/hero-landscape-bg.webp"
             alt="Scenic Australian community powered by solar energy"
@@ -47,7 +47,7 @@ export function AboutHero() {
       </div>
 
       {/* ================= MAIN CONTAINER ================= */}
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-8">
           {/* ================= LEFT COLUMN: HERO NARRATIVE & VALUE PROP ================= */}
           <div className="flex flex-col items-start lg:col-span-7">
@@ -200,7 +200,7 @@ export function AboutHero() {
       </div>
 
       {/* ================= BOTTOM 3D FLOWING GRAPHIC WAVES & TROPICAL FOLIAGE ================= */}
-      <div className="pointer-events-none absolute bottom-0 inset-x-0 h-28 sm:h-36 overflow-hidden z-20">
+      <div className="pointer-events-none absolute bottom-0 inset-x-0 h-28 sm:h-36 overflow-hidden z-10">
         {/* Sweeping Cyan Glass Wave */}
         <svg
           className="absolute bottom-0 inset-x-0 w-full h-full"

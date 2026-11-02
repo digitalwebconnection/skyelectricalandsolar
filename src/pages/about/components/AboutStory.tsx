@@ -8,7 +8,7 @@ export function AboutStory() {
   return (
     <section
       aria-labelledby="about-story-heading"
-      className="relative isolate overflow-hidden bg-gradient-to-b from-[#ebf5ff] via-[#f7fbff] to-[#e8f1fc] py-8 lg:py-14 font-sans-modern"
+      className="relative isolate overflow-hidden bg-linear-to-b from-[#ebf5ff] via-[#f7fbff] to-[#e8f1fc] py-8 lg:py-14 font-sans-modern"
     >
       {/* Global SVG Definitions for Exact Reference Image Geometry */}
       <svg className="absolute h-0 w-0 pointer-events-none" aria-hidden="true">
@@ -62,8 +62,8 @@ export function AboutStory() {
         </svg>
 
         {/* Radiant Ambient Sky & Solar Lighting Glows */}
-        <div className="absolute -top-32 left-1/4 h-[36rem] w-[52rem] rounded-full bg-gradient-to-br from-sky-200/40 via-blue-100/30 to-transparent blur-3xl" />
-        <div className="absolute top-1/3 -right-20 h-[30rem] w-[30rem] rounded-full bg-gradient-to-bl from-amber-200/25 via-orange-100/20 to-transparent blur-3xl" />
+        <div className="absolute -top-32 left-1/4 h-144 w-208 rounded-full bg-linear-to-br from-sky-200/40 via-blue-100/30 to-transparent blur-3xl" />
+        <div className="absolute top-1/3 -right-20 h-120 w-120 rounded-full bg-linear-to-bl from-amber-200/25 via-orange-100/20 to-transparent blur-3xl" />
 
         {/* 3D Perspective Rooftop Solar Cell Grid Texture Across Bottom */}
         <div
@@ -90,11 +90,11 @@ export function AboutStory() {
           <FadeContent effect="focus" blur={6} duration={0.8} delay={0.1}>
             <h2 className="font-sans-modern text-3xl font-black tracking-tight text-slate-950 sm:text-4xl lg:text-[52px] lg:leading-[1.12]">
               Born on Australian{" "}
-              <span className="relative inline-block text-[#ea580c]">
+              <span className="relative inline-block text-solar-orange">
                 Rooftops.
                 {/* Hand-drawn dynamic orange swoosh curve underline */}
                 <svg
-                  className="absolute -bottom-2.5 left-0 w-full overflow-visible text-[#ea580c]"
+                  className="absolute -bottom-2.5 left-0 w-full overflow-visible text-solar-orange"
                   height="14"
                   viewBox="0 0 220 14"
                   fill="none"
@@ -134,7 +134,7 @@ export function AboutStory() {
 
               {/* Exact Chamfered Futuristic Image Container */}
               <div
-                className="relative w-full h-full min-h-[420px] bg-slate-950 overflow-hidden shadow-2xl transition-transform duration-500 hover:scale-[1.01]"
+                className="relative w-full h-full min-h-105 bg-slate-950 overflow-hidden shadow-2xl transition-transform duration-500 hover:scale-[1.01]"
                 style={{
                   clipPath: "url(#referenceImageClip)",
                   WebkitClipPath: "url(#referenceImageClip)",
@@ -149,8 +149,8 @@ export function AboutStory() {
                 />
 
                 {/* Visual Glass Overlay Gradients */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-slate-950/20 pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-950/35 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-950/75 via-transparent to-slate-950/20 pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-r from-blue-950/35 via-transparent to-transparent pointer-events-none" />
 
                 {/* "Clean Energy Brighter Future" Authentic Handwritten Script Overlay */}
                 <div className="absolute top-10 left-16 sm:left-20 lg:left-24 z-20 -rotate-2 select-none">
@@ -205,7 +205,7 @@ export function AboutStory() {
                 </div>
 
                 {/* Dynamic Aerodynamic Orange & Navy Energy Wedge (Integrated in Bottom-Right Corner) */}
-                <div className="absolute bottom-0 right-0 w-[52%] max-w-[280px] h-36 z-20 pointer-events-none">
+                <div className="absolute bottom-0 right-0 w-[52%] max-w-70 h-36 z-20 pointer-events-none">
                   <svg
                     className="h-full w-full"
                     viewBox="0 0 240 130"
@@ -241,15 +241,6 @@ export function AboutStory() {
                       fill="#0c1933"
                     />
                   </svg>
-
-                  {/* Slider Pagination Indicator Dots (Inside Cockpit) */}
-                  <div className="absolute bottom-3.5 right-5 flex items-center gap-2 z-30">
-                    {/* Active Dot with Radiant Glow */}
-                    <span className="h-2.5 w-2.5 rounded-full bg-white shadow-[0_0_8px_#ffffff]" />
-                    {/* Inactive Dots */}
-                    <span className="h-2 w-2 rounded-full border border-white/70 bg-white/20" />
-                    <span className="h-2 w-2 rounded-full border border-white/70 bg-white/20" />
-                  </div>
                 </div>
               </div>
 
@@ -325,7 +316,7 @@ export function AboutStory() {
           <FadeContent effect="fade" duration={0.8} delay={0.2} className="flex">
             <div className="relative flex flex-col justify-between rounded-[36px] border border-sky-200/90 bg-white/95 backdrop-blur-xl p-6 sm:p-8 shadow-lg shadow-sky-900/5 hover:shadow-xl transition-all duration-300 w-full">
               {/* Subtle top-right ambient warmth */}
-              <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-gradient-to-br from-amber-100/40 via-orange-50/20 to-transparent blur-2xl" />
+              <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-linear-to-br from-amber-100/40 via-orange-50/20 to-transparent blur-2xl" />
 
               <div className="relative z-10">
                 {/* Category Tag with Orange Vertical Pip */}
@@ -345,14 +336,14 @@ export function AboutStory() {
                 </p>
 
                 {/* Golden Rule Quote Box */}
-                <div className="mt-6 flex items-start gap-3.5 rounded-2xl border border-slate-100 border-l-[4px] border-l-orange-500 bg-slate-50/80 p-4 sm:p-5 shadow-2xs">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#f97316] text-white shadow-sm font-serif font-black text-base select-none">
+                <div className="mt-6 flex items-start gap-3.5 rounded-2xl border border-slate-100 border-l-4 border-l-orange-500 bg-slate-50/80 p-4 sm:p-5 shadow-2xs">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-solar-sun text-white shadow-sm font-serif font-black text-base select-none">
                     “
                   </div>
                   <p className="text-xs sm:text-sm font-medium leading-relaxed text-slate-700">
                     &ldquo;When sales offices began auctioning installations to the cheapest
                     subcontractors, we set our rule:{" "}
-                    <span className="font-bold text-[#ea580c]">
+                    <span className="font-bold text-solar-orange">
                       the master electrician who guarantees your safety is the one who designs your
                       system.
                     </span>
@@ -379,7 +370,7 @@ export function AboutStory() {
                 <button
                   type="button"
                   onClick={() => openInquiryModal()}
-                  className="group shrink-0 inline-flex items-center justify-between gap-2.5 rounded-full bg-gradient-to-r from-orange-500 via-orange-500 to-amber-500 pl-4 pr-1.5 py-1.5 text-xs font-bold text-white shadow-md shadow-orange-500/30 hover:shadow-orange-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                  className="group shrink-0 inline-flex items-center justify-between gap-2.5 rounded-full bg-linear-to-r from-orange-500 via-orange-500 to-amber-500 pl-4 pr-1.5 py-1.5 text-xs font-bold text-white shadow-md shadow-orange-500/30 hover:shadow-orange-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                 >
                   <span>Request Engineering Consultation</span>
                   <span className="flex h-6.5 w-6.5 shrink-0 items-center justify-center rounded-full bg-orange-700/60 text-white transition-transform group-hover:translate-x-0.5">
@@ -513,7 +504,7 @@ export function AboutStory() {
                   type="button"
                   onClick={() => openInquiryModal()}
                   aria-label="Learn more about Precision Electrical Engineering"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f97316] text-white shadow-sm transition-transform duration-300 hover:scale-110 hover:bg-orange-600 active:scale-95 cursor-pointer"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-solar-sun text-white shadow-sm transition-transform duration-300 hover:scale-110 hover:bg-orange-600 active:scale-95 cursor-pointer"
                 >
                   <ArrowRight className="h-4 w-4" />
                 </button>

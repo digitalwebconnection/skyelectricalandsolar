@@ -12,7 +12,7 @@ export function AboutPillars() {
     <section
       id="about-pillars"
       aria-labelledby="about-pillars-heading"
-      className="relative isolate overflow-hidden bg-gradient-to-b from-[#f8fcff] via-[#ffffff] to-[#eef7ff] py-14 lg:py-20 font-sans-modern border-y border-slate-200/60"
+      className="relative isolate overflow-hidden bg-linear-to-b from-[#f8fcff] via-[#ffffff] to-[#eef7ff] py-14 lg:py-20 font-sans-modern border-y border-slate-200/60"
     >
       {/* ================= BACKGROUND: IMAGE & AMBIENCE ================= */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
@@ -22,11 +22,11 @@ export function AboutPillars() {
           alt="Modern solar architectural home"
           className="h-full w-full object-cover object-[center_35%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/30 to-black/50" />
+        <div className="absolute inset-0 bg-linear-to-r from-white via-white/30 to-black/50" />
 
         {/* Ambient Radiant Sky & Amber Glows */}
-        <div className="absolute -top-24 right-10 h-96 w-96 rounded-full bg-gradient-to-bl from-sky-300/20 via-blue-200/10 to-transparent blur-3xl" />
-        <div className="absolute top-1/2 left-0 h-80 w-80 rounded-full bg-gradient-to-tr from-sky-400/15 via-blue-200/10 to-transparent blur-3xl" />
+        <div className="absolute -top-24 right-10 h-96 w-96 rounded-full bg-linear-to-bl from-sky-300/20 via-blue-200/10 to-transparent blur-3xl" />
+        <div className="absolute top-1/2 left-0 h-80 w-80 rounded-full bg-linear-to-tr from-sky-400/15 via-blue-200/10 to-transparent blur-3xl" />
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -59,7 +59,7 @@ export function AboutPillars() {
             <button
               type="button"
               onClick={() => openInquiryModal()}
-              className="group inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-[#0047ab] to-[#0052cc] px-7 py-3 text-sm font-bold text-white shadow-[0_10px_22px_rgba(0,71,171,0.35)] hover:shadow-[0_14px_28px_rgba(0,71,171,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-linear-to-r from-[#0047ab] to-[#0052cc] px-7 py-3 text-sm font-bold text-white shadow-[0_10px_22px_rgba(0,71,171,0.35)] hover:shadow-[0_14px_28px_rgba(0,71,171,0.45)] hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
             >
               <span>Our Craftsmanship</span>
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
