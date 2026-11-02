@@ -7,7 +7,7 @@ export const siteConfig = {
     "Australia's trusted clean energy specialists for CEC-accredited residential and commercial solar installations, Tesla & Sungrow batteries, EV chargers, and switchboard upgrades across WA, NSW, and QLD.",
   version: "1.0.0",
   url: "https://skyelectricalandsolar.com",
-  ogImage: "https://skyelectricalandsolar.com/og-image.jpg",
+  ogImage: "https://skyelectricalandsolar.com/og-image.webp",
   contact: {
     phone1: "0430 015 017",
     phone2: "0489 935 658",

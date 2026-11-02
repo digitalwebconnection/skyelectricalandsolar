@@ -5,6 +5,7 @@ import {
   WebsiteLoader,
   SmoothScrollProvider,
   InquiryEnvelopeModal,
+  CookieConsent,
   ErrorBoundary,
   JsonLd,
   SEO,
@@ -47,6 +48,7 @@ export function App() {
 
             {/* Global Envelope Inquiry Modal */}
             <InquiryEnvelopeModal />
+            <CookieConsent />
           </SmoothScrollProvider>
         </InquiryModalProvider>
       </NavigationProvider>

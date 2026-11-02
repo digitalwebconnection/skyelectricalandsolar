@@ -430,7 +430,7 @@ const ProposalCard: React.FC = () => {
       <div
         className="absolute inset-0 bg-cover bg-right opacity-35 mix-blend-overlay pointer-events-none group-hover:scale-105 transition-transform duration-700"
         style={{
-          backgroundImage: "url('/images/contact/bottom_solar.png')",
+          backgroundImage: "url('/assets/contact/bottom_solar.webp')",
         }}
       />
       <div className="absolute inset-0 bg-linear-to-r from-[#063d27]/95 via-[#0d5c3c]/85 to-transparent pointer-events-none" />
@@ -566,7 +566,7 @@ export function ContactChannelsSection() {
         aria-hidden="true"
       >
         <img
-          src="/images/contact/house_faded.png"
+          src="/assets/contact/house_faded.webp"
           alt=""
           className="w-full h-auto block object-contain object-top opacity-95"
         />

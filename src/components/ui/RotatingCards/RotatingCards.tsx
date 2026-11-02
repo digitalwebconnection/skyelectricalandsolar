@@ -19,7 +19,7 @@ export interface RotatingCardsProps {
 const DEFAULT_ITEMS: RotatingCardItem[] = [
   {
     id: 'solar',
-    image: '/assets/posters/poster-rooftop.jpg',
+    image: '/assets/posters/poster-rooftop.webp',
     badge: 'Solar Power',
     title: 'Tier-1 Rooftop Solar',
     desc: 'High-efficiency Bloomberg solar panels with up to 80% power bill cuts.',
@@ -27,7 +27,7 @@ const DEFAULT_ITEMS: RotatingCardItem[] = [
   },
   {
     id: 'battery',
-    image: '/assets/posters/poster-battery.jpg',
+    image: '/assets/posters/poster-battery.webp',
     badge: 'Battery Storage',
     title: 'Intelligent Battery Backup',
     desc: 'Blackout-proof home energy storage with seamless 24/7 backup.',
@@ -35,7 +35,7 @@ const DEFAULT_ITEMS: RotatingCardItem[] = [
   },
   {
     id: 'electrical',
-    image: '/assets/posters/poster-technician.jpg',
+    image: '/assets/posters/poster-technician.webp',
     badge: 'Master Electricians',
     title: 'Certified Electrical Work',
     desc: 'Licensed Australian electrical installations, switchboards & maintenance.',

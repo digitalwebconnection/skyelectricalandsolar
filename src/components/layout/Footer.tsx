@@ -7,7 +7,7 @@ import {
   Zap,
   ChevronUp,
 } from "lucide-react";
-import logoImg from "../../assets/logo.png";
+import logoImg from "../../assets/logo.webp";
 import {
   APP_NAME,
   COMPANY_LEGAL_NAME,
@@ -348,6 +348,15 @@ export function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new CustomEvent("open-cookie-settings"))}
+                  className="text-slate-300 hover:text-amber-400 font-medium transition-colors cursor-pointer"
+                >
+                  Cookie Settings
+                </button>
+              </li>
             </ul>
           </div>
           <button

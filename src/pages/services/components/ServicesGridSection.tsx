@@ -23,7 +23,7 @@ const SERVICES_DISPLAY: ServiceDisplayItem[] = [
     Icon: Sun,
     image:
       "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1100&q=90",
-    fallbackImage: "/assets/residential-solar.jpg",
+    fallbackImage: "/assets/residential-solar.webp",
     description:
       "Harness the power of the sun with our expert solar panel installation services. We design and install efficient solar systems to help reduce your energy bills and carbon footprint.",
     benefits: ["Custom Roof or Ground Mount Systems", "High-Efficiency Solar Panels"],
@@ -35,7 +35,7 @@ const SERVICES_DISPLAY: ServiceDisplayItem[] = [
     Icon: PlugZap,
     image:
       "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1100&q=90",
-    fallbackImage: "/assets/posters/poster-ev.jpg",
+    fallbackImage: "/assets/posters/poster-ev.webp",
     description:
       "Future-proof your home or business with our EV charger installations. We supply and install reliable electric vehicle charging stations tailored to your vehicle and lifestyle.",
     benefits: ["Home & Business EV Charging", "Smart & Solar-Integrated Chargers"],
@@ -47,7 +47,7 @@ const SERVICES_DISPLAY: ServiceDisplayItem[] = [
     Icon: BatteryCharging,
     image:
       "https://images.unsplash.com/photo-1624397640148-949b1732bb0a?auto=format&fit=crop&w=1100&q=90",
-    fallbackImage: "/assets/posters/poster-battery.jpg",
+    fallbackImage: "/assets/posters/poster-battery.webp",
     description:
       "Enjoy uninterrupted power, reduce your reliance on the grid, and lower your electricity bills.",
     benefits: ["Reliable Backup During Outages", "Store Solar Energy for Maximum Savings"],
@@ -59,7 +59,7 @@ const SERVICES_DISPLAY: ServiceDisplayItem[] = [
     Icon: Home,
     image:
       "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1100&q=90",
-    fallbackImage: "/assets/reviews/electrician-carrying-panel.jpg",
+    fallbackImage: "/assets/reviews/electrician-carrying-panel.webp",
     description:
       "From small repairs to complete home rewiring, we handle all types of domestic electrical needs with precision and care.",
     benefits: ["Safe & Compliant Installations", "Lighting, Power Points & Home Upgrades"],
@@ -71,7 +71,7 @@ const SERVICES_DISPLAY: ServiceDisplayItem[] = [
     Icon: Network,
     image:
       "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1100&q=90",
-    fallbackImage: "/assets/posters/poster-technician.jpg",
+    fallbackImage: "/assets/posters/poster-technician.webp",
     description:
       "We install and maintain communication systems, including phone lines, data cabling, and networking solutions to keep you connected.",
     benefits: ["Data & Phone Cabling", "Network Setup & Smart Systems"],
@@ -83,7 +83,7 @@ const SERVICES_DISPLAY: ServiceDisplayItem[] = [
     Icon: Zap,
     image:
       "https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&w=1100&q=90",
-    fallbackImage: "/assets/posters/poster-inverter.jpg",
+    fallbackImage: "/assets/posters/poster-inverter.webp",
     description:
       "Upgrade your switchboard to meet current safety standards, reduce fire risk, and support modern appliances and solar systems.",
     benefits: ["Increased Safety & Compliance", "Ready for Solar & EV Integration"],

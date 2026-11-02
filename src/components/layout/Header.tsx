@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Phone, Mail, Menu, X, ChevronRight, Sun, Sparkles } from "lucide-react";
-import logoImg from "../../assets/logo.png";
+import logoImg from "../../assets/logo.webp";
 import { CONTACT_INFO, NAV_ITEMS } from "../../constants";
 import { ShimmerButton } from "../common";
 import { useInquiryModal, useNavigation } from "../../context";

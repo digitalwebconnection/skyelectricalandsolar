@@ -26,7 +26,7 @@ export function SolarCalculatorSection() {
   const [propertyType, setPropertyType] = useState<PropertyType>("residential");
   const [billCycle, setBillCycle] = useState<BillCycle>("monthly");
   const [billAmount, setBillAmount] = useState<number>(350);
-  const [postcode, setPostcode] = useState<string>("3000 Melbourne");
+  const [postcode, setPostcode] = useState<string>("6055 Caversham (WA)");
   const [hasBattery, setHasBattery] = useState<boolean>(true);
   const [roofOrientation, setRoofOrientation] = useState<RoofOrientation>("optimal");
   const [userPhone, setUserPhone] = useState<string>("");
@@ -152,7 +152,7 @@ export function SolarCalculatorSection() {
         {/* 1. CINEMATIC SOLAR ARCHITECTURE BACKDROP (Softly feathered) */}
         <div className="absolute inset-0 opacity-15">
           <img
-            src="/assets/residential-solar.jpg"
+            src="/assets/residential-solar.webp"
             alt=""
             className="w-full h-full object-cover object-[center_35%] filter brightness-[1.02] contrast-[1.05] saturate-[1.1]"
           />
@@ -363,7 +363,7 @@ export function SolarCalculatorSection() {
                     type="text"
                     value={postcode}
                     onChange={(e) => setPostcode(e.target.value)}
-                    placeholder="e.g. 3000 Melbourne, 3121 Richmond, 3805..."
+                    placeholder="e.g. 6055 Caversham, 2155 Kellyville, 4032 Chermside..."
                     className="w-full h-11 pl-10 pr-28 rounded-xl bg-slate-50/60 border border-slate-200 text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all"
                   />
                   <span className="absolute right-3 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200/80">

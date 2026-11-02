@@ -89,7 +89,7 @@ export function BlogListSection({
           }}
         >
           <img
-            src="/assets/solar-farm-bg.jpg"
+            src="/assets/solar-farm-bg.webp"
             alt=""
             className="w-full h-full object-cover object-top opacity-20 filter brightness-105 contrast-110 saturate-125"
           />

@@ -1,58 +1,58 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
-const COMPANY_NAME = 'Sky Electrical & Solar'
+const COMPANY_NAME = "Sky Electrical & Solar";
 
 export interface WebsiteLoaderProps {
-  minDuration?: number // Minimum time to show loader in ms
-  onComplete?: () => void
+  minDuration?: number; // Minimum time to show loader in ms
+  onComplete?: () => void;
 }
 
 export function WebsiteLoader({
   minDuration = 1800,
   onComplete,
 }: WebsiteLoaderProps) {
-  const [isVisible, setIsVisible] = useState(true)
-  const [isFading, setIsFading] = useState(false)
-  const [displayedText, setDisplayedText] = useState('')
+  const [isVisible, setIsVisible] = useState(true);
+  const [isFading, setIsFading] = useState(false);
+  const [displayedText, setDisplayedText] = useState("");
 
-  // 1. Auto-dismiss Timer after minimum duration
+  // 1. Auto-dismiss Timer after minimum duration with smooth fade
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsFading(true)
+      setIsFading(true);
       const exitTimer = setTimeout(() => {
-        setIsVisible(false)
-        onComplete?.()
-      }, 600)
-      return () => clearTimeout(exitTimer)
-    }, minDuration)
+        setIsVisible(false);
+        onComplete?.();
+      }, 600);
+      return () => clearTimeout(exitTimer);
+    }, minDuration);
 
-    return () => clearTimeout(timer)
-  }, [minDuration, onComplete])
+    return () => clearTimeout(timer);
+  }, [minDuration, onComplete]);
 
   // 2. Character-by-Character Typewriter Animation for the Name
   useEffect(() => {
     if (displayedText.length < COMPANY_NAME.length) {
       const typingTimer = setTimeout(() => {
-        setDisplayedText(COMPANY_NAME.substring(0, displayedText.length + 1))
-      }, 55)
-      return () => clearTimeout(typingTimer)
+        setDisplayedText(COMPANY_NAME.substring(0, displayedText.length + 1));
+      }, 55);
+      return () => clearTimeout(typingTimer);
     }
-  }, [displayedText])
+  }, [displayedText]);
 
-  if (!isVisible) return null
+  if (!isVisible) return null;
 
   return (
     <div
       aria-label="Loading Website"
       role="status"
       className={`fixed inset-0 z-99999 flex flex-col items-center justify-center bg-white transition-opacity duration-600 ease-out select-none ${
-        isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        isFading ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
       {/* Subtle Warm Solar Ambient Glow in Background */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-linear-to-b from-amber-400/10 via-orange-400/5 to-transparent rounded-full blur-3xl" />
-      </div>
+      </div>  
 
       <div className="relative z-10 flex flex-col items-center text-center space-y-6">
         {/* 3D Gyroscope Orbital Spinner */}
@@ -70,7 +70,7 @@ export function WebsiteLoader({
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default WebsiteLoader
+export default WebsiteLoader;

@@ -8,6 +8,7 @@ export { ErrorBoundary } from "./ErrorBoundary";
 export { PageLoader } from "./PageLoader";
 export { ScrollToTop } from "./ScrollToTop";
 export { WhatsAppButton } from "./WhatsAppButton";
+export { CookieConsent } from "./CookieConsent";
 
 // Re-export UI effects for backward compatibility
 export {

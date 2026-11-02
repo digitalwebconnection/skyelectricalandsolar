@@ -36,8 +36,6 @@ export function AboutStory() {
 
       {/* ================= BACKGROUND AMBIENCE, CITY SILHOUETTE & SOLAR CELL PATTERN ================= */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-
-
         {/* City Skyline Silhouette on the Left */}
         <svg
           className="absolute left-0 bottom-40 h-56 w-96 text-sky-300/30"
@@ -86,9 +84,7 @@ export function AboutStory() {
         {/* ================= SECTION HEADER ================= */}
         <div id="about-story-heading" className="text-center">
           {/* Eyebrow Badge Pill */}
-          <FadeContent effect="fade" duration={0.6} delay={0.05}>
-            
-          </FadeContent>
+          <FadeContent effect="fade" duration={0.6} delay={0.05}></FadeContent>
 
           {/* Main Headline with Hand-Drawn Orange Swoosh Underline */}
           <FadeContent effect="focus" blur={6} duration={0.8} delay={0.1}>
@@ -116,9 +112,8 @@ export function AboutStory() {
 
             {/* Subtitle */}
             <p className="mt-4 max-w-4xl mx-auto text-sm sm:text-base leading-relaxed text-slate-600 font-normal">
-              Sky Electrical & Solar was founded on an uncompromising principle:
-              every solar system should be engineered and delivered by licensed
-              master electricians—not sales brokers.
+              Sky Electrical & Solar was founded on an uncompromising principle: every solar system
+              should be engineered and delivered by licensed master electricians—not sales brokers.
             </p>
           </FadeContent>
         </div>
@@ -126,12 +121,7 @@ export function AboutStory() {
         {/* ================= TIER 1: EDITORIAL STORY & ARCHITECTURAL VISUAL ================= */}
         <div className="mt-12 sm:mt-16 grid grid-cols-1 items-stretch gap-6 lg:grid-cols-2 lg:gap-8">
           {/* Left: Exact Futuristic Chamfered Polygon Image Deck */}
-          <FadeContent
-            effect="fade"
-            duration={0.8}
-            delay={0.15}
-            className="flex"
-          >
+          <FadeContent effect="fade" duration={0.8} delay={0.15} className="flex">
             <div className="relative w-full flex flex-col justify-between">
               {/* Outer Glowing Cyan Shadow Silhouette */}
               <div
@@ -152,7 +142,7 @@ export function AboutStory() {
               >
                 {/* Hero Rooftop Solar Architecture Image */}
                 <img
-                  src="/assets/modern-solar-home-twilight.jpg"
+                  src="/assets/modern-solar-home-twilight.webp"
                   alt="Modern luxury home with high efficiency rooftop solar architecture"
                   className="h-full w-full object-cover object-[50%_60%] transition-transform duration-700 hover:scale-105 contrast-[1.05] saturate-[1.1]"
                   loading="lazy"
@@ -192,34 +182,12 @@ export function AboutStory() {
 
                 {/* Glowing 3D Cyan Glass Wave Along Bottom Edge */}
                 <div className="absolute bottom-0 inset-x-0 h-24 pointer-events-none z-10">
-                  <svg
-                    className="h-full w-full"
-                    viewBox="0 0 500 100"
-                    preserveAspectRatio="none"
-                  >
+                  <svg className="h-full w-full" viewBox="0 0 500 100" preserveAspectRatio="none">
                     <defs>
-                      <linearGradient
-                        id="cyanWaveGrad"
-                        x1="0%"
-                        y1="0%"
-                        x2="100%"
-                        y2="100%"
-                      >
-                        <stop
-                          offset="0%"
-                          stopColor="#0284c7"
-                          stopOpacity="0.45"
-                        />
-                        <stop
-                          offset="50%"
-                          stopColor="#38bdf8"
-                          stopOpacity="0.6"
-                        />
-                        <stop
-                          offset="100%"
-                          stopColor="#0369a1"
-                          stopOpacity="0.8"
-                        />
+                      <linearGradient id="cyanWaveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#0284c7" stopOpacity="0.45" />
+                        <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.6" />
+                        <stop offset="100%" stopColor="#0369a1" stopOpacity="0.8" />
                       </linearGradient>
                     </defs>
                     <path
@@ -245,13 +213,7 @@ export function AboutStory() {
                     fill="none"
                   >
                     <defs>
-                      <linearGradient
-                        id="solarSweepGrad"
-                        x1="0%"
-                        y1="100%"
-                        x2="100%"
-                        y2="0%"
-                      >
+                      <linearGradient id="solarSweepGrad" x1="0%" y1="100%" x2="100%" y2="0%">
                         <stop offset="0%" stopColor="#fbbf24" />
                         <stop offset="45%" stopColor="#ea580c" />
                         <stop offset="100%" stopColor="#c2410c" />
@@ -319,10 +281,7 @@ export function AboutStory() {
               {/* Futuristic Blue Glass Runner / Fin at Bottom Left (Connecting Seam) */}
               <div className="absolute -bottom-2 -left-8 w-28 h-8 -z-10 pointer-events-none hidden sm:block">
                 <svg viewBox="0 0 140 40" className="w-full h-full" fill="none">
-                  <path
-                    d="M 0 35 L 25 10 L 140 10 L 120 35 Z"
-                    fill="url(#runnerGrad)"
-                  />
+                  <path d="M 0 35 L 25 10 L 140 10 L 120 35 Z" fill="url(#runnerGrad)" />
                   <path
                     d="M 0 35 L 25 10 L 140 10"
                     stroke="#38bdf8"
@@ -330,24 +289,10 @@ export function AboutStory() {
                     className="drop-shadow-[0_0_6px_#38bdf8]"
                   />
                   <defs>
-                    <linearGradient
-                      id="runnerGrad"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="0%"
-                    >
+                    <linearGradient id="runnerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                       <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.1" />
-                      <stop
-                        offset="50%"
-                        stopColor="#0284c7"
-                        stopOpacity="0.4"
-                      />
-                      <stop
-                        offset="100%"
-                        stopColor="#0369a1"
-                        stopOpacity="0.7"
-                      />
+                      <stop offset="50%" stopColor="#0284c7" stopOpacity="0.4" />
+                      <stop offset="100%" stopColor="#0369a1" stopOpacity="0.7" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -370,21 +315,14 @@ export function AboutStory() {
                   <span className="text-[7px] sm:text-[7.5px] font-bold uppercase tracking-tight text-blue-800 leading-none">
                     TRUSTED
                   </span>
-                  <div className="flex gap-0.5 text-amber-500 text-[8px] mt-0.5">
-                    ★ ★ ★
-                  </div>
+                  <div className="flex gap-0.5 text-amber-500 text-[8px] mt-0.5">★ ★ ★</div>
                 </div>
               </div>
             </div>
           </FadeContent>
 
           {/* Right: Narrative Editorial Philosophy Card */}
-          <FadeContent
-            effect="fade"
-            duration={0.8}
-            delay={0.2}
-            className="flex"
-          >
+          <FadeContent effect="fade" duration={0.8} delay={0.2} className="flex">
             <div className="relative flex flex-col justify-between rounded-[36px] border border-sky-200/90 bg-white/95 backdrop-blur-xl p-6 sm:p-8 shadow-lg shadow-sky-900/5 hover:shadow-xl transition-all duration-300 w-full">
               {/* Subtle top-right ambient warmth */}
               <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-gradient-to-br from-amber-100/40 via-orange-50/20 to-transparent blur-2xl" />
@@ -394,16 +332,16 @@ export function AboutStory() {
                 <div className="flex items-center gap-2.5">
                   <span className="h-4.5 w-1.5 rounded-full bg-orange-500 inline-block" />
                   <span className="text-xs font-black uppercase tracking-wider text-[#2563eb]">
-                    Melbourne & Sydney Electrical Roots
+                    Founded in 2019 • Multi-State Solar &amp; Electrical Hubs
                   </span>
                 </div>
 
                 {/* Lead Headline */}
                 <p className="mt-5 text-lg sm:text-xl lg:text-[22px] font-black leading-snug text-slate-950">
-                  Before solar became a mass-market commodity, our founders were{" "}
-                  <span className="text-[#ea580c] font-black">hands-on</span>{" "}
-                  electrical contractors wiring switchboards, transformer lines,
-                  and residential projects across Melbourne and Sydney.
+                  Founded in 2019, our team has grown into a trusted leader in clean energy and
+                  master electrical craftsmanship, delivering high-efficiency solar arrays,
+                  commercial engineering, and battery storage across Western Australia, New South
+                  Wales, and Queensland.
                 </p>
 
                 {/* Golden Rule Quote Box */}
@@ -412,11 +350,11 @@ export function AboutStory() {
                     “
                   </div>
                   <p className="text-xs sm:text-sm font-medium leading-relaxed text-slate-700">
-                    &ldquo;When sales offices began auctioning installations to
-                    the cheapest subcontractors, we set our rule:{" "}
+                    &ldquo;When sales offices began auctioning installations to the cheapest
+                    subcontractors, we set our rule:{" "}
                     <span className="font-bold text-[#ea580c]">
-                      the master electrician who guarantees your safety is the
-                      one who designs your system.
+                      the master electrician who guarantees your safety is the one who designs your
+                      system.
                     </span>
                     &rdquo;
                   </p>
@@ -432,7 +370,7 @@ export function AboutStory() {
                   </div>
                   <div>
                     <div className="text-[11px] font-semibold text-slate-500 leading-tight">
-                      VIC REC: 10834 • NSW EW: 205806
+                      ABN: 89 632 094 190 • CEC Accredited Contractor
                     </div>
                   </div>
                 </div>
@@ -462,13 +400,7 @@ export function AboutStory() {
               <div className="absolute -top-7 left-6 h-14 w-14 drop-shadow-[0_8px_16px_rgba(37,99,235,0.35)] transition-transform duration-300 group-hover:scale-110">
                 <svg viewBox="0 0 100 115" className="h-full w-full">
                   <defs>
-                    <linearGradient
-                      id="badgeBlue1"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="100%"
-                    >
+                    <linearGradient id="badgeBlue1" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#3b82f6" />
                       <stop offset="50%" stopColor="#1d4ed8" />
                       <stop offset="100%" stopColor="#1e3a8a" />
@@ -507,8 +439,8 @@ export function AboutStory() {
                   100% In-House Master Electricians
                 </h3>
                 <p className="mt-2.5 text-xs sm:text-[13px] leading-relaxed text-slate-600 font-medium">
-                  Directly employed tradespeople on every roof. Zero sales
-                  brokers or third party sub crews.
+                  Directly employed tradespeople on every roof. Zero sales brokers or third party
+                  sub crews.
                 </p>
               </div>
 
@@ -531,13 +463,7 @@ export function AboutStory() {
               <div className="absolute -top-7 left-6 h-14 w-14 drop-shadow-[0_8px_16px_rgba(249,115,22,0.35)] transition-transform duration-300 group-hover:scale-110">
                 <svg viewBox="0 0 100 115" className="h-full w-full">
                   <defs>
-                    <linearGradient
-                      id="badgeOrange"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="100%"
-                    >
+                    <linearGradient id="badgeOrange" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#fbbf24" />
                       <stop offset="50%" stopColor="#f97316" />
                       <stop offset="100%" stopColor="#ea580c" />
@@ -576,8 +502,8 @@ export function AboutStory() {
                   Precision Electrical Engineering
                 </h3>
                 <p className="mt-2.5 text-xs sm:text-[13px] leading-relaxed text-slate-600 font-medium">
-                  Switchboard audits, thermal safety clearances, and cable runs
-                  built to AS/NZS 3000 standards.
+                  Switchboard audits, thermal safety clearances, and cable runs built to AS/NZS 3000
+                  standards.
                 </p>
               </div>
 
@@ -600,13 +526,7 @@ export function AboutStory() {
               <div className="absolute -top-7 left-6 h-14 w-14 drop-shadow-[0_8px_16px_rgba(2,132,199,0.35)] transition-transform duration-300 group-hover:scale-110">
                 <svg viewBox="0 0 100 115" className="h-full w-full">
                   <defs>
-                    <linearGradient
-                      id="badgeBlue2"
-                      x1="0%"
-                      y1="0%"
-                      x2="100%"
-                      y2="100%"
-                    >
+                    <linearGradient id="badgeBlue2" x1="0%" y1="0%" x2="100%" y2="100%">
                       <stop offset="0%" stopColor="#38bdf8" />
                       <stop offset="50%" stopColor="#0284c7" />
                       <stop offset="100%" stopColor="#0369a1" />
@@ -640,11 +560,11 @@ export function AboutStory() {
               {/* Card Content */}
               <div>
                 <h3 className="text-base sm:text-lg font-black text-slate-900 transition-colors group-hover:text-sky-600">
-                  Dual-State Licensed Contractor
+                  Multi-State Licensed Contractor
                 </h3>
                 <p className="mt-2.5 text-xs sm:text-[13px] leading-relaxed text-slate-600 font-medium">
-                  Fully registered and insured across Victoria (REC 16224) and
-                  New South Wales (EW 205826).
+                  Fully accredited, licensed, and insured across Western Australia, New South Wales,
+                  and Queensland.
                 </p>
               </div>
 
@@ -653,7 +573,7 @@ export function AboutStory() {
                 <button
                   type="button"
                   onClick={() => openInquiryModal()}
-                  aria-label="Learn more about Dual-State Licensed Contractor"
+                  aria-label="Learn more about Multi-State Licensed Contractor"
                   className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white shadow-sm transition-transform duration-300 hover:scale-110 hover:bg-blue-700 active:scale-95 cursor-pointer"
                 >
                   <ArrowRight className="h-4 w-4" />

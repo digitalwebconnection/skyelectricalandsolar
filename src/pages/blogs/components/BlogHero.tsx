@@ -9,7 +9,7 @@ export function BlogHero() {
       {/* ================= FULL-WIDTH HERO BACKGROUND IMAGE ================= */}
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
         <img
-          src="/assets/banner/banner-solar-field.jpg"
+          src="/assets/banner/banner-solar-field.webp"
           alt="Sky Electrical & Solar Clean Energy Knowledge Hub"
           className="w-full h-full object-cover object-center filter brightness-90 contrast-105"
           loading="eager"

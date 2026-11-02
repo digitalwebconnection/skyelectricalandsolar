@@ -15,7 +15,7 @@ export function ServicesHero() {
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.8, ease: "easeOut" }}
-          src="/assets/banner/banner-solar-mansion.jpg"
+          src="/assets/banner/banner-solar-mansion.webp"
           alt="Sky Electrical & Solar Services"
           className="w-full h-full object-cover object-center filter brightness-[0.75] contrast-115"
           loading="eager"

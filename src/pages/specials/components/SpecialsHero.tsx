@@ -42,7 +42,7 @@ export function SpecialsHero() {
           initial={{ scale: 1.08 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.8, ease: "easeOut" }}
-          src="/assets/banner/banner-solar-field.jpg"
+          src="/assets/banner/banner-solar-field.webp"
           alt="Australian Solar Specials & Government Rebates"
           className="w-full h-full object-cover object-center filter brightness-[0.7] contrast-115"
           loading="eager"
@@ -214,7 +214,7 @@ export function SpecialsHero() {
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="h-6 w-auto max-w-[90px] object-contain filter contrast-125"
+                    className="h-6 w-auto max-w-22.5 object-contain filter contrast-125"
                   />
                   <div className="border-l border-slate-200 pl-2.5">
                     <span className="text-[12px] font-bold text-slate-800 block leading-tight">

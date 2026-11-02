@@ -15,28 +15,28 @@ export interface BannerSlide {
 const BANNER_SLIDES: BannerSlide[] = [
   {
     id: 1,
-    src: "/assets/banner/banner-6kw-special.jpg",
+    src: "/assets/banner/banner-6kw-special.webp",
     alt: "6.6kW System + 5kW Inverter Solar Power Special @$3,499*",
     packageName: "6.6kW System + 5kW Inverter Special",
     price: "$3,499",
   },
   {
     id: 2,
-    src: "/assets/banner/banner-13kw-battery.jpg",
+    src: "/assets/banner/banner-13kw-battery.webp",
     alt: "13.2kW System + 10kWh Battery Storage @$9,990*",
     packageName: "13.2kW System + 10kWh Battery Bundle",
     price: "$9,990",
   },
   {
     id: 3,
-    src: "/assets/banner/banner-commercial-solar.jpg",
+    src: "/assets/banner/banner-commercial-solar.webp",
     alt: "30kW - 100kW+ Commercial Solar from $0 Upfront*",
     packageName: "Commercial Rooftop Solar Special",
     price: "$0 Upfront",
   },
   {
     id: 4,
-    src: "/assets/banner/banner-enterprise-solar.jpg",
+    src: "/assets/banner/banner-enterprise-solar.webp",
     alt: "100kW - 500kW+ Enterprise Clean Energy & Turnkey Microgrid*",
     packageName: "Enterprise Clean Energy",
     price: "$0 Upfront",

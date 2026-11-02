@@ -249,7 +249,7 @@ export function BlogDetailPage({ slug }: BlogDetailPageProps) {
           }}
         >
           <img
-            src="/assets/solar-farm-bg.jpg"
+            src="/assets/solar-farm-bg.webp"
             alt=""
             className="w-full h-full object-cover object-top opacity-16 filter brightness-105 contrast-110 saturate-125"
           />

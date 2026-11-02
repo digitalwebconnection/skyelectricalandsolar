@@ -31,9 +31,7 @@ export function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
         <div className="h-16 w-16 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
           <BookOpen className="h-8 w-8" />
         </div>
-        <h1 className="text-2xl sm:text-3xl font-black text-slate-900 mb-2">
-          Service Not Found
-        </h1>
+        <h1 className="text-2xl sm:text-3xl font-black text-slate-900 mb-2">Service Not Found</h1>
         <p className="text-slate-600 text-sm max-w-md mb-8">
           The electrical or solar service you are looking for may have been moved or updated.
         </p>
@@ -73,4 +71,3 @@ export function ServiceDetailPage({ slug }: ServiceDetailPageProps) {
 }
 
 export default ServiceDetailPage;
-

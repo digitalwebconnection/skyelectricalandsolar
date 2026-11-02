@@ -22,7 +22,7 @@ const FAQ_DATA: FaqItem[] = [
     question: "How much can I realistically save on my power bills with solar?",
     answer:
       "Most Australian homeowners reduce their electricity bills by 70% to 90% after installing a tailored solar system. With escalating grid tariffs, a properly sized 6.6kW system typically delivers $1,200 to $2,200 in annual power savings, paying for itself within 3 to 4 years.",
-    thumbnail: "/assets/reviews/family-solar-home.jpg",
+    thumbnail: "/assets/reviews/family-solar-home.webp",
     badge: "Estimated 3-4 Year Payback",
     highlights: [
       "Average 70%–90% reduction in quarterly electricity bills",
@@ -36,7 +36,7 @@ const FAQ_DATA: FaqItem[] = [
     question: "Am I eligible for Australian federal and state solar rebates?",
     answer:
       "Yes! Most residential and small commercial installations qualify for federal Small-scale Technology Certificates (STCs), which provide an upfront discount of up to several thousand dollars directly on your quote. We handle all network approvals and rebate applications on your behalf across WA, NSW, and QLD.",
-    thumbnail: "/assets/banner/banner-6kw-special.jpg",
+    thumbnail: "/assets/banner/banner-6kw-special.webp",
     badge: "Direct Upfront Deduction",
     highlights: [
       "Federal STC point-of-sale discount applied upfront",
@@ -50,7 +50,7 @@ const FAQ_DATA: FaqItem[] = [
     question: "Do solar panels still produce electricity on cloudy or rainy days?",
     answer:
       "Yes. Solar panels generate power using light photons, not heat. While solar output decreases during thick overcast skies or heavy rain (producing roughly 20% to 40% of their peak capacity), our premium Tier-1 monocrystalline panels with bifacial N-Type cell technology capture diffused ambient light efficiently throughout all seasons.",
-    thumbnail: "/assets/residential-solar.jpg",
+    thumbnail: "/assets/residential-solar.webp",
     badge: "N-Type TOPCon Cells",
     highlights: [
       "Generates clean power in rain, winter, and diffused daylight",
@@ -64,7 +64,7 @@ const FAQ_DATA: FaqItem[] = [
     question: "How does adding a battery storage system (Tesla / Alpha ESS) benefit me?",
     answer:
       "A solar battery stores the surplus energy generated during peak daytime sun so you can power your household during expensive evening peak tariff hours and overnight. It also provides automatic emergency blackout protection, keeping essential appliances running when the street grid goes down.",
-    thumbnail: "/assets/reviews/battery-storage-garage.jpg",
+    thumbnail: "/assets/reviews/battery-storage-garage.webp",
     badge: "Automatic Islanding Backup",
     highlights: [
       "Achieve up to 90%–95% independence from the power grid",
@@ -78,7 +78,7 @@ const FAQ_DATA: FaqItem[] = [
     question: "What warranties and guarantees come with Sky Electrical & Solar installations?",
     answer:
       "We only supply CEC-approved Tier-1 hardware backed by Australia’s most comprehensive warranty packages. Every installation comes with complete peace of mind.",
-    thumbnail: "/assets/banner/banner-electrical-technician.jpg",
+    thumbnail: "/assets/banner/banner-electrical-technician.webp",
     badge: "Comprehensive 25-Yr & 10-Yr Warranties",
     highlights: [
       "25-Year Performance & Hardware Warranty on solar panels",
@@ -92,7 +92,7 @@ const FAQ_DATA: FaqItem[] = [
     question: "How long does the installation take, and who will do the work?",
     answer:
       "Once grid connection pre-approval is granted by your electricity distributor, the physical rooftop installation for a residential home is completed in just 1 business day. All work is executed exclusively by our in-house, licensed, and Clean Energy Council accredited A-grade electricians — we never use unlicensed third-party subcontractors.",
-    thumbnail: "/assets/reviews/smiling-solar-electrician.jpg",
+    thumbnail: "/assets/reviews/smiling-solar-electrician.webp",
     badge: "100% In-House Master Electricians",
     highlights: [
       "Completed in 1 day with minimal disruption to your home",
@@ -165,7 +165,7 @@ export function FaqSection() {
           }}
         >
           <img
-            src="/assets/solar-farm-bg.jpg"
+            src="/assets/solar-farm-bg.webp"
             alt=""
             className="w-full h-full object-cover object-center opacity-15 filter brightness-110 contrast-125 saturate-125"
           />
@@ -384,7 +384,7 @@ export function FaqSection() {
               {/* Real Photograph Banner on top */}
               <div className="relative h-50 w-full overflow-hidden bg-slate-900">
                 <img
-                  src="/assets/banner/banner-electrical-technician.jpg"
+                  src="/assets/banner/banner-electrical-technician.webp"
                   alt="Sky Electrical Master Technician"
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 filter brightness-105"
                   loading="lazy"

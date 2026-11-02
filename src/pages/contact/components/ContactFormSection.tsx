@@ -108,7 +108,7 @@ export function ContactFormSection() {
         {/* Masked House Container with Dual-Axis Fade */}
         <div className="solar-house-image-box">
           <img
-            src="/images/contact/house_faded.png"
+            src="/assets/contact/house_faded.webp"
             alt="Clean Energy Residential Solar Rooftop"
             className="solar-house-bg"
             loading="eager"
@@ -370,7 +370,7 @@ export function ContactFormSection() {
             className="hidden sm:block"
           >
             <img
-              src="/images/contact/script_local_experts.png"
+              src="/assets/contact/script_local_experts.webp"
               alt="Your Local Solar Experts"
               style={{ width: "100%", height: "auto", display: "block" }}
             />

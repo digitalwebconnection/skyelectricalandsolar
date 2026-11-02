@@ -40,9 +40,9 @@ const STANDARDS_LEFT: StandardCard[] = [
   {
     id: 2,
     number: "2",
-    badge: "LIC. REC 16234 • EW 205626",
+    badge: "CEC ACCREDITED • LICENSED CONTRACTOR",
     title: "Registered Electrical Contractor",
-    desc: "Fully licensed Australian electrical contractor across Victoria and New South Wales. Every system design and final sign-off is completed by master electricians.",
+    desc: "Fully licensed Australian electrical contractor operating across Western Australia, New South Wales, and Queensland. Every system design and final sign-off is completed by master electricians.",
     side: "left",
     color: {
       numBg: "bg-teal-600",
@@ -210,7 +210,7 @@ export function AboutStandards() {
     <section
       id="about-standards"
       aria-labelledby="about-standards-heading"
-      className="relative isolate overflow-hidden bg-gradient-to-b from-[#cae7fd] via-[#e5f1fb] to-[#daf1e4] py-8 lg:py-14 font-sans-modern"
+      className="relative isolate overflow-hidden bg-linear-to-b from-[#cae7fd] via-[#e5f1fb] to-[#daf1e4] py-8 lg:py-14 font-sans-modern"
     >
       {/* Background Soft Green Rolling Hill at Bottom */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-72 -z-10 overflow-hidden">
@@ -234,7 +234,7 @@ export function AboutStandards() {
         </svg>
       </div>
 
-      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-360 px-4 sm:px-6 lg:px-8">
         {/* ================= SECTION HEADER ================= */}
         <div className="text-center max-w-4xl mx-auto">
           {/* Main Headline */}
@@ -243,16 +243,13 @@ export function AboutStandards() {
             className="mt-2 font-serif text-3xl sm:text-4xl lg:text-[46px] font-black tracking-tight leading-[1.14] text-[#0f2347]"
           >
             Engineered to Surpass{" "}
-            <span className="text-[#ea580c] font-serif">
-              Australian Energy Standards.
-            </span>
+            <span className="text-solar-orange font-serif">Australian Energy Standards.</span>
           </h2>
 
           {/* Subtitle */}
           <p className="mt-3.5 text-sm sm:text-base leading-relaxed text-slate-700 font-normal max-w-5xl mx-auto">
-            Australia has some of the harshest UV, heat, and storm conditions in
-            the world. Our accreditations guarantee your system is engineered
-            for thirty years of reliable power.
+            Australia has some of the harshest UV, heat, and storm conditions in the world. Our
+            accreditations guarantee your system is engineered for thirty years of reliable power.
           </p>
         </div>
 
@@ -290,7 +287,7 @@ export function AboutStandards() {
                       <span
                         className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider border ${card.color.badgeBg} ${card.color.badgeText} ${card.color.badgeBorder}`}
                       >
-                        <Check className="h-2.5 w-2.5 stroke-[3]" />
+                        <Check className="h-2.5 w-2.5 stroke-3" />
                         <span>{card.badge}</span>
                       </span>
                     </div>
@@ -316,7 +313,7 @@ export function AboutStandards() {
 
           {/* CENTER SOLAR HOUSE ILLUSTRATION - BIGGER & PRECISELY ALIGNED */}
           <div className="flex items-center justify-center order-1 lg:order-2 my-1 lg:my-0 px-1 sm:px-2 h-full">
-            <div className="relative w-full max-w-[560px] lg:max-w-[620px] xl:max-w-[660px]">
+            <div className="relative w-full max-w-140 lg:max-w-155 xl:max-w-165">
               <svg
                 viewBox="0 0 540 540"
                 className="w-full h-auto drop-shadow-md select-none"
@@ -336,26 +333,14 @@ export function AboutStandards() {
                   </linearGradient>
 
                   {/* Solar Panel Deep Blue Gradient */}
-                  <linearGradient
-                    id="solarCellGrad"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
+                  <linearGradient id="solarCellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#3b82f6" />
                     <stop offset="40%" stopColor="#2563eb" />
                     <stop offset="100%" stopColor="#1d4ed8" />
                   </linearGradient>
 
                   {/* Cloud Subtle Shadow Filter */}
-                  <filter
-                    id="cloudShadow"
-                    x="-10%"
-                    y="-10%"
-                    width="120%"
-                    height="120%"
-                  >
+                  <filter id="cloudShadow" x="-10%" y="-10%" width="120%" height="120%">
                     <feDropShadow
                       dx="0"
                       dy="3"
@@ -471,28 +456,11 @@ export function AboutStandards() {
 
                 {/* 4. EXPANDED SOLAR HOUSE - GRAND SIZE */}
                 {/* Roof Base Eaves */}
-                <polygon
-                  points="110,285 430,285 380,195 160,195"
-                  fill="#1b365d"
-                />
+                <polygon points="110,285 430,285 380,195 160,195" fill="#1b365d" />
                 {/* Top Ridge Trim */}
-                <rect
-                  x="154"
-                  y="190"
-                  width="232"
-                  height="6"
-                  rx="3"
-                  fill="#0e1f3d"
-                />
+                <rect x="154" y="190" width="232" height="6" rx="3" fill="#0e1f3d" />
                 {/* Bottom Eave Overhang Trim */}
-                <rect
-                  x="100"
-                  y="281"
-                  width="340"
-                  height="9.5"
-                  rx="3.5"
-                  fill="#0e1f3d"
-                />
+                <rect x="100" y="281" width="340" height="9.5" rx="3.5" fill="#0e1f3d" />
 
                 {/* PV Solar Array (4 Large High-Definition Panels) */}
                 {/* Panel 1 Top-Left */}
@@ -545,11 +513,7 @@ export function AboutStandards() {
                 />
 
                 {/* Diagonal Specular Highlight on Solar Glass */}
-                <polygon
-                  points="184,202 208,202 165,280 145,280"
-                  fill="#ffffff"
-                  opacity="0.22"
-                />
+                <polygon points="184,202 208,202 165,280 145,280" fill="#ffffff" opacity="0.22" />
 
                 {/* HOUSE BODY WALL */}
                 <rect
@@ -563,14 +527,7 @@ export function AboutStandards() {
                 />
 
                 {/* Front Door */}
-                <rect
-                  x="250"
-                  y="328"
-                  width="40"
-                  height="117"
-                  rx="4.5"
-                  fill="#ea580c"
-                />
+                <rect x="250" y="328" width="40" height="117" rx="4.5" fill="#ea580c" />
                 <circle cx="258" cy="386" r="3" fill="#ffffff" />
 
                 {/* 4-Pane Window */}
@@ -584,22 +541,8 @@ export function AboutStandards() {
                   stroke="#e2e8f0"
                   strokeWidth="2.5"
                 />
-                <line
-                  x1="336"
-                  y1="328"
-                  x2="336"
-                  y2="376"
-                  stroke="#ffffff"
-                  strokeWidth="3"
-                />
-                <line
-                  x1="312"
-                  y1="352"
-                  x2="360"
-                  y2="352"
-                  stroke="#ffffff"
-                  strokeWidth="3"
-                />
+                <line x1="336" y1="328" x2="336" y2="376" stroke="#ffffff" strokeWidth="3" />
+                <line x1="312" y1="352" x2="360" y2="352" stroke="#ffffff" strokeWidth="3" />
 
                 {/* Solar Inverter (Left Wall) */}
                 <rect
@@ -614,14 +557,7 @@ export function AboutStandards() {
                 />
                 <circle cx="179" cy="348" r="6" fill="#0d9488" />
                 {/* Conduit / Cable Run down to Meter */}
-                <line
-                  x1="179"
-                  y1="382"
-                  x2="179"
-                  y2="445"
-                  stroke="#0284c7"
-                  strokeWidth="3.5"
-                />
+                <line x1="179" y1="382" x2="179" y2="445" stroke="#0284c7" strokeWidth="3.5" />
 
                 {/* Battery Energy Storage System (Right Wall) */}
                 <rect
@@ -946,7 +882,7 @@ export function AboutStandards() {
                       <span
                         className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider border ${card.color.badgeBg} ${card.color.badgeText} ${card.color.badgeBorder}`}
                       >
-                        <Check className="h-2.5 w-2.5 stroke-[3]" />
+                        <Check className="h-2.5 w-2.5 stroke-3" />
                         <span>{card.badge}</span>
                       </span>
                     </div>
@@ -978,7 +914,7 @@ export function AboutStandards() {
             <div className="flex items-center gap-3 sm:gap-4 p-2 sm:px-4">
               <RosetteSeal color="orange" type="text" text="VIC" />
               <div>
-                <div className="font-serif text-lg sm:text-2xl font-black text-[#ea580c] leading-tight">
+                <div className="font-serif text-lg sm:text-2xl font-black text-solar-orange leading-tight">
                   REC 16234
                 </div>
                 <div className="mt-0.5 text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase tracking-wider">

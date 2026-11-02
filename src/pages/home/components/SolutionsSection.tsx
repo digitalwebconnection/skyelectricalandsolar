@@ -14,7 +14,7 @@ export function SolutionsSection() {
           }}
         >
           <img
-            src="/assets/posters/poster-battery.jpg"
+            src="/assets/posters/poster-battery.webp"
             alt=""
             className="w-full h-full object-cover object-top opacity-65 filter brightness-[0.96] contrast-[1.05] saturate-[1.15]"
           />
@@ -31,7 +31,7 @@ export function SolutionsSection() {
           }}
         >
           <img
-            src="/assets/posters/poster-battery.jpg"
+            src="/assets/posters/poster-battery.webp"
             alt=""
             className="w-full h-full object-cover object-bottom opacity-65 filter brightness-[0.96] contrast-[1.05] saturate-[1.15]"
           />

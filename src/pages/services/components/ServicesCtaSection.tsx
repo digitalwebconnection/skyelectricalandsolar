@@ -55,7 +55,7 @@ const SERVICES: ServiceData[] = [
     icon: Sun,
     image:
       "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=90",
-    fallbackImage: "/assets/residential-solar.jpg",
+    fallbackImage: "/assets/residential-solar.webp",
     imageAlt: "Rooftop solar panel installation on Australian home",
     heading: "Rooftop Solar Assessment",
     subheading: "CEC-Accredited High-Yield Tier-1 Solar Solutions",
@@ -90,7 +90,7 @@ const SERVICES: ServiceData[] = [
     icon: BatteryCharging,
     image:
       "https://images.unsplash.com/photo-1624397640148-949b1732bb0a?auto=format&fit=crop&w=1200&q=90",
-    fallbackImage: "/assets/posters/poster-battery.jpg",
+    fallbackImage: "/assets/posters/poster-battery.webp",
     imageAlt: "Home battery storage backup system",
     heading: "Solar Battery Storage Assessment",
     subheading: "Total Blackout Protection & Overnight Zero-Grid Independence",
@@ -125,7 +125,7 @@ const SERVICES: ServiceData[] = [
     icon: CarFront,
     image:
       "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=1200&q=90",
-    fallbackImage: "/assets/posters/poster-ev.jpg",
+    fallbackImage: "/assets/posters/poster-ev.webp",
     imageAlt: "Electric vehicle smart charger installation",
     heading: "EV Fast Charger Assessment",
     subheading: "Smart Level-2 Fast Charging for Home & Commercial Fleets",
@@ -160,7 +160,7 @@ const SERVICES: ServiceData[] = [
     icon: Wrench,
     image:
       "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=90",
-    fallbackImage: "/assets/reviews/electrician-wiring-switchboard.jpg",
+    fallbackImage: "/assets/reviews/electrician-wiring-switchboard.webp",
     imageAlt: "Professional electrician working on a switchboard",
     heading: "Switchboard Upgrade Assessment",
     subheading: "AS/NZS 3000 Compliant RCBO & Modern Safety Switch Protection",

@@ -16,7 +16,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { useInquiryModal } from "../../context";
-import logoImg from "../../assets/logo.png";
+import logoImg from "../../assets/logo.webp";
 import { MagicCard, BorderBeam } from "../ui";
 
 const SERVICE_OPTIONS = [
@@ -264,7 +264,7 @@ export function InquiryEnvelopeModal() {
                     <span>Included in Your Complimentary Review:</span>
                   </div>
                   <p>• 3D satellite roof scan & solar yield simulation.</p>
-                  <p>• Exact federal STC & Victorian battery rebate deductions.</p>
+                  <p>• Exact federal STC & state battery rebate deductions.</p>
                   <p>
                     • Fast quote consultation to <strong>{formData.phone}</strong> within 2 hours.
                   </p>

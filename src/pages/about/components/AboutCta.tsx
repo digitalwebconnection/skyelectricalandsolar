@@ -1,11 +1,4 @@
-import {
-  ArrowRight,
-  CheckCircle2,
-  MapPin,
-  PhoneCall,
-  Shield,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2, MapPin, PhoneCall, Shield, Sparkles } from "lucide-react";
 import { FadeContent } from "../../../components/common/FadeContent";
 import { CONTACT_INFO } from "../../../constants";
 import { useInquiryModal } from "../../../context";
@@ -16,14 +9,14 @@ export function AboutCta() {
   return (
     <section
       aria-labelledby="about-cta-heading"
-      className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50 to-amber-50/30 py-12 sm:py-16"
+      className="relative overflow-hidden bg-linear-to-b from-white via-slate-50 to-amber-50/30 py-12 sm:py-16"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeContent effect="focus" blur={6} duration={0.9} threshold={0.15}>
           {/* Architectural Container with Dual Split Layout */}
-          <div className="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br from-[#071d32] via-[#092846] to-[#041322] border border-slate-800 shadow-xl shadow-slate-900/20 p-6 sm:p-8 lg:p-10 text-white">
+          <div className="relative isolate overflow-hidden rounded-3xl bg-linear-to-br from-[#071d32] via-[#092846] to-[#041322] border border-slate-800 shadow-xl shadow-slate-900/20 p-6 sm:p-8 lg:p-10 text-white">
             {/* Ambient Lighting Gradients with pure Tailwind */}
-            <div className="pointer-events-none absolute -top-40 -right-40 h-80 w-80 rounded-full bg-gradient-to-br from-amber-400/20 via-orange-500/15 to-transparent blur-3xl -z-10" />
+            <div className="pointer-events-none absolute -top-40 -right-40 h-80 w-80 rounded-full bg-linear-to-br from-amber-400/20 via-orange-500/15 to-transparent blur-3xl -z-10" />
             <div className="pointer-events-none absolute -bottom-32 -left-32 h-80 w-80 rounded-full bg-emerald-400/10 blur-3xl -z-10" />
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
@@ -40,15 +33,15 @@ export function AboutCta() {
                     className="mt-3.5 font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-[1.15] tracking-tight"
                   >
                     Speak With a Master Electrician,{" "}
-                    <span className="bg-gradient-to-r from-amber-300 via-orange-300 to-amber-400 bg-clip-text text-transparent">
+                    <span className="bg-linear-to-r from-amber-300 via-orange-300 to-amber-400 bg-clip-text text-transparent">
                       Not a Call Center Broker.
                     </span>
                   </h2>
 
                   <p className="mt-3 text-sm sm:text-base text-slate-300 leading-relaxed max-w-xl">
-                    Get an honest, satellite-modeled solar and battery proposal
-                    engineered for your exact roof pitch, power consumption, and
-                    maximum Australian Federal rebate eligibility.
+                    Get an honest, satellite-modeled solar and battery proposal engineered for your
+                    exact roof pitch, power consumption, and maximum Australian Federal rebate
+                    eligibility.
                   </p>
                 </div>
 
@@ -56,22 +49,15 @@ export function AboutCta() {
                 <div className="space-y-2 pt-1">
                   <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200">
                     <CheckCircle2 className="h-4 w-4 text-amber-400 shrink-0" />
-                    <span>
-                      3D Satellite Roof Shading &amp; Kilowatt Output Analysis
-                    </span>
+                    <span>3D Satellite Roof Shading &amp; Kilowatt Output Analysis</span>
                   </div>
                   <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200">
                     <CheckCircle2 className="h-4 w-4 text-amber-400 shrink-0" />
-                    <span>
-                      Upfront Government STC Rebate Deduction Calculated
-                      Instantly
-                    </span>
+                    <span>Upfront Government STC Rebate Deduction Calculated Instantly</span>
                   </div>
                   <div className="flex items-center gap-2.5 text-xs sm:text-sm text-slate-200">
                     <CheckCircle2 className="h-4 w-4 text-amber-400 shrink-0" />
-                    <span>
-                      100% In-House Installation Guarantee — Zero Subcontractors
-                    </span>
+                    <span>100% In-House Installation Guarantee — Zero Subcontractors</span>
                   </div>
                 </div>
 
@@ -79,8 +65,8 @@ export function AboutCta() {
                 <div className="flex items-center gap-2 text-xs font-semibold text-slate-400 pt-1">
                   <MapPin className="h-3.5 w-3.5 text-orange-400 shrink-0" />
                   <span>
-                    Serving Melbourne Metro, Greater Regional VIC &amp; Sydney
-                    Metro
+                    Serving Western Australia (Perth Hub), New South Wales (Sydney Hub) &amp;
+                    Queensland (Brisbane Hub)
                   </span>
                 </div>
               </div>
@@ -109,8 +95,8 @@ export function AboutCta() {
                       Get Your Free Solar Proposal
                     </h3>
                     <p className="mt-1 text-xs text-slate-300 leading-relaxed">
-                      Custom system modeling, battery feasibility, and payback
-                      timeline delivered directly to your inbox.
+                      Custom system modeling, battery feasibility, and payback timeline delivered
+                      directly to your inbox.
                     </p>
                   </div>
 
@@ -119,7 +105,7 @@ export function AboutCta() {
                     <button
                       type="button"
                       onClick={() => openInquiryModal()}
-                      className="w-full flex items-center justify-center gap-2 h-11 sm:h-12 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-md shadow-orange-500/25 transition-all duration-200 active:scale-98 cursor-pointer"
+                      className="w-full flex items-center justify-center gap-2 h-11 sm:h-12 rounded-full bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-md shadow-orange-500/25 transition-all duration-200 active:scale-98 cursor-pointer"
                     >
                       <span>Claim Free Solar Assessment</span>
                       <ArrowRight className="h-4 w-4" />
@@ -137,9 +123,7 @@ export function AboutCta() {
                   {/* Trust footer stamp */}
                   <div className="pt-3 border-t border-white/10 flex items-center justify-center gap-2 text-[10px] text-slate-400">
                     <Shield className="h-3 w-3 text-emerald-400" />
-                    <span>
-                      Clean Energy Council Accredited • Master Electricians
-                    </span>
+                    <span>Clean Energy Council Accredited • Master Electricians</span>
                   </div>
                 </div>
               </div>

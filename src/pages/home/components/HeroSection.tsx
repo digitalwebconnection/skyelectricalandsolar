@@ -279,7 +279,7 @@ export function HeroSection() {
           }}
         >
           <img
-            src="/assets/solar-farm-bg.jpg"
+            src="/assets/solar-farm-bg.webp"
             alt=""
             className="w-full h-full object-cover object-top opacity-30 filter brightness-[1.05] contrast-[1.12] saturate-[1.25]"
           />
@@ -642,11 +642,11 @@ export function HeroSection() {
             >
               {/* High-Resolution Solar Rooftop Image */}
               <img
-                src="/assets/residential-solar.jpg"
+                src="/assets/residential-solar.webp"
                 alt="High-Efficiency Residential Rooftop Solar Installation in Australia"
                 className="w-full h-115 sm:h-125 lg:h-135 object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                 onError={(e) => {
-                  e.currentTarget.src = "/assets/posters/poster-rooftop.jpg";
+                  e.currentTarget.src = "/assets/posters/poster-rooftop.webp";
                 }}
               />
 

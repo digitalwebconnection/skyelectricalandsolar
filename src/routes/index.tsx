@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect } from "react";
+import { motion } from "motion/react";
 import { useNavigation } from "../context";
 import { siteConfig } from "../config/site";
 import { SERVICES_DATA } from "../pages/services/data/servicesData";
@@ -112,29 +113,37 @@ export function AppRouter() {
 
   return (
     <Suspense fallback={<WebsiteLoader minDuration={1800} />}>
-      {isAbout ? (
-        <AboutPage />
-      ) : isSpecials ? (
-        <SpecialsPage />
-      ) : isHome ? (
-        <HomePage />
-      ) : isContact ? (
-        <ContactPage />
-      ) : isServiceDetail ? (
-        <ServiceDetailPage slug={serviceSlug} />
-      ) : isServices ? (
-        <ServicesPage />
-      ) : isBlogDetail ? (
-        <BlogDetailPage slug={blogSlug} />
-      ) : isBlogs ? (
-        <BlogsPage />
-      ) : isPrivacy ? (
-        <PrivacyPolicyPage />
-      ) : isTerms ? (
-        <TermsConditionsPage />
-      ) : (
-        <NotFoundPage />
-      )}
+      <motion.div
+        key={currentPath}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        className="w-full"
+      >
+        {isAbout ? (
+          <AboutPage />
+        ) : isSpecials ? (
+          <SpecialsPage />
+        ) : isHome ? (
+          <HomePage />
+        ) : isContact ? (
+          <ContactPage />
+        ) : isServiceDetail ? (
+          <ServiceDetailPage slug={serviceSlug} />
+        ) : isServices ? (
+          <ServicesPage />
+        ) : isBlogDetail ? (
+          <BlogDetailPage slug={blogSlug} />
+        ) : isBlogs ? (
+          <BlogsPage />
+        ) : isPrivacy ? (
+          <PrivacyPolicyPage />
+        ) : isTerms ? (
+          <TermsConditionsPage />
+        ) : (
+          <NotFoundPage />
+        )}
+      </motion.div>
     </Suspense>
   );
 }

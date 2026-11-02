@@ -1,10 +1,4 @@
-import {
-  AboutHero,
-  AboutStory,
-  AboutPillars,
-  AboutStandards,
-  AboutCta,
-} from "./components";
+import { AboutHero, AboutStory, AboutPillars, AboutStandards, AboutCta } from "./components";
 
 export function AboutPage() {
   return (

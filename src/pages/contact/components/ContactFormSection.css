@@ -603,7 +603,7 @@
       rgba(4, 37, 66, 0.97) 100%,
       rgba(3, 37, 61, 0.65) 100%
     ),
-    url("/images/contact/bottom_solar.png")
+    url("/assets/contact/bottom_solar.webp")
       center bottom / cover no-repeat;
   
   box-shadow: 0 18px 38px rgba(7, 42, 71, 0.15);
@@ -617,7 +617,7 @@
   height: 230px;
   background:
     linear-gradient(0deg, rgba(2, 28, 45, 0.18), transparent),
-    url("/images/banners/banner-solar-mansion.jpg")
+    url("/assets/banner/banner-solar-mansion.webp")
       center 75% / cover no-repeat;
   opacity: 0.65;
   pointer-events: none;

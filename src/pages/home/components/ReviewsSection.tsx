@@ -204,7 +204,7 @@ const Column = ({ items, y, className = "" }: ColumnProps) => {
                   loading="lazy"
                   className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-106"
                   onError={(e) => {
-                    e.currentTarget.src = "/assets/reviews/family-solar-home.jpg";
+                    e.currentTarget.src = "/assets/reviews/family-solar-home.webp";
                   }}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/25 to-transparent pointer-events-none" />

@@ -14,7 +14,7 @@ import { Marquee } from "@/components/ui";
 const TRUST_ITEMS = [
   {
     icon: Sun,
-    image: "/assets/posters/poster-rooftop.jpg",
+    image: "/assets/posters/poster-rooftop.webp",
     title: "Tier-1 Solar Panels",
     desc: "Bloomberg NEF Monocrystalline",
     badge: "Tier-1 Rated",
@@ -23,7 +23,7 @@ const TRUST_ITEMS = [
   },
   {
     icon: TrendingDown,
-    image: "/assets/banner/banner-solar-mansion.jpg",
+    image: "/assets/banner/banner-solar-mansion.webp",
     title: "Up to 80% Bill Cut",
     desc: "Guaranteed solar system yield",
     badge: "Top Savings",
@@ -32,7 +32,7 @@ const TRUST_ITEMS = [
   },
   {
     icon: ShieldCheck,
-    image: "/assets/banner/banner-electrical-technician.jpg",
+    image: "/assets/banner/banner-electrical-technician.webp",
     title: "25-Year Full Warranty",
     desc: "Hardware, inverter & labor cover",
     badge: "Full Cover",
@@ -41,7 +41,7 @@ const TRUST_ITEMS = [
   },
   {
     icon: Battery,
-    image: "/assets/posters/poster-battery.jpg",
+    image: "/assets/posters/poster-battery.webp",
     title: "Blackout-Proof Battery",
     desc: "Seamless 24/7 emergency storage",
     badge: "24/7 Backup",
@@ -50,7 +50,7 @@ const TRUST_ITEMS = [
   },
   {
     icon: Award,
-    image: "/assets/posters/poster-technician.jpg",
+    image: "/assets/posters/poster-technician.webp",
     title: "CEC Approved Retailer",
     desc: "Clean Energy Council master installers",
     badge: "Certified",
@@ -59,7 +59,7 @@ const TRUST_ITEMS = [
   },
   {
     icon: Zap,
-    image: "/assets/banner/banner-10kw-battery.png",
+    image: "/assets/banner/banner-10kw-battery.webp",
     title: "$0 Upfront Solar Plans",
     desc: "Australian STC rebates pre-applied",
     badge: "Govt Rebate",
@@ -68,7 +68,7 @@ const TRUST_ITEMS = [
   },
   {
     icon: CheckCircle2,
-    image: "/assets/posters/poster-sunset.jpg",
+    image: "/assets/posters/poster-sunset.webp",
     title: "1-Day Master Install",
     desc: "Licensed Australian electricians",
     badge: "Turnkey",
@@ -77,7 +77,7 @@ const TRUST_ITEMS = [
   },
   {
     icon: Smartphone,
-    image: "/assets/posters/poster-inverter.jpg",
+    image: "/assets/posters/poster-inverter.webp",
     title: "Live Mobile Monitoring",
     desc: "24/7 real-time yield & grid telemetry",
     badge: "Smart App",
@@ -92,7 +92,7 @@ export function TrustStrip() {
       {/* ================= 1. CINEMATIC SOLAR PHOTO BACKGROUND ================= */}
       <div className="absolute inset-0 -z-20 pointer-events-none select-none">
         <img
-          src="/assets/solar-farm-bg.jpg"
+          src="/assets/solar-farm-bg.webp"
           alt="Solar farm background"
           className="w-full h-full object-cover object-center filter brightness-[0.38] contrast-[1.15] saturate-[1.3] scale-105"
         />

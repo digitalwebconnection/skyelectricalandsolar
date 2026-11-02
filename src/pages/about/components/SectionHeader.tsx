@@ -22,8 +22,8 @@ export function Highlight({
     <span
       className={`bg-clip-text text-transparent ${
         tone === "dark"
-          ? "bg-gradient-to-r from-amber-300 via-orange-300 to-amber-400"
-          : "bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600"
+          ? "bg-linear-to-r from-amber-300 via-orange-300 to-amber-400"
+          : "bg-linear-to-r from-amber-500 via-orange-500 to-amber-600"
       }`}
     >
       {children}

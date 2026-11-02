@@ -48,9 +48,9 @@ export const BLOG_POSTS: BlogPost[] = [
     author: {
       name: "Cameron Hughes",
       role: "CEC Accredited Master Electrician",
-      avatar: "/assets/banner/banner-electrical-technician.jpg",
+      avatar: "/assets/banner/banner-electrical-technician.webp",
     },
-    image: "/assets/banner/banner-13kw-battery.jpg",
+    image: "/assets/banner/banner-13kw-battery.webp",
     featured: true,
     tags: ["STC Rebates", "PDRS NSW", "WA Solar", "Battery Subsidies"],
     content: {
@@ -99,9 +99,9 @@ export const BLOG_POSTS: BlogPost[] = [
     author: {
       name: "Liam Henderson",
       role: "Senior Clean Energy Systems Engineer",
-      avatar: "/assets/banner/banner-electrical-technician.jpg",
+      avatar: "/assets/banner/banner-electrical-technician.webp",
     },
-    image: "/assets/reviews/battery-storage-garage.jpg",
+    image: "/assets/reviews/battery-storage-garage.webp",
     tags: ["Tesla Powerwall", "Sungrow", "Home Storage", "Blackout Backup"],
     content: {
       introduction:
@@ -136,9 +136,9 @@ export const BLOG_POSTS: BlogPost[] = [
     author: {
       name: "Cameron Hughes",
       role: "CEC Accredited Master Electrician",
-      avatar: "/assets/banner/banner-electrical-technician.jpg",
+      avatar: "/assets/banner/banner-electrical-technician.webp",
     },
-    image: "/assets/reviews/residential-aerial-array.jpg",
+    image: "/assets/reviews/residential-aerial-array.webp",
     tags: ["13kW Solar", "System Sizing", "ROI", "Electrification"],
     content: {
       introduction:
@@ -168,9 +168,9 @@ export const BLOG_POSTS: BlogPost[] = [
     author: {
       name: "Mark Vance",
       role: "A-Grade Electrical Compliance Officer",
-      avatar: "/assets/banner/banner-electrical-technician.jpg",
+      avatar: "/assets/banner/banner-electrical-technician.webp",
     },
-    image: "/assets/reviews/electrician-wiring-switchboard.jpg",
+    image: "/assets/reviews/electrician-wiring-switchboard.webp",
     tags: ["Dynamic Exports", "Western Power", "Ausgrid", "Grid Compliance"],
     content: {
       introduction:
@@ -200,9 +200,9 @@ export const BLOG_POSTS: BlogPost[] = [
     author: {
       name: "Liam Henderson",
       role: "Senior Clean Energy Systems Engineer",
-      avatar: "/assets/banner/banner-electrical-technician.jpg",
+      avatar: "/assets/banner/banner-electrical-technician.webp",
     },
-    image: "/assets/banner/banner-commercial-solar.jpg",
+    image: "/assets/banner/banner-commercial-solar.webp",
     tags: ["Commercial Solar", "Warehouses", "Demand Charges", "Tax Benefits"],
     content: {
       introduction:
@@ -231,9 +231,9 @@ export const BLOG_POSTS: BlogPost[] = [
     author: {
       name: "Cameron Hughes",
       role: "CEC Accredited Master Electrician",
-      avatar: "/assets/banner/banner-electrical-technician.jpg",
+      avatar: "/assets/banner/banner-electrical-technician.webp",
     },
-    image: "/assets/posters/poster-ev.jpg",
+    image: "/assets/posters/poster-ev.webp",
     tags: ["EV Charging", "Zappi", "Solar EV", "Clean Transport"],
     content: {
       introduction:

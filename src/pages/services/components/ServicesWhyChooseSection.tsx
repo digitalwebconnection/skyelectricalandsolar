@@ -72,7 +72,7 @@ export function ServicesWhyChooseSection() {
               {/* High-Resolution Background Photo with Deep Gradient Mask */}
               <div className="absolute inset-0 pointer-events-none select-none z-0">
                 <img
-                  src="/assets/reviews/smiling-solar-electrician.jpg"
+                  src="/assets/reviews/smiling-solar-electrician.webp"
                   alt="In-house Master Electricians"
                   className="w-full h-full object-cover object-center opacity-30 filter brightness-[0.8] contrast-125 scale-100 group-hover:scale-105 transition-transform duration-700 ease-out"
                 />

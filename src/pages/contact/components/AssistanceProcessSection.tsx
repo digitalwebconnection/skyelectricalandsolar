@@ -26,7 +26,7 @@ const STEPS = [
     badgeBg: "bg-amber-50 text-amber-900 border-amber-200",
     glowBg: "bg-amber-500/20",
     hoverShadow: "hover:shadow-[0_25px_50px_-12px_rgba(245,158,11,0.35)] hover:border-amber-400",
-    bgImage: "/assets/reviews/smiling-solar-electrician.jpg",
+    bgImage: "/assets/reviews/smiling-solar-electrician.webp",
   },
   {
     step: "02",
@@ -38,7 +38,7 @@ const STEPS = [
     badgeBg: "bg-orange-50 text-orange-900 border-orange-200",
     glowBg: "bg-orange-500/20",
     hoverShadow: "hover:shadow-[0_25px_50px_-12px_rgba(234,88,12,0.35)] hover:border-orange-400",
-    bgImage: "/assets/reviews/residential-aerial-array.jpg",
+    bgImage: "/assets/reviews/residential-aerial-array.webp",
   },
   {
     step: "03",
@@ -50,7 +50,7 @@ const STEPS = [
     badgeBg: "bg-emerald-50 text-emerald-900 border-emerald-200",
     glowBg: "bg-emerald-500/20",
     hoverShadow: "hover:shadow-[0_25px_50px_-12px_rgba(16,185,129,0.35)] hover:border-emerald-400",
-    bgImage: "/assets/reviews/family-solar-home.jpg",
+    bgImage: "/assets/reviews/family-solar-home.webp",
   },
   {
     step: "04",
@@ -62,7 +62,7 @@ const STEPS = [
     badgeBg: "bg-teal-50 text-teal-900 border-teal-200",
     glowBg: "bg-teal-500/20",
     hoverShadow: "hover:shadow-[0_25px_50px_-12px_rgba(20,184,166,0.35)] hover:border-teal-400",
-    bgImage: "/assets/reviews/rooftop-solar-drill.jpg",
+    bgImage: "/assets/reviews/rooftop-solar-drill.webp",
   },
 ];
 
@@ -253,7 +253,7 @@ export function AssistanceProcessSection() {
             {/* Background Image: Electrician Wiring Switchboard Reveal on Hover */}
             <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
               <img
-                src="/assets/reviews/electrician-wiring-switchboard.jpg"
+                src="/assets/reviews/electrician-wiring-switchboard.webp"
                 alt="Urgent Electrical Dispatch"
                 className="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.1] opacity-0 scale-100 group-hover:opacity-100 group-hover:scale-108 transition-all duration-600 ease-out"
                 loading="lazy"
@@ -309,7 +309,7 @@ export function AssistanceProcessSection() {
             {/* Background Image: Commercial Solar Arrays Reveal on Hover */}
             <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
               <img
-                src="/assets/commercial-solar.jpg"
+                src="/assets/commercial-solar.webp"
                 alt="Commercial Solar Installation"
                 className="w-full h-full object-cover object-center filter brightness-[0.8] contrast-[1.15] opacity-0 scale-100 group-hover:opacity-100 group-hover:scale-108 transition-all duration-600 ease-out"
                 loading="lazy"

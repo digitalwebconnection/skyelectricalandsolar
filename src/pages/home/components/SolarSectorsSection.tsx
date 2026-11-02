@@ -141,12 +141,12 @@ export function SolarSectorsSection() {
                 <div className="lg:col-span-5 relative h-full">
                   <div className="relative overflow-hidden rounded-xl shadow-xl shadow-slate-900/10 group h-full min-h-60 sm:min-h-70 lg:min-h-110">
                     <img
-                      src="/assets/residential-solar.jpg"
-                      alt="Residential Solar Rooftop Installation in Melbourne"
+                      src="/assets/residential-solar.webp"
+                      alt="Residential Solar Rooftop Installation across WA, NSW & QLD"
                       className="w-full h-full min-h-60 sm:min-h-70 lg:min-h-110 object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                       onError={(e) => {
-                        e.currentTarget.src = "/assets/posters/poster-rooftop.jpg";
+                        e.currentTarget.src = "/assets/posters/poster-rooftop.webp";
                       }}
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
@@ -161,7 +161,7 @@ export function SolarSectorsSection() {
                         </div>
                       </div>
                       <span className="text-xs bg-white/20 backdrop-blur-md px-3 py-1 rounded-full font-semibold border border-white/20">
-                        Melbourne & Regional VIC
+                        WA • NSW • QLD Operations
                       </span>
                     </div>
                   </div>
@@ -249,12 +249,12 @@ export function SolarSectorsSection() {
                 <div className="lg:col-span-5 relative h-full">
                   <div className="relative overflow-hidden rounded-2xl shadow-xl shadow-slate-900/10 group h-full min-h-60 sm:min-h-70 lg:min-h-110">
                     <img
-                      src="/assets/commercial-solar.jpg"
+                      src="/assets/commercial-solar.webp"
                       alt="Commercial Solar Array Installation"
                       className="w-full h-full min-h-60 sm:min-h-70 lg:min-h-110 object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                       onError={(e) => {
-                        e.currentTarget.src = "/assets/solar-farm-bg.jpg";
+                        e.currentTarget.src = "/assets/solar-farm-bg.webp";
                       }}
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/20 to-transparent" />

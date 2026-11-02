@@ -12,7 +12,7 @@ export function JsonLd({ type = "LocalBusiness", data }: JsonLdProps) {
       "@context": "https://schema.org",
       "@type": "Electrician",
       name: siteConfig.name,
-      image: "https://skyelectricalandsolar.com/images/services/commercial-solar.jpg",
+      image: "https://skyelectricalandsolar.com/assets/commercial-solar.webp",
       "@id": "https://skyelectricalandsolar.com",
       url: "https://skyelectricalandsolar.com",
       telephone: "+61430015017",

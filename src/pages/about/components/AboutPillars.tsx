@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import {
-  ArrowRight,
-  CheckCircle2,
-  Play,
-  X,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2, Play, X } from "lucide-react";
 import { useInquiryModal } from "../../../context";
 
 export function AboutPillars() {
@@ -19,17 +14,15 @@ export function AboutPillars() {
       aria-labelledby="about-pillars-heading"
       className="relative isolate overflow-hidden bg-gradient-to-b from-[#f8fcff] via-[#ffffff] to-[#eef7ff] py-14 lg:py-20 font-sans-modern border-y border-slate-200/60"
     >
-
       {/* ================= BACKGROUND: IMAGE & AMBIENCE ================= */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         {/* Background Image with subtle gradient wash */}
         <img
-          src="/assets/modern-solar-home-twilight.jpg"
+          src="/assets/modern-solar-home-twilight.webp"
           alt="Modern solar architectural home"
           className="h-full w-full object-cover object-[center_35%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/30 to-black/50" />
-
 
         {/* Ambient Radiant Sky & Amber Glows */}
         <div className="absolute -top-24 right-10 h-96 w-96 rounded-full bg-gradient-to-bl from-sky-300/20 via-blue-200/10 to-transparent blur-3xl" />
@@ -40,8 +33,7 @@ export function AboutPillars() {
         {/* ================= TOP TIER: HEADLINE, PHILOSOPHY & BUTTONS ================= */}
         <div className="max-w-3xl">
           {/* Eyebrow Capsule Tag with Horizontal Accent Ruler */}
-          <div className="flex items-center gap-4">
-          </div>
+          <div className="flex items-center gap-4"></div>
 
           {/* Main Headline */}
           <h2
@@ -57,9 +49,8 @@ export function AboutPillars() {
 
           {/* Subtitle Paragraph */}
           <p className="mt-5 max-w-xl text-sm sm:text-base leading-relaxed text-slate-900 font-normal">
-            Every detail of our systems—from cable sizing and DC isolators to
-            inverter clipping ratios—is specified by licensed electricians to
-            outlast harsh Australian conditions.
+            Every detail of our systems—from cable sizing and DC isolators to inverter clipping
+            ratios—is specified by licensed electricians to outlast harsh Australian conditions.
           </p>
 
           {/* Action Buttons: Deep Blue Craftsmanship Pill & Circular Watch Process */}
@@ -73,7 +64,6 @@ export function AboutPillars() {
               <span>Our Craftsmanship</span>
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
-
           </div>
         </div>
       </div>
@@ -105,8 +95,7 @@ export function AboutPillars() {
                       Our Master Electrician Installation Protocol
                     </h3>
                     <p className="text-xs text-slate-500">
-                      Watch how Sky Electrical engineers every solar roof with
-                      precision.
+                      Watch how Sky Electrical engineers every solar roof with precision.
                     </p>
                   </div>
                 </div>
@@ -122,7 +111,7 @@ export function AboutPillars() {
               {/* Video Showcase Card */}
               <div className="mt-6 relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-950 shadow-inner">
                 <img
-                  src="/assets/banner/banner-electrical-technician.jpg"
+                  src="/assets/banner/banner-electrical-technician.webp"
                   alt="Sky Solar Engineering Team on site"
                   className="h-full w-full object-cover"
                 />
@@ -131,8 +120,8 @@ export function AboutPillars() {
                     <Play className="h-7 w-7 fill-current ml-1" />
                   </div>
                   <p className="mt-4 text-sm font-semibold text-slate-200 max-w-md">
-                    3D LiDAR modeling, AS/NZS 3000 switchboard compliance, and
-                    thermal stress testing on every installation.
+                    3D LiDAR modeling, AS/NZS 3000 switchboard compliance, and thermal stress
+                    testing on every installation.
                   </p>
                 </div>
               </div>
@@ -191,10 +180,9 @@ export function AboutPillars() {
                       100% In-House Master Electricians • Zero Subcontracting
                     </h4>
                     <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                      Most solar companies are sales offices that auction
-                      installations to third-party subcontractors. At Sky, every
-                      quote, wire, inverter, and grid switch is handled by our
-                      own employed licensed Australian electricians.
+                      Most solar companies are sales offices that auction installations to
+                      third-party subcontractors. At Sky, every quote, wire, inverter, and grid
+                      switch is handled by our own employed licensed Australian electricians.
                     </p>
                     <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-semibold text-slate-700">
                       <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
@@ -211,7 +199,7 @@ export function AboutPillars() {
                       </div>
                       <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-xl border border-slate-100">
                         <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                        <span>VIC REC 10834 & NSW EW 205806</span>
+                        <span>CEC Accredited • WA, NSW & QLD Licensed</span>
                       </div>
                     </div>
                   </div>
@@ -223,10 +211,9 @@ export function AboutPillars() {
                       Tier-1 Hardware Only • Bloomberg Tier-1 Verified
                     </h4>
                     <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                      Zero cheap no-name modules. We strictly partner with
-                      Bloomberg Tier-1 manufacturers (Jinko, LONGi, Sungrow,
-                      Fronius) backed by verifiable Australian manufacturer
-                      warranties and 25-Year Performance Cover.
+                      Zero cheap no-name modules. We strictly partner with Bloomberg Tier-1
+                      manufacturers (Jinko, LONGi, Sungrow, Fronius) backed by verifiable Australian
+                      manufacturer warranties and 25-Year Performance Cover.
                     </p>
                   </div>
                 )}
@@ -237,9 +224,9 @@ export function AboutPillars() {
                       Direct Local Support • STC Rebate Deductions
                     </h4>
                     <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                      Australian STC rebates deducted directly off your quote.
-                      Zero complicated paperwork—our compliance team handles all
-                      distributor approvals and grid sign-offs.
+                      Australian STC rebates deducted directly off your quote. Zero complicated
+                      paperwork—our compliance team handles all distributor approvals and grid
+                      sign-offs.
                     </p>
                   </div>
                 )}
@@ -250,9 +237,9 @@ export function AboutPillars() {
                       A Greener Tomorrow • Clean Energy Future
                     </h4>
                     <p className="mt-2 text-sm text-slate-600 leading-relaxed">
-                      Clean energy engineered to maximize self-consumption,
-                      minimize grid dependence, and future-proof Australian
-                      households against rising utility costs.
+                      Clean energy engineered to maximize self-consumption, minimize grid
+                      dependence, and future-proof Australian households against rising utility
+                      costs.
                     </p>
                   </div>
                 )}

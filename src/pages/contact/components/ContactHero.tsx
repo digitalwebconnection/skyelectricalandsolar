@@ -22,7 +22,7 @@ export function ContactHero() {
         {/* Full-Width Background Image with Subtle Slow Motion Zoom */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
           <motion.img
-            src="/assets/banner/banner-solar-mansion.jpg"
+            src="/assets/banner/banner-solar-mansion.webp"
             alt="Sky Electrical & Solar Australian Clean Energy Installation"
             initial={{ scale: 1 }}
             animate={{ scale: [1, 1.06, 1] }}

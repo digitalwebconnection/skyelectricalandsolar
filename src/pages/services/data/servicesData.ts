@@ -74,8 +74,8 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDesc:
       "Harness the power of the sun with our expert solar panel installation services. We design and install efficient solar systems to help reduce your energy bills and carbon footprint.",
     tagline: "CEC-Accredited Residential & Commercial Solar Systems Sized for Maximum ROI",
-    heroImage: "/assets/banner/banner-solar-field.jpg",
-    cardImage: "/assets/residential-solar.jpg",
+    heroImage: "/assets/banner/banner-solar-field.webp",
+    cardImage: "/assets/residential-solar.webp",
     icon: Sun,
     badge: "CEC Accredited Master Installers",
     stats: {
@@ -221,7 +221,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "13.2kW Solar (30 Panels)",
         details:
           "Split East-West orientation generating 62 kWh daily, offsetting 78% of household summer air-conditioning electricity demands.",
-        image: "/assets/banner/banner-13kw-battery.jpg",
+        image: "/assets/banner/banner-13kw-battery.webp",
         tag: "Residential Perth",
       },
       {
@@ -231,7 +231,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "10.5kW Solar Array",
         details:
           "Custom tile roof brackets with Sungrow Hybrid Inverter and smart meter integration for maximum self-consumption during peak tariff periods.",
-        image: "/assets/banner/banner-solar-mansion.jpg",
+        image: "/assets/banner/banner-solar-mansion.webp",
         tag: "Residential Sydney",
       },
       {
@@ -241,7 +241,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "26.4kW Commercial",
         details:
           "Three-phase commercial solar array powering industrial machinery and high-draw 3D welding equipment with zero grid export curtailment.",
-        image: "/assets/commercial-solar.jpg",
+        image: "/assets/commercial-solar.webp",
         tag: "Commercial QLD",
       },
     ],
@@ -253,8 +253,8 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDesc:
       "Future-proof your home or business with our EV charger installation. We supply and install reliable electric vehicle charging stations suited to your vehicle and lifestyle.",
     tagline: "Turnkey Fast Level 2 EV Charger Stations with Smart Solar Surplus Charging",
-    heroImage: "/assets/banner/banner-electrical-technician.jpg",
-    cardImage: "/assets/posters/poster-ev.jpg",
+    heroImage: "/assets/banner/banner-electrical-technician.webp",
+    cardImage: "/assets/posters/poster-ev.webp",
     icon: Zap,
     badge: "Certified Level 2 EV Technicians",
     stats: {
@@ -401,7 +401,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "7.4kW Fast Charger",
         details:
           "Neat concealed conduit run through garage cavity, dedicated 32A circuit breaker, and full Tesla smartphone app integration.",
-        image: "/assets/reviews/electrician-mounting-inverter.jpg",
+        image: "/assets/reviews/electrician-mounting-inverter.webp",
         tag: "Residential EV WA",
       },
       {
@@ -411,7 +411,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "22kW Three-Phase",
         details:
           "Fast AC destination charger for dual BYD & Porsche Taycan fleet with smart load management and automatic solar prioritization.",
-        image: "/assets/banner/banner-electrical-technician.jpg",
+        image: "/assets/banner/banner-electrical-technician.webp",
         tag: "High-Speed EV NSW",
       },
       {
@@ -421,7 +421,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "Dual 22kW Station",
         details:
           "Bollard-mounted commercial dual station with RFID card access for staff and smart integration with the company's 40kW rooftop solar system.",
-        image: "/assets/commercial-solar.jpg",
+        image: "/assets/commercial-solar.webp",
         tag: "Commercial EV QLD",
       },
     ],
@@ -433,8 +433,8 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDesc:
       "Enjoy uninterrupted power, reduce your reliance on the grid, and lower your electricity bills.",
     tagline: "Store Excess Daytime Solar to Power Your Nights and Protect Against Blackouts",
-    heroImage: "/assets/banner/banner-battery-storage.jpg",
-    cardImage: "/assets/solutions-battery-visual.png",
+    heroImage: "/assets/banner/banner-battery-storage.webp",
+    cardImage: "/assets/solutions-battery-visual.webp",
     icon: BatteryCharging,
     badge: "Certified Clean Energy Battery Specialists",
     stats: {
@@ -580,7 +580,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "12.8kWh Battery",
         details:
           "Coupled to an existing 10kW solar system, reducing household grid reliance to under 8% year-round with dedicated essential blackout circuits.",
-        image: "/assets/reviews/battery-storage-garage.jpg",
+        image: "/assets/reviews/battery-storage-garage.webp",
         tag: "Residential Battery WA",
       },
       {
@@ -590,7 +590,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "27kWh Total Storage",
         details:
           "Whole-home backup system powering 3-phase ducted air-con and EV charging through severe bushland grid outages.",
-        image: "/assets/banner/banner-battery-storage.jpg",
+        image: "/assets/banner/banner-battery-storage.webp",
         tag: "Whole-Home Backup NSW",
       },
       {
@@ -600,7 +600,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "19.2kWh Modular Battery",
         details:
           "Commercial energy storage system performing peak-demand shaving during high afternoon commercial electricity tariff spikes.",
-        image: "/assets/banner/banner-13kw-battery.jpg",
+        image: "/assets/banner/banner-13kw-battery.webp",
         tag: "Commercial Battery QLD",
       },
     ],
@@ -613,8 +613,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       "From small repairs to complete home rewiring, we handle all types of domestic electrical needs with precision and care.",
     tagline:
       "Licensed Master Electricians for All Residential Installations, Repairs & Safety Upgrades",
-    heroImage: "/assets/banner/banner-electrical-technician.jpg",
-    cardImage: "/assets/reviews/smiling-solar-electrician.jpg",
+    heroImage: "/assets/banner/banner-electrical-technician.webp",
+    cardImage: "/assets/reviews/smiling-solar-electrician.webp",
     icon: Home,
     badge: "Licensed Master Electricians",
     stats: {
@@ -759,7 +759,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "38 LED Downlights + Smart Dimmers",
         details:
           "Complete architectural lighting redesign with warm dimmable downlights, feature kitchen pendant wiring, and automated garden pathway illumination.",
-        image: "/assets/reviews/family-solar-home.jpg",
+        image: "/assets/reviews/family-solar-home.webp",
         tag: "Residential Lighting WA",
       },
       {
@@ -769,7 +769,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "Full AS 3786 Compliance",
         details:
           "Installed 6 interconnected photoelectric smoke alarms across two storeys and ran a dedicated 32A sub-circuit for a 7.4kW induction cooktop.",
-        image: "/assets/reviews/smiling-solar-electrician.jpg",
+        image: "/assets/reviews/smiling-solar-electrician.webp",
         tag: "Domestic Electrical NSW",
       },
       {
@@ -779,7 +779,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "12-Pole Sub-Board",
         details:
           "Complete electrical fit-out for newly constructed backyard secondary dwelling, including private sub-meter, RCBO switches, and split-system AC isolators.",
-        image: "/assets/reviews/electrician-wiring-switchboard.jpg",
+        image: "/assets/reviews/electrician-wiring-switchboard.webp",
         tag: "Residential Fit-Out QLD",
       },
     ],
@@ -792,8 +792,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       "We install and maintain communication systems including phone lines, data cabling, and networking solutions to keep you connected.",
     tagline:
       "ACMA-Licensed Structured Data Cabling, Wi-Fi Access Points & Commercial Communications",
-    heroImage: "/assets/commercial-solar.jpg",
-    cardImage: "/assets/reviews/electrician-testing-equipment.jpg",
+    heroImage: "/assets/commercial-solar.webp",
+    cardImage: "/assets/reviews/electrician-testing-equipment.webp",
     icon: Network,
     badge: "ACMA Licensed Master Cablers",
     stats: {
@@ -939,7 +939,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "48 Cat6A Ports + 18RU Rack",
         details:
           "Complete structured cabling installation with high-density patch panels, PoE VoIP phone integration, and Fluke DTX certification across all lines.",
-        image: "/assets/commercial-solar.jpg",
+        image: "/assets/commercial-solar.webp",
         tag: "Commercial Data WA",
       },
       {
@@ -949,7 +949,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "5 x Ceiling UniFi APs",
         details:
           "High-speed residential wireless network covering a 3-level residence and detached poolside cabana with zero signal loss or latency drops.",
-        image: "/assets/reviews/electrician-testing-equipment.jpg",
+        image: "/assets/reviews/electrician-testing-equipment.webp",
         tag: "UniFi Wireless NSW",
       },
       {
@@ -959,7 +959,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "24-Port Server Rack",
         details:
           "Installed high-speed data cabling for commercial medical suites, including secure video door access control and isolated patient guest Wi-Fi networks.",
-        image: "/assets/banner/banner-enterprise-solar.jpg",
+        image: "/assets/banner/banner-enterprise-solar.webp",
         tag: "Commercial Comms QLD",
       },
     ],
@@ -971,8 +971,8 @@ export const SERVICES_DATA: ServiceItem[] = [
     shortDesc:
       "Upgrade your switchboard to meet current safety standards, reduce fire risk, and support modern appliances and solar systems.",
     tagline: "Modern RCD Safety Switches, Surge Protection & AS/NZS 3000 Fire-Prevention Upgrades",
-    heroImage: "/assets/banner/banner-enterprise-solar.jpg",
-    cardImage: "/assets/reviews/electrician-wiring-switchboard.jpg",
+    heroImage: "/assets/banner/banner-enterprise-solar.webp",
+    cardImage: "/assets/reviews/electrician-wiring-switchboard.webp",
     icon: ShieldCheck,
     badge: "Master Electrician Safety Experts",
     stats: {
@@ -1119,7 +1119,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "24-Pole Solar Ready",
         details:
           "Replaced hazardous 1970s ceramic fuse box with modern flame-retardant Hager RCBO switchboard, surge protector, and ready terminal for 10kW solar system.",
-        image: "/assets/reviews/electrician-wiring-switchboard.jpg",
+        image: "/assets/reviews/electrician-wiring-switchboard.webp",
         tag: "Residential Upgrade WA",
       },
       {
@@ -1129,7 +1129,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "36-Pole Three-Phase",
         details:
           "Complete commercial upgrade for an industrial retail showroom, installing heavy-duty surge arresters, dual EV charging breakers, and emergency stop circuits.",
-        image: "/assets/banner/banner-enterprise-solar.jpg",
+        image: "/assets/banner/banner-enterprise-solar.webp",
         tag: "Commercial Switchboard NSW",
       },
       {
@@ -1139,7 +1139,7 @@ export const SERVICES_DATA: ServiceItem[] = [
         capacity: "18-Pole Residential",
         details:
           "Safe licensed removal of deteriorated asbestos backing board, followed by installation of weather-tight IP65 external switchboard with individual RCBO protection.",
-        image: "/assets/reviews/smiling-solar-electrician.jpg",
+        image: "/assets/reviews/smiling-solar-electrician.webp",
         tag: "Safety Modernisation QLD",
       },
     ],
