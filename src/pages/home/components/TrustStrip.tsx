@@ -9,7 +9,7 @@ import {
   Smartphone,
   Sparkles,
 } from "lucide-react";
-import { Marquee } from "../../../components/common/Marquee";
+import { Marquee } from "@/components/ui";
 
 const TRUST_ITEMS = [
   {

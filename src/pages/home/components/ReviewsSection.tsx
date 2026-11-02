@@ -1,23 +1,20 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import {
-  motion,
-  type MotionValue,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { motion, type MotionValue, useScroll, useTransform } from "motion/react";
 import { Star, CheckCircle2, ArrowRight } from "lucide-react";
 import { useReveal } from "@/hooks/useReveal";
 import { useInquiryModal } from "../../../context";
 
-// Real customer images from src/assets/CUSTOMER
-import customerImg1 from "@/assets/CUSTOMER/360_F_673626923_VgJavEOXpVLdVce0oLCiuQmvgNkGal2S.jpg";
-import customerImg2 from "@/assets/CUSTOMER/images.jfif";
-import customerImg3 from "@/assets/CUSTOMER/images (1).jfif";
-import customerImg4 from "@/assets/CUSTOMER/images (2).jfif";
-import customerImg5 from "@/assets/CUSTOMER/images (3).jfif";
-import customerImg6 from "@/assets/CUSTOMER/images (4).jfif";
-import customerImg7 from "@/assets/CUSTOMER/mature-man-and-portrait-with-arms-crossed-in-nature-for-morning-walk-relax-or-confidence-outdoor-person-face-and-happy-in-forest-with-wellness-holiday-or-explore-aust.jpg";
-import customerImg8 from "@/assets/CUSTOMER/reporter-stands-smiling-camera-beautiful-coastal-area-reporting-environmental-issues-affecting-region-with-ocean-cliffs-background_697211-29141.avif";
+// Real customer images from central assets
+import {
+  customer1 as customerImg1,
+  customer2 as customerImg2,
+  customer3 as customerImg3,
+  customer4 as customerImg4,
+  customer5 as customerImg5,
+  customer6 as customerImg6,
+  customer7 as customerImg7,
+  customer8 as customerImg8,
+} from "@/assets";
 
 export interface ReviewItem {
   icon?: ReactNode;
@@ -91,7 +88,7 @@ const CUSTOMER_REVIEWS: ReviewItem[] = [
   {
     title: "“Power Bill Dropped from $890 to Under $40!”",
     description:
-      "We were skeptical about the 80% bill reduction claims, but Skye Electrical & Solar delivered beyond our expectations. In our very first quarter with the 10.4kW system, our bill plummeted to almost zero. The crew was punctual, friendly, and left our property spotless.",
+      "We were skeptical about the 80% bill reduction claims, but Sky Electrical & Solar delivered beyond our expectations. In our very first quarter with the 10.4kW system, our bill plummeted to almost zero. The crew was punctual, friendly, and left our property spotless.",
     author: "Mark & Sarah T. • Caversham, WA",
     rating: 5,
     image: customerImg1,
@@ -151,7 +148,7 @@ const CUSTOMER_REVIEWS: ReviewItem[] = [
   {
     title: "“Full Switchboard Upgrade & EV Charger Integrated”",
     description:
-      "Because Skye employs in-house licensed master electricians, they modernized our switchboard with RCD safety switches and installed our smart EV charger on the same day. Incredible craftsmanship.",
+      "Because Sky employs in-house licensed master electricians, they modernized our switchboard with RCD safety switches and installed our smart EV charger on the same day. Incredible craftsmanship.",
     author: "George & Anita N. • The Hills, NSW",
     rating: 5,
     image: customerImg7,
@@ -161,7 +158,7 @@ const CUSTOMER_REVIEWS: ReviewItem[] = [
   {
     title: "“Rigorous Safety Testing & Government STC Rebates”",
     description:
-      "Skye Electrical & Solar deducted our Clean Energy Regulator STC rebates directly upfront on the invoice—no complicated paperwork for us. The technician performed thorough export meter testing before sign-off.",
+      "Sky Electrical & Solar deducted our Clean Energy Regulator STC rebates directly upfront on the invoice—no complicated paperwork for us. The technician performed thorough export meter testing before sign-off.",
     author: "Marcus & Rachel B. • Swan Valley, WA",
     rating: 5,
     image: customerImg8,
@@ -171,7 +168,7 @@ const CUSTOMER_REVIEWS: ReviewItem[] = [
   {
     title: "“Full Rooftop Solar Array & 25-Year Warranty”",
     description:
-      "They provided photos of our finished installation showing the symmetrical panel layout. Knowing the panels carry a 25-year performance warranty and a 10-year workmanship guarantee made Skye the obvious choice.",
+      "They provided photos of our finished installation showing the symmetrical panel layout. Knowing the panels carry a 25-year performance warranty and a 10-year workmanship guarantee made Sky the obvious choice.",
     author: "Timothy & Karen S. • Moreton Bay, QLD",
     rating: 5,
     image: customerImg1,
@@ -207,8 +204,7 @@ const Column = ({ items, y, className = "" }: ColumnProps) => {
                   loading="lazy"
                   className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-106"
                   onError={(e) => {
-                    e.currentTarget.src =
-                      "/assets/reviews/family-solar-home.jpg";
+                    e.currentTarget.src = "/assets/reviews/family-solar-home.jpg";
                   }}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/25 to-transparent pointer-events-none" />
@@ -218,14 +214,9 @@ const Column = ({ items, y, className = "" }: ColumnProps) => {
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-0.5 text-amber-400">
                   {[...Array(5)].map((_, starIdx) => (
-                    <Star
-                      key={starIdx}
-                      className="w-3.5 h-3.5 fill-amber-400 text-amber-400"
-                    />
+                    <Star key={starIdx} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                   ))}
-                  <span className="ml-1 text-[11px] font-bold text-slate-700">
-                    5.0
-                  </span>
+                  <span className="ml-1 text-[11px] font-bold text-slate-700">5.0</span>
                 </div>
               </div>
 
@@ -242,9 +233,7 @@ const Column = ({ items, y, className = "" }: ColumnProps) => {
                 <div className="h-6 w-6 rounded-full bg-linear-to-br from-amber-500 to-orange-500 text-white font-bold text-[10px] flex items-center justify-center shrink-0 shadow-2xs">
                   {item.author.charAt(0)}
                 </div>
-                <span className="font-bold text-slate-800 truncate">
-                  {item.author}
-                </span>
+                <span className="font-bold text-slate-800 truncate">{item.author}</span>
               </div>
               <span className="text-emerald-700 flex items-center gap-1 font-bold shrink-0">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
@@ -258,11 +247,7 @@ const Column = ({ items, y, className = "" }: ColumnProps) => {
   );
 };
 
-export function ReviewsSection({
-  reviews = CUSTOMER_REVIEWS,
-}: {
-  reviews?: ReviewItem[];
-}) {
+export function ReviewsSection({ reviews = CUSTOMER_REVIEWS }: { reviews?: ReviewItem[] }) {
   const { openInquiryModal } = useInquiryModal();
   const { ref: sectionRef, visible: isVisible } = useReveal();
   const gallery = useRef<HTMLDivElement>(null);
@@ -273,9 +258,7 @@ export function ReviewsSection({
     offset: ["start end", "end start"],
   });
 
-  const h =
-    dimension.height ||
-    (typeof window !== "undefined" ? window.innerHeight : 800);
+  const h = dimension.height || (typeof window !== "undefined" ? window.innerHeight : 800);
   const y = useTransform(scrollYProgress, [0, 1], [0, h * 1.4]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, h * 2.1]);
   const y3 = useTransform(scrollYProgress, [0, 1], [0, h * 0.9]);
@@ -326,12 +309,12 @@ export function ReviewsSection({
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold tracking-tight text-slate-900 leading-[1.15]">
             What Homeowners Say About <br />
             <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
-              Skye Electrical & Solar
+              Sky Electrical & Solar
             </span>
           </h2>
           <p className="mt-3.5 text-base sm:text-lg text-slate-600 max-w-4xl mx-auto font-medium">
-            Real client experiences, genuine job-site photos, and verified power
-            bill savings from homeowners across WA, NSW, and QLD.
+            Real client experiences, genuine job-site photos, and verified power bill savings from
+            homeowners across WA, NSW, and QLD.
           </p>
         </div>
       </div>
@@ -348,18 +331,10 @@ export function ReviewsSection({
         <Column items={col2} y={y2} className="top-[-55%] w-1/2 lg:w-1/4" />
 
         {/* Column 3 (desktop) */}
-        <Column
-          items={col3}
-          y={y3}
-          className="top-[-25%] hidden lg:flex lg:w-1/4"
-        />
+        <Column items={col3} y={y3} className="top-[-25%] hidden lg:flex lg:w-1/4" />
 
         {/* Column 4 (desktop) */}
-        <Column
-          items={col4}
-          y={y4}
-          className="top-[-45%] hidden lg:flex lg:w-1/4"
-        />
+        <Column items={col4} y={y4} className="top-[-45%] hidden lg:flex lg:w-1/4" />
 
         {/* Top Gradient Fade Mask */}
         <div className="absolute top-0 left-0 right-0 h-28 sm:h-36 bg-linear-to-b from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />

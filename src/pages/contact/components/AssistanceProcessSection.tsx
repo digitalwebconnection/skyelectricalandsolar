@@ -9,12 +9,11 @@ import {
   CheckCircle2,
   Building2,
   ArrowRight,
-  Sparkles,
   Radio,
 } from "lucide-react";
 import { CONTACT_INFO } from "../../../constants";
 import { useInquiryModal } from "../../../context";
-import { BorderBeam } from "../../../components/common/BorderBeam";
+import { BorderBeam } from "@/components/ui";
 
 const STEPS = [
   {
@@ -25,8 +24,8 @@ const STEPS = [
     icon: Clock,
     color: "from-amber-500 to-orange-500",
     badgeBg: "bg-amber-50 text-amber-900 border-amber-200",
-    glowBg: "bg-amber-400/25",
-    hoverShadow: "hover:shadow-[0_22px_45px_-12px_rgba(245,158,11,0.25)] hover:border-amber-400",
+    glowBg: "bg-amber-500/20",
+    hoverShadow: "hover:shadow-[0_25px_50px_-12px_rgba(245,158,11,0.35)] hover:border-amber-400",
     bgImage: "/assets/reviews/smiling-solar-electrician.jpg",
   },
   {
@@ -37,8 +36,8 @@ const STEPS = [
     icon: Compass,
     color: "from-orange-500 to-amber-600",
     badgeBg: "bg-orange-50 text-orange-900 border-orange-200",
-    glowBg: "bg-orange-400/25",
-    hoverShadow: "hover:shadow-[0_22px_45px_-12px_rgba(234,88,12,0.25)] hover:border-orange-400",
+    glowBg: "bg-orange-500/20",
+    hoverShadow: "hover:shadow-[0_25px_50px_-12px_rgba(234,88,12,0.35)] hover:border-orange-400",
     bgImage: "/assets/reviews/residential-aerial-array.jpg",
   },
   {
@@ -49,8 +48,8 @@ const STEPS = [
     icon: FileCheck2,
     color: "from-amber-600 to-emerald-600",
     badgeBg: "bg-emerald-50 text-emerald-900 border-emerald-200",
-    glowBg: "bg-emerald-400/25",
-    hoverShadow: "hover:shadow-[0_22px_45px_-12px_rgba(16,185,129,0.25)] hover:border-emerald-400",
+    glowBg: "bg-emerald-500/20",
+    hoverShadow: "hover:shadow-[0_25px_50px_-12px_rgba(16,185,129,0.35)] hover:border-emerald-400",
     bgImage: "/assets/reviews/family-solar-home.jpg",
   },
   {
@@ -61,8 +60,8 @@ const STEPS = [
     icon: Wrench,
     color: "from-emerald-600 to-teal-600",
     badgeBg: "bg-teal-50 text-teal-900 border-teal-200",
-    glowBg: "bg-teal-400/25",
-    hoverShadow: "hover:shadow-[0_22px_45px_-12px_rgba(20,184,166,0.25)] hover:border-teal-400",
+    glowBg: "bg-teal-500/20",
+    hoverShadow: "hover:shadow-[0_25px_50px_-12px_rgba(20,184,166,0.35)] hover:border-teal-400",
     bgImage: "/assets/reviews/rooftop-solar-drill.jpg",
   },
 ];
@@ -71,7 +70,7 @@ export function AssistanceProcessSection() {
   const { openInquiryModal } = useInquiryModal();
 
   return (
-    <section className="relative py-20 lg:py-28 bg-[#faf8f5] text-slate-900 overflow-hidden border-b border-slate-200/80">
+    <section className="relative py-8 lg:py-14 bg-[#faf8f5] text-slate-900 overflow-hidden border-b border-slate-200/80">
       {/* ================= HIGH-TECH BACKGROUND ACCENTS ================= */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
         {/* Ambient solar energy radiance */}
@@ -83,20 +82,14 @@ export function AssistanceProcessSection() {
         <div
           className="absolute inset-0 opacity-30"
           style={{
-            maskImage:
-              "radial-gradient(ellipse 90% 70% at 50% 50%, black 25%, transparent 80%)",
+            maskImage: "radial-gradient(ellipse 90% 70% at 50% 50%, black 25%, transparent 80%)",
             WebkitMaskImage:
               "radial-gradient(ellipse 90% 70% at 50% 50%, black 25%, transparent 80%)",
           }}
         >
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <pattern
-                id="process-wafer-grid"
-                width="56"
-                height="56"
-                patternUnits="userSpaceOnUse"
-              >
+              <pattern id="process-wafer-grid" width="56" height="56" patternUnits="userSpaceOnUse">
                 <path
                   d="M 56 0 L 0 0 0 56"
                   fill="none"
@@ -120,25 +113,8 @@ export function AssistanceProcessSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
         {/* ================= SECTION HEADER ================= */}
-        <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-950 text-xs sm:text-sm font-semibold mb-4 shadow-xs"
-          >
-            <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-            <span className="font-bold">Clear &amp; Rapid Turnaround</span>
-            <span className="text-slate-300">•</span>
-            <span className="text-amber-700 font-semibold flex items-center gap-1">
-              <Sparkles className="h-3.5 w-3.5 text-amber-500" />
-              Zero Waiting Game
-            </span>
-          </motion.div>
-
+        <div className="text-center max-w-5xl mx-auto mb-16 lg:mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -146,7 +122,7 @@ export function AssistanceProcessSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight"
           >
-            What Happens After{" "}
+            What Happens After <br />
             <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
               You Contact Us?
             </span>
@@ -157,16 +133,15 @@ export function AssistanceProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal"
+            className="mt-4 text-base sm:text-lg text-slate-900 leading-relaxed max-w-5xl mx-auto font-normal"
           >
-            We eliminate the waiting game. From your first call or digital quote
-            submission to energizing your solar array, here is our 4-step process.
+            We eliminate the waiting game. From your first call or digital quote submission to
+            energizing your solar array, here is our 4-step process.
           </motion.p>
         </div>
 
         {/* ================= 4-STEP CONNECTED PROCESS ROADMAP ================= */}
         <div className="relative mb-16 lg:mb-20">
-          
           {/* Animated Connecting Circuit Line (Desktop) */}
           <div className="hidden lg:block absolute top-20 inset-x-16 h-1 pointer-events-none z-0">
             <svg className="w-full h-4 overflow-visible" xmlns="http://www.w3.org/2000/svg">
@@ -193,44 +168,41 @@ export function AssistanceProcessSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`group relative rounded-3xl bg-white border border-slate-200/90 p-7 shadow-lg shadow-slate-100 ${item.hoverShadow} hover:-translate-y-2 transition-all duration-500 flex flex-col justify-between overflow-hidden cursor-pointer`}
+                  className={`group relative rounded-xl bg-white border border-slate-200/90 p-7 shadow-lg shadow-slate-100 ${item.hoverShadow} hover:-translate-y-2.5 transition-all duration-500 flex flex-col justify-between overflow-hidden cursor-pointer`}
                 >
-                  {/* ================= REAL BACKGROUND IMAGE REVEAL ON HOVER ================= */}
+                  {/* ================= FULL PROPER VISIBLE HOVER BACKGROUND IMAGE ================= */}
                   <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
                     <img
                       src={item.bgImage}
-                      alt=""
-                      className="w-full h-full object-cover object-center filter brightness-95 contrast-110 opacity-0 scale-100 group-hover:opacity-30 group-hover:scale-110 transition-all duration-700 ease-out"
+                      alt={item.title}
+                      className="w-full h-full object-cover object-center filter brightness-[0.9] contrast-[1.05] opacity-0 scale-100 group-hover:opacity-100 group-hover:scale-108 transition-all duration-600 ease-out"
                       loading="lazy"
                     />
-                    {/* Gradient overlay to ensure text stays crystal clear on hover */}
-                    <div className="absolute inset-0 bg-linear-to-b from-white/95 via-white/85 to-white/95 group-hover:from-white/75 group-hover:via-white/70 group-hover:to-white/85 transition-all duration-500" />
+                    {/* Deep Cinematic Gradient Overlay: dark at bottom for text, transparent at top to clearly showcase the person/installation */}
+                    <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/75 to-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
 
-                  {/* Luminous Radial Flare in Card Background (Expands on Hover) */}
+                  {/* Luminous Radial Flare in Card Background */}
                   <div
                     className={`pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full ${item.glowBg} blur-2xl opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-700 ease-out z-0`}
                   />
 
                   {/* Diagonal 45-degree Light Sheen Sweep */}
-                  <div className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out bg-linear-to-r from-transparent via-amber-200/25 to-transparent z-0" />
-
-                  {/* Radiant Top Accent Line that broadens & glows on hover */}
-                  <div className="absolute top-0 left-6 right-6 h-1 rounded-t-full bg-linear-to-r from-amber-500 to-orange-500 opacity-70 group-hover:opacity-100 group-hover:left-3 group-hover:right-3 group-hover:h-1.5 transition-all duration-300 z-10" />
+                  <div className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out bg-linear-to-r from-transparent via-white/20 to-transparent z-0" />
 
                   {/* Card Content Container */}
                   <div className="relative z-10">
                     {/* Top Step Number & Time Badge */}
                     <div className="flex items-center justify-between mb-5">
                       <div className="flex items-center gap-2">
-                        <span className="text-3xl font-black text-slate-300 group-hover:text-amber-500 transition-colors font-mono tracking-tight">
+                        <span className="text-3xl font-black text-slate-300 group-hover:text-amber-400 transition-colors duration-300 font-mono tracking-tight drop-shadow-sm">
                           {item.step}
                         </span>
                         <span className="h-1.5 w-1.5 rounded-full bg-amber-400 opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all" />
                       </div>
 
                       <span
-                        className={`px-3 py-1 rounded-full text-xs font-bold border shadow-2xs group-hover:scale-105 transition-transform ${item.badgeBg}`}
+                        className={`px-3 py-1 rounded-full text-xs font-bold border shadow-2xs group-hover:bg-amber-500 group-hover:text-slate-950 group-hover:border-amber-400 group-hover:shadow-md transition-all duration-300 ${item.badgeBg}`}
                       >
                         {item.time}
                       </span>
@@ -238,26 +210,26 @@ export function AssistanceProcessSection() {
 
                     {/* Gradient Icon Badge with Hover Rotation & Scale */}
                     <div
-                      className={`h-13 w-13 rounded-2xl bg-linear-to-br ${item.color} flex items-center justify-center text-white shadow-md shadow-orange-500/20 mb-5 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg group-hover:shadow-orange-500/30 transition-all duration-300`}
+                      className={`h-13 w-13 rounded-2xl bg-linear-to-br ${item.color} flex items-center justify-center text-white shadow-md shadow-orange-500/20 mb-5 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-xl group-hover:shadow-orange-500/40 transition-all duration-300`}
                     >
                       <Icon className="h-6 w-6" />
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-lg font-black text-slate-900 tracking-tight mb-2.5 group-hover:text-amber-600 transition-colors">
+                    <h3 className="text-lg font-black text-slate-900 group-hover:text-white transition-colors duration-300 tracking-tight mb-2.5 drop-shadow-sm">
                       {item.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-xs text-slate-600 leading-relaxed font-normal">
+                    <p className="text-xs text-slate-600 group-hover:text-slate-200 transition-colors duration-300 leading-relaxed font-normal">
                       {item.desc}
                     </p>
                   </div>
 
                   {/* Guaranteed SLA Footer */}
-                  <div className="relative z-10 mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-600 group-hover:text-orange-600 transition-colors">
+                  <div className="relative z-10 mt-6 pt-4 border-t border-slate-100 group-hover:border-white/20 transition-colors duration-300 flex items-center justify-between text-xs font-bold text-amber-600 group-hover:text-amber-300">
                     <span className="flex items-center gap-1.5">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
+                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 group-hover:text-emerald-400 transition-colors" />
                       <span>Guaranteed SLA</span>
                     </span>
                     <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-1.5 transition-transform" />
@@ -270,48 +242,47 @@ export function AssistanceProcessSection() {
 
         {/* ================= SPECIALIZED CHANNEL CALLOUT SHOWCASE ================= */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-          
           {/* Card 1: Urgent Electrical Support */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="group relative rounded-3xl border border-amber-300/80 bg-linear-to-br from-amber-50/90 via-orange-50/60 to-white p-8 sm:p-9 flex flex-col justify-between shadow-xl shadow-orange-500/5 hover:border-amber-400 hover:shadow-[0_20px_45px_-12px_rgba(245,158,11,0.22)] hover:-translate-y-1.5 transition-all duration-400 overflow-hidden cursor-pointer"
+            className="group relative rounded-xl border border-amber-300/80 bg-linear-to-br from-amber-50/90 via-orange-50/60 to-white p-8 sm:p-9 flex flex-col justify-between shadow-xl shadow-orange-500/5 hover:border-amber-400 hover:shadow-[0_25px_50px_-12px_rgba(245,158,11,0.3)] hover:-translate-y-2 transition-all duration-400 overflow-hidden cursor-pointer"
           >
             {/* Background Image: Electrician Wiring Switchboard Reveal on Hover */}
             <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
               <img
                 src="/assets/reviews/electrician-wiring-switchboard.jpg"
-                alt=""
-                className="w-full h-full object-cover object-center filter brightness-95 contrast-110 opacity-0 scale-100 group-hover:opacity-25 group-hover:scale-108 transition-all duration-700 ease-out"
+                alt="Urgent Electrical Dispatch"
+                className="w-full h-full object-cover object-center filter brightness-[0.85] contrast-[1.1] opacity-0 scale-100 group-hover:opacity-100 group-hover:scale-108 transition-all duration-600 ease-out"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-linear-to-br from-amber-50/90 via-orange-50/70 to-white/90 group-hover:from-amber-50/75 group-hover:via-orange-50/60 group-hover:to-white/80 transition-all duration-500" />
+              <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/75 to-slate-950/35 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
 
             {/* Background Hover Radial Flare */}
             <div className="pointer-events-none absolute -top-16 -right-16 w-56 h-56 rounded-full bg-orange-400/20 blur-3xl opacity-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-700 ease-out z-0" />
-            <div className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out bg-linear-to-r from-transparent via-white/50 to-transparent z-0" />
+            <div className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out bg-linear-to-r from-transparent via-white/20 to-transparent z-0" />
 
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-100 border border-orange-200 text-orange-900 text-xs font-bold uppercase tracking-wider mb-4 shadow-2xs">
-                <Zap className="h-3.5 w-3.5 text-orange-600" />
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-100 border border-orange-200 text-orange-900 group-hover:bg-orange-500 group-hover:text-white group-hover:border-orange-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-2xs transition-all duration-300">
+                <Zap className="h-3.5 w-3.5 text-orange-600 group-hover:text-white transition-colors" />
                 <span>Urgent Electrical Callout</span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight mb-3">
+              <h3 className="text-2xl sm:text-3xl font-black text-slate-950 group-hover:text-white transition-colors duration-300 tracking-tight mb-3">
                 Switchboard Fault or Solar Inverter Tripping?
               </h3>
 
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 font-medium">
-                Our A-Grade licensed master electricians are on standby for
-                emergency repairs, circuit breaker trips, blown isolators, and
-                safety switch compliance across WA, NSW, and QLD.
+              <p className="text-xs sm:text-sm text-slate-600 group-hover:text-slate-200 transition-colors duration-300 leading-relaxed mb-6 font-medium">
+                Our A-Grade licensed master electricians are on standby for emergency repairs,
+                circuit breaker trips, blown isolators, and safety switch compliance across WA, NSW,
+                and QLD.
               </p>
             </div>
 
-            <div className="relative z-10 pt-4 border-t border-amber-200/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="relative z-10 pt-4 border-t border-amber-200/60 group-hover:border-white/20 transition-colors duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <a
                 href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, "")}`}
                 className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl bg-linear-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white font-black text-sm shadow-md shadow-orange-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
@@ -320,7 +291,7 @@ export function AssistanceProcessSection() {
                 <span>Call Emergency Line: {CONTACT_INFO.phone1}</span>
               </a>
 
-              <div className="flex items-center gap-2 text-xs text-slate-500 font-semibold">
+              <div className="flex items-center gap-2 text-xs text-slate-500 group-hover:text-slate-300 font-semibold transition-colors duration-300">
                 <Radio className="h-3.5 w-3.5 text-emerald-500 animate-pulse" />
                 <span>Fast dispatch available</span>
               </div>
@@ -333,17 +304,17 @@ export function AssistanceProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="group relative rounded-3xl border border-slate-800 bg-slate-950 text-white p-8 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden hover:border-amber-400/60 hover:shadow-[0_20px_50px_-12px_rgba(245,158,11,0.25)] hover:-translate-y-1.5 transition-all duration-400 cursor-pointer"
+            className="group relative rounded-xl border border-slate-800 bg-slate-950 text-white p-8 sm:p-9 flex flex-col justify-between shadow-2xl overflow-hidden hover:border-amber-400/70 hover:shadow-[0_25px_55px_-12px_rgba(245,158,11,0.35)] hover:-translate-y-2 transition-all duration-400 cursor-pointer"
           >
             {/* Background Image: Commercial Solar Arrays Reveal on Hover */}
             <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
               <img
                 src="/assets/commercial-solar.jpg"
-                alt=""
-                className="w-full h-full object-cover object-center filter brightness-75 contrast-125 opacity-0 scale-100 group-hover:opacity-30 group-hover:scale-108 transition-all duration-700 ease-out"
+                alt="Commercial Solar Installation"
+                className="w-full h-full object-cover object-center filter brightness-[0.8] contrast-[1.15] opacity-0 scale-100 group-hover:opacity-100 group-hover:scale-108 transition-all duration-600 ease-out"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-linear-to-b from-slate-950/90 via-slate-950/80 to-slate-950/95 group-hover:from-slate-950/70 group-hover:via-slate-950/60 group-hover:to-slate-950/80 transition-all duration-500" />
+              <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/75 to-slate-950/35 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
 
             {/* Background Hover Celestial Nebula Glow */}
@@ -359,7 +330,7 @@ export function AssistanceProcessSection() {
             />
 
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-amber-400 text-xs font-bold uppercase tracking-wider mb-4 shadow-sm group-hover:bg-amber-500 group-hover:text-slate-950 group-hover:border-amber-400 transition-all duration-300">
                 <Building2 className="h-3.5 w-3.5" />
                 <span>Commercial &amp; Enterprise</span>
               </div>
@@ -368,14 +339,13 @@ export function AssistanceProcessSection() {
                 Commercial Solar &amp; Microgrids (30kW – 250kW+)
               </h3>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-6 font-normal">
-                Looking for industrial rooftop arrays, peak-demand shaving
-                batteries, or commercial EV charging hubs? Speak directly with
-                our lead commercial electrical engineers.
+              <p className="text-xs sm:text-sm text-slate-300 group-hover:text-slate-100 transition-colors duration-300 leading-relaxed mb-6 font-normal">
+                Looking for industrial rooftop arrays, peak-demand shaving batteries, or commercial
+                EV charging hubs? Speak directly with our lead commercial electrical engineers.
               </p>
             </div>
 
-            <div className="relative z-10 pt-4 border-t border-slate-800/90 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="relative z-10 pt-4 border-t border-slate-800/90 group-hover:border-white/20 transition-colors duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <button
                 type="button"
                 onClick={() => openInquiryModal()}
@@ -393,9 +363,7 @@ export function AssistanceProcessSection() {
               </a>
             </div>
           </motion.div>
-
         </div>
-
       </div>
     </section>
   );

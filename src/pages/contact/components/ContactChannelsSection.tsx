@@ -1,32 +1,422 @@
-import { useState } from "react";
-import { motion } from "motion/react";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Copy,
-  Check,
-  ExternalLink,
-  Clock,
-  Zap,
-  ArrowRight,
-  Sparkles,
-  Radio,
-} from "lucide-react";
-import { STATE_HUBS, CONTACT_INFO } from "../../../constants";
-import { useInquiryModal } from "../../../context";
-import { BorderBeam } from "../../../components/common/BorderBeam";
+import React, { useState } from "react";
+import { CONTACT_INFO } from "../../../constants";
 
-export function ContactChannelsSection() {
-  const { openInquiryModal } = useInquiryModal();
-  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+interface IconProps {
+  name:
+    | "pin"
+    | "clock"
+    | "copy"
+    | "external"
+    | "phone"
+    | "mail"
+    | "arrow"
+    | "zap"
+    | "sun"
+    | "check"
+    | "chevron";
+  size?: number;
+  className?: string;
+}
 
-  const handleCopy = (text: string, key: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedKey(key);
-    setTimeout(() => setCopiedKey(null), 2000);
+const Icon: React.FC<IconProps> = ({ name, size = 20, className = "" }) => {
+  const common = {
+    width: size,
+    height: size,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.8,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    className,
+    "aria-hidden": true,
   };
 
+  const icons: Record<IconProps["name"], React.ReactNode> = {
+    pin: (
+      <>
+        <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+        <circle cx="12" cy="10" r="2.5" />
+      </>
+    ),
+    clock: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+      </>
+    ),
+    copy: (
+      <>
+        <rect x="8" y="8" width="12" height="13" rx="2" />
+        <path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h2" />
+      </>
+    ),
+    external: (
+      <>
+        <path d="M14 4h6v6" />
+        <path d="m20 4-9 9" />
+        <path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" />
+      </>
+    ),
+    phone: (
+      <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z" />
+    ),
+    mail: (
+      <>
+        <rect x="3" y="5" width="18" height="14" rx="2" />
+        <path d="m3 7 9 6 9-6" />
+      </>
+    ),
+    arrow: (
+      <>
+        <path d="M5 12h14" />
+        <path d="m13 6 6 6-6 6" />
+      </>
+    ),
+    zap: <path d="m13 2-3 9h7L9 22l2-9H5l8-11Z" />,
+    sun: (
+      <>
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+      </>
+    ),
+    check: <path d="m5 12 4 4L19 6" />,
+    chevron: <path d="m9 18 6-6-6-6" />,
+  };
+
+  return <svg {...common}>{icons[name]}</svg>;
+};
+
+interface LocationItem {
+  number: string;
+  state: string;
+  shortHub: string;
+  address: string;
+  phone: string;
+  hours: string;
+  theme: "green" | "blue" | "orange";
+  image: string;
+}
+
+const locations: LocationItem[] = [
+  {
+    number: "01",
+    state: "NSW STATE HUB",
+    shortHub: "NSW",
+    address: "114 Burns Road, Kellyville NSW 2155",
+    phone: "0489 939 658",
+    hours: "Mon – Sat: 7:00 AM – 6:00 PM (AEST)",
+    theme: "green",
+    image:
+      "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1000&q=85",
+  },
+  {
+    number: "02",
+    state: "VIC STATE HUB",
+    shortHub: "VIC",
+    address: "114 Bararossa drive Caversham WA 6055",
+    phone: "0430 015 017",
+    hours: "Mon – Sat: 7:00 AM – 6:00 PM (AWST)",
+    theme: "blue",
+    image:
+      "https://images.unsplash.com/photo-1514395462725-fb4566210144?auto=format&fit=crop&w=1000&q=85",
+  },
+  {
+    number: "03",
+    state: "QLD STATE HUB",
+    shortHub: "QLD",
+    address: "17 Western Avenue, Chermside, QLD 4032",
+    phone: "0430 015 017",
+    hours: "Mon – Sat: 7:00 AM – 6:00 PM (AEST)",
+    theme: "orange",
+    image:
+      "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1000&q=85",
+  },
+];
+
+const themeStyles = {
+  green: {
+    num: "bg-[#0e6d45]",
+    state: "text-[#0e6d45]",
+    underline: "bg-[#0e6d45]",
+    pin: "text-[#0e6d45]",
+    outlineBtn: "bg-white border-[#0e6d45] text-[#0e6d45] hover:bg-[#eaf7f0]",
+    solidBtn: "bg-[#0e6d45] border-[#0e6d45] text-white hover:bg-[#084b2f]",
+    hoursIcon: "text-[#0e6d45]",
+    callBtn: "bg-[#0a4d31] hover:bg-[#0e6d45] text-white",
+    statusDot: "bg-[#0e6d45]",
+    statusText: "text-[#0a4d31]",
+    cornerGlow: "from-[#0e6d45]/20 via-[#0e6d45]/5 to-transparent",
+    cornerWave: "#0e6d45",
+  },
+  blue: {
+    num: "bg-[#1671d8]",
+    state: "text-[#1671d8]",
+    underline: "bg-[#1671d8]",
+    pin: "text-[#1671d8]",
+    outlineBtn: "bg-white border-[#1671d8] text-[#1671d8] hover:bg-[#ebf4ff]",
+    solidBtn: "bg-[#1671d8] border-[#1671d8] text-white hover:bg-[#0e4e99]",
+    hoursIcon: "text-[#1671d8]",
+    callBtn: "bg-[#0c4383] hover:bg-[#1671d8] text-white",
+    statusDot: "bg-[#1671d8]",
+    statusText: "text-[#0c4383]",
+    cornerGlow: "from-[#1671d8]/20 via-[#1671d8]/5 to-transparent",
+    cornerWave: "#1671d8",
+  },
+  orange: {
+    num: "bg-[#e85d1c]",
+    state: "text-[#e85d1c]",
+    underline: "bg-[#e85d1c]",
+    pin: "text-[#e85d1c]",
+    outlineBtn: "bg-white border-[#e85d1c] text-[#e85d1c] hover:bg-[#fff2ea]",
+    solidBtn: "bg-[#e85d1c] border-[#e85d1c] text-white hover:bg-[#a53c0a]",
+    hoursIcon: "text-[#e85d1c]",
+    callBtn: "bg-[#4d2508] hover:bg-[#e85d1c] text-white",
+    statusDot: "bg-[#e85d1c]",
+    statusText: "text-[#4d2508]",
+    cornerGlow: "from-[#e85d1c]/20 via-[#e85d1c]/5 to-transparent",
+    cornerWave: "#e85d1c",
+  },
+};
+
+const LocationCard: React.FC<{
+  location: LocationItem;
+  copiedKey: string | null;
+  onCopy: (text: string, key: string) => void;
+}> = ({ location, copiedKey, onCopy }) => {
+  const { number, state, shortHub, address, phone, hours, theme, image } = location;
+
+  const t = themeStyles[theme];
+
+  const directionsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    address,
+  )}`;
+
+  const isCopied = copiedKey === `addr-${number}`;
+
+  return (
+    <article className="group relative overflow-hidden bg-white border border-[#e3eeea] rounded-xl shadow-md shadow-[#0f4630]/5 hover:shadow-2xl hover:shadow-[#0f4630]/15 transition-all duration-300 hover:-translate-y-1.5 flex flex-col">
+      {/* Banner Image Header with subtle hover zoom effect */}
+      <div className="h-44 relative overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out group-hover:scale-105"
+          style={{ backgroundImage: `url("${image}")` }}
+        />
+        <div className="absolute inset-0 bg-linear-to-b from-black/5 via-black/10 to-black/35" />
+
+        {/* Circular Number Badge */}
+        <div
+          className={`absolute top-4 left-4 z-10 w-14 h-14 rounded-full flex items-center justify-center text-white text-xl font-black border-2 border-white/60 shadow-md ${t.num}`}
+        >
+          {number}
+        </div>
+
+        {/* Live Status Pill */}
+        <div
+          className={`absolute top-4 right-4 z-10 px-3.5 py-1.5 rounded-full bg-white text-xs font-bold flex items-center gap-2 shadow-md ${t.statusText}`}
+        >
+          <span className="relative flex h-2 w-2">
+            <span
+              className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${t.statusDot}`}
+            />
+            <span className={`relative inline-flex rounded-full h-2 w-2 ${t.statusDot}`} />
+          </span>
+          Open Now
+        </div>
+      </div>
+
+      {/* Card Content */}
+      <div className="relative p-6 flex flex-col flex-1 z-10">
+        {/* State Hub Label */}
+        <div
+          className={`inline-block text-xs font-black tracking-wider uppercase mb-3.5 ${t.state}`}
+        >
+          {state}
+          <span className={`block w-8 h-0.5 mt-1.5 ${t.underline}`} />
+        </div>
+
+        {/* Address */}
+        <div className="flex items-start gap-3 min-h-18">
+          <div className={`mt-0.5 shrink-0 ${t.pin}`}>
+            <Icon name="pin" size={23} />
+          </div>
+
+          <div>
+            <h3 className="text-base font-extrabold text-[#11221c] mb-1">Address</h3>
+            <p className="text-sm leading-relaxed text-[#485e55]">{address}</p>
+          </div>
+        </div>
+
+        {/* Action Buttons: Copy Address & Directions */}
+        <div className="grid grid-cols-2 gap-3 py-4 mt-2 border-t border-[#e8efec]">
+          <button
+            type="button"
+            className={`min-h-11 rounded-full flex items-center justify-center gap-2 text-xs font-bold border transition-all cursor-pointer ${t.outlineBtn}`}
+            onClick={() => onCopy(address, `addr-${number}`)}
+          >
+            <Icon name={isCopied ? "check" : "copy"} size={17} />
+            {isCopied ? "Copied!" : "Copy Address"}
+          </button>
+
+          <a
+            href={directionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`min-h-11 rounded-full flex items-center justify-center gap-2 text-xs font-bold border transition-all cursor-pointer shadow-xs ${t.solidBtn}`}
+          >
+            Directions
+            <Icon name="external" size={16} />
+          </a>
+        </div>
+
+        {/* Operating Hours */}
+        <div className="flex items-center gap-2.5 text-xs text-[#62756d] mb-5">
+          <span className={t.hoursIcon}>
+            <Icon name="clock" size={17} />
+          </span>
+          <span>{hours}</span>
+        </div>
+
+        {/* Click to Call Pill */}
+        <a
+          href={`tel:${phone.replace(/\s/g, "")}`}
+          className={`mt-auto flex items-center justify-between px-5 py-3.5 rounded-full text-xs sm:text-sm font-bold shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${t.callBtn}`}
+        >
+          <span className="flex items-center gap-2.5">
+            <Icon name="phone" size={18} />
+            Call {shortHub}: {phone}
+          </span>
+          <Icon name="chevron" size={18} className="call-arrow" />
+        </a>
+      </div>
+
+      {/* Fluid decorative colored wave in bottom-right corner matching image */}
+      <div className="absolute -bottom-6 -right-6 w-32 h-32 pointer-events-none opacity-40 z-0 overflow-hidden">
+        <svg
+          viewBox="0 0 100 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full"
+        >
+          <path
+            d="M 10 100 C 30 70, 70 30, 100 10 L 100 100 Z"
+            fill={t.cornerWave}
+            opacity="0.35"
+          />
+          <path d="M 35 100 C 55 80, 80 55, 100 35 L 100 100 Z" fill={t.cornerWave} opacity="0.6" />
+        </svg>
+      </div>
+    </article>
+  );
+};
+
+const ContactSupportSection: React.FC<{
+  copiedKey: string | null;
+  onCopy: (text: string, key: string) => void;
+}> = ({ copiedKey, onCopy }) => {
+  const email = CONTACT_INFO.email;
+  const isCopied = copiedKey === "email";
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-7 rounded-xl border border-[#d2ebe0] bg-linear-to-br from-[#edf9f3] via-[#f4faf7] to-[#f8fbf9] shadow-sm">
+      {/* Call Us Support (7 cols) */}
+      <div className="md:col-span-7 min-w-0">
+        <div className="flex items-start gap-3.5 mb-5">
+          {/* Green Vertical Accent Bar */}
+          <div className="w-1.5 h-12 bg-[#16a34a] rounded-full shrink-0 mt-0.5" />
+
+          {/* Icon Circle */}
+          <div className="w-12 h-12 rounded-full shrink-0 flex items-center justify-center bg-linear-to-br from-[#087c50] to-[#16a56c] text-white shadow-md shadow-[#087c50]/20">
+            <Icon name="phone" size={22} />
+          </div>
+
+          <div>
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-[#11221c]">Call Us</h3>
+              <span className="text-[11px] font-bold text-[#15803d] bg-[#dcfce7] rounded-full px-2.5 py-0.5 border border-[#bbf7d0]">
+                Available 7 Days
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm text-[#62756d] mt-1 leading-relaxed">
+              Speak directly with an accredited technician for quote advice or urgent electrical
+              assistance.
+            </p>
+          </div>
+        </div>
+
+        {/* Dual Support Numbers */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <a
+            href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, "")}`}
+            className="group flex items-center gap-3.5 p-3.5 bg-white rounded-2xl border border-[#e2efea] hover:border-[#159460]/40 shadow-xs hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
+          >
+            <div className="w-11 h-11 rounded-full shrink-0 flex items-center justify-center bg-[#159460] text-white shadow-xs group-hover:scale-105 transition-transform">
+              <Icon name="phone" size={20} />
+            </div>
+            <div>
+              <span className="block text-[10px] font-black text-[#07834e] tracking-wider mb-0.5 uppercase">
+                PRIMARY SUPPORT LINE
+              </span>
+              <strong className="text-base font-extrabold text-[#11221c]">
+                {CONTACT_INFO.phone1}
+              </strong>
+            </div>
+          </a>
+
+          <a
+            href={`tel:${CONTACT_INFO.phone2.replace(/\s/g, "")}`}
+            className="group flex items-center gap-3.5 p-3.5 bg-white rounded-2xl border border-[#e2efea] hover:border-[#176ed2]/40 shadow-xs hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
+          >
+            <div className="w-11 h-11 rounded-full shrink-0 flex items-center justify-center bg-[#176ed2] text-white shadow-xs group-hover:scale-105 transition-transform">
+              <Icon name="phone" size={20} />
+            </div>
+            <div>
+              <span className="block text-[10px] font-black text-[#176ed2] tracking-wider mb-0.5 uppercase">
+                ENGINEERING &amp; TECHNICAL
+              </span>
+              <strong className="text-base font-extrabold text-[#11221c]">
+                {CONTACT_INFO.phone2}
+              </strong>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      {/* Email Support (5 cols with divider) */}
+      <div className="md:col-span-5 md:border-l md:border-[#cce4d9] md:pl-7 flex flex-col justify-between h-full pt-4 md:pt-0 border-t border-[#cce4d9] md:border-t-0 min-w-0">
+        <div>
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-11 h-11 rounded-full shrink-0 flex items-center justify-center bg-linear-to-br from-[#087c50] to-[#16a56c] text-white shadow-md shadow-[#087c50]/20">
+              <Icon name="mail" size={20} />
+            </div>
+            <div>
+              <h3 className="text-xl font-serif font-bold text-[#11221c]">Email</h3>
+              <p className="text-xs text-[#62756d]">Plans &amp; Inquiries</p>
+            </div>
+          </div>
+
+          <a
+            href={`mailto:${email}`}
+            className="block text-xs sm:text-sm font-extrabold text-[#11221c] hover:text-[#087c50] break-all my-2.5 transition-colors"
+          >
+            {email}
+          </a>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => onCopy(email, "email")}
+          className="mt-2 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-[#087c50] text-[#087c50] hover:bg-[#087c50] hover:text-white text-xs font-bold transition-all duration-200 cursor-pointer w-full sm:w-auto self-start"
+        >
+          <Icon name={isCopied ? "check" : "copy"} size={16} />
+          {isCopied ? "Copied!" : "Copy Email"}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+const ProposalCard: React.FC = () => {
   const scrollToForm = () => {
     const el = document.getElementById("contact-form-section");
     if (el) {
@@ -35,593 +425,212 @@ export function ContactChannelsSection() {
   };
 
   return (
-    <section className="relative py-8 lg:py-14 bg-[#faf8f5] text-slate-900 overflow-hidden border-b border-slate-200/80">
-      {/* ================= INLINE ANIMATION KEYFRAMES ================= */}
-      <style>{`
-        @keyframes channelsLaserSweep {
-          0% {
-            transform: translateX(-100%);
-            opacity: 0;
-          }
-          15% {
-            opacity: 1;
-          }
-          85% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-        }
-        @keyframes channelsPulseGlow {
-          0%, 100% {
-            transform: scale(1);
-            opacity: 0.35;
-          }
-          50% {
-            transform: scale(1.15);
-            opacity: 0.7;
-          }
-        }
-        @keyframes channelsCircuitFlow {
-          0% {
-            stroke-dashoffset: 48;
-          }
-          100% {
-            stroke-dashoffset: 0;
-          }
-        }
-        @keyframes channelsFloatParticle {
-          0%, 100% {
-            transform: translateY(0px) scale(1);
-            opacity: 0.35;
-          }
-          50% {
-            transform: translateY(-18px) scale(1.25);
-            opacity: 0.85;
-          }
-        }
-      `}</style>
+    <div className="relative min-h-55 rounded-xl overflow-hidden p-6 sm:p-5 flex flex-col justify-center bg-linear-to-br from-[#063d27] via-[#0d5c3c] to-[#167a51] shadow-xl shadow-[#004b30]/15 group">
+      {/* Background Solar House & Foliage Texture */}
+      <div
+        className="absolute inset-0 bg-cover bg-right opacity-35 mix-blend-overlay pointer-events-none group-hover:scale-105 transition-transform duration-700"
+        style={{
+          backgroundImage: "url('/images/contact/bottom_solar.png')",
+        }}
+      />
+      <div className="absolute inset-0 bg-linear-to-r from-[#063d27]/95 via-[#0d5c3c]/85 to-transparent pointer-events-none" />
 
-      {/* ================= RICH HIGH-TECH SOLAR ARCHITECTURAL BACKGROUND ================= */}
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
-        
-        {/* 1. PHOTOGRAPHIC HORIZON DEPTH LAYER (Warm Solar Farm with Soft Mask) */}
-        <div
-          className="absolute inset-0"
-          style={{
-            maskImage:
-              "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 45%, rgba(0,0,0,0.04) 75%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 45%, rgba(0,0,0,0.04) 75%, transparent 100%)",
-          }}
+      {/* Decorative leafy flourish in bottom-right */}
+      <div className="absolute -bottom-8 -right-8 w-40 h-40 pointer-events-none opacity-40">
+        <svg viewBox="0 0 100 100" fill="#a7f3d0">
+          <circle cx="70" cy="70" r="30" opacity="0.3" />
+        </svg>
+      </div>
+
+      <div className="relative z-10 max-w-md">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold text-white border border-white/30 bg-white/15 backdrop-blur-xs mb-3 shadow-xs">
+          <Icon name="zap" size={13} />
+          Zero Obligation Proposal
+        </span>
+
+        <h3 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-2 tracking-tight">
+          Get in Touch Now!!
+        </h3>
+
+        <p className="text-white/90 text-xs sm:text-sm leading-relaxed mb-4">
+          Claim your tailored 3D solar layout, blackout-proof battery analysis, and verified Clean
+          Energy Council STC rebate calculations.
+        </p>
+
+        <button
+          type="button"
+          onClick={scrollToForm}
+          className="relative overflow-hidden inline-flex items-center justify-center gap-2 px-6 py-2 rounded-full bg-white text-[#075d41] hover:bg-[#dff8e9] text-xs sm:text-sm font-extrabold shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
         >
-          <img
-            src="/assets/solar-farm-bg.jpg"
-            alt=""
-            className="w-full h-full object-cover object-top opacity-35 filter brightness-105 contrast-110 saturate-125"
-          />
-          <div className="absolute inset-0 bg-linear-to-b from-[#faf8f5]/85 via-white/90 to-[#faf8f5]" />
-        </div>
+          {/* Subtle gleam sweep effect on button hover */}
+          <span className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/50 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+          <Icon name="zap" size={15} />
+          Fill Instant Quote Form
+          <Icon name="arrow" size={15} />
+        </button>
+      </div>
+    </div>
+  );
+};
 
-        {/* 2. DYNAMIC SOLAR AMBIENT GLOW ORBS */}
-        <div
-          className="absolute top-12 left-1/2 -translate-x-1/2 w-180 sm:w-240 h-120 bg-linear-to-tr from-amber-400/25 via-orange-400/18 to-yellow-300/15 rounded-full blur-3xl pointer-events-none"
-          style={{ animation: "channelsPulseGlow 9s ease-in-out infinite" }}
+export function ContactChannelsSection() {
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  const handleCopy = (text: string, key: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedKey(key);
+    setTimeout(() => {
+      setCopiedKey(null);
+    }, 2200);
+  };
+
+  return (
+    <section
+      id="contact-channels-section"
+      className="relative overflow-hidden py-16 sm:py-20 lg:py-14 bg-[#f8fbfa] text-[#10251e]"
+      style={{
+        background:
+          "radial-gradient(circle at 10% 15%, rgba(34, 197, 94, 0.08), transparent 32%), radial-gradient(circle at 90% 20%, rgba(56, 189, 248, 0.08), transparent 35%), #f8fbfa",
+      }}
+    >
+      {/* ================= BACKGROUND GRAPHICS & EFFECTS ================= */}
+      {/* 1. Left Green Aura & Rotating Radiant Sun */}
+      <div className="absolute top-10 -left-10 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none z-0" />
+
+      {/* Sweeping Left Green Energy Arch */}
+      <svg
+        className="absolute top-0 left-0 w-44 h-80 pointer-events-none z-0 opacity-70"
+        viewBox="0 0 180 320"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M -20 0 C 40 80, 80 180, 0 320"
+          stroke="#34c759"
+          strokeWidth="6"
+          strokeLinecap="round"
+          opacity="0.8"
         />
-        <div className="absolute top-1/3 -left-20 w-110 h-110 bg-amber-500/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 -right-20 w-110 h-110 bg-orange-500/12 rounded-full blur-3xl" />
-        <div className="absolute top-2/3 left-1/3 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+        <path
+          d="M -10 20 C 50 100, 70 180, 10 280"
+          stroke="#86efac"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          opacity="0.5"
+        />
+      </svg>
 
-        {/* 3. CRISP SOLAR CELL WAFER SVG BLUEPRINT PATTERN */}
-        <div
-          className="absolute inset-0 opacity-45"
-          style={{
-            maskImage:
-              "radial-gradient(ellipse 90% 70% at 50% 45%, black 40%, rgba(0,0,0,0.2) 80%, transparent 100%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 90% 70% at 50% 45%, black 40%, rgba(0,0,0,0.2) 80%, transparent 100%)",
-          }}
-        >
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern
-                id="channels-rich-wafer-grid"
-                width="48"
-                height="48"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 48 0 L 0 0 0 48"
-                  fill="none"
-                  stroke="#f59e0b"
-                  strokeWidth="0.8"
-                  strokeOpacity="0.32"
-                />
-                <circle cx="0" cy="0" r="2" fill="#f59e0b" opacity="0.65" />
-                <circle cx="48" cy="0" r="2" fill="#ea580c" opacity="0.65" />
-                <circle cx="0" cy="48" r="2" fill="#ea580c" opacity="0.65" />
-                <circle cx="48" cy="48" r="2" fill="#f59e0b" opacity="0.65" />
-                <circle cx="24" cy="24" r="1.4" fill="#10b981" opacity="0.45" />
-              </pattern>
-            </defs>
-            <rect
-              width="100%"
-              height="100%"
-              fill="url(#channels-rich-wafer-grid)"
-            />
-          </svg>
-        </div>
-
-        {/* 4. DYNAMIC ANIMATED SOLAR CIRCUIT TRACES */}
+      {/* Floating Radiant Sun Illustration (Matching Reference Image) */}
+      <div className="absolute top-12 left-4 sm:left-10 pointer-events-none z-10 drop-shadow-md">
         <svg
-          className="absolute inset-0 w-full h-full opacity-40 pointer-events-none"
+          width="56"
+          height="56"
+          viewBox="0 0 56 56"
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
+          {/* 8 Radiant Solar Spokes */}
+          <g stroke="#f59e0b" strokeWidth="3" strokeLinecap="round">
+            <line x1="28" y1="4" x2="28" y2="11" />
+            <line x1="28" y1="45" x2="28" y2="52" />
+            <line x1="4" y1="28" x2="11" y2="28" />
+            <line x1="45" y1="28" x2="52" y2="28" />
+            <line x1="11" y1="11" x2="16" y2="16" />
+            <line x1="40" y1="40" x2="45" y2="45" />
+            <line x1="11" y1="45" x2="16" y2="40" />
+            <line x1="40" y1="16" x2="45" y2="11" />
+          </g>
+          {/* Sun Disc */}
+          <circle cx="28" cy="28" r="11" fill="#ffad00" />
+          {/* Top-Left Curved Crescent Highlight */}
           <path
-            d="M 80 140 H 340 L 400 200 H 720 L 780 140 H 1220"
-            fill="none"
-            stroke="#f59e0b"
-            strokeWidth="1.4"
-            strokeDasharray="6 6"
-            style={{ animation: "channelsCircuitFlow 3s linear infinite" }}
+            d="M 21 24 C 23 20, 27 19, 30 20"
+            stroke="#ffffff"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            opacity="0.8"
           />
-          <circle cx="340" cy="140" r="3.2" fill="#f59e0b" />
-          <circle cx="400" cy="200" r="3.5" fill="#ea580c" />
-          <circle cx="720" cy="200" r="3.5" fill="#ea580c" />
-          <circle cx="780" cy="140" r="3.2" fill="#f59e0b" />
-
-          {/* Lower Circuit Line */}
-          <path
-            d="M 120 560 H 420 L 480 500 H 840 L 900 560 H 1180"
-            fill="none"
-            stroke="#ea580c"
-            strokeWidth="1.2"
-            strokeDasharray="6 6"
-            style={{ animation: "channelsCircuitFlow 3.4s linear infinite" }}
-          />
-          <circle cx="420" cy="560" r="3" fill="#ea580c" />
-          <circle cx="480" cy="500" r="3" fill="#f59e0b" />
-          <circle cx="840" cy="500" r="3" fill="#f59e0b" />
-          <circle cx="900" cy="560" r="3" fill="#ea580c" />
         </svg>
+      </div>
 
-        {/* 5. DYNAMIC HORIZONTAL SCANNING LASER BEAMS */}
-        {/* Top Laser Guide */}
-        <div className="absolute top-16 inset-x-0 h-px bg-linear-to-r from-transparent via-amber-400/40 to-transparent">
-          <div
-            className="absolute top-0 h-px w-80 bg-linear-to-r from-transparent via-amber-500 to-transparent shadow-[0_0_12px_#f59e0b]"
-            style={{ animation: "channelsLaserSweep 8.5s linear infinite" }}
-          />
-        </div>
-
-        {/* Mid-section Laser Guide */}
-        <div className="absolute top-1/2 inset-x-0 h-px bg-linear-to-r from-transparent via-orange-400/30 to-transparent">
-          <div
-            className="absolute top-0 h-px w-96 bg-linear-to-r from-transparent via-orange-500 to-transparent shadow-[0_0_12px_#ea580c]"
-            style={{
-              animation: "channelsLaserSweep 12s linear infinite",
-              animationDelay: "3s",
-            }}
-          />
-        </div>
-
-        {/* Lower Laser Guide */}
-        <div className="absolute bottom-16 inset-x-0 h-px bg-linear-to-r from-transparent via-amber-400/35 to-transparent">
-          <div
-            className="absolute top-0 h-px w-72 bg-linear-to-r from-transparent via-amber-500 to-transparent shadow-[0_0_10px_#f59e0b]"
-            style={{
-              animation: "channelsLaserSweep 9.5s linear infinite",
-              animationDelay: "5.5s",
-            }}
-          />
-        </div>
-
-       
-
-        {/* 7. FLOATING SOLAR ENERGY SPARKS */}
-        <div
-          className="absolute top-1/4 left-[15%] w-2 h-2 rounded-full bg-amber-400/60 shadow-[0_0_8px_#f59e0b]"
-          style={{ animation: "channelsFloatParticle 4.5s ease-in-out infinite" }}
-        />
-        <div
-          className="absolute top-1/3 right-[20%] w-2.5 h-2.5 rounded-full bg-orange-400/50 shadow-[0_0_8px_#ea580c]"
-          style={{
-            animation: "channelsFloatParticle 5.5s ease-in-out infinite",
-            animationDelay: "1.5s",
-          }}
-        />
-        <div
-          className="absolute bottom-1/3 left-[30%] w-2 h-2 rounded-full bg-yellow-400/60 shadow-[0_0_8px_#facc15]"
-          style={{
-            animation: "channelsFloatParticle 6s ease-in-out infinite",
-            animationDelay: "2.8s",
-          }}
-        />
-        <div
-          className="absolute bottom-1/4 right-[28%] w-1.5 h-1.5 rounded-full bg-emerald-400/50 shadow-[0_0_6px_#10b981]"
-          style={{
-            animation: "channelsFloatParticle 4s ease-in-out infinite",
-            animationDelay: "3.2s",
-          }}
+      {/* 2. Top-Right Rooftop Solar House Hero & Sweeping Green Solar Ribbon */}
+      <div
+        className="absolute top-0 right-0 w-305 max-w-[55%] pointer-events-none z-0 hidden md:block overflow-hidden"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.3) 18%, black 50%), linear-gradient(to bottom, black 40%, rgba(0, 0, 0, 0.4) 75%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.3) 18%, black 50%), linear-gradient(to bottom, black 40%, rgba(0, 0, 0, 0.4) 75%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      >
+        <img
+          src="/images/contact/house_faded.png"
+          alt=""
+          className="w-full h-auto block object-contain object-top opacity-95"
         />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        
-        {/* ================= 1. OPEN EDITORIAL HEADER ================= */}
-        <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
-          
+      {/* Top-Right Green Energy Ribbon Swoosh */}
+      <svg
+        className="absolute top-0 right-0 w-96 h-64 pointer-events-none z-10 opacity-85 hidden md:block"
+        viewBox="0 0 380 250"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M 340 -10 C 290 70, 260 140, 190 200 C 150 235, 90 245, 20 220"
+          stroke="#34c759"
+          strokeWidth="7"
+          strokeLinecap="round"
+          opacity="0.85"
+        />
+        <path
+          d="M 350 15 C 305 85, 280 145, 215 205"
+          stroke="#86efac"
+          strokeWidth="3"
+          strokeLinecap="round"
+          opacity="0.55"
+        />
+      </svg>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-slate-950 leading-tight"
-          >
-            Three State Facilities.{" "}
-            <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
-              One Direct Connection.
-            </span>
-          </motion.h2>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* ================= SECTION HEADER ================= */}
+        <header className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-serif font-bold tracking-tight text-[#0d1f18] leading-tight">
+            Your Local <span className="text-[#ff7300] italic font-serif">Solar Experts</span>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-            className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-normal"
-          >
+          <p className="mt-4 text-[#000000] text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">
             Direct access to Clean Energy Council accredited master electricians.
+            <br className="hidden sm:inline" />
             Visit our operational hubs, talk to our dispatch line, or claim your proposal.
-          </motion.p>
+          </p>
+        </header>
+
+        {/* ================= 3-COLUMN LOCATIONS GRID ================= */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10">
+          {locations.map((location) => (
+            <LocationCard
+              key={location.number}
+              location={location}
+              copiedKey={copiedKey}
+              onCopy={handleCopy}
+            />
+          ))}
         </div>
 
-        {/* ================= 2. THE 3 HUBS — OPEN ARCHITECTURAL SHOWCASE (NO BOXES) ================= */}
-        <div className="relative mb-16 lg:mb-20">
-          {/* Animated SVG Circuit Conduit Line spanning all 3 hubs */}
-          <div className="hidden lg:block absolute top-10 inset-x-12 h-1 overflow-visible pointer-events-none z-0">
-            <svg className="w-full h-4" xmlns="http://www.w3.org/2000/svg">
-              <line
-                x1="12%"
-                y1="2"
-                x2="88%"
-                y2="2"
-                stroke="#f59e0b"
-                strokeWidth="2"
-                strokeDasharray="6 6"
-                strokeOpacity="0.45"
-              />
-            </svg>
+        {/* ================= BOTTOM SUPPORT & PROPOSAL CTA ================= */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          <div className="lg:col-span-7 xl:col-span-8 flex flex-col">
+            <ContactSupportSection copiedKey={copiedKey} onCopy={handleCopy} />
           </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8 divide-y lg:divide-y-0 lg:divide-x divide-slate-200/90">
-            {STATE_HUBS.map((hub, idx) => {
-              const isCopied = copiedKey === hub.id;
-              const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                hub.mapQuery,
-              )}`;
-
-              return (
-                <motion.div
-                  key={hub.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 * idx }}
-                  className={`pt-8 lg:pt-0 ${
-                    idx === 0 ? "lg:pr-8" : idx === 1 ? "lg:px-8" : "lg:pl-8"
-                  } flex flex-col justify-between`}
-                >
-                  <div>
-                    {/* Top Watermark Number & State Indicator */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-linear-to-br from-amber-500 to-orange-500 text-white font-black text-sm shadow-md shadow-orange-500/25">
-                          0{idx + 1}
-                        </span>
-                        <div>
-                          <span className="text-xs font-black uppercase tracking-wider text-amber-700 block">
-                            {hub.shortState} State Hub
-                          </span>
-                          <span className="text-xs text-slate-500 font-medium">
-                            {hub.city}
-                          </span>
-                        </div>
-                      </div>
-
-                      <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-700 bg-emerald-50/90 px-2.5 py-1 rounded-full border border-emerald-200 shadow-2xs">
-                        <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                        Open Now
-                      </span>
-                    </div>
-
-                    {/* Address Title */}
-                    <div className="flex items-center gap-2 mb-2 mt-4">
-                      <MapPin className="h-5 w-5 text-orange-600 shrink-0" />
-                      <h3 className="text-xl font-extrabold text-slate-950">
-                        Address
-                      </h3>
-                    </div>
-
-                    {/* Exact Physical Address (Verbatim) */}
-                    <p className="text-base sm:text-lg font-bold text-slate-900 leading-snug tracking-tight mb-4 pl-7">
-                      {hub.address}
-                    </p>
-
-                    {/* Seamless Inline Quick Actions (No enclosing card) */}
-                    <div className="pl-7 flex flex-wrap items-center gap-3 mb-6">
-                      <button
-                        type="button"
-                        onClick={() => handleCopy(hub.address, hub.id)}
-                        className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-amber-600 bg-white hover:bg-amber-50 border border-slate-200/80 px-3 py-1.5 rounded-full transition-colors cursor-pointer shadow-2xs"
-                      >
-                        {isCopied ? (
-                          <>
-                            <Check className="h-3.5 w-3.5 text-emerald-600" />
-                            <span className="text-emerald-700">Copied!</span>
-                          </>
-                        ) : (
-                          <>
-                            <Copy className="h-3.5 w-3.5" />
-                            <span>Copy Address</span>
-                          </>
-                        )}
-                      </button>
-
-                      <a
-                        href={googleMapsUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-bold text-orange-600 hover:text-orange-700 bg-orange-50/80 hover:bg-orange-100 border border-orange-200/60 px-3 py-1.5 rounded-full transition-colors shadow-2xs"
-                      >
-                        <span>Directions</span>
-                        <ExternalLink className="h-3 w-3" />
-                      </a>
-                    </div>
-
-                    {/* Operating Hours */}
-                    <div className="pl-7 flex items-center gap-2 text-xs text-slate-500 mb-6">
-                      <Clock className="h-3.5 w-3.5 text-amber-500 shrink-0" />
-                      <span>{hub.hours}</span>
-                    </div>
-                  </div>
-
-                  {/* Direct State Hub Dial Button */}
-                  <div className="pl-7">
-                    <a
-                      href={`tel:${hub.phone.replace(/\s/g, "")}`}
-                      className="inline-flex items-center justify-between w-full px-4 py-3 rounded-2xl bg-slate-900 hover:bg-linear-to-r hover:from-amber-600 hover:to-orange-600 text-white font-bold text-xs transition-all duration-300 shadow-md group/dial"
-                    >
-                      <span className="flex items-center gap-2">
-                        <Phone className="h-3.5 w-3.5 text-amber-400 group-hover/dial:text-white transition-colors" />
-                        <span>Call {hub.shortState}: {hub.phone}</span>
-                      </span>
-                      <ArrowRight className="h-3.5 w-3.5 text-slate-400 group-hover/dial:translate-x-1 group-hover/dial:text-white transition-transform" />
-                    </a>
-                  </div>
-                </motion.div>
-              );
-            })}
+          <div className="lg:col-span-5 xl:col-span-4 flex flex-col">
+            <ProposalCard />
           </div>
         </div>
-
-        {/* ================= 3. DIRECT CHANNELS & CTA — FLUID HORIZON SHOWCASE (NO BOXES) ================= */}
-        <div className="pt-12 border-t-2 border-slate-200/70">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-            
-            {/* Left 7 Columns: Direct Call Us & Email Channels Showcase */}
-            <div className="lg:col-span-7 space-y-8">
-              
-              {/* Call Us Stream (Verbatim: 0430 015 017 & 0489 935 658) */}
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500 text-white shadow-xs">
-                    <Phone className="h-4 w-4" />
-                  </div>
-                  <h3 className="text-xl font-extrabold text-slate-950">
-                    Call Us
-                  </h3>
-                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full ml-2 border border-emerald-200/70">
-                    <Radio className="h-3 w-3 text-emerald-500 animate-pulse" />
-                    Available 7 Days
-                  </span>
-                </div>
-                
-                <p className="text-xs text-slate-500 mb-4 pl-10">
-                  Speak directly with an accredited technician for quote advice or urgent electrical assistance:
-                </p>
-
-                {/* Massive Display Numbers (Clean Action Pills) */}
-                <div className="pl-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <a
-                    href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, "")}`}
-                    className="group/p1 flex items-center justify-between p-4 rounded-2xl bg-white hover:bg-amber-50/80 border border-slate-200/80 hover:border-amber-400 transition-all duration-200 shadow-sm hover:shadow-md"
-                  >
-                    <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                        Primary Support Line
-                      </span>
-                      <span className="text-lg font-black text-slate-950 group-hover/p1:text-amber-600 transition-colors">
-                        {CONTACT_INFO.phone1}
-                      </span>
-                    </div>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-900 group-hover/p1:bg-amber-500 group-hover/p1:text-white shadow-xs transition-colors">
-                      <Phone className="h-4 w-4" />
-                    </span>
-                  </a>
-
-                  <a
-                    href={`tel:${CONTACT_INFO.phone2.replace(/\s/g, "")}`}
-                    className="group/p2 flex items-center justify-between p-4 rounded-2xl bg-white hover:bg-orange-50/80 border border-slate-200/80 hover:border-orange-400 transition-all duration-200 shadow-sm hover:shadow-md"
-                  >
-                    <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block">
-                        Engineering &amp; Technical
-                      </span>
-                      <span className="text-lg font-black text-slate-950 group-hover/p2:text-orange-600 transition-colors">
-                        {CONTACT_INFO.phone2}
-                      </span>
-                    </div>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-900 group-hover/p2:bg-orange-500 group-hover/p2:text-white shadow-xs transition-colors">
-                      <Phone className="h-4 w-4" />
-                    </span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Email Stream (Verbatim: Info@skyelectricalandsolar.net.au) */}
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-orange-500 text-white shadow-xs">
-                    <Mail className="h-4 w-4" />
-                  </div>
-                  <h3 className="text-xl font-extrabold text-slate-950">
-                    Email
-                  </h3>
-                  <span className="text-xs text-slate-400 font-medium ml-2">
-                    Plans &amp; Inquiries
-                  </span>
-                </div>
-
-                <div className="pl-10 flex flex-wrap items-center gap-3">
-                  <a
-                    href={`mailto:${CONTACT_INFO.email}`}
-                    className="text-base sm:text-lg font-extrabold text-slate-950 hover:text-amber-600 underline underline-offset-4 decoration-amber-400 transition-colors"
-                  >
-                    {CONTACT_INFO.email}
-                  </a>
-
-                  <button
-                    type="button"
-                    onClick={() => handleCopy(CONTACT_INFO.email, "email")}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-600 hover:text-amber-600 bg-white hover:bg-amber-50 border border-slate-200/80 px-3 py-1.5 rounded-full transition-colors cursor-pointer shadow-2xs"
-                  >
-                    {copiedKey === "email" ? (
-                      <>
-                        <Check className="h-3.5 w-3.5 text-emerald-600" />
-                        <span className="text-emerald-700 font-bold">Copied!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="h-3.5 w-3.5" />
-                        <span>Copy Email</span>
-                      </>
-                    )}
-                  </button>
-
-                  <a
-                    href={`mailto:${CONTACT_INFO.email}?subject=Solar%20Quote%20Inquiry`}
-                    className="text-xs font-bold text-orange-600 hover:text-orange-700 bg-orange-50/80 px-2.5 py-1 rounded-full border border-orange-200/60"
-                  >
-                    Compose Email →
-                  </a>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Right 5 Columns: "Get in Touch Now!!" Radiant Action Portal */}
-            <div className="lg:col-span-5">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="relative overflow-hidden rounded-3xl bg-linear-to-br from-amber-500 via-orange-500 to-amber-600 p-8 sm:p-10 text-white shadow-2xl shadow-orange-500/30"
-              >
-                {/* Ambient Solar Flares */}
-                <div className="absolute -top-12 -right-12 w-48 h-48 bg-white/20 rounded-full blur-2xl pointer-events-none" />
-                <div className="absolute -bottom-10 -left-10 w-44 h-44 bg-amber-300/30 rounded-full blur-xl pointer-events-none" />
-
-                <BorderBeam
-                  size={240}
-                  duration={12}
-                  colorFrom="#ffffff"
-                  colorTo="#fed7aa"
-                  borderWidth={2}
-                />
-
-                <div className="relative z-10">
-                  <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/20 text-white text-xs font-bold mb-4 backdrop-blur-xs">
-                    <Sparkles className="h-3.5 w-3.5 text-amber-200" />
-                    <span>Zero Obligation Proposal</span>
-                  </div>
-
-                  {/* Heading (Verbatim from image) */}
-                  <h3 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-3">
-                    Get in Touch Now!!
-                  </h3>
-
-                  <p className="text-sm text-white/95 leading-relaxed mb-8 font-medium">
-                    Claim your tailored 3D solar layout, blackout-proof battery analysis,
-                    and verified Clean Energy Council STC rebate calculations.
-                  </p>
-
-                  <div className="space-y-3">
-                    <button
-                      type="button"
-                      onClick={scrollToForm}
-                      className="w-full py-4 px-6 rounded-2xl bg-white text-slate-950 font-black text-sm hover:bg-slate-50 transition-all duration-300 shadow-xl flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
-                    >
-                      <Zap className="h-4 w-4 text-orange-600 fill-current" />
-                      <span>Fill Instant Quote Form</span>
-                      <ArrowRight className="h-4 w-4 text-orange-600 ml-1" />
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => openInquiryModal()}
-                      className="w-full py-2.5 text-xs text-center font-bold text-white/90 hover:text-white transition-colors underline underline-offset-4 cursor-pointer"
-                    >
-                      Or Open Quick Inquiry Envelope
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* ================= 4. BOTTOM KEY VALUE PROOF STRIP ================= */}
-        <div className="mt-16 pt-8 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
-          <div>
-            <span className="text-2xl sm:text-3xl font-black text-amber-500 font-mono block">
-              &lt; 15 Mins
-            </span>
-            <span className="text-xs font-bold text-slate-600 uppercase tracking-wide">
-              Average Turnaround
-            </span>
-          </div>
-          <div>
-            <span className="text-2xl sm:text-3xl font-black text-slate-900 font-mono block">
-              3 State Hubs
-            </span>
-            <span className="text-xs font-bold text-slate-600 uppercase tracking-wide">
-              WA • NSW • QLD Operations
-            </span>
-          </div>
-          <div>
-            <span className="text-2xl sm:text-3xl font-black text-emerald-600 font-mono block">
-              100% In-House
-            </span>
-            <span className="text-xs font-bold text-slate-600 uppercase tracking-wide">
-              CEC Certified Electricians
-            </span>
-          </div>
-          <div>
-            <span className="text-2xl sm:text-3xl font-black text-orange-500 font-mono block">
-              10-Year
-            </span>
-            <span className="text-xs font-bold text-slate-600 uppercase tracking-wide">
-              Workmanship Warranty
-            </span>
-          </div>
-        </div>
-
       </div>
     </section>
   );

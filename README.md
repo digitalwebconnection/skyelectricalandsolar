@@ -1,32 +1,79 @@
-# React + TypeScript + Vite
+# Sky Electrical & Solar
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+High-performance, CEC-accredited clean energy and master electrical contracting website. Built for residential and commercial solar installations, Tesla & Sungrow battery storage, EV chargers, switchboard upgrades, and communications infrastructure across WA, NSW, and QLD.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠 Tech Stack
 
-## React Compiler
+- **Framework**: React 19 + TypeScript (Vite 8)
+- **Styling**: Tailwind CSS v4 + Motion
+- **Smooth Scroll**: Lenis
+- **Animations**: Magic UI (AnimatedGridPattern, BorderBeam, FlickeringGrid) + GSAP
+- **Icons**: Lucide React
+- **Deployment**: Vercel SPA with automated route rewrites and immutable asset caching
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## 📂 Project Architecture
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+skyelectricalandsolar/
+├── public/                  # Static assets served as-is
+│   ├── images/              # Organised URL-referenced media
+│   │   ├── banners/         # High-resolution hero sliders
+│   │   ├── posters/         # Dynamic flying posters
+│   │   ├── reviews/         # Verified customer & job photos
+│   │   ├── services/        # Commercial & residential solar
+│   │   └── backgrounds/     # Radial & high-tech backgrounds
+│   ├── og-image.jpg         # Social share image (1200x630)
+│   ├── robots.txt           # Crawl rules & sitemap pointer
+│   └── sitemap.xml          # Comprehensive SEO sitemap
+│
+├── src/
+│   ├── assets/              # Bundled assets (brands, customers, logos)
+│   ├── components/
+│   │   ├── ui/              # Visual effects & primitives (Magic UI, GSAP)
+│   │   ├── common/          # Shared components (SEO, JsonLd, ErrorBoundary, WhatsApp)
+│   │   └── layout/          # Header, Footer, Layout shell
+│   ├── pages/               # Feature pages (Home, Services, Blogs, Contact, Legal)
+│   ├── routes/              # Code-split lazy routing & path constants
+│   ├── services/            # API client & inquiry submit handler
+│   ├── config/              # Site defaults & typed environment variables
+│   ├── constants/           # Navigation, social links, and brand partners
+│   ├── context/             # Navigation, Inquiry modal, and Theme context
+│   ├── hooks/               # Custom hooks (debounce, reveal, local storage)
+│   ├── types/               # TypeScript interfaces & service types
+│   └── utils/               # Formatting, helpers, and cn utility
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## 🚀 Getting Started
+
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Run Development Server
+
+```bash
+npm run dev
+```
+
+### 3. Build for Production
+
+```bash
+npm run build
+```
+
+---
+
+## 🛡 Verification & Standards
+
+- **Clean Energy Council (CEC)** Standards Compliant
+- **AS/NZS 3000:2018** Wiring Rules Compliant
+- **AS/NZS 5139:2019** Battery Energy Storage Compliant
+- **WCAG 2.1 AA** Accessible High-Contrast Palette

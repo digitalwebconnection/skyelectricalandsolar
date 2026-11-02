@@ -17,8 +17,7 @@ import {
 } from "lucide-react";
 import { useInquiryModal } from "../../context";
 import logoImg from "../../assets/logo.png";
-import { MagicCard } from "./MagicCard";
-import { BorderBeam } from "./BorderBeam";
+import { MagicCard, BorderBeam } from "../ui";
 
 const SERVICE_OPTIONS = [
   { label: "Residential Rooftop Solar (6.6kW - 13.2kW)", icon: Home },
@@ -178,8 +177,7 @@ export function InquiryEnvelopeModal() {
             <div
               className="absolute top-0 inset-x-0 h-1/2 origin-top transition-transform duration-700 ease-in-out"
               style={{
-                transform:
-                  stage !== "sealed" ? "rotateX(180deg)" : "rotateX(0deg)",
+                transform: stage !== "sealed" ? "rotateX(180deg)" : "rotateX(0deg)",
                 transformStyle: "preserve-3d",
                 zIndex: stage === "sealed" ? 35 : 5,
               }}
@@ -255,12 +253,9 @@ export function InquiryEnvelopeModal() {
                   Inquiry Dispatched!
                 </h3>
                 <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-                  Thank you,{" "}
-                  <strong className="text-slate-900 font-bold">
-                    {formData.name}
-                  </strong>
-                  . Your inquiry has been delivered directly to our Australian
-                  CEC accredited solar team.
+                  Thank you, <strong className="text-slate-900 font-bold">{formData.name}</strong>.
+                  Your inquiry has been delivered directly to our Australian CEC accredited solar
+                  team.
                 </p>
 
                 <div className="p-4 rounded-xl bg-linear-to-br from-amber-50/90 to-orange-50/50 border border-amber-200/90 text-left max-w-md mx-auto text-xs text-amber-950 space-y-2 shadow-xs">
@@ -269,12 +264,9 @@ export function InquiryEnvelopeModal() {
                     <span>Included in Your Complimentary Review:</span>
                   </div>
                   <p>• 3D satellite roof scan & solar yield simulation.</p>
+                  <p>• Exact federal STC & Victorian battery rebate deductions.</p>
                   <p>
-                    • Exact federal STC & Victorian battery rebate deductions.
-                  </p>
-                  <p>
-                    • Fast quote consultation to{" "}
-                    <strong>{formData.phone}</strong> within 2 hours.
+                    • Fast quote consultation to <strong>{formData.phone}</strong> within 2 hours.
                   </p>
                 </div>
 
@@ -290,13 +282,19 @@ export function InquiryEnvelopeModal() {
               </div>
             ) : (
               /* The New Sleek, Modern, High-End Inquiry Form */
-              <form onSubmit={handleSubmit} className="space-y-3 relative z-10">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-3 relative z-10"
+                data-gramm="false"
+                data-gramm_editor="false"
+                data-enable-grammarly="false"
+              >
                 {/* Form Header */}
                 <div className="flex items-center justify-between border-b border-slate-200/70 pb-3">
                   <div className="flex items-center gap-3">
                     <img
                       src={logoImg}
-                      alt="Skye Electrical & Solar Logo"
+                      alt="Sky Electrical & Solar Logo"
                       className="h-10 sm:h-12 w-auto object-contain filter drop-shadow-xs shrink-0"
                     />
                     <div>
@@ -309,9 +307,7 @@ export function InquiryEnvelopeModal() {
                         </h2>
                       </div>
                       <div className="flex items-center gap-2 mt-0.5 flex-wrap">
-                        <span className="hidden xs:inline text-slate-300">
-                          •
-                        </span>
+                        <span className="hidden xs:inline text-slate-300">•</span>
                         <span className="hidden xs:inline text-[11px] font-semibold text-slate-500">
                           2-Hour Quote Response
                         </span>
@@ -345,9 +341,7 @@ export function InquiryEnvelopeModal() {
                         type="text"
                         required
                         value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. John Henderson"
                         className="w-full pl-2.5 pr-3 py-2 text-sm font-semibold bg-transparent text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:outline-none"
                       />
@@ -366,9 +360,7 @@ export function InquiryEnvelopeModal() {
                         type="tel"
                         required
                         value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="e.g. 0412 345 678"
                         className="w-full pl-2.5 pr-3 py-2 text-sm font-semibold bg-transparent text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:outline-none"
                       />
@@ -392,9 +384,7 @@ export function InquiryEnvelopeModal() {
                       <input
                         type="email"
                         value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="john@example.com.au"
                         className="w-full pl-2.5 pr-3 py-2 text-sm font-semibold bg-transparent text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:outline-none"
                       />
@@ -415,9 +405,7 @@ export function InquiryEnvelopeModal() {
                       <input
                         type="text"
                         value={formData.bill}
-                        onChange={(e) =>
-                          setFormData({ ...formData, bill: e.target.value })
-                        }
+                        onChange={(e) => setFormData({ ...formData, bill: e.target.value })}
                         placeholder="e.g. $650 / quarter"
                         className="w-full pl-2.5 pr-3 py-2 text-sm font-semibold bg-transparent text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:outline-none"
                       />
@@ -440,9 +428,7 @@ export function InquiryEnvelopeModal() {
                     </div>
                     <select
                       value={formData.service}
-                      onChange={(e) =>
-                        setFormData({ ...formData, service: e.target.value })
-                      }
+                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                       className="w-full pl-2.5 pr-9 py-2.5 text-sm font-semibold bg-transparent text-slate-900 focus:outline-none cursor-pointer appearance-none"
                     >
                       {SERVICE_OPTIONS.map((opt) => (
@@ -471,9 +457,7 @@ export function InquiryEnvelopeModal() {
                   <textarea
                     rows={2}
                     value={formData.notes}
-                    onChange={(e) =>
-                      setFormData({ ...formData, notes: e.target.value })
-                    }
+                    onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                     placeholder="Tell us about your property, roof type, or any specific requirements..."
                     className="w-full px-3 py-2 text-sm font-semibold rounded-xl border border-slate-200/90 bg-white hover:border-slate-300 text-slate-900 placeholder:text-slate-400 placeholder:font-normal focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 focus:outline-none transition-all resize-none shadow-[0_1px_2px_rgba(0,0,0,0.03)]"
                   />
@@ -541,9 +525,7 @@ export function InquiryEnvelopeModal() {
                 : "opacity-100 scale-100 rotate-0"
             }`}
           >
-            <span className="text-[14px] font-black tracking-wider leading-none">
-              SKYE
-            </span>
+            <span className="text-[14px] font-black tracking-wider leading-none">SKYE</span>
             <span className="text-[7px] font-extrabold tracking-widest uppercase opacity-85">
               SOLAR
             </span>

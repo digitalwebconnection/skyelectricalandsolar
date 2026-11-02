@@ -17,4 +17,5 @@ export interface NavItem {
   href: string;
   icon?: string;
   external?: boolean;
+  disabled?: boolean;
 }

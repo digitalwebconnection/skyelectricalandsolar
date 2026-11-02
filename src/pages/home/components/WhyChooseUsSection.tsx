@@ -1,17 +1,6 @@
 import { useState, useEffect } from "react";
-import {
-  FileSearch,
-  Calculator,
-  Wrench,
-  Zap,
-  ArrowRight,
-  Clock,
-  Layers,
-} from "lucide-react";
-import {
-  InfiniteSpiral,
-  type InfiniteSpiralItem,
-} from "../../../components/common/InfiniteSpiral";
+import { FileSearch, Calculator, Wrench, Zap, ArrowRight, Clock, Layers } from "lucide-react";
+import { InfiniteSpiral, type InfiniteSpiralItem } from "@/components/ui";
 import { useInquiryModal } from "../../../context";
 
 interface TimelineStep {
@@ -238,15 +227,14 @@ export function WhyChooseUsSection() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 font-serif leading-[1.15]">
             How Switching to Solar <br />
             <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
-              Works With Skye Electrical & Solar
+              Works With Sky Electrical & Solar
             </span>
           </h2>
 
           <p className="mt-3.5 text-slate-600 text-base sm:text-lg leading-relaxed max-w-6xl mx-auto font-normal">
-            Zero hassle, zero hidden fees. As you scroll through our 4-step
-            installation timeline on the right, watch our 3D interactive
-            hardware spiral on the left navigate through real Australian
-            installations.
+            Zero hassle, zero hidden fees. As you scroll through our 4-step installation timeline on
+            the right, watch our 3D interactive hardware spiral on the left navigate through real
+            Australian installations.
           </p>
         </div>
 
@@ -378,9 +366,7 @@ export function WhyChooseUsSection() {
                     {/* CTA Button */}
                     <div className=" flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100">
                       <button
-                        onClick={() =>
-                          openInquiryModal("Residential Rooftop Solar")
-                        }
+                        onClick={() => openInquiryModal("Residential Rooftop Solar")}
                         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-linear-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs sm:text-sm font-bold shadow-sm shadow-orange-500/25 transition-all duration-200 active:scale-98 cursor-pointer"
                       >
                         <span>{step.ctaText}</span>

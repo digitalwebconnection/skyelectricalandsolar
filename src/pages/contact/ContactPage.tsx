@@ -4,7 +4,6 @@ import {
   ContactFormSection,
   LocationsMapSection,
   AssistanceProcessSection,
-  ContactFaqSection,
 } from "./components";
 
 export function ContactPage() {
@@ -24,9 +23,6 @@ export function ContactPage() {
 
       {/* 5. Rapid Turnaround Roadmap & Emergency Electrical Support Matrix */}
       <AssistanceProcessSection />
-
-      {/* 6. Pre-Contact FAQ Accordion & Final High-Impact Conversion Banner */}
-      <ContactFaqSection />
     </div>
   );
 }

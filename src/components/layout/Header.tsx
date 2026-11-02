@@ -1,13 +1,6 @@
 import { useState, useEffect } from "react";
-import {
-  Phone,
-  Mail,
-  Menu,
-  X,
-  ChevronRight,
-  Sun,
-  Sparkles,
-} from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { Phone, Mail, Menu, X, ChevronRight, Sun, Sparkles } from "lucide-react";
 import logoImg from "../../assets/logo.png";
 import { CONTACT_INFO, NAV_ITEMS } from "../../constants";
 import { ShimmerButton } from "../common";
@@ -18,10 +11,22 @@ export function Header() {
   const { currentPath, navigate } = useNavigation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showTopBar, setShowTopBar] = useState(true);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   const isItemActive = (href: string, label: string) => {
+    const item = NAV_ITEMS.find((n) => n.label === label);
+    if (item?.disabled) return false;
     if (label === "Home" && (currentPath === "/" || currentPath === "")) return true;
+    if (label === "About Us" && (currentPath === "/about-us" || currentPath.includes("about")))
+      return true;
     if (label === "Contact Us" && currentPath.includes("contact")) return true;
+    if (
+      label === "Services" &&
+      (currentPath === "/services" ||
+        currentPath.startsWith("/services") ||
+        currentPath.startsWith("/service"))
+    )
+      return true;
     return currentPath === href;
   };
 
@@ -60,7 +65,7 @@ export function Header() {
         }`}
       >
         {/* Top Solar Utility & Quick Contact Strip (40px) */}
-        <div className="h-10 w-full bg-slate-50 border-b border-slate-200/80 text-xs text-slate-600 overflow-hidden shadow-xs">
+        <div className="h-10 w-full bg-slate-50 border-b border-slate-200/80 text-xs text-slate-600 overflow-hidden shadow-xs relative">
           <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
             {/* Left Solar Energy Highlights */}
             <div className="flex items-center gap-3">
@@ -73,7 +78,7 @@ export function Header() {
               </span>
 
               <span className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-2.5 py-0.5 text-[11px] font-medium text-amber-800 border border-amber-200/60">
-                <Sun className="h-3.5 w-3.5 text-amber-600" />
+                <Sun className="h-3.5 w-3.5 text-amber-600 animate-[spin_12s_linear_infinite]" />
                 <span>Solar Rebates & Government Incentives Available</span>
               </span>
             </div>
@@ -90,9 +95,7 @@ export function Header() {
 
               <div className="flex items-center gap-2 pl-3 border-l border-slate-200">
                 <Phone className="h-3.5 w-3.5 text-orange-500" />
-                <span className="text-slate-500 hidden xs:inline">
-                  Solar Helpline:
-                </span>
+                <span className="text-slate-500 hidden xs:inline">Solar Helpline:</span>
                 <a
                   href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, "")}`}
                   className="font-bold text-slate-900 hover:text-orange-600 transition-colors tracking-wide"
@@ -111,9 +114,21 @@ export function Header() {
           </div>
         </div>
 
-        {/* Main Navbar (80px) */}
-        <nav className="relative bg-[#071d32] border-b border-slate-800 shadow-md">
-          <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        {/* Main Navbar (80px) with Glassmorphism, Ambient Sunlight Aura & Energy Beam */}
+        <nav className="relative bg-[#071d32]/95 backdrop-blur-xl border-b border-slate-800/80 shadow-md">
+          {/* Ambient Sunlight Energy Glow behind Navigation */}
+          <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-130 h-24 bg-linear-to-r from-orange-500/10 via-amber-400/15 to-orange-500/10 rounded-full blur-2xl z-0" />
+
+          {/* Animated Electrical Border Beam on Navbar Bottom */}
+          <div className="absolute bottom-0 inset-x-0 h-px bg-linear-to-r from-transparent via-orange-500/35 to-transparent overflow-hidden pointer-events-none">
+            <motion.div
+              animate={{ x: ["-100%", "300%"] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+              className="w-48 h-full bg-linear-to-r from-transparent via-[#ff9200] to-transparent shadow-[0_0_8px_rgba(255,146,0,0.8)]"
+            />
+          </div>
+
+          <div className="relative z-10 mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
             {/* Logo with clean high-contrast container */}
             <a
               href="/"
@@ -123,34 +138,75 @@ export function Header() {
               }}
               className="group flex items-center transition-transform duration-300 hover:scale-[1.02] cursor-pointer"
             >
-              <div className="flex items-center rounded-2xl bg-[#071d32] px-4 py-2 transition-shadow">
+              <div className="flex items-center  transition-shadow">
                 <img
                   src={logoImg}
-                  alt="Skye Electrical & Solar"
-                  className="h-10 sm:h-14  w-auto object-contain filter drop-shadow-[0_1px_4px_rgba(240,90,40,0.3)]"
+                  alt="Sky Electrical & Solar"
+                  className="h-10 sm:h-14 w-auto object-contain filter drop-shadow-[0_1px_4px_rgba(240,90,40,0.3)] group-hover:drop-shadow-[0_2px_12px_rgba(249,115,22,0.45)] transition-all"
                 />
               </div>
             </a>
 
-            {/* Floating White Navigation Menu Pill */}
-            <div className="hidden lg:flex items-center gap-1 bg-white p-1.5 rounded-full shadow-lg border border-slate-100">
+            {/* Floating White Navigation Menu Pill with Gliding Animations */}
+            <div
+              onMouseLeave={() => setHoveredItem(null)}
+              className="hidden lg:flex items-center gap-1 bg-white/95 backdrop-blur-md p-1.5 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.18)] border border-orange-200/60 ring-1 ring-orange-500/10 relative"
+            >
               {NAV_ITEMS.map((item) => {
-                const isActive = isItemActive(item.href, item.label);
+                const isDisabled = Boolean(item.disabled);
+                const isActive = !isDisabled && isItemActive(item.href, item.label);
+                const isHovered = !isDisabled && hoveredItem === item.label;
+
+                if (isDisabled) {
+                  return (
+                    <span
+                      key={item.label}
+                      className="relative px-4.5 py-2 rounded-full text-[14px] font-semibold text-slate-400 select-none cursor-default"
+                      title={`${item.label} (Coming Soon)`}
+                    >
+                      <span className="relative z-10">{item.label}</span>
+                    </span>
+                  );
+                }
+
                 return (
                   <a
                     key={item.label}
                     href={item.href}
+                    onMouseEnter={() => setHoveredItem(item.label)}
                     onClick={(e) => {
                       e.preventDefault();
                       navigate(item.href);
                     }}
-                    className={`relative px-4 py-2 rounded-full text-[14px] font-medium transition-all duration-200 cursor-pointer ${
-                      isActive
-                        ? "bg-linear-to-r from-amber-500 to-orange-500 text-white font-semibold shadow-sm"
-                        : "text-slate-700 hover:text-orange-600 hover:bg-slate-50"
+                    className={`relative px-4.5 py-2 rounded-full text-[14px] font-semibold transition-colors duration-200 cursor-pointer select-none ${
+                      isActive ? "text-white" : "text-slate-700 hover:text-orange-600"
                     }`}
                   >
-                    {item.label}
+                    {/* Active Gliding Background Pill */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeNavIndicator"
+                        className="absolute inset-0 rounded-full bg-linear-to-r from-amber-500 via-orange-500 to-solar-orange shadow-md shadow-orange-500/35"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+
+                    {/* Smooth Hover Gliding Background (when inactive) */}
+                    {!isActive && isHovered && (
+                      <motion.div
+                        layoutId="hoverNavIndicator"
+                        className="absolute inset-0 rounded-full bg-orange-50/90"
+                        transition={{ type: "spring", stiffness: 420, damping: 32 }}
+                      />
+                    )}
+
+                    {/* Label & Active Live Pulse Dot */}
+                    <span className="relative z-10 flex items-center gap-1.5">
+                      <span>{item.label}</span>
+                      {isActive && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-white/90 animate-pulse shadow-xs" />
+                      )}
+                    </span>
                   </a>
                 );
               })}
@@ -181,66 +237,93 @@ export function Header() {
             </div>
           </div>
 
-          {/* Mobile Navigation Drawer */}
-          {mobileMenuOpen && (
-            <div className="lg:hidden border-t border-slate-800 bg-[#071d32] px-5 pt-4 pb-8 space-y-4 shadow-xl">
-              <div className="space-y-1">
-                {NAV_ITEMS.map((item) => {
-                  const isActive = isItemActive(item.href, item.label);
-                  return (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        navigate(item.href);
-                        setMobileMenuOpen(false);
-                      }}
-                      className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition-all cursor-pointer ${
-                        isActive
-                          ? "bg-orange-500/20 text-orange-400 border border-orange-500/30"
-                          : "text-slate-200 hover:bg-slate-800 hover:text-white"
-                      }`}
-                    >
-                      <span>{item.label}</span>
-                      <ChevronRight
-                        className={`h-4 w-4 ${isActive ? "text-orange-400" : "text-slate-400"}`}
-                      />
-                    </a>
-                  );
-                })}
-              </div>
+          {/* Mobile Navigation Drawer with Smooth Slide Transition */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="lg:hidden border-t border-slate-800 bg-[#071d32] px-5 pt-4 pb-8 space-y-4 shadow-xl overflow-hidden"
+              >
+                <div className="space-y-1">
+                  {NAV_ITEMS.map((item) => {
+                    const isDisabled = Boolean(item.disabled);
+                    const isActive = !isDisabled && isItemActive(item.href, item.label);
 
-              <div className="pt-4 border-t border-slate-800 space-y-3">
-                <a
-                  href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, "")}`}
-                  className="flex items-center justify-center gap-2.5 rounded-xl bg-slate-800/80 border border-slate-700 py-3 text-sm font-semibold text-slate-200 hover:text-orange-400 hover:border-orange-400 transition-colors"
-                >
-                  <Phone className="h-4 w-4 text-orange-400" />
-                  <span>Call {CONTACT_INFO.phone1}</span>
-                </a>
+                    if (isDisabled) {
+                      return (
+                        <div
+                          key={item.label}
+                          className="flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold text-slate-500 select-none cursor-default"
+                        >
+                          <span>{item.label}</span>
+                          <span className="text-[11px] text-slate-500 font-normal">Coming Soon</span>
+                        </div>
+                      );
+                    }
 
-                <a
-                  href={`mailto:${CONTACT_INFO.email}`}
-                  className="flex items-center justify-center gap-2.5 rounded-xl bg-slate-800/80 border border-slate-700 py-3 text-xs font-medium text-slate-300"
-                >
-                  <Mail className="h-4 w-4 text-orange-400" />
-                  <span>{CONTACT_INFO.email}</span>
-                </a>
+                    return (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigate(item.href);
+                          setMobileMenuOpen(false);
+                        }}
+                        className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-semibold transition-all cursor-pointer ${
+                          isActive
+                            ? "bg-orange-500/20 text-orange-400 border border-orange-500/30"
+                            : "text-slate-200 hover:bg-slate-800 hover:text-white"
+                        }`}
+                      >
+                        <span className="flex items-center gap-2">
+                          {isActive && (
+                            <span className="w-2 h-2 rounded-full bg-orange-400 animate-ping" />
+                          )}
+                          <span>{item.label}</span>
+                        </span>
+                        <ChevronRight
+                          className={`h-4 w-4 ${isActive ? "text-orange-400" : "text-slate-400"}`}
+                        />
+                      </a>
+                    );
+                  })}
+                </div>
 
-                <ShimmerButton
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    openInquiryModal();
-                  }}
-                  className="w-full py-3.5"
-                >
-                  <Sparkles className="h-4 w-4 text-amber-200" />
-                  <span>Get Free Solar Quote</span>
-                </ShimmerButton>
-              </div>
-            </div>
-          )}
+                <div className="pt-4 border-t border-slate-800 space-y-3">
+                  <a
+                    href={`tel:${CONTACT_INFO.phone1.replace(/\s/g, "")}`}
+                    className="flex items-center justify-center gap-2.5 rounded-xl bg-slate-800/80 border border-slate-700 py-3 text-sm font-semibold text-slate-200 hover:text-orange-400 hover:border-orange-400 transition-colors"
+                  >
+                    <Phone className="h-4 w-4 text-orange-400" />
+                    <span>Call {CONTACT_INFO.phone1}</span>
+                  </a>
+
+                  <a
+                    href={`mailto:${CONTACT_INFO.email}`}
+                    className="flex items-center justify-center gap-2.5 rounded-xl bg-slate-800/80 border border-slate-700 py-3 text-xs font-medium text-slate-300"
+                  >
+                    <Mail className="h-4 w-4 text-orange-400" />
+                    <span>{CONTACT_INFO.email}</span>
+                  </a>
+
+                  <ShimmerButton
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      openInquiryModal();
+                    }}
+                    className="w-full py-3.5"
+                  >
+                    <Sparkles className="h-4 w-4 text-amber-200" />
+                    <span>Get Free Solar Quote</span>
+                  </ShimmerButton>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </nav>
       </header>
 

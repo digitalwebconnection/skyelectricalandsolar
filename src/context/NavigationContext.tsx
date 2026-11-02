@@ -19,10 +19,19 @@ const NavigationContext = createContext<NavigationContextType | undefined>(
 export function NavigationProvider({ children }: { children: ReactNode }) {
   const getInitialPath = () => {
     if (typeof window === "undefined") return "/";
-    const path = window.location.pathname;
-    const hash = window.location.hash.replace("#", "");
+    const rawPath = window.location.pathname;
+    const path = rawPath.toLowerCase();
+    const hash = window.location.hash.toLowerCase().replace("#", "");
+
+    if (path.includes("about") || hash.includes("about")) return "/about-us";
     if (path.includes("contact") || hash.includes("contact")) return "/contact-us";
-    return path || "/";
+    if (path.startsWith("/services/") || path.startsWith("/service/")) return rawPath;
+    if (path === "/services" || path === "/service" || hash.includes("service")) return "/services";
+    if (path.startsWith("/blogs/") || path.startsWith("/blog/")) return rawPath;
+    if (path === "/blogs" || path === "/blog" || hash.includes("blog")) return "/blogs";
+    if (path.includes("privacy") || hash.includes("privacy")) return "/privacy-policy";
+    if (path.includes("terms") || hash.includes("terms")) return "/terms-conditions";
+    return rawPath || "/";
   };
 
   const [currentPath, setCurrentPath] = useState<string>(getInitialPath);
@@ -43,12 +52,27 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const handlePopState = () => {
-      const path = window.location.pathname;
-      const hash = window.location.hash.replace("#", "");
-      if (path.includes("contact") || hash.includes("contact")) {
+      const rawPath = window.location.pathname;
+      const path = rawPath.toLowerCase();
+      const hash = window.location.hash.toLowerCase().replace("#", "");
+      if (path.includes("about") || hash.includes("about")) {
+        setCurrentPath("/about-us");
+      } else if (path.includes("contact") || hash.includes("contact")) {
         setCurrentPath("/contact-us");
+      } else if (path.startsWith("/services/") || path.startsWith("/service/")) {
+        setCurrentPath(rawPath);
+      } else if (path === "/services" || path === "/service" || hash.includes("service")) {
+        setCurrentPath("/services");
+      } else if (path.startsWith("/blogs/") || path.startsWith("/blog/")) {
+        setCurrentPath(rawPath);
+      } else if (path === "/blogs" || path === "/blog" || hash.includes("blog")) {
+        setCurrentPath("/blogs");
+      } else if (path.includes("privacy") || hash.includes("privacy")) {
+        setCurrentPath("/privacy-policy");
+      } else if (path.includes("terms") || hash.includes("terms")) {
+        setCurrentPath("/terms-conditions");
       } else {
-        setCurrentPath(path || "/");
+        setCurrentPath(rawPath || "/");
       }
     };
 

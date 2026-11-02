@@ -1,10 +1,6 @@
 import { useRef } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { FadeContent } from "../../../components/common/FadeContent";
-import ScrollStack, {
-  ScrollStackItem,
-  type ScrollStackHandle,
-} from "../../../components/common/ScrollStack";
+import { FadeContent, ScrollStack, ScrollStackItem, type ScrollStackHandle } from "@/components/ui";
 import { useInquiryModal } from "../../../context";
 
 export function SolarSectorsSection() {
@@ -40,8 +36,8 @@ export function SolarSectorsSection() {
           </h2>
 
           <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
-            Precision solar systems engineered for high yields, rapid payback,
-            and decades of reliable clean energy.
+            Precision solar systems engineered for high yields, rapid payback, and decades of
+            reliable clean energy.
           </p>
         </FadeContent>
 
@@ -80,16 +76,14 @@ export function SolarSectorsSection() {
 
                   {/* Headline */}
                   <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-extrabold tracking-tight text-slate-900 leading-tight">
-                    Power your home with the sun and enjoy true energy
-                    independence.
+                    Power your home with the sun and enjoy true energy independence.
                   </h3>
 
                   {/* Description */}
                   <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                    Our residential solar solutions maximize efficiency, reduce
-                    electricity costs, and protect your household from rising
-                    utility rates. Homeowners generate clean energy, minimize
-                    grid reliance, and lock in long-term power savings.
+                    Our residential solar solutions maximize efficiency, reduce electricity costs,
+                    and protect your household from rising utility rates. Homeowners generate clean
+                    energy, minimize grid reliance, and lock in long-term power savings.
                   </p>
 
                   {/* Stat Counters */}
@@ -124,9 +118,7 @@ export function SolarSectorsSection() {
                   <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-1">
                     <button
                       type="button"
-                      onClick={() =>
-                        openInquiryModal("Residential Rooftop Solar")
-                      }
+                      onClick={() => openInquiryModal("Residential Rooftop Solar")}
                       className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-linear-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 px-6 sm:px-7 text-sm font-bold text-white shadow-lg shadow-orange-500/25 transition-all duration-200 active:scale-95 cursor-pointer"
                     >
                       <span>Get Home Solar Quote</span>
@@ -154,8 +146,7 @@ export function SolarSectorsSection() {
                       className="w-full h-full min-h-60 sm:min-h-70 lg:min-h-110 object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                       onError={(e) => {
-                        e.currentTarget.src =
-                          "/assets/posters/poster-rooftop.jpg";
+                        e.currentTarget.src = "/assets/posters/poster-rooftop.jpg";
                       }}
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
@@ -163,7 +154,7 @@ export function SolarSectorsSection() {
                     <div className="absolute bottom-5 left-5 right-5 text-white flex items-end justify-between">
                       <div>
                         <div className="text-xs uppercase tracking-wider text-amber-300 font-bold">
-                          Skye Electrical & Solar Guarantee
+                          Sky Electrical & Solar Guarantee
                         </div>
                         <div className="text-base sm:text-lg font-extrabold">
                           Clean Energy Council Accredited
@@ -193,16 +184,14 @@ export function SolarSectorsSection() {
 
                   {/* Headline */}
                   <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
-                    Empower your business with smart energy solutions that drive
-                    profitability.
+                    Empower your business with smart energy solutions that drive profitability.
                   </h3>
 
                   {/* Description */}
                   <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                    Our commercial solar systems help businesses reduce
-                    operating overheads, stabilize energy expenses against
-                    rising tariffs, and build a competitive edge through
-                    renewable energy.
+                    Our commercial solar systems help businesses reduce operating overheads,
+                    stabilize energy expenses against rising tariffs, and build a competitive edge
+                    through renewable energy.
                   </p>
 
                   {/* Stat Counters */}
@@ -237,9 +226,7 @@ export function SolarSectorsSection() {
                   <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-1">
                     <button
                       type="button"
-                      onClick={() =>
-                        openInquiryModal("Commercial & Industrial Solar Arrays")
-                      }
+                      onClick={() => openInquiryModal("Commercial & Industrial Solar Arrays")}
                       className="inline-flex h-12 items-center justify-center gap-2.5 rounded-full bg-linear-to-r from-blue-600 to-sky-600 hover:from-blue-700 hover:to-sky-700 px-6 sm:px-7 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition-all duration-200 active:scale-95 cursor-pointer"
                     >
                       <span>Request Commercial Energy Audit</span>

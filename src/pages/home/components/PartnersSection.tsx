@@ -1,22 +1,22 @@
 import { Zap, Sun, ShieldCheck, Award } from "lucide-react";
-import { Marquee } from "../../../components/common/Marquee";
+import { Marquee } from "@/components/ui";
 
-// Real brand logos from user-shared assets in src/assets/Inverter Brands
-import froniusLogo from "@/assets/Inverter Brands/fronius.png";
-import goodweLogo from "@/assets/Inverter Brands/goodwe.png";
-import growattLogo from "@/assets/Inverter Brands/growatt.png";
-import sajLogo from "@/assets/Inverter Brands/saj.png";
-import solaxLogo from "@/assets/Inverter Brands/solar x.png";
-import solisLogo from "@/assets/Inverter Brands/solis.png";
-import sungrowLogo from "@/assets/Inverter Brands/sungrow.png";
-
-// Real brand logos from user-shared assets in src/assets/Solar Panels
-import jinkoLogo from "@/assets/Solar Panels/jinkosolar.png";
-import longiLogo from "@/assets/Solar Panels/longi.png";
-import missionLogo from "@/assets/Solar Panels/mission.png";
-import orbitLogo from "@/assets/Solar Panels/orbit.png";
-import primeLogo from "@/assets/Solar Panels/prime.png";
-import seraphimLogo from "@/assets/Solar Panels/seraphim.png";
+// Real brand logos from central assets
+import {
+  froniusLogo,
+  goodweLogo,
+  growattLogo,
+  sajLogo,
+  solarXLogo as solaxLogo,
+  solisLogo,
+  sungrowLogo,
+  jinkoLogo,
+  longiLogo,
+  missionLogo,
+  orbitLogo,
+  primeLogo,
+  seraphimLogo,
+} from "@/assets";
 
 interface BrandItem {
   name: string;

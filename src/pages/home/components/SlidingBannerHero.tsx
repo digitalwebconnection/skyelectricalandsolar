@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import {
   PixelSwap,
   type PixelSwapProps,
-} from "../../../components/common/PixelSwap";
+} from "@/components/ui";
 
 export interface BannerSlide {
   id: number;

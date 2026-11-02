@@ -1,7 +1,6 @@
 import { PhoneCall, Star, ShieldCheck, Zap } from "lucide-react";
 import { CONTACT_INFO } from "../../../constants";
-import { StaggerButton } from "../../../components/common/StaggerButton";
-import { StrokeText } from "../../../components/common/StrokeText";
+import { StaggerButton, StrokeText } from "@/components/ui";
 import { useInquiryModal } from "../../../context";
 
 // Fountain of energy particle presets for the "Funtara" background effect

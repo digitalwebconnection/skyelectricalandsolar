@@ -15,10 +15,7 @@ import {
   Send,
   CheckCircle2,
 } from "lucide-react";
-import { FadeContent } from "../../../components/common/FadeContent";
-import { MagicCard } from "../../../components/common/MagicCard";
-import { BorderBeam } from "../../../components/common/BorderBeam";
-import { NumberTicker } from "../../../components/common/NumberTicker";
+import { FadeContent, MagicCard, BorderBeam, NumberTicker } from "@/components/ui";
 import { CONTACT_INFO } from "../../../constants";
 
 type PropertyType = "residential" | "commercial";
@@ -31,8 +28,7 @@ export function SolarCalculatorSection() {
   const [billAmount, setBillAmount] = useState<number>(350);
   const [postcode, setPostcode] = useState<string>("3000 Melbourne");
   const [hasBattery, setHasBattery] = useState<boolean>(true);
-  const [roofOrientation, setRoofOrientation] =
-    useState<RoofOrientation>("optimal");
+  const [roofOrientation, setRoofOrientation] = useState<RoofOrientation>("optimal");
   const [userPhone, setUserPhone] = useState<string>("");
   const [isQuoteSent, setIsQuoteSent] = useState<boolean>(false);
 
@@ -90,18 +86,11 @@ export function SolarCalculatorSection() {
 
     // Orientation multiplier
     const orientationMultiplier =
-      roofOrientation === "optimal"
-        ? 1.0
-        : roofOrientation === "balanced"
-          ? 0.92
-          : 0.82;
+      roofOrientation === "optimal" ? 1.0 : roofOrientation === "balanced" ? 0.92 : 0.82;
 
     // Savings percentage
     const baseSavingsRate = hasBattery ? 0.88 : 0.72;
-    const effectiveSavingsRate = Math.min(
-      0.95,
-      baseSavingsRate * orientationMultiplier,
-    );
+    const effectiveSavingsRate = Math.min(0.95, baseSavingsRate * orientationMultiplier);
 
     // Annual & 10-year savings
     const annualSavings = Math.round(annualBill * effectiveSavingsRate);
@@ -125,9 +114,7 @@ export function SolarCalculatorSection() {
     ).toFixed(1);
 
     // Environmental Offset
-    const co2OffsetTonnes = Number(
-      (systemKw * 1.25 * orientationMultiplier).toFixed(1),
-    );
+    const co2OffsetTonnes = Number((systemKw * 1.25 * orientationMultiplier).toFixed(1));
 
     return {
       systemKw,
@@ -183,8 +170,7 @@ export function SolarCalculatorSection() {
               linear-gradient(to bottom, #0f172a 1px, transparent 1px)
             `,
             backgroundSize: "36px 36px",
-            maskImage:
-              "radial-gradient(ellipse 85% 75% at 50% 50%, black 50%, transparent 100%)",
+            maskImage: "radial-gradient(ellipse 85% 75% at 50% 50%, black 50%, transparent 100%)",
             WebkitMaskImage:
               "radial-gradient(ellipse 85% 75% at 50% 50%, black 50%, transparent 100%)",
           }}
@@ -229,9 +215,8 @@ export function SolarCalculatorSection() {
           </h2>
 
           <p className="mt-4 text-base sm:text-lg text-slate-900 leading-relaxed font-normal">
-            Type your power bill or drag the slider to instantly discover your
-            optimal system size, estimated quarterly savings, and government
-            rebate entitlement.
+            Type your power bill or drag the slider to instantly discover your optimal system size,
+            estimated quarterly savings, and government rebate entitlement.
           </p>
         </FadeContent>
 
@@ -250,8 +235,7 @@ export function SolarCalculatorSection() {
                     type="button"
                     onClick={() => {
                       setPropertyType("residential");
-                      if (billAmount > 800 && billCycle === "monthly")
-                        setBillAmount(350);
+                      if (billAmount > 800 && billCycle === "monthly") setBillAmount(350);
                     }}
                     className={`flex items-center justify-center gap-2.5 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
                       propertyType === "residential"
@@ -269,8 +253,7 @@ export function SolarCalculatorSection() {
                     type="button"
                     onClick={() => {
                       setPropertyType("commercial");
-                      if (billAmount < 350 && billCycle === "monthly")
-                        setBillAmount(750);
+                      if (billAmount < 350 && billCycle === "monthly") setBillAmount(750);
                     }}
                     className={`flex items-center justify-center gap-2.5 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
                       propertyType === "commercial"
@@ -353,8 +336,7 @@ export function SolarCalculatorSection() {
                     step={10}
                     value={billAmount || ""}
                     onChange={(e) => {
-                      const val =
-                        e.target.value === "" ? 0 : Number(e.target.value);
+                      const val = e.target.value === "" ? 0 : Number(e.target.value);
                       setBillAmount(val);
                     }}
                     placeholder="Enter bill amount (e.g. 350)"
@@ -423,9 +405,7 @@ export function SolarCalculatorSection() {
                   >
                     <Sun className="h-4 w-4 mx-auto mb-1 text-orange-500" />
                     <div className="text-xs font-bold">East / West</div>
-                    <div className="text-[10px] text-slate-500 font-medium mt-0.5">
-                      92% Yield
-                    </div>
+                    <div className="text-[10px] text-slate-500 font-medium mt-0.5">92% Yield</div>
                   </button>
 
                   <button
@@ -439,9 +419,7 @@ export function SolarCalculatorSection() {
                   >
                     <TreePine className="h-4 w-4 mx-auto mb-1 text-slate-400" />
                     <div className="text-xs font-bold">Partial Shade</div>
-                    <div className="text-[10px] text-slate-500 font-medium mt-0.5">
-                      Optimized
-                    </div>
+                    <div className="text-[10px] text-slate-500 font-medium mt-0.5">Optimized</div>
                   </button>
                 </div>
               </div>
@@ -462,8 +440,7 @@ export function SolarCalculatorSection() {
                       </span>
                     </div>
                     <p className="text-xs text-slate-600 mt-0.5">
-                      Store daytime solar power for night use and protect
-                      against grid outages.
+                      Store daytime solar power for night use and protect against grid outages.
                     </p>
                   </div>
                 </div>
@@ -522,9 +499,7 @@ export function SolarCalculatorSection() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <span className="text-xs text-slate-400 block font-medium">
-                    Configuration
-                  </span>
+                  <span className="text-xs text-slate-400 block font-medium">Configuration</span>
                   <span className="text-xs font-bold text-amber-300">
                     {calculation.panelsCount} x 415W Tier-1
                   </span>
@@ -538,13 +513,8 @@ export function SolarCalculatorSection() {
                 </span>
                 <div className="flex items-baseline gap-1 text-4xl sm:text-5xl font-black text-white tracking-tight">
                   <span className="text-amber-400">$</span>
-                  <NumberTicker
-                    value={calculation.annualSavings}
-                    className="text-white"
-                  />
-                  <span className="text-sm font-semibold text-slate-400 ml-1">
-                    / year
-                  </span>
+                  <NumberTicker value={calculation.annualSavings} className="text-white" />
+                  <span className="text-sm font-semibold text-slate-400 ml-1">/ year</span>
                 </div>
 
                 <div className="mt-3 flex items-center justify-between text-xs text-slate-300">
@@ -560,8 +530,7 @@ export function SolarCalculatorSection() {
                   <span className="text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded-full">
                     ~
                     {Math.round(
-                      ((calculation.annualBill -
-                        calculation.newMonthlyBill * 12) /
+                      ((calculation.annualBill - calculation.newMonthlyBill * 12) /
                         calculation.annualBill) *
                         100,
                     )}
@@ -620,8 +589,7 @@ export function SolarCalculatorSection() {
                     htmlFor="quote-phone-input"
                     className="text-[11px] font-bold text-slate-300 block"
                   >
-                    Get this custom {calculation.systemKw}kW breakdown via SMS /
-                    Call:
+                    Get this custom {calculation.systemKw}kW breakdown via SMS / Call:
                   </label>
                   <div className="relative flex items-center">
                     <input
@@ -643,7 +611,7 @@ export function SolarCalculatorSection() {
                   </div>
                   {isQuoteSent && (
                     <p className="text-[11px] text-emerald-400 font-semibold animate-pulse">
-                      ✓ Connecting you to Skye Electrical & Solar Engineers...
+                      ✓ Connecting you to Sky Electrical & Solar Engineers...
                     </p>
                   )}
                 </form>

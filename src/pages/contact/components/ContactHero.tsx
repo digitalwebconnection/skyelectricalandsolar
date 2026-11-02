@@ -1,17 +1,12 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import {
-  Phone,
-  ArrowRight,
-  Zap,
-} from "lucide-react";
+import { Phone, ArrowRight, Zap } from "lucide-react";
 import { CONTACT_INFO } from "../../../constants";
 import { useInquiryModal } from "../../../context";
 
 export function ContactHero() {
   useInquiryModal();
   const [] = useState<string | null>(null);
-
 
   const scrollToForm = () => {
     const el = document.getElementById("contact-form-section");
@@ -20,12 +15,10 @@ export function ContactHero() {
     }
   };
 
-
   return (
     <section className="relative w-full overflow-hidden bg-slate-950 text-white">
       {/* ================= 1. FULL-WIDTH CINEMATIC HERO BANNER ================= */}
       <div className="relative w-full min-h-145 sm:min-h-160 lg:min-h-130 flex flex-col justify-between overflow-hidden">
-        
         {/* Full-Width Background Image with Subtle Slow Motion Zoom */}
         <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
           <motion.img
@@ -45,7 +38,7 @@ export function ContactHero() {
           {/* Deep Cinematic Gradient Overlays for High-Contrast Text Legibility */}
           {/* Left-to-right gradient: dense dark on left for text, semi-transparent on right for image visibility */}
           <div className="absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/85 to-slate-950/45 lg:to-slate-950/30" />
-          
+
           {/* Top-to-bottom soft vignette */}
           <div className="absolute inset-0 bg-linear-to-b from-slate-950/70 via-transparent to-slate-950/95" />
 
@@ -57,8 +50,7 @@ export function ContactHero() {
           <div
             className="absolute inset-0 opacity-20"
             style={{
-              maskImage:
-                "radial-gradient(ellipse 70% 60% at 30% 40%, black 30%, transparent 80%)",
+              maskImage: "radial-gradient(ellipse 70% 60% at 30% 40%, black 30%, transparent 80%)",
               WebkitMaskImage:
                 "radial-gradient(ellipse 70% 60% at 30% 40%, black 30%, transparent 80%)",
             }}
@@ -95,15 +87,12 @@ export function ContactHero() {
         {/* ================= 2. BANNER CONTENT (CENTERED ON CONTAINER) ================= */}
         <div className="relative z-10 mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-14 pb-12 sm:pb-16 flex-1 flex flex-col justify-center">
           <div className="max-w-3xl">
-            
-            
-
             {/* Monumental Hero Headline */}
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight text-white leading-[1.08]"
+              className="text-4xl sm:text-5xl lg:text-6xl font-serif xl:text-7xl font-black tracking-tight text-white leading-[1.08]"
             >
               Get In Touch With{" "}
               <span className="bg-linear-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">
@@ -118,9 +107,9 @@ export function ContactHero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-5 sm:mt-6 text-base sm:text-lg lg:text-xl text-slate-200 leading-relaxed font-normal max-w-4xl drop-shadow-sm"
             >
-              Connect directly with licensed Clean Energy Council solar designers
-              and A-Grade master electricians. Transparent quotes, upfront Australian
-              STC government rebate calculations, and fast local dispatch across WA, NSW &amp; QLD.
+              Connect directly with licensed Clean Energy Council solar designers and A-Grade master
+              electricians. Transparent quotes, upfront Australian STC government rebate
+              calculations, and fast local dispatch across WA, NSW &amp; QLD.
             </motion.p>
 
             {/* Banner Call-To-Action Buttons */}
@@ -133,8 +122,8 @@ export function ContactHero() {
               {/* Primary Instant Proposal Button */}
               <button
                 type="button"
-                onClick={scrollToForm}
-                className="group relative inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 text-slate-950 font-black text-sm sm:text-base shadow-xl shadow-orange-500/30 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                onClick={scrollToForm}  
+                className="group relative inline-flex items-center gap-2.5 px-4 py-4 rounded-xl bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 text-slate-950 font-black text-sm sm:text-base shadow-xl shadow-orange-500/30 hover:scale-[1.03] active:scale-[0.98] transition-all duration-200 cursor-pointer"
               >
                 <Zap className="h-4 w-4 text-slate-950 fill-current group-hover:rotate-12 transition-transform" />
                 <span>Get in Touch Now!!</span>
@@ -149,14 +138,9 @@ export function ContactHero() {
                 <Phone className="h-4 w-4 text-amber-400" />
                 <span>Call {CONTACT_INFO.phone1}</span>
               </a>
-
             </motion.div>
-
           </div>
         </div>
-
-     
-
       </div>
     </section>
   );

@@ -18,12 +18,12 @@ import {
 import { useNavigation } from "../../context";
 
 const SOLAR_SERVICES = [
-  { label: "Residential Solar (6.6kW–13.2kW)", href: "/services" },
-  { label: "Commercial & Industrial Arrays", href: "/services" },
-  { label: "Battery Storage (Tesla & Alpha ESS)", href: "/services" },
-  { label: "EV Charger Installation", href: "/services" },
-  { label: "Inverter Diagnostics & Upgrades", href: "/services" },
-  { label: "Switchboard & Safety Compliance", href: "/services" },
+  { label: "Solar Installation", href: "/services/solar-installation" },
+  { label: "Electric Car Chargers", href: "/services/electric-car-chargers" },
+  { label: "Solar Battery Storage", href: "/services/solar-battery" },
+  { label: "All Domestic Electrical Work", href: "/services/all-domestic-electrical-work" },
+  { label: "Domestic & Commercial Comms", href: "/services/all-communications-work-for-domestic-commercial" },
+  { label: "Switchboard Upgrades", href: "/services/switchboard-upgrades" },
 ];
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -191,25 +191,39 @@ export function Footer() {
               <span>Navigation</span>
             </h4>
             <ul className="space-y-3 text-sm">
-              {NAV_ITEMS.map((item, index) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate(item.href);
-                    }}
-                    className={`group inline-flex items-center gap-1.5 transition-all duration-200 hover:translate-x-1 cursor-pointer ${
-                      index === 0
-                        ? "text-amber-400 font-bold hover:text-amber-300"
-                        : "text-slate-400 hover:text-amber-400"
-                    }`}
-                  >
-                    <span>{item.label}</span>
-                    <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity text-amber-400" />
-                  </a>
-                </li>
-              ))}
+              {NAV_ITEMS.map((item, index) => {
+                const isDisabled = Boolean(item.disabled);
+
+                if (isDisabled) {
+                  return (
+                    <li key={item.label}>
+                      <span className="inline-flex items-center gap-1.5 text-slate-500 select-none cursor-default">
+                        <span>{item.label}</span>
+                      </span>
+                    </li>
+                  );
+                }
+
+                return (
+                  <li key={item.label}>
+                    <a
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigate(item.href);
+                      }}
+                      className={`group inline-flex items-center gap-1.5 transition-all duration-200 hover:translate-x-1 cursor-pointer ${
+                        index === 0
+                          ? "text-amber-400 font-bold hover:text-amber-300"
+                          : "text-slate-400 hover:text-amber-400"
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity text-amber-400" />
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -224,7 +238,11 @@ export function Footer() {
                 <li key={service.label}>
                   <a
                     href={service.href}
-                    className="group inline-flex items-center gap-1.5 text-slate-400 hover:text-orange-400 transition-all duration-200 hover:translate-x-1"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(service.href);
+                    }}
+                    className="group inline-flex items-center gap-1.5 text-slate-400 hover:text-orange-400 transition-all duration-200 hover:translate-x-1 cursor-pointer"
                   >
                     <span>{service.label}</span>
                     <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity text-orange-400" />
@@ -314,13 +332,17 @@ export function Footer() {
             </span>
           </div>
           {/* Legal Links below services */}
-          <div className="">
-            <ul className="text-xs flex gap-10">
+          <div>
+            <ul className="text-xs flex flex-wrap items-center gap-6 sm:gap-8">
               {LEGAL_LINKS.map((item) => (
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="text-slate-100 hover:text-slate-300 transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(item.href);
+                    }}
+                    className="text-slate-300 hover:text-amber-400 font-medium transition-colors cursor-pointer"
                   >
                     {item.label}
                   </a>
@@ -344,10 +366,23 @@ export function Footer() {
           <p>
             © {CURRENT_YEAR} {COMPANY_LEGAL_NAME}. All rights reserved.
           </p>
-          <p className="text-center md:text-right">
-            Designed for high performance, compliance, and clean energy
-            independence across Victoria.
-          </p>
+
+          {/* Developed by DigitalWebConnection Button */}
+          <div className="flex items-center">
+            <a
+              href="https://digitalwebconnection.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Website Developed by DigitalWebConnection"
+              className="group inline-flex items-center gap-1.5  transition-all duration-300 text-xs shadow-xs hover:shadow-md hover:shadow-amber-500/10 cursor-pointer"
+            >
+              <span className="text-white">Developed by</span>
+              <span className="font-bold text-amber-400 group-hover:text-amber-300 transition-colors">
+                DigitalWebConnection
+              </span>
+              <ArrowUpRight className="h-3 w-3 text-amber-400/80 group-hover:text-amber-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

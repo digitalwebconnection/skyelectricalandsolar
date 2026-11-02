@@ -2,272 +2,490 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   MapPin,
-  Phone,
-  Mail,
   Clock,
   Navigation,
   Copy,
   Check,
   ExternalLink,
+  Phone,
+  Mail,
   ShieldCheck,
-  Building,
 } from "lucide-react";
-import { STATE_HUBS } from "../../../constants";
+
+interface Branch {
+  id: "wa" | "nsw" | "qld";
+  tab: string;
+  short: string;
+  city: string;
+  subtitle: string;
+  address: string;
+  mapAddress: string;
+  mapCardTitle: string;
+  hours: string;
+  serviceAreas: string;
+  phone: string;
+  email: string;
+  status: string;
+}
+
+const branches: Branch[] = [
+  {
+    id: "wa",
+    tab: "Western Australia",
+    short: "WA Regional Center",
+    city: "Caversham (Perth Hub)",
+    subtitle: "Residential Solar & High-Output Battery Hub",
+    address: "112 Barbaruasa drive Caveraham wa 6055",
+    mapAddress: "112 Barbaruasa Dr, Caversham WA 6055, Australia",
+    mapCardTitle: "112 Barbaruasa Dr",
+    hours: "Mon – Sun 7:00 AM – 6:00 PM (AWST)",
+    serviceAreas: "Swanen Park, Swan Valley, Caversham, Midland, Balcatta & Peel Region",
+    phone: "08-6328 378 817",
+    email: "wa@skyelectricandsolar.net.au",
+    status: "Active Field Dispatch",
+  },
+  {
+    id: "nsw",
+    tab: "New South Wales",
+    short: "NSW Regional Center",
+    city: "Kellyville (Sydney Hub)",
+    subtitle: "Residential Solar & Battery Solutions Hub",
+    address: "114 Burns Road, Kellyville NSW 2155",
+    mapAddress: "114 Burns Road, Kellyville NSW 2155, Australia",
+    mapCardTitle: "114 Burns Road",
+    hours: "Mon – Sat 7:00 AM – 6:00 PM (AEST)",
+    serviceAreas: "Kellyville, Parramatta, Blacktown, Castle Hill & Greater Sydney",
+    phone: "0489 939 658",
+    email: "nsw@skyelectricandsolar.net.au",
+    status: "Active Field Dispatch",
+  },
+  {
+    id: "qld",
+    tab: "Queensland",
+    short: "QLD Regional Center",
+    city: "Chermside (Brisbane Hub)",
+    subtitle: "Solar Installation & Battery Service Hub",
+    address: "17 Western Avenue, Chermside, QLD 4032",
+    mapAddress: "17 Western Avenue, Chermside QLD 4032, Australia",
+    mapCardTitle: "17 Western Avenue",
+    hours: "Mon – Sat 7:00 AM – 6:00 PM (AEST)",
+    serviceAreas: "Chermside, Brisbane North, Aspley, Kedron & Greater Brisbane",
+    phone: "0430 015 017",
+    email: "qld@skyelectricandsolar.net.au",
+    status: "Active Field Dispatch",
+  },
+];
 
 export function LocationsMapSection() {
-  const [activeHubId, setActiveHubId] = useState<"wa" | "nsw" | "qld">("wa");
-  const [copied, setCopied] = useState(false);
+  const [activeState, setActiveState] = useState<"wa" | "nsw" | "qld">("wa");
+  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
 
-  const activeHub =
-    STATE_HUBS.find((h) => h.id === activeHubId) || STATE_HUBS[0];
+  const activeBranch = branches.find((branch) => branch.id === activeState) || branches[0];
 
-  const handleCopy = (address: string) => {
-    navigator.clipboard.writeText(address);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2200);
+  const handleCopy = async (address: string) => {
+    try {
+      await navigator.clipboard.writeText(address);
+      setCopiedAddress(address);
+      setTimeout(() => setCopiedAddress(null), 2200);
+    } catch {
+      setCopiedAddress(null);
+    }
   };
 
-  // Google Maps embed URL dynamically responsive to the active hub address
-  const embedUrl = `https://maps.google.com/maps?q=${encodeURIComponent(
-    activeHub.mapQuery,
-  )}&t=m&z=14&output=embed&iwloc=near`;
-
-  const googleDirectionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-    activeHub.mapQuery,
+  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+    activeBranch.mapAddress,
   )}`;
 
   return (
     <section
-      id="locations-map"
-      className="relative py-24 bg-white text-slate-900 overflow-hidden border-t border-slate-200/80"
+      id="state-operations"
+      className="relative overflow-hidden py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#fdfbf9] via-[#fff8f2] to-[#fff6ee] text-slate-800"
     >
-      {/* Background ambient accents */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-amber-100/50 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-100/40 rounded-full blur-3xl pointer-events-none" />
+      {/* ================= HIGH-END DECORATIVE BACKGROUND ACCENTS ================= */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden select-none">
+        {/* Subtle orange dot grid pattern on the top-left */}
+        <div
+          className="absolute top-8 left-6 w-80 h-96 opacity-35"
+          style={{
+            backgroundImage: "radial-gradient(#f97316 1.5px, transparent 1.5px)",
+            backgroundSize: "22px 22px",
+          }}
+        />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Heading */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold uppercase tracking-wider mb-3">
-            <Building className="h-3.5 w-3.5 text-amber-600" />
-            National Network • Local Branches
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight">
-            Our 3 State Operational Hubs &amp; Interactive Map
+        {/* Ambient radial glow halos */}
+        <div className="absolute -top-16 left-1/4 w-[500px] h-[500px] bg-orange-300/15 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 right-10 w-[600px] h-[600px] bg-amber-400/15 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 w-[700px] h-80 bg-orange-400/10 rounded-full blur-3xl" />
+
+        {/* Australia Silhouette & Stylized Map Pin (Top-Right) */}
+        <div className="absolute top-0 right-0 w-[360px] sm:w-[480px] lg:w-[560px] opacity-70 lg:opacity-85 translate-x-8 -translate-y-4">
+          <svg
+            viewBox="0 0 500 450"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-auto"
+          >
+            {/* Australia Silhouette Background */}
+            <path
+              d="M360 80 C375 68 390 62 405 72 C420 82 435 115 445 145 C455 175 470 215 460 255 C450 295 420 335 380 345 C340 355 315 325 285 330 C255 335 235 355 195 345 C155 335 135 305 105 285 C75 265 55 225 65 185 C75 145 105 125 145 115 C185 105 215 125 255 115 C285 105 310 82 335 85 Z"
+              fill="#f97316"
+              fillOpacity="0.08"
+            />
+            {/* Concentric Pulse Circles */}
+            <circle
+              cx="380"
+              cy="150"
+              r="170"
+              stroke="#F97316"
+              strokeWidth="1"
+              strokeOpacity="0.15"
+            />
+            <circle
+              cx="380"
+              cy="150"
+              r="130"
+              stroke="#F97316"
+              strokeWidth="1"
+              strokeOpacity="0.22"
+            />
+            <circle
+              cx="380"
+              cy="150"
+              r="90"
+              stroke="#F97316"
+              strokeWidth="1"
+              strokeOpacity="0.32"
+            />
+            <circle
+              cx="380"
+              cy="150"
+              r="55"
+              stroke="#F97316"
+              strokeWidth="1.2"
+              strokeOpacity="0.5"
+              strokeDasharray="4 4"
+            />
+
+            {/* Stylized Floating Orange Pin Marker */}
+            <g transform="translate(380, 150) translate(-36, -72)">
+              <path
+                d="M36 0 C16.1 0 0 16.1 0 36 C0 63 36 96 36 96 C36 96 72 63 72 36 C72 16.1 55.9 0 36 0 Z"
+                fill="url(#pinOrangeGrad)"
+                filter="drop-shadow(0 12px 20px rgba(249,115,22,0.45))"
+              />
+              <circle cx="36" cy="36" r="14" fill="white" />
+            </g>
+
+            <defs>
+              <linearGradient id="pinOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#ff9f38" />
+                <stop offset="100%" stopColor="#ea580c" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        {/* Bottom Glowing Light Trails & Roads Network */}
+        <div className="absolute -bottom-6 right-0 w-full max-w-5xl h-44 opacity-80 pointer-events-none">
+          <svg
+            viewBox="0 0 900 160"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-full"
+          >
+            <defs>
+              <filter id="roadGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="5" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+              <linearGradient id="roadLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#f97316" stopOpacity="0" />
+                <stop offset="35%" stopColor="#fb923c" stopOpacity="0.85" />
+                <stop offset="75%" stopColor="#ea580c" stopOpacity="1" />
+                <stop offset="100%" stopColor="#f97316" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+
+            {/* Glowing Golden Road Trajectory */}
+            <path
+              d="M 80 150 C 300 150, 480 125, 610 90 C 670 75, 750 45, 900 35"
+              stroke="url(#roadLineGradient)"
+              strokeWidth="4.5"
+              strokeLinecap="round"
+              filter="url(#roadGlowFilter)"
+            />
+            <path
+              d="M 100 155 C 310 155, 490 130, 620 95 C 680 80, 760 50, 910 40"
+              stroke="#fed7aa"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              opacity="0.8"
+            />
+            <path
+              d="M 240 155 C 410 155, 540 128, 640 98 C 710 78, 780 54, 910 50"
+              stroke="url(#roadLineGradient)"
+              strokeWidth="2.5"
+              strokeDasharray="9 7"
+              opacity="0.65"
+            />
+
+            {/* Glowing Pin Marker on the Road */}
+            <g transform="translate(630, 60)">
+              <circle cx="0" cy="20" r="16" fill="#f97316" fillOpacity="0.25" />
+              <path
+                d="M0 0 C-8 0 -14 6 -14 14 C-14 24 0 36 0 36 C0 36 14 24 14 14 C14 6 8 0 0 0 Z"
+                fill="#ea580c"
+                filter="drop-shadow(0 3px 8px rgba(234,88,12,0.6))"
+              />
+              <circle cx="0" cy="14" r="5" fill="white" />
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      {/* ================= MAIN CONTENT CONTAINER ================= */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Section Heading & Subheading */}
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+          <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-black text-[#111827] tracking-tight leading-[1.12]">
+            Our 3 State Operational{" "}
+            <span className="block mt-1 bg-gradient-to-r from-[#ea580c] via-[#f97316] to-[#fb923c] bg-clip-text text-transparent">
+              Hubs &amp; Interactive Map
+            </span>
           </h2>
-          <p className="mt-4 text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
-            Select a state operations centre below to inspect the location, view
-            local service hours, get driving directions, or call the branch
-            office.
+          <p className="mt-3.5 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+            Select a state operations center below to inspect the location, view local service
+            hours, get driving directions, or call the branch office.
           </p>
+        </div>
 
-          {/* State Hub Selector Pill Buttons */}
-          <div className="mt-8 inline-flex flex-wrap items-center justify-center gap-2 p-2 rounded-2xl bg-slate-100 border border-slate-200 shadow-inner">
-            {STATE_HUBS.map((hub) => {
-              const isActive = hub.id === activeHubId;
+        {/* State Hub Selector Tabs: Rounded Pill */}
+        <div className="flex justify-center mb-8 sm:mb-10">
+          <div className="inline-flex flex-wrap items-center justify-center p-1.5 rounded-full bg-white/95 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-slate-100 max-w-full">
+            {branches.map((branch) => {
+              const isActive = branch.id === activeState;
               return (
                 <button
-                  key={hub.id}
+                  key={branch.id}
                   type="button"
-                  onClick={() => setActiveHubId(hub.id)}
-                  className={`flex items-center gap-2 px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold transition-all duration-200 cursor-pointer ${
+                  onClick={() => setActiveState(branch.id)}
+                  aria-pressed={isActive}
+                  className={`flex items-center gap-2.5 px-6 sm:px-8 py-3 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer ${
                     isActive
-                      ? "bg-slate-900 text-white shadow-lg scale-[1.02]"
-                      : "text-slate-600 hover:text-slate-900 hover:bg-white"
+                      ? "bg-gradient-to-r from-[#f97316] to-[#ea580c] text-white shadow-[0_4px_16px_rgba(249,115,22,0.35)] scale-[1.01]"
+                      : "text-slate-600 hover:text-slate-900 bg-transparent"
                   }`}
                 >
                   <MapPin
-                    className={`h-4 w-4 ${isActive ? "text-amber-400" : "text-slate-400"}`}
-                  />
-                  <span>{hub.state}</span>
-                  <span
-                    className={`text-[10px] px-2 py-0.5 rounded-md font-mono ${
-                      isActive
-                        ? "bg-white/20 text-white"
-                        : "bg-slate-200 text-slate-600"
+                    className={`w-4 h-4 shrink-0 transition-colors ${
+                      isActive ? "text-white fill-white" : "text-slate-400"
                     }`}
-                  >
-                    {hub.shortState}
-                  </span>
+                  />
+                  <span>{branch.tab}</span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Main Grid: Hub Details Card (Left 5 Cols) + Interactive Map (Right 7 Cols) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          {/* Left Details Card */}
+        {/* Main Grid: Left Branch Details + Right Live Map */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+          {/* LEFT: Branch Details Card */}
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeHub.id}
-              initial={{ opacity: 0, x: -16 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -16 }}
-              transition={{ duration: 0.3 }}
-              className="lg:col-span-5 rounded-3xl bg-white border border-slate-200/90 p-7 sm:p-8 shadow-xl flex flex-col justify-between"
+              key={activeBranch.id}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.28 }}
+              className="lg:col-span-5 flex flex-col justify-between bg-white rounded-[28px] p-6 sm:p-8 shadow-[0_12px_40px_rgba(0,0,0,0.07)] border border-slate-100"
             >
               <div>
-                {/* State Tag */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="px-3.5 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-800 border border-amber-200">
-                    {activeHub.badge}
+                {/* Top Header Badges */}
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <span className="inline-flex items-center px-3.5 py-1 rounded-full text-xs font-semibold bg-[#fff2e5] text-[#ea580c] border border-orange-100/80">
+                    {activeBranch.short}
                   </span>
-                  <span className="text-xs text-emerald-700 font-bold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1.5">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                    Active Field Dispatch
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-[#ecfdf5] text-[#059669] border border-emerald-100/80">
+                    <span className="w-2 h-2 rounded-full bg-[#10b981] animate-pulse" />
+                    {activeBranch.status}
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-black text-slate-950 mb-1">
-                  {activeHub.city}
+                {/* City Heading & Subtitle */}
+                <h3 className="text-2xl sm:text-[28px] font-black text-[#0f172a] tracking-tight">
+                  {activeBranch.city}
                 </h3>
-                <p className="text-xs text-orange-600 font-bold mb-6">
-                  {activeHub.tagline}
+                <p className="text-xs sm:text-sm font-semibold text-[#f97316] mt-1 mb-6">
+                  {activeBranch.subtitle}
                 </p>
 
-                {/* Street Address Box (Verbatim from image) */}
-                <div className="rounded-2xl bg-slate-50 border border-slate-200/80 p-5 mb-5 space-y-3">
+                {/* Info Card 1: Branch Address */}
+                <div className="p-4 sm:p-4.5 rounded-2xl bg-[#f8fafc] border border-slate-100 mb-3.5 shadow-xs">
                   <div className="flex items-start gap-3.5">
-                    <div className="h-10 w-10 rounded-xl bg-linear-to-br from-amber-500 to-orange-500 text-white flex items-center justify-center shrink-0 shadow-sm">
-                      <MapPin className="h-5 w-5" />
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#f97316] to-[#ea580c] text-white flex items-center justify-center shrink-0 shadow-sm shadow-orange-500/20">
+                      <MapPin className="w-6 h-6 fill-white" />
                     </div>
-                    <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
-                        Registered Street Facility:
+
+                    <div className="min-w-0 flex-1">
+                      <span className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase block">
+                        BRANCH ADDRESS
                       </span>
-                      <p className="text-base font-extrabold text-slate-900 leading-snug">
-                        {activeHub.address}
+                      <p className="text-sm font-bold text-slate-900 leading-snug mt-0.5">
+                        {activeBranch.address}
                       </p>
                     </div>
                   </div>
 
-                  <div className="pt-3 border-t border-slate-200 flex items-center justify-between text-xs">
+                  <div className="h-px bg-slate-200/70 my-3.5" />
+
+                  <div className="flex items-center justify-between text-xs font-bold">
                     <button
                       type="button"
-                      onClick={() => handleCopy(activeHub.address)}
-                      className="inline-flex items-center gap-1.5 text-slate-600 hover:text-amber-600 font-bold cursor-pointer transition-colors"
+                      onClick={() => handleCopy(activeBranch.mapAddress)}
+                      className="inline-flex items-center gap-1.5 text-slate-600 hover:text-slate-900 transition-colors cursor-pointer"
                     >
-                      {copied ? (
+                      {copiedAddress === activeBranch.mapAddress ? (
                         <>
-                          <Check className="h-4 w-4 text-emerald-600" />
-                          <span className="text-emerald-700 font-bold">
-                            Copied to clipboard!
-                          </span>
+                          <Check className="w-4 h-4 text-emerald-600" />
+                          <span className="text-emerald-700">Copied to clipboard!</span>
                         </>
                       ) : (
                         <>
-                          <Copy className="h-4 w-4" />
+                          <Copy className="w-4 h-4 text-slate-400" />
                           <span>Copy Address</span>
                         </>
                       )}
                     </button>
 
                     <a
-                      href={googleDirectionsUrl}
+                      href={directionsUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1 text-orange-600 hover:text-orange-700 font-bold transition-colors"
+                      className="inline-flex items-center gap-1 text-[#ea580c] hover:text-[#c2410c] transition-colors"
                     >
                       <span>Get Directions</span>
-                      <ExternalLink className="h-3.5 w-3.5" />
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   </div>
                 </div>
 
-                {/* Operating Hours & Suburb Coverage */}
-                <div className="space-y-3 text-xs text-slate-600 mb-6">
-                  <div className="flex items-center gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
-                    <Clock className="h-4 w-4 text-amber-600 shrink-0" />
-                    <div>
-                      <span className="text-slate-400 block text-[10px] uppercase font-bold">
-                        Office &amp; Workshop Hours
-                      </span>
-                      <span className="font-extrabold text-slate-900">
-                        {activeHub.hours}
-                      </span>
-                    </div>
+                {/* Info Card 2: Hours of Operation */}
+                <div className="p-4 rounded-2xl bg-[#f8fafc] border border-slate-100 mb-3.5 flex items-center gap-3.5 shadow-xs">
+                  <div className="w-10 h-10 rounded-full bg-orange-50 text-[#f97316] flex items-center justify-center shrink-0 border border-orange-100/70">
+                    <Clock className="w-5 h-5" />
                   </div>
 
-                  <div className="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
-                    <Navigation className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
-                    <div>
-                      <span className="text-slate-400 block text-[10px] uppercase font-bold">
-                        Service Radius &amp; Suburbs
-                      </span>
-                      <span className="text-slate-700 font-medium">
-                        {activeHub.serviceArea}
-                      </span>
-                    </div>
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase block">
+                      HOURS OF OPERATION
+                    </span>
+                    <p className="text-xs sm:text-sm font-bold text-slate-800 mt-0.5">
+                      {activeBranch.hours}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Info Card 3: Service Areas & Suburbs */}
+                <div className="p-4 rounded-2xl bg-[#f8fafc] border border-slate-100 mb-5 flex items-start gap-3.5 shadow-xs">
+                  <div className="w-10 h-10 rounded-full bg-emerald-50 text-[#059669] flex items-center justify-center shrink-0 mt-0.5 border border-emerald-100/70">
+                    <Navigation className="w-5 h-5 fill-current" />
+                  </div>
+
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase block">
+                      SERVICE AREAS &amp; SUBURBS
+                    </span>
+                    <p className="text-xs sm:text-sm font-semibold text-slate-700 leading-snug mt-0.5">
+                      {activeBranch.serviceAreas}
+                    </p>
                   </div>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <a
-                  href={`tel:${activeHub.phone.replace(/\s/g, "")}`}
-                  className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors shadow-md"
+                  href={`tel:${activeBranch.phone.replace(/[^+\d]/g, "")}`}
+                  className="flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-[#0a192f] hover:bg-[#112240] text-white font-bold text-xs sm:text-sm transition-all shadow-md group cursor-pointer"
                 >
-                  <Phone className="h-3.5 w-3.5 text-amber-400" />
-                  <span>
-                    Call {activeHub.shortState}: {activeHub.phone}
-                  </span>
+                  <Phone className="w-4 h-4 text-[#f97316] group-hover:scale-110 transition-transform" />
+                  <span>Call {activeBranch.phone}</span>
                 </a>
+
                 <a
-                  href={`mailto:${activeHub.email}`}
-                  className="flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs border border-slate-200 transition-colors"
+                  href={`mailto:${activeBranch.email}`}
+                  className="flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-bold text-xs sm:text-sm transition-all shadow-xs group cursor-pointer"
                 >
-                  <Mail className="h-3.5 w-3.5 text-orange-600" />
+                  <Mail className="w-4 h-4 text-[#f97316] group-hover:scale-110 transition-transform" />
                   <span>Email Branch</span>
                 </a>
               </div>
             </motion.div>
           </AnimatePresence>
 
-          {/* Right Live Embedded Map (7 Cols) */}
-          <div className="lg:col-span-7 rounded-3xl overflow-hidden border border-slate-200/90 shadow-2xl relative min-h-110 bg-slate-100 flex flex-col">
-            {/* Top Interactive HUD */}
-            <div className="absolute top-4 left-4 z-10 px-4 py-2.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 text-slate-900 shadow-lg text-xs flex items-center gap-2.5 pointer-events-none">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500" />
-              </span>
-              <span className="font-extrabold text-orange-600">
-                {activeHub.shortState} Operational Hub:
-              </span>
-              <span className="text-slate-800 font-semibold">
-                {activeHub.city}
-              </span>
+          {/* RIGHT: Live Map Panel */}
+          <div className="lg:col-span-7 relative min-h-[460px] sm:min-h-[520px] lg:min-h-full rounded-[28px] overflow-hidden border border-slate-100 shadow-[0_12px_40px_rgba(0,0,0,0.07)] bg-slate-100 flex flex-col">
+            {/* Floating Top-Left Address Card over Map */}
+            <div className="absolute top-4 left-4 z-10 bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-4 shadow-lg border border-slate-100/90 max-w-[280px] sm:max-w-xs pointer-events-auto">
+              <h4 className="text-sm font-bold text-slate-900 leading-snug">
+                {activeBranch.mapCardTitle}
+              </h4>
+              <p className="text-[11px] text-slate-500 truncate mt-0.5 mb-2.5">
+                {activeBranch.mapAddress}
+              </p>
+              <div className="flex items-center gap-2">
+                <a
+                  href={`https://maps.google.com/?q=${encodeURIComponent(activeBranch.mapAddress)}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#1a73e8] hover:bg-[#1557b0] text-white text-xs font-semibold shadow-xs transition-colors"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  <span>Open in Maps</span>
+                </a>
+                <a
+                  href={directionsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-8 h-8 rounded-lg bg-blue-50 hover:bg-blue-100 text-[#1a73e8] flex items-center justify-center transition-colors shadow-xs"
+                  title="Get Directions"
+                >
+                  <Navigation className="w-4 h-4 rotate-45" />
+                </a>
+              </div>
             </div>
 
-            {/* Live Google Map */}
+            {/* Embedded Google Map */}
             <iframe
-              key={activeHub.id}
-              title={`Skye Electrical & Solar Map - ${activeHub.state}`}
-              src={embedUrl}
-              className="w-full h-full min-h-115 border-0"
+              key={activeBranch.id}
+              title={`${activeBranch.city} Location Map`}
+              src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                activeBranch.mapAddress,
+              )}&output=embed`}
+              className="w-full h-full min-h-[400px] flex-1 border-0"
               loading="lazy"
-              allowFullScreen={true}
+              allowFullScreen
               referrerPolicy="no-referrer-when-downgrade"
             />
 
-            {/* Bottom Bar below map */}
-            <div className="p-4 bg-white border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600">
-              <span className="flex items-center gap-1.5 font-medium">
-                <ShieldCheck className="h-4 w-4 text-emerald-600" />
-                Direct on-site roof analysis and switchboard audits available
-                daily.
-              </span>
+            {/* Bottom Footer Bar */}
+            <div className="p-3.5 px-5 bg-white border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span className="font-medium text-slate-700">
+                  Street view, real-time traffic and nearby services available.
+                </span>
+              </div>
 
               <a
-                href={googleDirectionsUrl}
+                href={directionsUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-1 text-orange-600 hover:text-orange-700 font-extrabold transition-colors"
+                className="inline-flex items-center gap-1 font-bold text-[#ea580c] hover:text-[#c2410c] transition-colors whitespace-nowrap"
               >
                 <span>Open in Google Maps App</span>
-                <ExternalLink className="h-3 w-3" />
+                <ExternalLink className="w-3.5 h-3.5" />
               </a>
             </div>
           </div>

@@ -1,15 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import {
-  ChevronDown,
-  PhoneCall,
-  ShieldCheck,
-  CheckCircle2,
-  Sparkles,
-  Zap,
-} from "lucide-react";
-import { FadeContent } from "../../../components/common/FadeContent";
-import { BorderBeam } from "../../../components/common/BorderBeam";
+import { ChevronDown, PhoneCall, ShieldCheck, CheckCircle2, Sparkles, Zap } from "lucide-react";
+import { FadeContent, BorderBeam } from "@/components/ui";
 import { CONTACT_INFO } from "../../../constants";
 import { useInquiryModal } from "../../../context";
 
@@ -55,8 +47,7 @@ const FAQ_DATA: FaqItem[] = [
   {
     id: "faq-3",
     category: "solar-battery",
-    question:
-      "Do solar panels still produce electricity on cloudy or rainy days?",
+    question: "Do solar panels still produce electricity on cloudy or rainy days?",
     answer:
       "Yes. Solar panels generate power using light photons, not heat. While solar output decreases during thick overcast skies or heavy rain (producing roughly 20% to 40% of their peak capacity), our premium Tier-1 monocrystalline panels with bifacial N-Type cell technology capture diffused ambient light efficiently throughout all seasons.",
     thumbnail: "/assets/residential-solar.jpg",
@@ -70,8 +61,7 @@ const FAQ_DATA: FaqItem[] = [
   {
     id: "faq-4",
     category: "solar-battery",
-    question:
-      "How does adding a battery storage system (Tesla / Alpha ESS) benefit me?",
+    question: "How does adding a battery storage system (Tesla / Alpha ESS) benefit me?",
     answer:
       "A solar battery stores the surplus energy generated during peak daytime sun so you can power your household during expensive evening peak tariff hours and overnight. It also provides automatic emergency blackout protection, keeping essential appliances running when the street grid goes down.",
     thumbnail: "/assets/reviews/battery-storage-garage.jpg",
@@ -85,8 +75,7 @@ const FAQ_DATA: FaqItem[] = [
   {
     id: "faq-5",
     category: "install-warranty",
-    question:
-      "What warranties and guarantees come with Skye Electrical & Solar installations?",
+    question: "What warranties and guarantees come with Sky Electrical & Solar installations?",
     answer:
       "We only supply CEC-approved Tier-1 hardware backed by Australia’s most comprehensive warranty packages. Every installation comes with complete peace of mind.",
     thumbnail: "/assets/banner/banner-electrical-technician.jpg",
@@ -94,7 +83,7 @@ const FAQ_DATA: FaqItem[] = [
     highlights: [
       "25-Year Performance & Hardware Warranty on solar panels",
       "10-Year Comprehensive Warranty on inverters and storage batteries",
-      "10-Year Skye Electrical & Solar Workmanship & Installation Guarantee by licensed electricians",
+      "10-Year Sky Electrical & Solar Workmanship & Installation Guarantee by licensed electricians",
     ],
   },
   {
@@ -203,12 +192,7 @@ export function FaqSection() {
         >
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <pattern
-                id="faq-solar-grid"
-                width="64"
-                height="64"
-                patternUnits="userSpaceOnUse"
-              >
+              <pattern id="faq-solar-grid" width="64" height="64" patternUnits="userSpaceOnUse">
                 <path
                   d="M 64 0 L 0 0 0 64"
                   fill="none"
@@ -281,8 +265,8 @@ export function FaqSection() {
           </h2>
 
           <p className="mt-4 text-base sm:text-lg text-slate-900 leading-relaxed font-normal max-w-5xl mx-auto">
-            Clear, honest answers about solar savings, government rebates,
-            hardware warranties, and what to expect during your installation.
+            Clear, honest answers about solar savings, government rebates, hardware warranties, and
+            what to expect during your installation.
           </p>
         </FadeContent>
 
@@ -340,9 +324,7 @@ export function FaqSection() {
                         className="overflow-hidden"
                       >
                         <div className="px-5 sm:px-6 pb-6 pt-2 border-t border-slate-100 text-sm text-slate-600 leading-relaxed">
-                          <p className="font-normal text-slate-700">
-                            {faq.answer}
-                          </p>
+                          <p className="font-normal text-slate-700">{faq.answer}</p>
 
                           {/* Real Installation Image & Highlight Block */}
                           <div className="mt-4 pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center gap-4 bg-slate-50 p-3.5 rounded-xl border">
@@ -397,18 +379,13 @@ export function FaqSection() {
           <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
             {/* Visual Card 1: Electrician on Site + Direct Help Hotline */}
             <div className="rounded-xl bg-slate-950 text-white shadow-2xl relative overflow-hidden border border-slate-800 group">
-              <BorderBeam
-                size={260}
-                duration={12}
-                colorFrom="#f59e0b"
-                colorTo="#ea580c"
-              />
+              <BorderBeam size={260} duration={12} colorFrom="#f59e0b" colorTo="#ea580c" />
 
               {/* Real Photograph Banner on top */}
               <div className="relative h-50 w-full overflow-hidden bg-slate-900">
                 <img
                   src="/assets/banner/banner-electrical-technician.jpg"
-                  alt="Skye Electrical Master Technician"
+                  alt="Sky Electrical Master Technician"
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 filter brightness-105"
                   loading="lazy"
                 />
@@ -436,9 +413,8 @@ export function FaqSection() {
                 </h3>
 
                 <p className="mt-2 text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
-                  Speak directly with a licensed Clean Energy Council solar
-                  specialist. We review your switchboard, roof tilt, and current
-                  power bills with zero obligation.
+                  Speak directly with a licensed Clean Energy Council solar specialist. We review
+                  your switchboard, roof tilt, and current power bills with zero obligation.
                 </p>
 
                 <div className="mt-5 space-y-2.5">

@@ -1,4 +1,4 @@
-import { RotatingCards } from "../../../components/common/RotatingCards";
+import { RotatingCards } from "@/components/ui";
 
 export function SolutionsSection() {
   return (
@@ -9,10 +9,8 @@ export function SolutionsSection() {
         <div
           className="absolute top-0 inset-x-0 h-44 sm:h-56 lg:h-64 overflow-hidden"
           style={{
-            maskImage:
-              "linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
+            maskImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
           }}
         >
           <img
@@ -28,10 +26,8 @@ export function SolutionsSection() {
         <div
           className="absolute bottom-0 inset-x-0 h-44 sm:h-56 lg:h-64 overflow-hidden"
           style={{
-            maskImage:
-              "linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
+            maskImage: "linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to top, rgba(0, 0, 0, 0.9) 20%, transparent 100%)",
           }}
         >
           <img
@@ -81,11 +77,7 @@ export function SolutionsSection() {
               <circle cx="48" cy="48" r="3" fill="#f97316" opacity="0.6" />
             </pattern>
           </defs>
-          <rect
-            width="100%"
-            height="100%"
-            fill="url(#solutions-hex-solar-grid)"
-          />
+          <rect width="100%" height="100%" fill="url(#solutions-hex-solar-grid)" />
         </svg>
 
         {/* ================= 5. LUMINOUS SOLAR ENERGY AURA (Behind cards & text) ================= */}
@@ -186,26 +178,23 @@ export function SolutionsSection() {
 
             <div className="mt-6 space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
               <p>
-                Founded in 2019, Skye Electrical & Solar has grown into a
-                trusted name for both electrical services and solar energy
-                solutions. From the very beginning, our mission has been to
-                deliver high-quality, reliable, and sustainable services that
-                meet the needs of both residential and commercial clients.
+                Founded in 2019, Sky Electrical & Solar has grown into a trusted name for both
+                electrical services and solar energy solutions. From the very beginning, our mission
+                has been to deliver high-quality, reliable, and sustainable services that meet the
+                needs of both residential and commercial clients.
               </p>
 
               <p>
-                We specialize in a wide range of services, including general
-                electrical work, solar panel installation, battery storage
-                solutions, and energy efficiency upgrades. Our team consists of
-                skilled and certified professionals who are committed to
-                ensuring every project is completed to the highest standards,
-                using only quality materials and advanced technology.
+                We specialize in a wide range of services, including general electrical work, solar
+                panel installation, battery storage solutions, and energy efficiency upgrades. Our
+                team consists of skilled and certified professionals who are committed to ensuring
+                every project is completed to the highest standards, using only quality materials
+                and advanced technology.
               </p>
 
               <p className="font-semibold text-slate-800">
-                With nearly a decade of experience, Skye Electrical & Solar is
-                your trusted partner for safe, efficient, and sustainable energy
-                solutions.
+                With nearly a decade of experience, Sky Electrical & Solar is your trusted partner
+                for safe, efficient, and sustainable energy solutions.
               </p>
             </div>
           </div>

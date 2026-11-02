@@ -11,7 +11,7 @@ import {
   Zap,
 } from "lucide-react";
 import { CONTACT_INFO } from "../../../constants";
-import { BorderBeam } from "../../../components/common/BorderBeam";
+import { BorderBeam } from "@/components/ui";
 
 interface FaqItem {
   id: string;
@@ -42,13 +42,13 @@ const CONTACT_FAQS: FaqItem[] = [
     id: "brands-supported",
     question: "What tier-1 solar panels, inverters, and battery systems do you install?",
     answer:
-      "We partner only with globally proven, CEC-listed tier-1 manufacturers with local Australian warranty offices. This includes Tesla Powerwall, Sungrow, Growatt, Fronius, Solis, Jinko Solar, and Seraphim. Every component carries a full manufacturer warranty (typically 25 years for panels, 10 years for inverters & batteries) plus our Skye 10-year workmanship warranty.",
+      "We partner only with globally proven, CEC-listed tier-1 manufacturers with local Australian warranty offices. This includes Tesla Powerwall, Sungrow, Growatt, Fronius, Solis, Jinko Solar, and Seraphim. Every component carries a full manufacturer warranty (typically 25 years for panels, 10 years for inverters & batteries) plus our Sky 10-year workmanship warranty.",
   },
   {
     id: "electrical-work",
     question: "Do you handle switchboard upgrades and EV charger installations too?",
     answer:
-      "Yes! Because Skye Electrical & Solar employs in-house A-Grade licensed master electricians, we perform full switchboard modernizations, RCD safety switch installations, 3-phase power upgrades, and smart bidirectional EV charger installations alongside or independently of your solar system.",
+      "Yes! Because Sky Electrical & Solar employs in-house A-Grade licensed master electricians, we perform full switchboard modernizations, RCD safety switch installations, 3-phase power upgrades, and smart bidirectional EV charger installations alongside or independently of your solar system.",
   },
 ];
 
@@ -79,8 +79,8 @@ export function ContactFaqSection() {
             Frequently Asked Questions Before Calling
           </h2>
           <p className="mt-4 text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-normal">
-            Everything you need to know about our quote process, licensing, and
-            support across Western Australia, New South Wales, and Queensland.
+            Everything you need to know about our quote process, licensing, and support across
+            Western Australia, New South Wales, and Queensland.
           </p>
         </div>
 
@@ -104,9 +104,7 @@ export function ContactFaqSection() {
                   </span>
                   <div
                     className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                      isOpen
-                        ? "rotate-180 bg-amber-500 text-white"
-                        : "bg-slate-100 text-slate-600"
+                      isOpen ? "rotate-180 bg-amber-500 text-white" : "bg-slate-100 text-slate-600"
                     }`}
                   >
                     <ChevronDown className="h-4 w-4" />
@@ -153,9 +151,8 @@ export function ContactFaqSection() {
               </h3>
 
               <p className="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
-                Speak directly with certified CEC solar engineers and master
-                electricians. Free 3D roof analysis, upfront STC rebate
-                calculations, and guaranteed local support.
+                Speak directly with certified CEC solar engineers and master electricians. Free 3D
+                roof analysis, upfront STC rebate calculations, and guaranteed local support.
               </p>
 
               <div className="mt-5 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-slate-300">

@@ -19,11 +19,11 @@ export function HomePage() {
 
       {/* 2. Key Industry Accreditation & Metrics Strip */}
       <TrustStrip />
-      
+
       {/* 1. Hero Section with Left Content & Right 3D FlyingPosters Animation */}
       <HeroSection />
 
-          {/* 6. 4-Step Process & Workmanship Guarantee */}
+      {/* 6. 4-Step Process & Workmanship Guarantee */}
       <WhyChooseUsSection />
 
       {/* 3. Solar & Battery Core Solutions */}
@@ -31,10 +31,9 @@ export function HomePage() {
 
       {/* 5. Interactive Solar Savings & ROI Calculator */}
       <SolarCalculatorSection />
-        {/* 4. Residential & Commercial Solar Sectors (with React Bits FadeContent) */}
+      
+      {/* 4. Residential & Commercial Solar Sectors (with React Bits FadeContent) */}
       <SolarSectorsSection />
-
-
 
       {/* 6. Dual Logo Marquee: Inverter & Solar Panel Brand Partners */}
       <PartnersSection />

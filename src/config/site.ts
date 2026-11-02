@@ -1,16 +1,24 @@
 export const siteConfig = {
-  name: "Skye Electrical & Solar",
-  title: "Skye Electrical & Solar | Clean Energy & Electrical Solutions",
+  name: "Sky Electrical & Solar",
+  legalName: "Sky Electrical & Solar Pty Ltd",
+  abn: "ABN 89 632 094 190",
+  title: "Sky Electrical & Solar | CEC Accredited Clean Energy & Master Electricians",
   description:
-    "Skye Electrical & Solar - CEC accredited residential & commercial solar installations, Tesla battery storage systems, and master electrical services across Australia.",
+    "Australia's trusted clean energy specialists for CEC-accredited residential and commercial solar installations, Tesla & Sungrow batteries, EV chargers, and switchboard upgrades across WA, NSW, and QLD.",
   version: "1.0.0",
-  url: "https://skyelectricalandsolar.com.au",
+  url: "https://skyelectricalandsolar.com",
+  ogImage: "https://skyelectricalandsolar.com/og-image.jpg",
   contact: {
-    phone: "1300 759 765",
-    email: "info@skyelectricalandsolar.com.au",
-    address: "Melbourne & Sydney Metro, Australia",
+    phone1: "0430 015 017",
+    phone2: "0489 935 658",
+    email: "info@skyelectricalandsolar.net.au",
+    hours: "Mon – Sat: 7:00 AM – 6:00 PM",
   },
   links: {
-    github: "https://github.com",
+    facebook: "https://facebook.com",
+    x: "https://x.com",
+    youtube: "https://youtube.com",
   },
 };
+
+export default siteConfig;

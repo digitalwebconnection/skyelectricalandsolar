@@ -1,18 +1,32 @@
-export * from './ShimmerButton'
-export * from './FlyingPosters'
-export * from './StaggerButton'
-export * from './StrokeText'
-export * from './Marquee'
-export * from './RotatingCards'
-export * from './SkewHoverCard'
-export * from './FadeContent'
-export * from './MagicCard'
-export * from './ScrollStack'
-export * from './BorderBeam'
-export * from './NumberTicker'
-export * from './WebsiteLoader'
-export * from './SmoothScroll'
-export * from './InquiryEnvelopeModal'
-export * from './PixelSwap'
-export * from './InfiniteSpiral'
+// App-level shared components
+export { WebsiteLoader } from "./WebsiteLoader";
+export { SmoothScrollProvider } from "./SmoothScroll";
+export { InquiryEnvelopeModal } from "./InquiryEnvelopeModal";
+export { SEO } from "./SEO";
+export { JsonLd } from "./JsonLd";
+export { ErrorBoundary } from "./ErrorBoundary";
+export { PageLoader } from "./PageLoader";
+export { ScrollToTop } from "./ScrollToTop";
+export { WhatsAppButton } from "./WhatsAppButton";
+
+// Re-export UI effects for backward compatibility
+export {
+  AnimatedGridPattern,
+  BorderBeam,
+  FadeContent,
+  FlickeringGrid,
+  FlyingPosters,
+  InfiniteSpiral,
+  MagicCard,
+  Marquee,
+  NumberTicker,
+  PixelSwap,
+  RotatingCards,
+  ScrollStack,
+  ShimmerButton,
+  SkewHoverCard,
+  StaggerButton,
+  StrokeText,
+} from "../ui";
+
 

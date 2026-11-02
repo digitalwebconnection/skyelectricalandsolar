@@ -1,22 +1,10 @@
-import type { NavItem } from "../types";
+export * from "./navLinks";
+export * from "./socialLinks";
+export * from "./partners";
 
-export const APP_NAME = "Skye Electrical & Solar";
-export const COMPANY_LEGAL_NAME = "Skye Electrical & Solar Pty Ltd";
+export const APP_NAME = "Sky Electrical & Solar";
+export const COMPANY_LEGAL_NAME = "Sky Electrical & Solar Pty Ltd";
 export const COMPANY_ABN = "ABN 89 632 094 190";
-
-export const NAV_ITEMS: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/about-us" },
-  { label: "Blogs", href: "/blogs" },
-  { label: "Services", href: "/services" },
-  { label: "Specials", href: "/specials" },
-  { label: "Contact Us", href: "/contact-us" },
-];
-
-export const LEGAL_LINKS: NavItem[] = [
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms & Conditions", href: "/terms-conditions" },
-];
 
 export const CONTACT_INFO = {
   phone1: "0430 015 017",
@@ -94,4 +82,3 @@ export const STATE_HUBS: StateHub[] = [
     tagline: "High-Efficiency Solar & EV Infrastructure Hub",
   },
 ];
-
